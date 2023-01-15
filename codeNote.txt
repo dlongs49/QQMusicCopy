@@ -1,0 +1,51 @@
+//    layout = new QHBoxLayout(this);
+//    layout->setContentsMargins(0,0,0,0);
+//    layout->addWidget(sarea);
+
+//    QHBoxLayout *layouts=new QHBoxLayout;
+//    layouts->setParent(this); // 设置在父级之上
+//    layouts->setDirection(QHBoxLayout::RightToLeft);
+//    ql_2 = new QLabel("123");
+//    ql_2->setStyleSheet("QLabel{background:#f0f;}");
+//    ql_2->setParent(this);
+//    layouts->addWidget(ql_2);
+//    layouts->addStretch(2);
+//    this->setLayout(layouts);
+
+
+
+//    b1.setParent(this);
+//    b1.setFixedSize(150, 40);
+//    b1.move(100, 100);
+//    b1.setText("按钮一");
+//    b2 = new QPushButton(this);
+//    b2->setParent(this);
+//    b2->move(600, 200);
+//    b2->setText("按钮二");
+//    connect(&b1, &QPushButton::pressed, this, &MainWindow::customClick);
+//    ql_1 = new QLabel();
+//    ql_1->setParent(this);
+//    ql_1->setGeometry(1,1,200,200);
+//
+//    qm_1 = new QMovie("C:\\Users\\dillonl\\Desktop\\QT\\demo-2\\hu.png");
+//    ql_1->setMovie(qm_1);
+//    ql_1->setScaledContents(true); // 根据比例填充图片
+//    qm_1->start();
+//    ql_1->setStyleSheet("border-radius:40px;");
+//    ql_1->setPixmap(QPixmap::fromImage(qm_1));
+    /* &b1：信号发送者，指针类型
+     * &QPushButton: 处理的信号 发送着的类名::信号名字
+     * this：信号接收者
+     * &MainWindow::close: 槽函数，信号处理函数
+     */
+}
+
+//void MainWindow::customClick() {
+//    if (isFullScreen() == 1) {
+//        // this->showMinimized(); // 最小化
+//        this->showNormal(); // 恢复原屏
+//    } else {
+//        this->showFullScreen(); // 最大化
+//    }
+//    std::cout << isFullScreen() << std::endl;
+//}

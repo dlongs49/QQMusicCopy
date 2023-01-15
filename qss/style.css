@@ -55,3 +55,12 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 QScrollBar::handle:vertical:hover, QScrollBar::handle:vertical:pressed {
     background: #c5c5c5;
 }
+
+/* 在线音乐 我的音乐.. QListWidget Item */
+.menuItem{
+    background: none;
+    border: none;
+}
+.menuItem::Item:hover{
+    background-color: #d5d5d5;
+}
