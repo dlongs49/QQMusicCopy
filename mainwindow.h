@@ -40,5 +40,13 @@ private:
     QPixmap *qp_1;
     void readQssStyle();
     void customClick();
+
+    void onlineMusic(QString string);
+
+    void myMusic(QString fileUrl);
+
+    void createSongList(QString fileUrl);
+
+    void facoriteSonglist(QString fileUrl);
 };
 #endif //DEMO_2_MAINWINDOW_H

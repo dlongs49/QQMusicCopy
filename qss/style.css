@@ -7,7 +7,7 @@ QScrollArea {
     border: 0px solid;
     border-right-width: 0px;
     border-right-color: #dcdbdc;
-    background-color: #f6f6f6;
+    background-color: transparent;
 }
 
 /* 滑动区域 */
@@ -57,10 +57,29 @@ QScrollBar::handle:vertical:hover, QScrollBar::handle:vertical:pressed {
 }
 
 /* 在线音乐 我的音乐.. QListWidget Item */
+.menuTitle{
+    color: #666;
+    font-size: 12px;
+    margin-left: 34px;
+    margin-bottom: 6px;
+}
 .menuItem{
-    background: none;
+    margin-left: 24px;
+    background: transparent;
     border: none;
+    outline: none;
+    /*margin-right: 20px;*/
+}
+
+.menuItem::Item{
+    margin-bottom:10px;
+    border-radius: 4px;
+    padding: 4px 0;
+    padding-left: 7px;
+}
+.menuItem::Item:selected:active{
+    background: #1ECF9E;
 }
 .menuItem::Item:hover{
-    background-color: #d5d5d5;
+    background: #d8d8d8;
 }
