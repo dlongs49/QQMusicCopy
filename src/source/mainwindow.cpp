@@ -138,11 +138,11 @@ void MainWindow::createSongList(QString fileUrl) {
 }
 // 收藏的歌单
 void MainWindow::facoriteSonglist(QString fileUrl) {
-    QListWidgetItem *myLove = new QListWidgetItem();
-    myLove->setIcon(QIcon(QPixmap(fileUrl+"\\resource\\icon\\nav_music.png").scaled(60,60)));
-    myLove->setText("我的收藏");
-    list[3]->addItem(myLove);
-    list[3]->setMinimumHeight(30);
+    QListWidgetItem *myCollection = new QListWidgetItem();
+    myCollection->setIcon(QIcon(QPixmap(fileUrl+"\\resource\\icon\\nav_music.png").scaled(60,60)));
+    myCollection->setText("我的收藏");
+    list[3]->addItem(myCollection);
+    list[3]->setMaximumHeight(70);
 }
 MainWindow::~MainWindow() {
 }
