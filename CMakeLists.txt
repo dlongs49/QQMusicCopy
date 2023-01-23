@@ -1,12 +1,14 @@
 cmake_minimum_required(VERSION 3.21)
-project(demo_2)
+project(QTMusic)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-set(CMAKE_PREFIX_PATH "E:/Program_Files/Qt5.9.9/5.9.9/mingw53_32/lib/cmake")
+
+
+set(CMAKE_PREFIX_PATH "D:/application/Qt/Qt5.9.9/5.9.9/mingw53_32/lib/cmake")
 
 find_package(Qt5 COMPONENTS
         Core
@@ -14,8 +16,8 @@ find_package(Qt5 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(demo_2 main.cpp src/header/mainwindow.h src/source/mainwindow.cpp)
-target_link_libraries(demo_2
+add_executable(QTMusic main.cpp src/header/mainwindow.h src/source/mainwindow.cpp)
+target_link_libraries(QTMusic
         Qt5::Core
         Qt5::Gui
         Qt5::Widgets

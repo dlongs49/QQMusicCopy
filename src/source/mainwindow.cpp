@@ -11,7 +11,7 @@ using namespace std;
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent) {
     this->resize(1200, 660); // 窗口大小
-    QString fileUrl = "C:\\Users\\dillonl\\Desktop\\QT\\demo-2";
+    QString fileUrl = "C:\\Users\\HOME\\Desktop\\demo-2";
     readQssStyle(); // 样式文件引入读取
 
     for (int i = 0; i < 4; i++) {
@@ -62,7 +62,7 @@ MainWindow::MainWindow(QWidget *parent)
 }
 // 样式
 void MainWindow::readQssStyle(){
-    QFile file("C:\\Users\\dillonl\\Desktop\\QT\\demo-2\\resource\\qss\\style.css");
+    QFile file("C:\\Users\\HOME\\Desktop\\demo-2\\resource\\qss\\style.css");
     file.open(QIODevice::ReadOnly);
     if(file.isOpen())
     {
