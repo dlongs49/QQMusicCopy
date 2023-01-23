@@ -6,12 +6,15 @@
 #include <iostream>
 #include <QFile>
 #include <QString>
+#include <QDir>
+
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent) {
     this->resize(1200, 660); // 窗口大小
     QString fileUrl = "C:\\Users\\HOME\\Desktop\\demo-2";
+//    QString fileUrl = ":/resource";
     readQssStyle(); // 样式文件引入读取
 
     for (int i = 0; i < 4; i++) {
@@ -62,7 +65,8 @@ MainWindow::MainWindow(QWidget *parent)
 }
 // 样式
 void MainWindow::readQssStyle(){
-    QFile file("C:\\Users\\HOME\\Desktop\\demo-2\\resource\\qss\\style.css");
+//    QFile file("C:\\Users\\HOME\\Desktop\\demo-2\\resource\\qss\\style.qss");
+    QFile file(":/resource/qss/style.qss");
     file.open(QIODevice::ReadOnly);
     if(file.isOpen())
     {
@@ -75,7 +79,7 @@ void MainWindow::readQssStyle(){
 // 在线音乐
 void MainWindow::onlineMusic(QString fileUrl) {
     recommend = new QListWidgetItem();
-    recommend->setIcon(QIcon(QPixmap(fileUrl+"\\resource\\icon\\nav_music.png").scaled(60,60)));
+    recommend->setIcon(QIcon(QPixmap(":/resource/icon/nav_music.png").scaled(60,60)));
     recommend->setText("推荐");
     list[0]->addItem(recommend);
 //    recommend->setSizeHint(QSize(0,30)); // 高度设置  qss已设置，留存
@@ -84,54 +88,54 @@ void MainWindow::onlineMusic(QString fileUrl) {
 
 
     QListWidgetItem *musicShop = new QListWidgetItem();
-    musicShop->setIcon(QIcon(QPixmap(fileUrl+"\\resource\\icon\\nav_music.png").scaled(60,60)));
+    musicShop->setIcon(QIcon(QPixmap(":/resource/icon/nav_music.png").scaled(60,60)));
     musicShop->setText("音乐馆");
     list[0]->addItem(musicShop);
 
     QListWidgetItem *video = new QListWidgetItem();
-    video->setIcon(QIcon(QPixmap(fileUrl+"\\resource\\icon\\nav_music.png").scaled(60,60)));
+    video->setIcon(QIcon(QPixmap(":/resource/icon/nav_music.png").scaled(60,60)));
     video->setText("视频");
     list[0]->addItem(video);
 
     QListWidgetItem *radioStation = new QListWidgetItem();
-    radioStation->setIcon(QIcon(QPixmap(fileUrl+"\\resource\\icon\\nav_music.png").scaled(60,60)));
+    radioStation->setIcon(QIcon(QPixmap(":/resource/icon/nav_music.png").scaled(60,60)));
     radioStation->setText("电台");
     list[0]->addItem(radioStation);
 }
 // 我的音乐
 void MainWindow::myMusic(QString fileUrl) {
     QListWidgetItem *myLove = new QListWidgetItem();
-    myLove->setIcon(QIcon(QPixmap(fileUrl+"\\resource\\icon\\nav_music.png").scaled(60,60)));
+    myLove->setIcon(QIcon(QPixmap(":/resource/icon/nav_music.png").scaled(60,60)));
     myLove->setText("我喜欢");
     list[1]->addItem(myLove);
     list[1]->setMinimumHeight(210);
 
 
     QListWidgetItem *localDownLoad = new QListWidgetItem();
-    localDownLoad->setIcon(QIcon(QPixmap(fileUrl+"\\resource\\icon\\nav_music.png").scaled(60,60)));
+    localDownLoad->setIcon(QIcon(QPixmap(":/resource/icon/nav_music.png").scaled(60,60)));
     localDownLoad->setText("本地和下载");
     list[1]->addItem(localDownLoad);
 
     QListWidgetItem *recenPlay = new QListWidgetItem();
-    recenPlay->setIcon(QIcon(QPixmap(fileUrl+"\\resource\\icon\\nav_music.png").scaled(60,60)));
+    recenPlay->setIcon(QIcon(QPixmap(":/resource/icon/nav_music.png").scaled(60,60)));
     recenPlay->setText("最近播放");
     list[1]->addItem(recenPlay);
 
     QListWidgetItem *auditionList = new QListWidgetItem();
-    auditionList->setIcon(QIcon(QPixmap(fileUrl+"\\resource\\icon\\nav_music.png").scaled(60,60)));
+    auditionList->setIcon(QIcon(QPixmap(":/resource/icon/nav_music.png").scaled(60,60)));
     auditionList->setText("试听列表");
     list[1]->addItem(auditionList);
 
 
     QListWidgetItem *purchasedMusic = new QListWidgetItem();
-    purchasedMusic->setIcon(QIcon(QPixmap(fileUrl+"\\resource\\icon\\nav_music.png").scaled(60,60)));
+    purchasedMusic->setIcon(QIcon(QPixmap(":/resource/icon/nav_music.png").scaled(60,60)));
     purchasedMusic->setText("已购音乐");
     list[1]->addItem(purchasedMusic);
 }
 // 创建的歌单
 void MainWindow::createSongList(QString fileUrl) {
     QListWidgetItem *myLove = new QListWidgetItem();
-    myLove->setIcon(QIcon(QPixmap(fileUrl+"\\resource\\icon\\nav_music.png").scaled(60,60)));
+    myLove->setIcon(QIcon(QPixmap(":/resource/icon/nav_music.png").scaled(60,60)));
     myLove->setText("我的歌单");
     list[2]->addItem(myLove);
     list[2]->setMaximumHeight(70);
@@ -139,7 +143,7 @@ void MainWindow::createSongList(QString fileUrl) {
 // 收藏的歌单
 void MainWindow::facoriteSonglist(QString fileUrl) {
     QListWidgetItem *myCollection = new QListWidgetItem();
-    myCollection->setIcon(QIcon(QPixmap(fileUrl+"\\resource\\icon\\nav_music.png").scaled(60,60)));
+    myCollection->setIcon(QIcon(QPixmap(":/resource/icon/nav_music.png").scaled(60,60)));
     myCollection->setText("我的收藏");
     list[3]->addItem(myCollection);
     list[3]->setMaximumHeight(70);
