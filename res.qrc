@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>resource/icon/nav_music.png</file>
+        <file>resource/images/logo.png</file>
         <file>resource/qss/style.qss</file>
     </qresource>
 </RCC>

@@ -22,6 +22,13 @@ Q_OBJECT;
 public:
     rightMenu(QWidget *parent = nullptr);
     ~rightMenu();
+signals:
+    //点击信号
+    void clicked();
+public slots:
+       void customClick();
+protected:
+    void mousePressEvent(QMouseEvent*);
 private:
     QHBoxLayout *layout;
     QListWidget *list[4];
@@ -39,7 +46,6 @@ private:
     QLabel *ql_2;
     QPixmap *qp_1;
     void readQssStyle();
-    void customClick();
 
     void onlineMusic();
 

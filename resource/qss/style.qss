@@ -13,7 +13,7 @@ QScrollArea {
 /* 滑动区域 */
 QScrollBar:vertical {
     border: none;
-    background: #f6f6f6;
+    background: transparent;
     width: 10px;
     margin: 0px 0 0px 0;
 }
@@ -82,4 +82,11 @@ QScrollBar::handle:vertical:hover, QScrollBar::handle:vertical:pressed {
 }
 .menuItem::Item:hover{
     background: #d8d8d8;
+}
+
+/* LOGO */
+.logo{
+    margin-left:35px;
+    margin-top:20px;
+    margin-bottom:36px;
 }
