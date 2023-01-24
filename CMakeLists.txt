@@ -16,7 +16,7 @@ find_package(Qt5 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(QTMusic main.cpp src/header/mainwindow.h src/source/mainwindow.cpp)
+add_executable(QTMusic main.cpp src/header/mainwindow.h src/source/mainwindow.cpp src/source/rightMenu.cpp src/header/rightMenu.h src/source/container.cpp)
 target_link_libraries(QTMusic
         Qt5::Core
         Qt5::Gui

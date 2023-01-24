@@ -8,10 +8,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
-    src\source\mainwindow.cpp
+    src\source\mainwindow.cpp\
+    src\source\rightMenu.cpp
 
 HEADERS += \
-    src\header\mainwindow.h
+    src\header\mainwindow.h\
+    src\header\rightMenu.h
 
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

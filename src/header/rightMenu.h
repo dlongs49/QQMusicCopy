@@ -1,10 +1,10 @@
 //
-// Created by dinglong on 2023/1/2.
+// Created by dinglong on 2023/1/23 19:10
 //
 
-#ifndef DEMO_2_MAINWINDOW_H
-#define DEMO_2_MAINWINDOW_H
-#include "../header/rightMenu.h"
+#ifndef DEMO_2_rightMenu_H
+#define DEMO_2_rightMenu_H
+#include <QWidget>
 #include <QMainWindow>
 #include <QPushButton>
 #include <QMovie>
@@ -15,17 +15,15 @@
 #include <QListWidget> // 列表
 #include <QScrollArea> // 滚动容器
 #include <QSpacerItem>
-#include <QWidget>
 #include <QListWidgetItem>
 #include <QCursor>
-class MainWindow : public QMainWindow{
-    Q_OBJECT;
+class rightMenu : public QWidget{
+Q_OBJECT;
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    rightMenu(QWidget *parent = nullptr);
+    ~rightMenu();
 private:
     QHBoxLayout *layout;
-    rightMenu *right_menu;
     QListWidget *list[4];
     QLabel *tlabel[4];
     QVBoxLayout *vlayout;
@@ -51,4 +49,4 @@ private:
 
     void facoriteSonglist();
 };
-#endif //DEMO_2_MAINWINDOW_H
+#endif //DEMO_2_rightMenu_H
