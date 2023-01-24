@@ -9,8 +9,7 @@
 
 using namespace std;
 
-rightMenu::rightMenu(QWidget *parent)
-        : QWidget(parent) {
+rightMenu::rightMenu(QWidget *parent) : QWidget(parent) {
     this->setMinimumSize(220, 70);
     this->setMinimumHeight(570);
     this->setSizePolicy(QSizePolicy::Expanding,

@@ -4,5 +4,8 @@
 #include "../header/container.h"
 container::container(QWidget *parent) : QWidget(parent) {
     this->setStyleSheet("QWidget{background:#f0f}");
-    this->setMinimumSize(500,500);
+    label = new QLabel(this);
+    label->setText("");
+}
+container::~container() {
 }

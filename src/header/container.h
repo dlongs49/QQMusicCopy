@@ -2,15 +2,18 @@
 // Created by dinglong on 2023/1/24 22:02
 //
 
-#ifndef QTMUSIC_CONTAINER_H
-#define QTMUSIC_CONTAINER_H
+#ifndef QTMUSIC_container_H
+#define QTMUSIC_container_H
 #include <QWidget>
+#include <QLabel>
+
 class container : public QWidget{
-    Q_OBJECT;
+Q_OBJECT;
 public:
     container(QWidget *parent = nullptr);
-    ~container(){};
+    ~container();
+    QLabel *label;
 protected:
 private:
 };
-#endif //QTMUSIC_CONTAINER_H
+#endif //QTMUSIC_container_H

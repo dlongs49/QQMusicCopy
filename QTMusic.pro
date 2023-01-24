@@ -10,12 +10,12 @@ SOURCES += \
     main.cpp \
     src\source\mainwindow.cpp\
     src\source\rightMenu.cpp\
-    src\source\container.cpp\
+    src\source\container.cpp
 
 HEADERS += \
     src\header\mainwindow.h\
     src\header\rightMenu.h\
-    src\header\container.h\
+    src\header\container.h
 
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

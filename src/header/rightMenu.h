@@ -2,10 +2,9 @@
 // Created by dinglong on 2023/1/23 19:10
 //
 
-#ifndef DEMO_2_rightMenu_H
-#define DEMO_2_rightMenu_H
+#ifndef QTMUSIC_rightMenu_H
+#define QTMUSIC_rightMenu_H
 #include <QWidget>
-#include <QMainWindow>
 #include <QPushButton>
 #include <QMovie>
 #include <QLabel>
@@ -55,4 +54,4 @@ private:
 
     void facoriteSonglist();
 };
-#endif //DEMO_2_rightMenu_H
+#endif //QTMUSIC_rightMenu_H

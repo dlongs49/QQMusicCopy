@@ -15,10 +15,11 @@ MainWindow::MainWindow(QWidget *parent)
 //    this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
 
     layout = new QHBoxLayout(this);
-//    right_menu = new rightMenu(this);
+    right_menu = new rightMenu(this);
     container_ = new container(this);
-//    layout->addWidget(right_menu);
+    layout->addWidget(right_menu);
     layout->addWidget(container_);
+    right_menu->setStyleSheet("QWidget{background:#ff0}");
 }
 
 MainWindow::~MainWindow() {
