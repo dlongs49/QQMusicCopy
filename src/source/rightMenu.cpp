@@ -10,13 +10,13 @@
 using namespace std;
 
 rightMenu::rightMenu(QWidget *parent) : QWidget(parent) {
-    this->setMinimumSize(220, 70);
-    this->setMinimumHeight(570);
+    this->setMaximumWidth(210);
+    cout << this->height() << endl;
+    this->setMinimumHeight(this->height());
     this->setSizePolicy(QSizePolicy::Expanding,
                         QSizePolicy::Expanding);
     this->setAutoFillBackground(false);
     readQssStyle(); // 样式文件引入读取
-
     for (int i = 0; i < 4; i++) {
         tlabel[i] = new QLabel(this);
         tlabel[i]->setContentsMargins(0, 0, 0, 0);
@@ -25,6 +25,7 @@ rightMenu::rightMenu(QWidget *parent) : QWidget(parent) {
     }
     for (int i = 0; i < 4; i++) {
         list[i] = new QListWidget(this);
+
         list[i]->setMaximumWidth(182);
         list[i]->setContentsMargins(0, 0, 0, 0);
         list[i]->setProperty("class", "menuItem");
@@ -40,9 +41,12 @@ rightMenu::rightMenu(QWidget *parent) : QWidget(parent) {
     QVBoxLayout *outLayout = new QVBoxLayout(this);
     // Logo放置处
     QLabel *label = new QLabel(this);
-    label->setMaximumSize(320,100);
+    outLayout->setSpacing(0);
+    outLayout->setMargin(0);
+//    label->setMaximumSize(320,100);
     QPixmap pixmap(":/resource/images/logo.png");
     label->setPixmap(pixmap);
+
 //    label->setScaledContents(true); // 图片尺寸随之 label 的大小而变化
     label->setProperty("class","logo");
     connect(this, SIGNAL(clicked()), this, SLOT(customClick()));
@@ -58,13 +62,14 @@ rightMenu::rightMenu(QWidget *parent) : QWidget(parent) {
     vlayout->addWidget(list[3]);
     vlayout->addStretch();
     vlayout->setContentsMargins(0, 0, 0, 0);
-
+    vlayout->setSpacing(0);
+    vlayout->setMargin(0);
     sarea = new QScrollArea(this);
     widget = new QWidget();
+    widget->setMinimumWidth(this->width() - 20); // 这里拿到父级的宽度 减去 10像素(10px是滚动条的宽度)
     widget->setLayout(vlayout);
     sarea->setWidget(widget);
     outLayout->addWidget(sarea);
-
 
 
     onlineMusic();

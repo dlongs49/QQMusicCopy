@@ -90,3 +90,13 @@ QScrollBar::handle:vertical:hover, QScrollBar::handle:vertical:pressed {
     margin-top:20px;
     margin-bottom:36px;
 }
+
+/* 搜索 */
+.searchBox{
+    background: #e3e3e3;
+    border-radius:10px;
+}
+.packHolder{
+    color:#999;
+    font-size:12px;
+}

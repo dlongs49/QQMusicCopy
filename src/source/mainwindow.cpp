@@ -8,18 +8,25 @@ using namespace std;
 
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent) {
-    this->resize(1200, 660); // 窗口大小
+    const int w = 1200;
+    const int h = 660;
+    this->resize(w, h); // 窗口大小
     //阴影的宽度
 //    this->setContentsMargins(35, 35, 35, 35);
 //    //无边框
 //    this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
-
-    layout = new QHBoxLayout(this);
-    right_menu = new rightMenu(this);
-    container_ = new container(this);
+    this->setContentsMargins(0,0,0,0);
+    QWidget *widget = new QWidget(this);
+    widget->setMinimumSize(w, h);
+    QHBoxLayout *layout = new QHBoxLayout();
+    layout->setSpacing(0);
+    layout->setMargin(0);
+    right_menu = new rightMenu();
+    container_ = new container();
     layout->addWidget(right_menu);
     layout->addWidget(container_);
-    right_menu->setStyleSheet("QWidget{background:#ff0}");
+    widget->setLayout(layout);
+
 }
 
 MainWindow::~MainWindow() {
