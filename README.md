@@ -1,1 +1,2 @@
-# QTMusic
+# QQMusicCopy
+使用qt开发高仿QQ音乐桌面端应用程序
