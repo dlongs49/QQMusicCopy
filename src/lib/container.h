@@ -17,10 +17,11 @@ public:
     QLabel *lLabel;
     QLabel *rLabel;
     QWidget *widget;
+    QWidget *lWidget;
+    QWidget *rWidget;
     QLineEdit *input;
     QHBoxLayout *layout;
 protected:
 private:
-    void readQssStyle();
 };
 #endif //QTMUSIC_container_H

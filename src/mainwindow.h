@@ -11,10 +11,10 @@
 #include <QMovie>
 #include <QLabel>
 #include <QPixmap>
-#include <QHBoxLayout> // 水平布局组件
-#include <QVBoxLayout> // 垂直布局组件
-#include <QListWidget> // 列表
-#include <QScrollArea> // 滚动容器
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QListWidget>
+#include <QScrollArea>
 #include <QSpacerItem>
 #include <QWidget>
 #include <QListWidgetItem>
@@ -30,30 +30,7 @@ private:
     QHBoxLayout *layout;
     rightMenu *right_menu;
     container *container_;
-    QListWidget *list[4];
-    QLabel *tlabel[4];
-    QVBoxLayout *vlayout;
-    QScrollArea *sarea;
     QWidget *widget;
-    QListWidgetItem *recommend;
-    QGraphicsDropShadowEffect *shadow;
-//    void setCursor(const QCursor &);
 
-    QPushButton b1;
-    QPushButton *b2;
-    QMovie *qm_1;
-    QLabel *ql_1;
-    QLabel *ql_2;
-    QPixmap *qp_1;
-    void readQssStyle();
-    void customClick();
-
-    void onlineMusic();
-
-    void myMusic();
-
-    void createSongList();
-
-    void facoriteSonglist();
 };
 #endif //DEMO_2_MAINWINDOW_H

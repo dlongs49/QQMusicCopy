@@ -4,8 +4,6 @@
 
 #include "rightMenu.h"
 #include <iostream>
-#include <QFile>
-#include <QString>
 
 using namespace std;
 
@@ -16,7 +14,6 @@ rightMenu::rightMenu(QWidget *parent) : QWidget(parent) {
     this->setSizePolicy(QSizePolicy::Expanding,
                         QSizePolicy::Expanding);
     this->setAutoFillBackground(false);
-    readQssStyle(); // 样式文件引入读取
     for (int i = 0; i < 4; i++) {
         tlabel[i] = new QLabel(this);
         tlabel[i]->setContentsMargins(0, 0, 0, 0);
@@ -48,7 +45,7 @@ rightMenu::rightMenu(QWidget *parent) : QWidget(parent) {
     label->setPixmap(pixmap);
 
 //    label->setScaledContents(true); // 图片尺寸随之 label 的大小而变化
-    label->setProperty("class","logo");
+    label->setProperty("class", "logo");
     connect(this, SIGNAL(clicked()), this, SLOT(customClick()));
     outLayout->addWidget(label);
     vlayout = new QVBoxLayout();
@@ -87,20 +84,9 @@ void rightMenu::customClick() {
         this->showFullScreen();
     }
 }
-void rightMenu::mousePressEvent(QMouseEvent*)
-{
+
+void rightMenu::mousePressEvent(QMouseEvent *) {
     emit clicked();
-}
-// 样式
-void rightMenu::readQssStyle() {
-    QFile file(":/resource/qss/style.qss");
-    file.open(QIODevice::ReadOnly);
-    if (file.isOpen()) {
-        QString style = this->styleSheet();
-        style += QLatin1String(file.readAll());
-        this->setStyleSheet(style);
-        file.close();
-    }
 }
 
 // 在线音乐

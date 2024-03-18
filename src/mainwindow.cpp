@@ -16,9 +16,9 @@ MainWindow::MainWindow(QWidget *parent)
 //    //无边框
 //    this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     this->setContentsMargins(0,0,0,0);
-    QWidget *widget = new QWidget(this);
+    widget = new QWidget(this);
     widget->setMinimumSize(w, h);
-    QHBoxLayout *layout = new QHBoxLayout();
+    layout = new QHBoxLayout();
     layout->setSpacing(0);
     layout->setMargin(0);
     right_menu = new rightMenu();
