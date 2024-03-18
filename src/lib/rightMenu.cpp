@@ -2,7 +2,7 @@
 // Created by dinglong on 2023/1/23 19:06
 //
 
-#include "../header/rightMenu.h"
+#include "rightMenu.h"
 #include <iostream>
 #include <QFile>
 #include <QString>

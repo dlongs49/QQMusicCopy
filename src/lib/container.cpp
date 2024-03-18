@@ -1,7 +1,7 @@
 //
 // Created by dinglong on 2023/1/23 20:06
 //
-#include "../header/container.h"
+#include "container.h"
 
 container::container(QWidget *parent) : QWidget(parent) {
     this->setMinimumSize(100, 450);
@@ -68,14 +68,14 @@ container::container(QWidget *parent) : QWidget(parent) {
 }
 // 样式
 void container::readQssStyle() {
-    QFile file(":/resource/qss/style.qss");
-    file.open(QIODevice::ReadOnly);
-    if (file.isOpen()) {
-        QString style = this->styleSheet();
-        style += QLatin1String(file.readAll());
-        this->setStyleSheet(style);
-        file.close();
-    }
+//    QFile file(":/resource/qss/style.qss");
+//    file.open(QIODevice::ReadOnly);
+//    if (file.isOpen()) {
+//        QString style = this->styleSheet();
+//        style += QLatin1String(file.readAll());
+//        this->setStyleSheet(style);
+//        file.close();
+//    }
 }
 container::~container() {
 }

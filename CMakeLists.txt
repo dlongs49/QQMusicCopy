@@ -15,12 +15,12 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 add_executable(QQMusicCopy
         main.cpp
-        src/header/mainwindow.h
-        src/source/mainwindow.cpp
-        src/source/rightMenu.cpp
-        src/header/rightMenu.h
-        src/source/container.cpp
-        src/header/container.h
+        src/mainwindow.h
+        src/mainwindow.cpp
+        src/lib/rightMenu.cpp
+        src/lib/rightMenu.h
+        src/lib/container.cpp
+        src/lib/container.h
 )
 
 target_link_libraries(QQMusicCopy PRIVATE Qt5::Widgets Qt5::Core)

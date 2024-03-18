@@ -2,7 +2,7 @@
 // Created by dinglong on 2023/1/2.
 //
 
-#include "../header/mainwindow.h"
+#include "mainwindow.h"
 
 using namespace std;
 

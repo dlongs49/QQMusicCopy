@@ -4,8 +4,8 @@
 
 #ifndef DEMO_2_MAINWINDOW_H
 #define DEMO_2_MAINWINDOW_H
-#include "../header/rightMenu.h"
-#include "../header/container.h"
+#include "./lib/rightMenu.h"
+#include "./lib/container.h"
 #include <QMainWindow>
 #include <QPushButton>
 #include <QMovie>
