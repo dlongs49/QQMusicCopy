@@ -15,6 +15,7 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 add_executable(QQMusicCopy
         main.cpp
+        res.qrc
         src/mainwindow.h
         src/mainwindow.cpp
         src/lib/rightMenu.cpp
