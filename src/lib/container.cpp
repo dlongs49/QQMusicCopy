@@ -20,10 +20,13 @@ container::container(QWidget *parent) : QWidget(parent) {
     layout->addWidget(rWidget);
     widget->setLayout(layout);
     QHBoxLayout *lLayout = new QHBoxLayout(this);
-    lLabel = new QLabel();
-    rLabel = new QLabel();
+    lLabel = new QLabel;
+    rLabel = new QLabel;
+    lLabel->setFixedSize(40,40);
     QPixmap lPixmap(":/resource/images/left_arrow.png");
     QPixmap rPixmap(":/resource/images/right_arrow.png");
+//    lPixmap.scaled(30, 30, Qt::KeepAspectRatio);
+    lLabel->setScaledContents(true);
     lLabel->setPixmap(lPixmap);
     rLabel->setPixmap(rPixmap);
     lLayout->addWidget(lLabel);
