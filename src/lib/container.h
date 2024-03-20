@@ -21,6 +21,7 @@ public:
     QWidget *rWidget;
     QLineEdit *input;
     QHBoxLayout *layout;
+    QHBoxLayout *lLayout;
 protected:
 private:
 };
