@@ -18,19 +18,26 @@ container::container(QWidget *parent) : QWidget(parent) {
     lLayout->setMargin(0);
     lLabel = new QLabel;
     rLabel = new QLabel;
+    refresh = new QLabel;
     lLabel->setFixedSize(26,26);
     rLabel->setFixedSize(26,26);
+    refresh->setFixedSize(20,20);
     QPixmap lPixmap(":/resource/images/left_arrow.png");
     QPixmap rPixmap(":/resource/images/right_arrow.png");
+    QPixmap refreshPix(":/resource/images/refresh.png");
     lLabel->setScaledContents(true);
     rLabel->setScaledContents(true);
+    refresh->setScaledContents(true);
     lLabel->setPixmap(lPixmap);
     rLabel->setPixmap(rPixmap);
+    refresh->setPixmap(refreshPix);
     lLabel->setStyleSheet("padding:4px;");
     rLabel->setStyleSheet("padding:4px;");
     lLayout->addWidget(lLabel);
     lLayout->addSpacing(8);
     lLayout->addWidget(rLabel);
+    lLayout->addSpacing(14);
+    lLayout->addWidget(refresh);
 
     rWidget = new QWidget(this);
     rWidget->setMinimumSize(700, 75);

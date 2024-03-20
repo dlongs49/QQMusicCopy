@@ -16,6 +16,7 @@ public:
     ~container();
     QLabel *lLabel;
     QLabel *rLabel;
+    QLabel *refresh;
     QWidget *widget;
     QWidget *lWidget;
     QWidget *rWidget;
