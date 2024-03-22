@@ -1,6 +1,6 @@
 QLabel {
     font-family: 'Microsoft YaHei';
-    font-size:13px;
+    font-size: 13px;
 }
 
 QScrollArea {
@@ -45,25 +45,28 @@ QScrollBar::sub-line:vertical {
 }
 
 /* 滑动区域 */
-QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
     background: none;
     width: 0px;
     height: 0px;
 }
 
 /* 类似 hover */
-QScrollBar::handle:vertical:hover, QScrollBar::handle:vertical:pressed {
+QScrollBar::handle:vertical:hover,
+QScrollBar::handle:vertical:pressed {
     background: #c5c5c5;
 }
 
 /* 在线音乐 我的音乐.. QListWidget Item */
-.menuTitle{
+.menuTitle {
     color: #666;
     font-size: 12px;
     margin-left: 34px;
     margin-bottom: 6px;
 }
-.menuItem{
+
+.menuItem {
     margin-left: 24px;
     background: transparent;
     border: none;
@@ -71,32 +74,42 @@ QScrollBar::handle:vertical:hover, QScrollBar::handle:vertical:pressed {
     /*margin-right: 20px;*/
 }
 
-.menuItem::Item{
-    margin-bottom:10px;
+.menuItem::Item {
+    margin-bottom: 10px;
     border-radius: 4px;
     padding: 4px 0;
     padding-left: 7px;
 }
-.menuItem::Item:selected:active{
+
+.menuItem::Item:selected:active {
     background: #1ECF9E;
 }
-.menuItem::Item:hover{
+
+.menuItem::Item:hover {
     background: #d8d8d8;
 }
 
 /* LOGO */
-.logo{
-    margin-left:35px;
-    margin-top:20px;
-    margin-bottom:36px;
+.logo {
+    margin-left: 35px;
+    margin-top: 20px;
+    margin-bottom: 36px;
 }
 
 /* 搜索 */
-.searchBox{
-    background: #e3e3e3;
-    border-radius:10px;
+QWidget#searchBox {
+    border-radius: 16px;
+    background-color: #e3e3e3;
 }
-.packHolder{
-    color:#999;
-    font-size:12px;
+
+QLabel#packHolder {
+    color: #999;
+    font-size: 12px;
+}
+QLineEdit#searInput{
+    font-size: 13px;
+    font-family: 'Microsoft YaHei';
+    background: transparent;
+    border: none;
+    outline: none;
 }

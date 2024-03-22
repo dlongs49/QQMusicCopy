@@ -5,6 +5,7 @@
 #ifndef QTMUSIC_container_H
 #define QTMUSIC_container_H
 #include <QWidget>
+#include <QFrame>
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QLineEdit>
@@ -18,11 +19,16 @@ public:
     QLabel *rLabel;
     QLabel *refresh;
     QWidget *widget;
+    QLabel *simgLabel;
+    QLabel *txtLabel;
+    QLabel *rimgLabel;
     QWidget *lWidget;
     QWidget *rWidget;
-    QLineEdit *input;
+    QWidget *sWidget;
+    QLineEdit *searInput;
     QHBoxLayout *layout;
     QHBoxLayout *lLayout;
+    QHBoxLayout *sLayout;
 protected:
 private:
 };
