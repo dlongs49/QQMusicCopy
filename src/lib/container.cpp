@@ -9,10 +9,11 @@ container::container(QWidget *parent) : QWidget(parent) {
     layout->setSpacing(0);
     layout->setMargin(0);
     layout->addSpacing(35);
+    layout->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 
     widget = new QWidget(this);
     lWidget = new QWidget(this);
-    lWidget->setMinimumSize(500, 75);
+//    lWidget->setMinimumSize(500, 75);
     lLayout = new QHBoxLayout;
     lLayout->setAlignment(Qt::AlignLeft);
     lLayout->setMargin(0);
@@ -89,10 +90,27 @@ container::container(QWidget *parent) : QWidget(parent) {
     lWidget->setLayout(lLayout);
 
 
+    rLayout = new QHBoxLayout;
+    rLayout->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    rLayout->setSpacing(0);
+    rLayout->setMargin(0);
     rWidget = new QWidget(this);
-    rWidget->setMinimumSize(700, 75);
+    rWidget->setMinimumSize(400, 75);
+    avatorLabel = new QLabel;
+    avatorLabel->setScaledContents(true);
+    avatorLabel->setFixedSize(20,20);
+    avatorPix = new  QPixmap;
+    manager = new QNetworkAccessManager;
+    reply = manager->get(QNetworkRequest(QUrl("https://www.dillonl.com/u/demo.png")));
+    loop = new QEventLoop();
+    connect(reply, SIGNAL(finished()),loop,SLOT(quit()));
+    loop->exec();
+    QByteArray imgData  = reply->readAll();
+    avatorPix->loadFromData(imgData);
 
-
+    avatorLabel->setPixmap(*avatorPix);
+    rLayout->addWidget(avatorLabel);
+    rWidget->setLayout(rLayout);
 
 
 

@@ -10,6 +10,11 @@
 #include <QHBoxLayout>
 #include <QLineEdit>
 #include <QFile>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QEventLoop>
+#include <QByteArray>
 class container : public QWidget{
 Q_OBJECT;
 public:
@@ -22,6 +27,7 @@ public:
     QLabel *simgLabel;
     QLabel *txtLabel;
     QLabel *rimgLabel;
+    QLabel *avatorLabel;
     QWidget *lWidget;
     QWidget *rWidget;
     QWidget *sWidget;
@@ -29,6 +35,13 @@ public:
     QHBoxLayout *layout;
     QHBoxLayout *lLayout;
     QHBoxLayout *sLayout;
+    QHBoxLayout *rLayout;
+    QPixmap *avatorPix;
+    QNetworkAccessManager *manager;
+    QNetworkRequest *request;
+    QNetworkReply *reply;
+    QEventLoop *loop;
+    QByteArray *byteArray;
 protected:
 private:
 };

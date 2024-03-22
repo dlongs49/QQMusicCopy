@@ -11,7 +11,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Widgets Network REQUIRED)
 
 add_executable(QQMusicCopy
         main.cpp
@@ -24,4 +24,4 @@ add_executable(QQMusicCopy
         src/lib/container.h
 )
 
-target_link_libraries(QQMusicCopy PRIVATE Qt5::Widgets Qt5::Core)
+target_link_libraries(QQMusicCopy PRIVATE Qt5::Widgets Qt5::Core Qt5::Network)
