@@ -15,6 +15,9 @@
 #include <QNetworkReply>
 #include <QEventLoop>
 #include <QByteArray>
+#include <QPainter>
+#include <QPainterPath>
+#include <QRect>
 class container : public QWidget{
 Q_OBJECT;
 public:
@@ -23,25 +26,43 @@ public:
     QLabel *lLabel;
     QLabel *rLabel;
     QLabel *refresh;
-    QWidget *widget;
     QLabel *simgLabel;
     QLabel *txtLabel;
     QLabel *rimgLabel;
     QLabel *avatorLabel;
+    QLabel *uname;
+    QLabel *vipLabel;
+    QLabel *downLabel;
+    QLabel *skinLabel;
+    QLabel *settingLabel;
+    QLabel *recoverLabel;
+    QLabel *minimizeLabel;
+    QLabel *maximizeLabel;
+    QLabel *closeLabel;
+    QWidget *widget;
     QWidget *lWidget;
     QWidget *rWidget;
     QWidget *sWidget;
-    QLineEdit *searInput;
+    QWidget *opearOut;
+    QWidget *minimWidget;
+    QWidget *maximWidget;
+    QWidget *closeWidget;
     QHBoxLayout *layout;
     QHBoxLayout *lLayout;
     QHBoxLayout *sLayout;
     QHBoxLayout *rLayout;
+    QHBoxLayout *opearLayout;
+    QVBoxLayout *minimLayout;
+    QLineEdit *searInput;
     QPixmap *avatorPix;
     QNetworkAccessManager *manager;
     QNetworkRequest *request;
     QNetworkReply *reply;
     QEventLoop *loop;
     QByteArray *byteArray;
+    QPainter *painter;
+    QPainterPath *path;
+
 protected:
 private:
 };

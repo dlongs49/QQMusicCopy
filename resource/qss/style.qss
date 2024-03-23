@@ -113,3 +113,12 @@ QLineEdit#searInput{
     border: none;
     outline: none;
 }
+/* 顶部右边 */
+QLabel#avator{
+    border-radius:13px;
+    background: #fff;
+}
+QLabel#uname{
+    color: #666;
+    font-size: 12px;
+}
