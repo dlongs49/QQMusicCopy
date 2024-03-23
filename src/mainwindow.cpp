@@ -8,7 +8,7 @@ using namespace std;
 
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent) {
-    const int w = 1200;
+    const int w = 1036;
     const int h = 660;
     this->resize(w, h); // 窗口大小
     //阴影的宽度

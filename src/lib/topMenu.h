@@ -1,9 +1,5 @@
-//
-// Created by dinglong on 2023/1/24 22:02
-//
-
-#ifndef QTMUSIC_container_H
-#define QTMUSIC_container_H
+#ifndef QQMUSICCOPY_TOPMENU_H
+#define QQMUSICCOPY_TOPMENU_H
 #include <QWidget>
 #include <QFrame>
 #include <QLabel>
@@ -18,12 +14,22 @@
 #include <QPainter>
 #include <QPainterPath>
 #include <QRect>
-#include "./topMenu.h"
-class container : public QWidget{
+
+class TopMenu : public QWidget {
 Q_OBJECT;
 public:
-    container(QWidget *parent = nullptr);
-    ~container();
+    TopMenu(QWidget *parent = nullptr);
+
+
+signals:
+
+
+public slots:
+
+
+protected:
+
+private:
     QLabel *lLabel;
     QLabel *rLabel;
     QLabel *refresh;
@@ -63,10 +69,5 @@ public:
     QByteArray *byteArray;
     QPainter *painter;
     QPainterPath *path;
-protected:
-
-private:
-    TopMenu *topMenu;
-
 };
-#endif //QTMUSIC_container_H
+#endif //QQMUSICCOPY_TOPMENU_H
