@@ -30,37 +30,49 @@ HotSearch::HotSearch(QWidget *parent) : QWidget(parent) {
     hotLabel->setObjectName("hotTitleLabel");
     hotLabel->setText("热门搜索");
     hotLayout->addWidget(hotLabel);
+    hotLayout->addSpacing(4);
 
-    txtLayout = new QHBoxLayout;
-    txtLayout->setAlignment(Qt::AlignJustify | Qt::AlignVCenter);
-    txtLayout->setSpacing(0);
-    txtLayout->setMargin(0);
+    for (int i = 0; i < 10; i++) {
+        txtLayout = new QHBoxLayout;
+        txtLayout->setAlignment(Qt::AlignJustify | Qt::AlignVCenter);
+        txtLayout->setSpacing(0);
+        txtLayout->setMargin(0);
 
-    txtLabel = new QLabel;
-    txtLabel->setCursor(Qt::PointingHandCursor);
-    txtLabel->setFixedSize(lWidget->width() - 10, 30);
-    txtLabel->setObjectName("txtLabel");
-    txtLabel->setStyleSheet("QLabel#txtLabel:hover{background:#eee}");
 
-    titLabel = new QLabel;
-    titLabel->setStyleSheet("background:transparent");
-    titLabel->setObjectName("tlabel");
-    titLabel->setText("无名的人");
-    titLabel->setFixedWidth(txtLabel->width() - 68);
-    txtLayout->addSpacing(8);
-    txtLayout->addWidget(titLabel);
+        txtLabel[i] = new QLabel;
+        txtLabel[i]->setCursor(Qt::PointingHandCursor);
+        txtLabel[i]->setFixedSize(lWidget->width() - 10, 30);
+        txtLabel[i]->setObjectName("txtLabel");
+        txtLabel[i]->setStyleSheet("QLabel#txtLabel:hover{background:#eee}");
 
-    numLabel = new QLabel;
-    numLabel->setObjectName("tlabel");
-    numLabel->setStyleSheet("background:transparent");
-    numLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    numLabel->setText("400万");
-    numLabel->setFixedWidth(52);
-    txtLayout->addWidget(numLabel);
-    txtLayout->addSpacing(8);
+        titLabel = new QLabel;
+        titLabel->setStyleSheet("background:transparent");
+        titLabel->setObjectName("tlabel");
+        titLabel->setText("无名的人");
+        titLabel->setFixedWidth(txtLabel[i]->width() - 68);
+        txtLayout->addSpacing(8);
+        txtLayout->addWidget(titLabel);
 
-    txtLabel->setLayout(txtLayout);
-    hotLayout->addWidget(txtLabel);
+        numLabel = new QLabel;
+        numLabel->setObjectName("tlabel");
+        numLabel->setStyleSheet("background:transparent");
+        numLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+        numLabel->setText("400万");
+        numLabel->setFixedWidth(52);
+        txtLayout->addWidget(numLabel);
+        txtLayout->addSpacing(8);
+
+        txtLabel[i]->setLayout(txtLayout);
+        hotLayout->addWidget(txtLabel[i]);
+    }
+
+
+
+
+
+
+
+
 
     lWidget->setLayout(hotLayout);
     mainLayout->addWidget(lWidget);

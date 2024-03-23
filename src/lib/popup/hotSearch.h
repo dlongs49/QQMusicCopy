@@ -30,7 +30,7 @@ private:
     QFrame *frame;
     QGraphicsDropShadowEffect *shadow;
     QLabel *hotLabel;
-    QLabel *txtLabel;
+    QLabel *txtLabel[10];
     QLabel *numLabel;
     QLabel *titLabel;
     QLabel *simgLabel;
