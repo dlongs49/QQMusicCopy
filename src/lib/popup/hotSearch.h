@@ -29,11 +29,11 @@ protected:
 private:
     QFrame *frame;
     QGraphicsDropShadowEffect *shadow;
-    QLabel *lLabel;
-    QLabel *rLabel;
-    QLabel *refresh;
-    QLabel *simgLabel;
+    QLabel *hotLabel;
     QLabel *txtLabel;
+    QLabel *numLabel;
+    QLabel *titLabel;
+    QLabel *simgLabel;
     QLabel *rimgLabel;
     QLabel *avatorLabel;
     QLabel *uname;
@@ -54,11 +54,11 @@ private:
     QWidget *maximWidget;
     QWidget *closeWidget;
     QHBoxLayout *layout;
-    QHBoxLayout *lLayout;
-    QHBoxLayout *sLayout;
+    QHBoxLayout *mainLayout;
+    QHBoxLayout *txtLayout;
     QHBoxLayout *rLayout;
     QHBoxLayout *opearLayout;
-    QVBoxLayout *minimLayout;
+    QVBoxLayout *hotLayout;
     QLineEdit *searInput;
     QPixmap *avatorPix;
     QNetworkAccessManager *manager;

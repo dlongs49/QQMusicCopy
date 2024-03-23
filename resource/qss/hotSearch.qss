@@ -1,4 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft YaHei';
+}
+
 QFrame#searchFrame {
     background: #fff;
     border-radius: 6px;
+}
+
+QLabel#hotTitleLabel {
+    border-bottom: 1px solid #eee;
+    padding-left: 10px;
+    font-family: 'Microsoft YaHei';
+}
+QLabel#tlabel {
+    font-size: 12px;
+}
+
+QWidget#history {
+    border-left: 1px solid #eee;
 }

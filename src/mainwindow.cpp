@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
     widget->setLayout(layout);
     hotSearch = new HotSearch(this);
 //    LoadQSS(":/resource/qss/style.qss");
-    LoadQSS(":/resource/qss/hotSearch.qss");
+//    LoadQSS(":/resource/qss/hotSearch.qss");
 }
 void MainWindow::LoadQSS(QString qss_path) {
     QFile qss(qss_path);
