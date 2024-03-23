@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     const int w = 1036;
     const int h = 660;
     this->resize(w, h); // 窗口大小
+
     //阴影的宽度
 //    this->setContentsMargins(35, 35, 35, 35);
 //    //无边框
@@ -26,9 +27,16 @@ MainWindow::MainWindow(QWidget *parent)
     layout->addWidget(right_menu);
     layout->addWidget(container_);
     widget->setLayout(layout);
-
+    hotSearch = new HotSearch(this);
+//    LoadQSS(":/resource/qss/style.qss");
+    LoadQSS(":/resource/qss/hotSearch.qss");
 }
-
+void MainWindow::LoadQSS(QString qss_path) {
+    QFile qss(qss_path);
+    qss.open(QFile::ReadOnly);
+    qobject_cast<QApplication *>(QApplication::instance())->setStyleSheet(qss.readAll());
+    qss.close();
+}
 MainWindow::~MainWindow() {
 }
 

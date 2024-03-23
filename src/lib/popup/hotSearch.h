@@ -1,5 +1,5 @@
-#ifndef QQMUSICCOPY_TOPMENU_H
-#define QQMUSICCOPY_TOPMENU_H
+#ifndef QQMUSICCOPY_HOTSEARCH_H
+#define QQMUSICCOPY_HOTSEARCH_H
 #include <QWidget>
 #include <QFrame>
 #include <QLabel>
@@ -14,22 +14,21 @@
 #include <QPainter>
 #include <QPainterPath>
 #include <QRect>
-#include "./popup/hotSearch.h"
-class TopMenu : public QWidget {
+#include <QGraphicsDropShadowEffect>
+#include <QApplication>
+class HotSearch : public QWidget {
 Q_OBJECT;
 public:
-    TopMenu(QWidget *parent = nullptr);
+    HotSearch(QWidget *parent = nullptr);
 
 
 signals:
-
-
 public slots:
-
-
 protected:
 
 private:
+    QFrame *frame;
+    QGraphicsDropShadowEffect *shadow;
     QLabel *lLabel;
     QLabel *rLabel;
     QLabel *refresh;
@@ -69,6 +68,5 @@ private:
     QByteArray *byteArray;
     QPainter *painter;
     QPainterPath *path;
-    HotSearch *hotSearch;
 };
-#endif //QQMUSICCOPY_TOPMENU_H
+#endif //QQMUSICCOPY_HOTSEARCH_H

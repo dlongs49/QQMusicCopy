@@ -1,0 +1,4 @@
+QFrame#searchFrame {
+    background: #fff;
+    border-radius: 6px;
+}

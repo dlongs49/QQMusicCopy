@@ -4,9 +4,11 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     layout = new QHBoxLayout;
     layout->setSpacing(0);
     layout->setMargin(0);
-//    layout->setAlignment(Qt::AlignJustify);
+//    hotSearch = new HotSearch();
 
+//    layout->setAlignment(Qt::AlignJustify);
     widget = new QWidget(this);
+
     widget->setFixedHeight(66);
     widget->setFixedWidth(820);
 

@@ -19,6 +19,7 @@
 #include <QPainterPath>
 #include <QRect>
 #include "./topMenu.h"
+#include "./popup/hotSearch.h"
 class container : public QWidget{
 Q_OBJECT;
 public:
@@ -63,10 +64,12 @@ public:
     QByteArray *byteArray;
     QPainter *painter;
     QPainterPath *path;
+
 protected:
 
 private:
     TopMenu *topMenu;
+    HotSearch *hotSearch;
 
 };
 #endif //QTMUSIC_container_H

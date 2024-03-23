@@ -6,6 +6,7 @@
 container::container(QWidget *parent) : QWidget(parent) {
     this->setMinimumSize(100, 450);
     topMenu = new TopMenu(this);
+//    hotSearch = new HotSearch(this);
 }
 
 container::~container() {

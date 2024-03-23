@@ -20,17 +20,22 @@
 #include <QListWidgetItem>
 #include <QCursor>
 #include <QGraphicsDropShadowEffect>
+
+#include "./lib/popup/hotSearch.h"
+
 class MainWindow : public QMainWindow{
     Q_OBJECT;
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+public slots:
+    void LoadQSS(QString  s);
 private:
     QHBoxLayout *layout;
     rightMenu *right_menu;
     container *container_;
     QWidget *widget;
+    HotSearch *hotSearch;
 
 };
 #endif //DEMO_2_MAINWINDOW_H

@@ -24,6 +24,8 @@ add_executable(QQMusicCopy
         src/lib/container.h
         src/lib/topMenu.cpp
         src/lib/topMenu.h
+        src/lib/popup/hotSearch.cpp
+        src/lib/popup/hotSearch.h
 )
 
 target_link_libraries(QQMusicCopy PRIVATE Qt5::Widgets Qt5::Core Qt5::Network)
