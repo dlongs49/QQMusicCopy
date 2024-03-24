@@ -1,8 +1,9 @@
 #include "hotSearch.h"
 
 HotSearch::HotSearch(QWidget *parent) : QWidget(parent) {
+    this->hide();
     int w = 476;
-    int h = 376;
+    int h = 350;
     this->setGeometry(360,44,w + 18, h + 18);
     frame = new QFrame(this);
     frame->setGeometry(9, 9, w, h);

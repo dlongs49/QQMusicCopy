@@ -5,7 +5,6 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     layout = new QHBoxLayout;
     layout->setSpacing(0);
     layout->setMargin(0);
-//    hotSearch = new HotSearch();
 
 //    layout->setAlignment(Qt::AlignJustify);
     widget = new QWidget(this);
@@ -72,7 +71,6 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     searInput->setObjectName("searInput");
     searInput->setEchoMode(QLineEdit::Normal);
     searInput->setFixedSize(search_w - 30, 30);
-//    connect(searInput, SIGNAL(focusIn), this, SLOT(onBlur()));
     sLayout->addWidget(searInput);
     searInput->hide();
     sLayout->addWidget(simgLabel);
@@ -247,14 +245,6 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
 
 //    QHBoxLayout *rlayout = new QHBoxLayout(this);
 }
-
-void TopMenu::mousePressEvent(QMouseEvent *e) {
-    if (e->button() == Qt::LeftButton) {
-//        qDebug() << e;
-
-    }
-}
-
 bool TopMenu::eventFilter(QObject *o, QEvent *e) {
     if (e->type() == QEvent::MouseButtonPress) {
         QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(e); // 事件转换
@@ -278,7 +268,4 @@ bool TopMenu::eventFilter(QObject *o, QEvent *e) {
         return true;
     }
     return QWidget::eventFilter(o, e);
-}
-void TopMenu::onBlur(){
-    qDebug() << 333;
 }
