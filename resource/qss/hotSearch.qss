@@ -12,12 +12,40 @@ QFrame#searchFrame {
 QLabel#hotTitleLabel {
     border-bottom: 1px solid #eee;
     padding-left: 10px;
-    font-family: 'Microsoft YaHei';
 }
+
 QLabel#tlabel {
     font-size: 12px;
 }
 
 QWidget#history {
+    background: #fff;
     border-left: 1px solid #eee;
+}
+
+QLabel#hisTitBox {
+    border: 1px solid #eee;
+    border-top: none;
+    border-radius: none;
+    border-left: none;
+    border-right: none;
+}
+
+QPushButton#clearBtn {
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+QPushButton#clearBtn:hover {
+    color: #10da67;
+}
+
+QLabel#hisTxtLabel {
+    font-size: 12px;
+    padding-left: 10px;
+}
+
+QLabel#hisTxtLabel:hover {
+    background: #eee;
 }

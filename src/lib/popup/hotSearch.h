@@ -15,7 +15,8 @@
 #include <QPainterPath>
 #include <QRect>
 #include <QGraphicsDropShadowEffect>
-#include <QApplication>
+#include <QPushButton>
+#include <QPixmap>
 class HotSearch : public QWidget {
 Q_OBJECT;
 public:
@@ -28,16 +29,17 @@ protected:
 
 private:
     QFrame *frame;
+    QPushButton *clearBtn;
     QGraphicsDropShadowEffect *shadow;
     QLabel *hotLabel;
     QLabel *txtLabel[10];
+    QLabel *hisTxtLabel[10];
     QLabel *numLabel;
     QLabel *titLabel;
-    QLabel *simgLabel;
-    QLabel *rimgLabel;
-    QLabel *avatorLabel;
-    QLabel *uname;
-    QLabel *vipLabel;
+    QLabel *hisbox;
+    QLabel *histTit;
+    QLabel *noHisLabel;
+    QLabel *noHisTxt;
     QLabel *downLabel;
     QLabel *skinLabel;
     QLabel *settingLabel;
@@ -48,7 +50,7 @@ private:
     QWidget *widget;
     QWidget *lWidget;
     QWidget *rWidget;
-    QWidget *sWidget;
+    QWidget *hisWidget;
     QWidget *opearOut;
     QWidget *minimWidget;
     QWidget *maximWidget;
@@ -56,9 +58,11 @@ private:
     QHBoxLayout *layout;
     QHBoxLayout *mainLayout;
     QHBoxLayout *txtLayout;
-    QHBoxLayout *rLayout;
-    QHBoxLayout *opearLayout;
+    QHBoxLayout *titLayout;
+    QVBoxLayout *hisTxtLayout;
     QVBoxLayout *hotLayout;
+    QVBoxLayout *hisLayout;
+    QVBoxLayout *hisListLayout;
     QLineEdit *searInput;
     QPixmap *avatorPix;
     QNetworkAccessManager *manager;

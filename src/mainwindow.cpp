@@ -32,10 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
 //    LoadQSS(":/resource/qss/hotSearch.qss");
 }
 void MainWindow::LoadQSS(QString qss_path) {
-    QFile qss(qss_path);
-    qss.open(QFile::ReadOnly);
-    qobject_cast<QApplication *>(QApplication::instance())->setStyleSheet(qss.readAll());
-    qss.close();
+
 }
 MainWindow::~MainWindow() {
 }
