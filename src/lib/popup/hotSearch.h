@@ -17,14 +17,18 @@
 #include <QGraphicsDropShadowEffect>
 #include <QPushButton>
 #include <QPixmap>
+#include <QDebug>
+#include <QEvent>
+#include <QProxyStyle >
 class HotSearch : public QWidget {
 Q_OBJECT;
 public:
     HotSearch(QWidget *parent = nullptr);
 
-
+    bool eventFilter(QObject *obj, QEvent *event);
 signals:
 public slots:
+    void handleClear();
 protected:
 
 private:
@@ -51,7 +55,7 @@ private:
     QWidget *lWidget;
     QWidget *rWidget;
     QWidget *hisWidget;
-    QWidget *opearOut;
+    QWidget *noWidget;
     QWidget *minimWidget;
     QWidget *maximWidget;
     QWidget *closeWidget;

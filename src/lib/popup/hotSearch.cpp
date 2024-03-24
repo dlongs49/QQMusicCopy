@@ -64,6 +64,8 @@ HotSearch::HotSearch(QWidget *parent) : QWidget(parent) {
 
         txtLabel[i]->setLayout(txtLayout);
         hotLayout->addWidget(txtLabel[i]);
+        txtLabel[i]->installEventFilter(this);
+
     }
 
     lWidget->setLayout(hotLayout);
@@ -90,9 +92,10 @@ HotSearch::HotSearch(QWidget *parent) : QWidget(parent) {
     clearBtn = new QPushButton;
     clearBtn->setText("清除");
     clearBtn->setCursor(Qt::PointingHandCursor);
-    clearBtn->setFixedSize(40,20);
+    clearBtn->setFixedSize(40, 20);
     clearBtn->setObjectName("clearBtn");
     titLayout->addWidget(clearBtn);
+    connect(clearBtn, SIGNAL(clicked()), this, SLOT(handleClear()));
 
     hisbox = new QLabel;
     hisbox->setFixedSize(rWidget->width() - 10, 38);
@@ -109,7 +112,10 @@ HotSearch::HotSearch(QWidget *parent) : QWidget(parent) {
 
 
     hisWidget = new QWidget(rWidget);
-    hisWidget->setFixedHeight(rWidget->height() - hisbox->height()-8);
+    hisWidget->setFixedHeight(rWidget->height() - hisbox->height() - 8);
+    noWidget = new QWidget(rWidget);
+    noWidget->setFixedHeight(rWidget->height() - hisbox->height() - 8);
+
     hisListLayout = new QVBoxLayout;
     hisListLayout->setAlignment(Qt::AlignCenter);
     hisListLayout->setMargin(0);
@@ -121,42 +127,54 @@ HotSearch::HotSearch(QWidget *parent) : QWidget(parent) {
         hisTxtLabel[i]->setCursor(Qt::PointingHandCursor);
         hisTxtLabel[i]->setObjectName("hisTxtLabel");
         hisTxtLabel[i]->setText("无名的人");
-        hisTxtLabel[i]->setFixedSize(rWidget->width() - 10,30);
+        hisTxtLabel[i]->setFixedSize(rWidget->width() - 10, 30);
         hisTxtLayout->addWidget(hisTxtLabel[i]);
     }
 
 
-
     noHisLabel = new QLabel;
-    noHisLabel->setFixedSize(74,60);
+    noHisLabel->setFixedSize(74, 60);
     noHisLabel->setScaledContents(true);
     QPixmap nopix(":/resource/images/no_search_his.png");
     noHisLabel->setPixmap(nopix);
 
-    noHisLabel->setContentsMargins(14,0,0,0);
+    noHisLabel->setContentsMargins(14, 0, 0, 0);
     noHisTxt = new QLabel;
-    noHisTxt->setContentsMargins(0,8,0,0);
+    noHisTxt->setContentsMargins(0, 8, 0, 0);
     noHisTxt->setText("暂无搜索历史记录");
 
     hisListLayout->addWidget(noHisLabel);
     hisListLayout->addWidget(noHisTxt);
 
-//    hisWidget->setLayout(hisTxtLayout);
-    hisWidget->setLayout(hisListLayout);
+    hisWidget->setLayout(hisTxtLayout);
+    noWidget->setLayout(hisListLayout);
+
     hisLayout->addWidget(hisWidget);
-
-
-
-
-
-
-
-
-
-
-
-
+    hisLayout->addWidget(noWidget);
+    noWidget->hide();
     mainLayout->addWidget(rWidget);
 
     frame->setLayout(mainLayout);
+}
+
+bool HotSearch::eventFilter(QObject *obj, QEvent *e) {
+    if (e->type() == QEvent::MouseButtonRelease) {
+        clearBtn->setCursor(Qt::PointingHandCursor);
+        clearBtn->setObjectName("clearBtn");
+        clearBtn->style()->polish(clearBtn);
+        hisWidget->show();
+        noWidget->hide();
+        return true;
+    }
+    return false;
+}
+
+void HotSearch::handleClear() {
+    hisWidget->hide();
+    noWidget->show();
+    if (!hisWidget->isVisible()) {
+        clearBtn->setCursor(Qt::ArrowCursor);
+        clearBtn->setObjectName("disableBtn");
+        clearBtn->style()->polish(clearBtn);
+    }
 }

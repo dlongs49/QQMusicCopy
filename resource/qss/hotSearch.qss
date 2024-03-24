@@ -40,6 +40,15 @@ QPushButton#clearBtn {
 QPushButton#clearBtn:hover {
     color: #10da67;
 }
+QPushButton#disableBtn{
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #a0a0a0;
+}
+QPushButton#disableBtn:hover {
+    color: #a0a0a0;
+}
 
 QLabel#hisTxtLabel {
     font-size: 12px;
