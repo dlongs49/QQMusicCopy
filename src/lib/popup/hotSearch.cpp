@@ -3,7 +3,7 @@
 HotSearch::HotSearch(QWidget *parent) : QWidget(parent) {
     int w = 476;
     int h = 376;
-    this->resize(w + 18, h + 18);
+    this->setGeometry(360,44,w + 18, h + 18);
     frame = new QFrame(this);
     frame->setGeometry(9, 9, w, h);
     frame->setObjectName("searchFrame");
