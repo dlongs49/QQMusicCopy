@@ -1,6 +1,7 @@
 #include "topMenu.h"
 
 TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
+    installEventFilter(this);
     layout = new QHBoxLayout;
     layout->setSpacing(0);
     layout->setMargin(0);
@@ -71,12 +72,13 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     searInput->setObjectName("searInput");
     searInput->setEchoMode(QLineEdit::Normal);
     searInput->setFixedSize(search_w - 30, 30);
-//    sLayout->addWidget(searInput);
-
+//    connect(searInput, SIGNAL(focusIn), this, SLOT(onBlur()));
+    sLayout->addWidget(searInput);
+    searInput->hide();
     sLayout->addWidget(simgLabel);
     sLayout->addSpacing(4);
     sLayout->addWidget(txtLabel);
-
+    sWidget->installEventFilter(this);
     sWidget->setLayout(sLayout);
 
     // 听歌识曲
@@ -244,4 +246,39 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
 //    widget->setStyleSheet("background:#f0f");
 
 //    QHBoxLayout *rlayout = new QHBoxLayout(this);
+}
+
+void TopMenu::mousePressEvent(QMouseEvent *e) {
+    if (e->button() == Qt::LeftButton) {
+//        qDebug() << e;
+
+    }
+}
+
+bool TopMenu::eventFilter(QObject *o, QEvent *e) {
+    if (e->type() == QEvent::MouseButtonPress) {
+        QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(e); // 事件转换
+        if (mouseEvent->button() == Qt::LeftButton) {
+            if(o->objectName() == "searchBox"){
+                simgLabel->hide();
+                txtLabel->hide();
+                searInput->show();
+                searInput->setFocus();
+                return true;
+            }
+            if(o->objectName() != "searchBox"){
+                searInput->clearFocus();
+                if(!searInput->hasFocus()){
+                    simgLabel->show();
+                    txtLabel->show();
+                    searInput->hide();
+                }
+            }
+        }
+        return true;
+    }
+    return QWidget::eventFilter(o, e);
+}
+void TopMenu::onBlur(){
+    qDebug() << 333;
 }

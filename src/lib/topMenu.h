@@ -1,5 +1,6 @@
 #ifndef QQMUSICCOPY_TOPMENU_H
 #define QQMUSICCOPY_TOPMENU_H
+
 #include <QWidget>
 #include <QFrame>
 #include <QLabel>
@@ -14,7 +15,9 @@
 #include <QPainter>
 #include <QPainterPath>
 #include <QRect>
+#include <QMouseEvent>
 #include "./popup/hotSearch.h"
+
 class TopMenu : public QWidget {
 Q_OBJECT;
 public:
@@ -26,7 +29,9 @@ signals:
 
 public slots:
 
-
+    void mousePressEvent(QMouseEvent  *e);
+    bool eventFilter(QObject *watched, QEvent *event);
+    void onBlur();
 protected:
 
 private:
@@ -71,4 +76,5 @@ private:
     QPainterPath *path;
     HotSearch *hotSearch;
 };
+
 #endif //QQMUSICCOPY_TOPMENU_H
