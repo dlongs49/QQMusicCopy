@@ -2,6 +2,7 @@
 
 TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     installEventFilter(this);
+    loadQSS();
     layout = new QHBoxLayout;
     layout->setSpacing(0);
     layout->setMargin(0);
@@ -414,4 +415,13 @@ bool TopMenu::eventFilter(QObject *o, QEvent *e) {
     }
 
     return QWidget::eventFilter(o, e);
+}
+
+
+void TopMenu::loadQSS(){
+    QFile qss(":/resource/qss/topMenu.qss");
+    qss.open(QFile::ReadOnly);
+    QString style = QLatin1String(qss.readAll());
+    this->setStyleSheet(style);
+    qss.close();
 }

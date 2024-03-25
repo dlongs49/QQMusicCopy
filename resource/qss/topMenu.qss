@@ -1,0 +1,23 @@
+QWidget#searchBox {
+    border-radius: 16px;
+    background-color: #e3e3e3;
+}
+
+QLabel#packHolder {
+    color: #999;
+    font-size: 12px;
+}
+QLineEdit#searInput{
+    font-size: 13px;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+QLabel#avator{
+    border-radius:13px;
+    background: #fff;
+}
+QLabel#uname{
+    color: #666;
+    font-size: 12px;
+}

@@ -27,9 +27,9 @@ public:
 
 signals:
    bool onFocus(bool flag);
-
 public slots:
     bool eventFilter(QObject *watched, QEvent *event);
+    void loadQSS();
 protected:
 
 private:

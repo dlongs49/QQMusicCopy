@@ -100,30 +100,3 @@ QScrollBar::handle:vertical:pressed {
     margin-top: 20px;
     margin-bottom: 36px;
 }
-
-/* 搜索 */
-QWidget#searchBox {
-    border-radius: 16px;
-    background-color: #e3e3e3;
-}
-
-QLabel#packHolder {
-    color: #999;
-    font-size: 12px;
-}
-QLineEdit#searInput{
-    font-size: 13px;
-    font-family: 'Microsoft YaHei';
-    background: transparent;
-    border: none;
-    outline: none;
-}
-/* 顶部右边 */
-QLabel#avator{
-    border-radius:13px;
-    background: #fff;
-}
-QLabel#uname{
-    color: #666;
-    font-size: 12px;
-}

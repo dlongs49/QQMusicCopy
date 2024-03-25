@@ -21,7 +21,6 @@ HotSearch::HotSearch(QWidget *parent) : QWidget(parent) {
 
     lWidget = new QWidget(frame);
     lWidget->setFixedSize((w / 2) - 4, h - 2);
-    lWidget->setStyleSheet("background:#fff");
     hotLayout = new QVBoxLayout;
     hotLayout->setSpacing(0);
     hotLayout->setMargin(0);
