@@ -69,11 +69,35 @@ private:
     QNetworkReply *reply;
     QEventLoop *loop;
     QPainter *painter;
-    QPixmap *larrowPix;
+    QPixmap *l_arrowPix;
+    QPixmap *r_arrowPix;
+    QPixmap *refreshPix;
+    QPixmap *listenPix;
+    QPixmap *vipPix;
+    QPixmap *downPix;
+    QPixmap *skinPix;
+    QPixmap *settingPix;
+    QPixmap *recoverPix;
+    QPixmap *minimPix;
+    QPixmap *maximPix;
+    QPixmap *closePix;
     QPainterPath *path;
     Tools *tools;
     QString init_color = "#31c27c";
     QString hover_color = "#adadad";
+
+    QString leftArrowImgPath = ":/resource/images/left_arrow.png";
+    QString righArrowImgPath = ":/resource/images/right_arrow.png";
+    QString refreshImgPath = ":/resource/images/refresh.png";
+    QString listenImgPath = ":/resource/images/listen_music.png";
+    QString vipImgPath = ":/resource/images/vip.png";
+    QString downArrowImgPath = ":/resource/images/down_arrow.png";
+    QString skinImgPath = ":/resource/images/skin.png";
+    QString settingImgPath = ":/resource/images/setting.png";
+    QString recoverImgPath = ":/resource/images/recover.png";
+    QString minimImgPath = ":/resource/images/minim.png";
+    QString maximImgPath = ":/resource/images/maxim.png";
+    QString closeImgPath = ":/resource/images/close.png";
 };
 
 #endif //QQMUSICCOPY_TOPMENU_H
