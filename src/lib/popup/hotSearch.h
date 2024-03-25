@@ -29,6 +29,7 @@ public:
 signals:
 public slots:
     void handleClear();
+    void loadQSS();
 protected:
 
 private:

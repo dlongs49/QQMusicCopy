@@ -1,6 +1,7 @@
 #include "hotSearch.h"
 
 HotSearch::HotSearch(QWidget *parent) : QWidget(parent) {
+    loadQSS();
     this->hide();
     int w = 476;
     int h = 350;
@@ -21,6 +22,7 @@ HotSearch::HotSearch(QWidget *parent) : QWidget(parent) {
 
     lWidget = new QWidget(frame);
     lWidget->setFixedSize((w / 2) - 4, h - 2);
+    lWidget->setStyleSheet("background:#fff");
     hotLayout = new QVBoxLayout;
     hotLayout->setSpacing(0);
     hotLayout->setMargin(0);
@@ -177,4 +179,11 @@ void HotSearch::handleClear() {
         clearBtn->setObjectName("disableBtn");
         clearBtn->style()->polish(clearBtn);
     }
+}
+void HotSearch::loadQSS(){
+    QFile qss(":/resource/qss/hotSearch.qss");
+    qss.open(QFile::ReadOnly);
+    QString style = QLatin1String(qss.readAll());
+    this->setStyleSheet(style);
+    qss.close();
 }
