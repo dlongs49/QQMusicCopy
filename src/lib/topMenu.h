@@ -73,7 +73,7 @@ private:
     QPainterPath *path;
     Tools *tools;
     QString init_color = "#31c27c";
-    QString hover_color = "#6c6c6c";
+    QString hover_color = "#adadad";
 };
 
 #endif //QQMUSICCOPY_TOPMENU_H
