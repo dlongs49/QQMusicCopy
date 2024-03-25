@@ -64,7 +64,8 @@ public:
     QByteArray *byteArray;
     QPainter *painter;
     QPainterPath *path;
-
+public slots:
+    bool handleEmit(bool flag);
 protected:
 
 private:

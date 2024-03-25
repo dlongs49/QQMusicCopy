@@ -254,6 +254,7 @@ bool TopMenu::eventFilter(QObject *o, QEvent *e) {
                 txtLabel->hide();
                 searInput->show();
                 searInput->setFocus();
+                emit onFocus(true);
                 return true;
             }
             if(o->objectName() != "searchBox"){
@@ -262,6 +263,7 @@ bool TopMenu::eventFilter(QObject *o, QEvent *e) {
                     simgLabel->show();
                     txtLabel->show();
                     searInput->hide();
+                    emit onFocus(false);
                 }
             }
         }
