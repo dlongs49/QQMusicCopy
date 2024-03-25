@@ -15,6 +15,8 @@
 #include <QPainter>
 #include <QPainterPath>
 #include <QRect>
+#include <QSize>
+#include <QIcon>
 #include <QMouseEvent>
 
 class TopMenu : public QWidget {
@@ -69,6 +71,8 @@ private:
     QEventLoop *loop;
     QByteArray *byteArray;
     QPainter *painter;
+    QPixmap *larrowPix;
+    QPixmap *imgs;
     QPainterPath *path;
 };
 

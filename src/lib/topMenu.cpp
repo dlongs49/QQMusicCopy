@@ -20,11 +20,14 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
 
     // 左箭头
     lLabel = new QLabel;
+    lLabel->setObjectName("left_arrow");
+    lLabel->installEventFilter(this);
     lLabel->setCursor(Qt::PointingHandCursor);
     lLabel->setScaledContents(true);
     lLabel->setFixedSize(26, 26);
-    QPixmap lPixmap(":/resource/images/left_arrow.png");
-    lLabel->setPixmap(lPixmap);
+    larrowPix = new QPixmap;
+    larrowPix->load(":/resource/images/left_arrow.png");
+    lLabel->setPixmap(*larrowPix);
     lLabel->setStyleSheet("padding:4px;");
     lLayout->addSpacing(38);
     lLayout->addWidget(lLabel);
@@ -238,12 +241,6 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     widget->setLayout(layout);
     layout->addWidget(lWidget);
     layout->addWidget(rWidget);
-
-//    lWidget->setStyleSheet("background:#ff0");
-//    rWidget->setStyleSheet("background:#00f");
-//    widget->setStyleSheet("background:#f0f");
-
-//    QHBoxLayout *rlayout = new QHBoxLayout(this);
 }
 bool TopMenu::eventFilter(QObject *o, QEvent *e) {
     if (e->type() == QEvent::MouseButtonPress) {
@@ -269,5 +266,22 @@ bool TopMenu::eventFilter(QObject *o, QEvent *e) {
         }
         return true;
     }
+
+    if(o->objectName() == "left_arrow"){
+        if (e->type() == QEvent::Enter) {
+            QPainter pr(larrowPix);
+            pr.setCompositionMode(QPainter::CompositionMode_SourceIn);
+            pr.fillRect(larrowPix->rect(), "#31c27c");
+            lLabel->setPixmap(*larrowPix);
+        }
+        if(e->type() == QEvent::Leave){
+            QPixmap pixmap(":/resource/images/left_arrow.png");
+            lLabel->setPixmap(pixmap);
+        }
+    }
+
+
+
+
     return QWidget::eventFilter(o, e);
 }
