@@ -241,6 +241,7 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     widget->setLayout(layout);
     layout->addWidget(lWidget);
     layout->addWidget(rWidget);
+    tools = new Tools();
 }
 bool TopMenu::eventFilter(QObject *o, QEvent *e) {
     if (e->type() == QEvent::MouseButtonPress) {
@@ -269,14 +270,10 @@ bool TopMenu::eventFilter(QObject *o, QEvent *e) {
 
     if(o->objectName() == "left_arrow"){
         if (e->type() == QEvent::Enter) {
-            QPainter pr(larrowPix);
-            pr.setCompositionMode(QPainter::CompositionMode_SourceIn);
-            pr.fillRect(larrowPix->rect(), "#31c27c");
-            lLabel->setPixmap(*larrowPix);
+            lLabel->setPixmap(tools->hoverPixColor(larrowPix,init_color));
         }
         if(e->type() == QEvent::Leave){
-            QPixmap pixmap(":/resource/images/left_arrow.png");
-            lLabel->setPixmap(pixmap);
+            lLabel->setPixmap(tools->hoverPixColor(larrowPix,hover_color));
         }
     }
 

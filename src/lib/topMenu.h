@@ -18,7 +18,7 @@
 #include <QSize>
 #include <QIcon>
 #include <QMouseEvent>
-
+#include "../utils/tools.h"
 class TopMenu : public QWidget {
 Q_OBJECT;
 public:
@@ -62,18 +62,18 @@ private:
     QHBoxLayout *sLayout;
     QHBoxLayout *rLayout;
     QHBoxLayout *opearLayout;
-    QVBoxLayout *minimLayout;
     QLineEdit *searInput;
     QPixmap *avatorPix;
     QNetworkAccessManager *manager;
     QNetworkRequest *request;
     QNetworkReply *reply;
     QEventLoop *loop;
-    QByteArray *byteArray;
     QPainter *painter;
     QPixmap *larrowPix;
-    QPixmap *imgs;
     QPainterPath *path;
+    Tools *tools;
+    QString init_color = "#31c27c";
+    QString hover_color = "#6c6c6c";
 };
 
 #endif //QQMUSICCOPY_TOPMENU_H
