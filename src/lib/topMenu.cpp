@@ -113,6 +113,7 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     rWidget->setMinimumSize(400, widget->size().height());
     // 头像
     avatorLabel = new QLabel;
+    avatorLabel->setCursor(Qt::PointingHandCursor);
     avatorLabel->setObjectName("avator");
     avatorLabel->setScaledContents(true);
     avatorLabel->setFixedSize(26, 26);
@@ -143,12 +144,14 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     avatorLabel->setPixmap(destImage);
     // 昵称
     uname = new QLabel;
+    uname->setCursor(Qt::PointingHandCursor);
     uname->setText("冰消叶散");
     uname->setObjectName("uname");
     // 会员
     vipLabel = new QLabel;
     vipLabel->setObjectName("vip");
     vipLabel->installEventFilter(this);
+    vipLabel->setCursor(Qt::PointingHandCursor);
     vipLabel->setFixedSize(18, 18);
     vipLabel->setScaledContents(true);
     vipPix = new QPixmap;
