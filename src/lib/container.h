@@ -20,6 +20,7 @@
 #include <QRect>
 #include "./topMenu.h"
 #include "./popup/hotSearch.h"
+#include "./popup/settMenu.h"
 class container : public QWidget{
 Q_OBJECT;
 public:
@@ -71,6 +72,6 @@ protected:
 private:
     TopMenu *topMenu;
     HotSearch *hotSearch;
-
+    SettMenu *settMenu;
 };
 #endif //QTMUSIC_container_H

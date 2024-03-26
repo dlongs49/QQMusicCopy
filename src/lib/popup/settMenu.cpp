@@ -6,9 +6,9 @@
 
 SettMenu::SettMenu(QWidget *parent) : QWidget(parent) {
     loadQSS();
-    this->hide();
-    int w = 476;
-    int h = 350;
+//    this->hide();
+    int w = 260;
+    int h = 590;
     this->setGeometry(150, 44, w + 18, h + 18);
     frame = new QFrame(this);
     frame->setGeometry(9, 9, w, h);
@@ -19,146 +19,60 @@ SettMenu::SettMenu(QWidget *parent) : QWidget(parent) {
     shadow->setBlurRadius(14);
     frame->setGraphicsEffect(shadow);
 
-    mainLayout = new QHBoxLayout;
+    mainLayout = new QVBoxLayout;
     mainLayout->setSpacing(0);
     mainLayout->setMargin(0);
-    mainLayout->setAlignment(Qt::AlignCenter);
+    mainLayout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
 
-    lWidget = new QWidget(frame);
-    lWidget->setFixedSize((w / 2) - 4, h - 2);
-    lWidget->setStyleSheet("background:#fff");
-    hotLayout = new QVBoxLayout;
-    hotLayout->setSpacing(0);
-    hotLayout->setMargin(0);
-    hotLayout->setAlignment(Qt::AlignRight | Qt::AlignTop);
-    hotLabel = new QLabel;
-    hotLabel->setFixedSize(lWidget->width() - 10, 38);
-    hotLabel->setObjectName("hotTitleLabel");
-    hotLabel->setText("热门搜索");
-    hotLayout->addWidget(hotLabel);
-    hotLayout->addSpacing(4);
+    gridWidget = new QWidget(frame);
+    gridWidget->setFixedWidth(228);
+    gradLayout = new QGridLayout;
+    gradLayout->setSpacing(0);
+    gradLayout->setMargin(0);
+    gradLayout->setAlignment(Qt::AlignTop);
 
+    QList<QString> iconList;
+    iconList << "phone"<< "audio"<< "bell"<< "cloud_disk"<< "timing"<< "feedback"<< "game"<< "message"<< "earprint"<< "micro";
+    QList<QString> txtList;
+    txtList << "传歌到设备"<< "音频转码"<< "铃声制作"<< "音乐网盘"<< "定时设置"<< "反馈修复"<< "游戏优化"<< "消息中心"<< "耳纹音效"<< "虚拟麦克风";
     for (int i = 0; i < 10; i++) {
-        txtLayout = new QHBoxLayout;
-        txtLayout->setAlignment(Qt::AlignJustify | Qt::AlignVCenter);
-        txtLayout->setSpacing(0);
-        txtLayout->setMargin(0);
-
-
-        txtLabel[i] = new QLabel;
-        txtLabel[i]->setCursor(Qt::PointingHandCursor);
-        txtLabel[i]->setFixedSize(lWidget->width() - 10, 30);
-        txtLabel[i]->setObjectName("txtLabel");
-        txtLabel[i]->setStyleSheet("QLabel#txtLabel:hover{background:#eee}");
-
-        titLabel = new QLabel;
-        titLabel->setStyleSheet("background:transparent");
-        titLabel->setObjectName("tlabel");
-        titLabel->setText("无名的人");
-        titLabel->setFixedWidth(txtLabel[i]->width() - 68);
-        txtLayout->addSpacing(8);
-        txtLayout->addWidget(titLabel);
-
-        numLabel = new QLabel;
-        numLabel->setObjectName("tlabel");
-        numLabel->setStyleSheet("background:transparent");
-        numLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-        numLabel->setText("400万");
-        numLabel->setFixedWidth(52);
-        txtLayout->addWidget(numLabel);
-        txtLayout->addSpacing(8);
-
-        txtLabel[i]->setLayout(txtLayout);
-        hotLayout->addWidget(txtLabel[i]);
-        txtLabel[i]->installEventFilter(this);
-
+        gradItem[i] = new QLabel;
+        gradItem[i] ->setObjectName("gradItem");
+        gradItem[i]->setCursor(Qt::PointingHandCursor);
+        gradItem[i]->setFixedSize(76,76);
+        gradItemLayout = new QVBoxLayout;
+        gradItemLayout->setSpacing(0);
+        gradItemLayout->setMargin(0);
+        gradItemLayout->setAlignment(Qt::AlignCenter);
+        QPixmap pixmap(":/resource/images/"+iconList[i]+".png");
+        imgLabel = new QLabel;
+        imgLabel->setFixedSize(30,30);
+        imgLabel->setScaledContents(true);
+        imgLabel->setPixmap(pixmap);
+        gradItemLayout->addWidget(imgLabel,0,Qt::AlignCenter);
+        txtLabel = new QLabel;
+        txtLabel->setText(txtList[i]);
+        txtLabel->setObjectName("txt");
+        gradItemLayout->addSpacing(6);
+        gradItemLayout->addWidget(txtLabel);
+        gradItem[i]->setLayout(gradItemLayout);
     }
+    gradLayout->addWidget(gradItem[0],1,1);
+    gradLayout->addWidget(gradItem[1],1,2);
+    gradLayout->addWidget(gradItem[2],1,3);
+    gradLayout->addWidget(gradItem[3],2,1);
+    gradLayout->addWidget(gradItem[4],2,2);
+    gradLayout->addWidget(gradItem[5],2,3);
+    gradLayout->addWidget(gradItem[6],3,1);
+    gradLayout->addWidget(gradItem[7],3,2);
+    gradLayout->addWidget(gradItem[8],3,3);
+    gradLayout->addWidget(gradItem[9],4,1);
 
-    lWidget->setLayout(hotLayout);
-    mainLayout->addWidget(lWidget);
-
-    rWidget = new QWidget(frame);
-    rWidget->setFixedSize((w / 2) - 4, h - 2);
-    rWidget->setObjectName("history");
-
-    hisLayout = new QVBoxLayout;
-    hisLayout->setSpacing(0);
-    hisLayout->setMargin(0);
-    hisLayout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
-
-    titLayout = new QHBoxLayout;
-    titLayout->setSpacing(0);
-    titLayout->setMargin(0);
-
-    histTit = new QLabel;
-    histTit->setText("历史搜索");
-    titLayout->addSpacing(12);
-    titLayout->addWidget(histTit);
-
-    clearBtn = new QPushButton;
-    clearBtn->setText("清除");
-    clearBtn->setCursor(Qt::PointingHandCursor);
-    clearBtn->setFixedSize(40, 20);
-    clearBtn->setObjectName("clearBtn");
-    titLayout->addWidget(clearBtn);
-    connect(clearBtn, SIGNAL(clicked()), this, SLOT(handleClear()));
-
-    hisbox = new QLabel;
-    hisbox->setFixedSize(rWidget->width() - 10, 38);
-    hisbox->setObjectName("hisTitBox");
-    hisbox->setLayout(titLayout);
-    hisLayout->addWidget(hisbox);
-    hisLayout->addSpacing(4);
-    rWidget->setLayout(hisLayout);
-
-    hisTxtLayout = new QVBoxLayout;
-    hisTxtLayout->setAlignment(Qt::AlignTop);
-    hisTxtLayout->setSpacing(0);
-    hisTxtLayout->setMargin(0);
+    gridWidget->setLayout(gradLayout);
 
 
-    hisWidget = new QWidget(rWidget);
-    hisWidget->setFixedHeight(rWidget->height() - hisbox->height() - 8);
-    noWidget = new QWidget(rWidget);
-    noWidget->setFixedHeight(rWidget->height() - hisbox->height() - 8);
-
-    hisListLayout = new QVBoxLayout;
-    hisListLayout->setAlignment(Qt::AlignCenter);
-    hisListLayout->setMargin(0);
-    hisListLayout->setSpacing(0);
-
-
-    for (int i = 0; i < 10; i++) {
-        hisTxtLabel[i] = new QLabel;
-        hisTxtLabel[i]->setCursor(Qt::PointingHandCursor);
-        hisTxtLabel[i]->setObjectName("hisTxtLabel");
-        hisTxtLabel[i]->setText("无名的人");
-        hisTxtLabel[i]->setFixedSize(rWidget->width() - 10, 30);
-        hisTxtLayout->addWidget(hisTxtLabel[i]);
-    }
-
-
-    noHisLabel = new QLabel;
-    noHisLabel->setFixedSize(74, 60);
-    noHisLabel->setScaledContents(true);
-    QPixmap nopix(":/resource/images/no_search_his.png");
-    noHisLabel->setPixmap(nopix);
-
-    noHisLabel->setContentsMargins(14, 0, 0, 0);
-    noHisTxt = new QLabel;
-    noHisTxt->setContentsMargins(0, 8, 0, 0);
-    noHisTxt->setText("暂无搜索历史记录");
-
-    hisListLayout->addWidget(noHisLabel);
-    hisListLayout->addWidget(noHisTxt);
-
-    hisWidget->setLayout(hisTxtLayout);
-    noWidget->setLayout(hisListLayout);
-
-    hisLayout->addWidget(hisWidget);
-    hisLayout->addWidget(noWidget);
-    noWidget->hide();
-    mainLayout->addWidget(rWidget);
+    mainLayout->addSpacing(11);
+    mainLayout->addWidget(gridWidget);
 
     frame->setLayout(mainLayout);
 }
@@ -186,7 +100,7 @@ void SettMenu::handleClear() {
 }
 
 void SettMenu::loadQSS() {
-    QFile qss(":/resource/qss/hotSearch.qss");
+    QFile qss(":/resource/qss/settMenu.qss");
     qss.open(QFile::ReadOnly);
     QString style = QLatin1String(qss.readAll());
     this->setStyleSheet(style);

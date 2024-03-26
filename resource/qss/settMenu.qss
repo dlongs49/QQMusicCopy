@@ -1,0 +1,11 @@
+QFrame#searchFrame {
+    background: #fff;
+    border-radius: 6px;
+}
+
+QLabel#gradItem:hover {
+    background: #eee;
+}
+QLabel#txt{
+    font-size:12px;
+}

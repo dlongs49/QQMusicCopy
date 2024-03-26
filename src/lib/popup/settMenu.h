@@ -9,6 +9,7 @@
 #include <QFrame>
 #include <QLabel>
 #include <QHBoxLayout>
+#include <QGridLayout>
 #include <QLineEdit>
 #include <QFile>
 #include <QNetworkAccessManager>
@@ -25,6 +26,7 @@
 #include <QDebug>
 #include <QEvent>
 #include <QProxyStyle >
+#include <QList>
 
 class SettMenu : public QWidget {
 Q_OBJECT;
@@ -47,11 +49,10 @@ private:
     QPushButton *clearBtn;
     QGraphicsDropShadowEffect *shadow;
     QLabel *hotLabel;
-    QLabel *txtLabel[10];
+    QLabel *gradItem[10];
     QLabel *hisTxtLabel[10];
-    QLabel *numLabel;
-    QLabel *titLabel;
-    QLabel *hisbox;
+    QLabel *txtLabel;
+    QLabel *imgLabel;
     QLabel *histTit;
     QLabel *noHisLabel;
     QLabel *noHisTxt;
@@ -62,6 +63,7 @@ private:
     QLabel *minimizeLabel;
     QLabel *maximizeLabel;
     QLabel *closeLabel;
+    QWidget *gridWidget;
     QWidget *widget;
     QWidget *lWidget;
     QWidget *rWidget;
@@ -70,11 +72,12 @@ private:
     QWidget *minimWidget;
     QWidget *maximWidget;
     QWidget *closeWidget;
+    QGridLayout *gradLayout;
     QHBoxLayout *layout;
-    QHBoxLayout *mainLayout;
+    QVBoxLayout *mainLayout;
     QHBoxLayout *txtLayout;
     QHBoxLayout *titLayout;
-    QVBoxLayout *hisTxtLayout;
+    QVBoxLayout *gradItemLayout;
     QVBoxLayout *hotLayout;
     QVBoxLayout *hisLayout;
     QVBoxLayout *hisListLayout;
