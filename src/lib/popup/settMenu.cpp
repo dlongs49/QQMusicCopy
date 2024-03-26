@@ -23,7 +23,7 @@ SettMenu::SettMenu(QWidget *parent) : QWidget(parent) {
     mainLayout->setSpacing(0);
     mainLayout->setMargin(0);
     mainLayout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
-
+    // 九宫格布局
     gridWidget = new QWidget(frame);
     gridWidget->setFixedWidth(228);
     gradLayout = new QGridLayout;
@@ -70,10 +70,40 @@ SettMenu::SettMenu(QWidget *parent) : QWidget(parent) {
     gradLayout->addWidget(gradItem[9],4,1);
 
     gridWidget->setLayout(gradLayout);
-
-
     mainLayout->addSpacing(11);
     mainLayout->addWidget(gridWidget);
+
+    // 分块布局
+    middWidget = new QWidget(frame);
+    middWidget->setFixedSize(w,60);
+    middWidget->setStyleSheet("background:#ff0");
+
+    middLayout = new QHBoxLayout;
+    middLayout->setMargin(0);
+    middLayout->setSpacing(0);
+    leftIcon = new QLabel;
+    leftIcon->setScaledContents(true);
+    leftIcon->setFixedSize(20,20);
+    QPixmap leftPix(":/");
+    leftIcon->setPixmap(leftPix);
+    titleLabel = new QLabel;
+    titleLabel->setText("添加歌曲");
+    rightIcon = new QLabel;
+    rightIcon->setFixedSize(20,20);
+    QPixmap arrowPix(":/resource/images/right_arrow.png");
+    rightIcon->setPixmap(arrowPix);
+    rightIcon->setScaledContents(true);
+    middLayout->addWidget(leftIcon);
+    middLayout->addWidget(titleLabel);
+    middLayout->addWidget(rightIcon);
+    middWidget->setLayout(middLayout);
+
+
+    mainLayout->addWidget(middWidget);
+
+
+
+
 
     frame->setLayout(mainLayout);
 }

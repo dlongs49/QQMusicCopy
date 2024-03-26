@@ -53,9 +53,10 @@ private:
     QLabel *hisTxtLabel[10];
     QLabel *txtLabel;
     QLabel *imgLabel;
-    QLabel *histTit;
+    QLabel *leftIcon;
+    QLabel *titleLabel;
+    QLabel *rightIcon;
     QLabel *noHisLabel;
-    QLabel *noHisTxt;
     QLabel *downLabel;
     QLabel *skinLabel;
     QLabel *settingLabel;
@@ -64,7 +65,7 @@ private:
     QLabel *maximizeLabel;
     QLabel *closeLabel;
     QWidget *gridWidget;
-    QWidget *widget;
+    QWidget *middWidget;
     QWidget *lWidget;
     QWidget *rWidget;
     QWidget *hisWidget;
@@ -73,8 +74,8 @@ private:
     QWidget *maximWidget;
     QWidget *closeWidget;
     QGridLayout *gradLayout;
-    QHBoxLayout *layout;
     QVBoxLayout *mainLayout;
+    QHBoxLayout *middLayout;
     QHBoxLayout *txtLayout;
     QHBoxLayout *titLayout;
     QVBoxLayout *gradItemLayout;
