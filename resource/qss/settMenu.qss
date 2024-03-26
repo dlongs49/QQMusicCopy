@@ -11,9 +11,11 @@ QLabel#txt {
     font-size: 12px;
 }
 
-QLabel#itemSettBox:hover {
+QLabel#middleSettBox:hover,
+QLabel#bottomSettBox:hover {
     background: #eee;
 }
+
 QWidget#middleBox{
     border-top: 1px solid #f3f3f3;
     border-bottom: 1px solid #f3f3f3;

@@ -7,8 +7,9 @@
 SettMenu::SettMenu(QWidget *parent) : QWidget(parent) {
     loadQSS();
 //    this->hide();
-    int h = 590;
+    int h = 596;
     this->setGeometry(150, 44, w + 18, h + 18);
+    // 边框阴影 + 圆角
     frame = new QFrame(this);
     frame->setGeometry(9, 9, w, h);
     frame->setObjectName("searchFrame");
@@ -22,7 +23,17 @@ SettMenu::SettMenu(QWidget *parent) : QWidget(parent) {
     mainLayout->setSpacing(0);
     mainLayout->setMargin(0);
     mainLayout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
-    // 九宫格布局
+
+    // 九宫格部件
+    loadGradItem();
+    // 中间部件集合
+    loadMiddleItem();
+    // 底部部件集合
+    loadBottomItem();
+
+    frame->setLayout(mainLayout);
+}
+void SettMenu::loadGradItem() {
     gridWidget = new QWidget(frame);
     gridWidget->setFixedWidth(228);
     gradLayout = new QGridLayout;
@@ -72,16 +83,10 @@ SettMenu::SettMenu(QWidget *parent) : QWidget(parent) {
 
     gridWidget->setLayout(gradLayout);
     mainLayout->addSpacing(11);
-    mainLayout->addWidget(gridWidget);
-
-    // 分块布局
-    loadSettItem();
-
-
-    frame->setLayout(mainLayout);
+    mainLayout->addWidget(gridWidget,0,Qt::AlignHCenter);
+    mainLayout->addSpacing(10);
 }
-
-void SettMenu::loadSettItem() {
+void SettMenu::loadMiddleItem() {
     middWidget = new QWidget(frame);
     middWidget->setObjectName("middleBox");
     middLayout = new QVBoxLayout;
@@ -93,13 +98,11 @@ void SettMenu::loadSettItem() {
     for (int i = 0; i < 2; i++) {
         middLabel[i] = new QLabel;
         middLabel[i]->setFixedSize(w, 33);
-        middLabel[i]->setObjectName("itemSettBox");
+        middLabel[i]->setObjectName("middleSettBox");
         middLabel[i]->setCursor(Qt::PointingHandCursor);
         itemLayout = new QHBoxLayout;
-        itemLayout->setAlignment(Qt::AlignVCenter);
 
         leftIcon = new QLabel;
-        leftIcon->setStyleSheet("background:#f0f");
         leftIcon->setScaledContents(true);
         leftIcon->setFixedSize(20, 20);
         if(i == 1){
@@ -108,7 +111,7 @@ void SettMenu::loadSettItem() {
         }
 
         titleLabel = new QLabel;
-        titleLabel->setStyleSheet("background:#0f0");
+        titleLabel->setObjectName("txt");
         titleLabel->setText(txtList[i]);
         rightIcon = new QLabel;
         rightIcon->setFixedSize(10, 10);
@@ -127,34 +130,70 @@ void SettMenu::loadSettItem() {
             middLayout->addSpacing(10);
         }
         middLayout->addWidget(middLabel[i]);
-        if(i == 1){
-            middLayout->addSpacing(10);
-        }
     }
     middWidget->setLayout(middLayout);
     mainLayout->addWidget(middWidget);
 }
+void SettMenu::loadBottomItem() {
+    bottomWidget = new QWidget(frame);
+    bottomLayout = new QVBoxLayout;
+    bottomLayout->setMargin(0);
+    bottomLayout->setSpacing(0);
+
+    QList<QString> txtList;
+    txtList << "设置 " << "帮助 " << "升级" << "切换账号" << "退出QQ音乐 ";
+    for (int i = 0; i < 5; i++) {
+        bottomLabel[i] = new QLabel;
+        bottomLabel[i]->setFixedSize(w, 33);
+        bottomLabel[i]->setObjectName("bottomSettBox");
+        bottomLabel[i]->setCursor(Qt::PointingHandCursor);
+        bomItemLayout = new QHBoxLayout;
+
+        leftIcon = new QLabel;
+        leftIcon->setScaledContents(true);
+        leftIcon->setFixedSize(20, 20);
+        if(i == 0){
+            QPixmap leftPix(":/resource/images/setting_popup.png");
+            leftIcon->setPixmap(leftPix);
+        }
+        if(i == 4){
+            QPixmap leftPix(":/resource/images/tips_warn.png");
+            leftIcon->setPixmap(leftPix);
+        }
+        titleLabel = new QLabel;
+        titleLabel->setObjectName("txt");
+        titleLabel->setText(txtList[i]);
+        rightIcon = new QLabel;
+        rightIcon->setFixedSize(10, 10);
+        if(i == 1){
+            QPixmap arrowPix(":/resource/images/right_small_arrow.png");
+            rightIcon->setPixmap(arrowPix);
+        }
+        rightIcon->setScaledContents(true);
+        bomItemLayout->addSpacing(5);
+        bomItemLayout->addWidget(leftIcon,0,Qt::AlignVCenter);
+        bomItemLayout->addSpacing(5);
+        bomItemLayout->addWidget(titleLabel);
+        bomItemLayout->addWidget(rightIcon);
+        bottomLabel[i]->setLayout(bomItemLayout);
+        if(i == 0){
+            bottomLayout->addSpacing(10);
+        }
+        bottomLayout->addWidget(bottomLabel[i]);
+        if(i == 4){
+            middLayout->addSpacing(10);
+        }
+    }
+    bottomWidget->setLayout(bottomLayout);
+    mainLayout->addWidget(bottomWidget);
+}
 
 bool SettMenu::eventFilter(QObject *obj, QEvent *e) {
     if (e->type() == QEvent::MouseButtonRelease) {
-        clearBtn->setCursor(Qt::PointingHandCursor);
-        clearBtn->setObjectName("clearBtn");
-        clearBtn->style()->polish(clearBtn);
-        hisWidget->show();
-        noWidget->hide();
+
         return true;
     }
     return false;
-}
-
-void SettMenu::handleClear() {
-    hisWidget->hide();
-    noWidget->show();
-    if (!hisWidget->isVisible()) {
-        clearBtn->setCursor(Qt::ArrowCursor);
-        clearBtn->setObjectName("disableBtn");
-        clearBtn->style()->polish(clearBtn);
-    }
 }
 
 void SettMenu::loadQSS() {

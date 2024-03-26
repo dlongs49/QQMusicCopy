@@ -7,7 +7,7 @@ container::container(QWidget *parent) : QWidget(parent) {
     connect(topMenu, SIGNAL(onFocus(bool)),this,SLOT(handleEmit(bool)));
     hotSearch = new HotSearch(this);
 
-//    settMenu = new SettMenu(this);
+    settMenu = new SettMenu(this);
 }
 bool container::handleEmit(bool flag){
     if(flag){
