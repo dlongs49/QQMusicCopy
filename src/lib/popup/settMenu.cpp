@@ -37,6 +37,7 @@ SettMenu::SettMenu(QWidget *parent) : QWidget(parent) {
     txtList << "传歌到设备"<< "音频转码"<< "铃声制作"<< "音乐网盘"<< "定时设置"<< "反馈修复"<< "游戏优化"<< "消息中心"<< "耳纹音效"<< "虚拟麦克风";
     for (int i = 0; i < 10; i++) {
         gradItem[i] = new QLabel;
+        gradItem[i]->setToolTip(txtList[i]);
         gradItem[i] ->setObjectName("gradItem");
         gradItem[i]->setCursor(Qt::PointingHandCursor);
         gradItem[i]->setFixedSize(76,76);
