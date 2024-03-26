@@ -6,6 +6,15 @@ QFrame#searchFrame {
 QLabel#gradItem:hover {
     background: #eee;
 }
-QLabel#txt{
-    font-size:12px;
+
+QLabel#txt {
+    font-size: 12px;
+}
+
+QLabel#itemSettBox:hover {
+    background: #eee;
+}
+QWidget#middleBox{
+    border-top: 1px solid #f3f3f3;
+    border-bottom: 1px solid #f3f3f3;
 }

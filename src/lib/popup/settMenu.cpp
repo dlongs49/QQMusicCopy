@@ -7,7 +7,6 @@
 SettMenu::SettMenu(QWidget *parent) : QWidget(parent) {
     loadQSS();
 //    this->hide();
-    int w = 260;
     int h = 590;
     this->setGeometry(150, 44, w + 18, h + 18);
     frame = new QFrame(this);
@@ -32,25 +31,27 @@ SettMenu::SettMenu(QWidget *parent) : QWidget(parent) {
     gradLayout->setAlignment(Qt::AlignTop);
 
     QList<QString> iconList;
-    iconList << "phone"<< "audio"<< "bell"<< "cloud_disk"<< "timing"<< "feedback"<< "game"<< "message"<< "earprint"<< "micro";
+    iconList << "phone" << "audio" << "bell" << "cloud_disk" << "timing" << "feedback" << "game" << "message"
+             << "earprint" << "micro";
     QList<QString> txtList;
-    txtList << "传歌到设备"<< "音频转码"<< "铃声制作"<< "音乐网盘"<< "定时设置"<< "反馈修复"<< "游戏优化"<< "消息中心"<< "耳纹音效"<< "虚拟麦克风";
+    txtList << "传歌到设备" << "音频转码" << "铃声制作" << "音乐网盘" << "定时设置" << "反馈修复" << "游戏优化"
+            << "消息中心" << "耳纹音效" << "虚拟麦克风";
     for (int i = 0; i < 10; i++) {
         gradItem[i] = new QLabel;
         gradItem[i]->setToolTip(txtList[i]);
-        gradItem[i] ->setObjectName("gradItem");
+        gradItem[i]->setObjectName("gradItem");
         gradItem[i]->setCursor(Qt::PointingHandCursor);
-        gradItem[i]->setFixedSize(76,76);
+        gradItem[i]->setFixedSize(76, 76);
         gradItemLayout = new QVBoxLayout;
         gradItemLayout->setSpacing(0);
         gradItemLayout->setMargin(0);
         gradItemLayout->setAlignment(Qt::AlignCenter);
-        QPixmap pixmap(":/resource/images/"+iconList[i]+".png");
+        QPixmap pixmap(":/resource/images/" + iconList[i] + ".png");
         imgLabel = new QLabel;
-        imgLabel->setFixedSize(30,30);
+        imgLabel->setFixedSize(30, 30);
         imgLabel->setScaledContents(true);
         imgLabel->setPixmap(pixmap);
-        gradItemLayout->addWidget(imgLabel,0,Qt::AlignCenter);
+        gradItemLayout->addWidget(imgLabel, 0, Qt::AlignCenter);
         txtLabel = new QLabel;
         txtLabel->setText(txtList[i]);
         txtLabel->setObjectName("txt");
@@ -58,54 +59,80 @@ SettMenu::SettMenu(QWidget *parent) : QWidget(parent) {
         gradItemLayout->addWidget(txtLabel);
         gradItem[i]->setLayout(gradItemLayout);
     }
-    gradLayout->addWidget(gradItem[0],1,1);
-    gradLayout->addWidget(gradItem[1],1,2);
-    gradLayout->addWidget(gradItem[2],1,3);
-    gradLayout->addWidget(gradItem[3],2,1);
-    gradLayout->addWidget(gradItem[4],2,2);
-    gradLayout->addWidget(gradItem[5],2,3);
-    gradLayout->addWidget(gradItem[6],3,1);
-    gradLayout->addWidget(gradItem[7],3,2);
-    gradLayout->addWidget(gradItem[8],3,3);
-    gradLayout->addWidget(gradItem[9],4,1);
+    gradLayout->addWidget(gradItem[0], 1, 1);
+    gradLayout->addWidget(gradItem[1], 1, 2);
+    gradLayout->addWidget(gradItem[2], 1, 3);
+    gradLayout->addWidget(gradItem[3], 2, 1);
+    gradLayout->addWidget(gradItem[4], 2, 2);
+    gradLayout->addWidget(gradItem[5], 2, 3);
+    gradLayout->addWidget(gradItem[6], 3, 1);
+    gradLayout->addWidget(gradItem[7], 3, 2);
+    gradLayout->addWidget(gradItem[8], 3, 3);
+    gradLayout->addWidget(gradItem[9], 4, 1);
 
     gridWidget->setLayout(gradLayout);
     mainLayout->addSpacing(11);
     mainLayout->addWidget(gridWidget);
 
     // 分块布局
-    middWidget = new QWidget(frame);
-    middWidget->setFixedSize(w,60);
-    middWidget->setStyleSheet("background:#ff0");
-
-    middLayout = new QHBoxLayout;
-    middLayout->setMargin(0);
-    middLayout->setSpacing(0);
-    leftIcon = new QLabel;
-    leftIcon->setScaledContents(true);
-    leftIcon->setFixedSize(20,20);
-    QPixmap leftPix(":/");
-    leftIcon->setPixmap(leftPix);
-    titleLabel = new QLabel;
-    titleLabel->setText("添加歌曲");
-    rightIcon = new QLabel;
-    rightIcon->setFixedSize(20,20);
-    QPixmap arrowPix(":/resource/images/right_arrow.png");
-    rightIcon->setPixmap(arrowPix);
-    rightIcon->setScaledContents(true);
-    middLayout->addWidget(leftIcon);
-    middLayout->addWidget(titleLabel);
-    middLayout->addWidget(rightIcon);
-    middWidget->setLayout(middLayout);
-
-
-    mainLayout->addWidget(middWidget);
-
-
-
+    loadSettItem();
 
 
     frame->setLayout(mainLayout);
+}
+
+void SettMenu::loadSettItem() {
+    middWidget = new QWidget(frame);
+    middWidget->setObjectName("middleBox");
+    middLayout = new QVBoxLayout;
+    middLayout->setMargin(0);
+    middLayout->setSpacing(0);
+
+    QList<QString> txtList;
+    txtList << "添加歌曲" << "黑名单设置";
+    for (int i = 0; i < 2; i++) {
+        middLabel[i] = new QLabel;
+        middLabel[i]->setFixedSize(w, 33);
+        middLabel[i]->setObjectName("itemSettBox");
+        middLabel[i]->setCursor(Qt::PointingHandCursor);
+        itemLayout = new QHBoxLayout;
+        itemLayout->setAlignment(Qt::AlignVCenter);
+
+        leftIcon = new QLabel;
+        leftIcon->setStyleSheet("background:#f0f");
+        leftIcon->setScaledContents(true);
+        leftIcon->setFixedSize(20, 20);
+        if(i == 1){
+            QPixmap leftPix(":/resource/images/blacksett.png");
+            leftIcon->setPixmap(leftPix);
+        }
+
+        titleLabel = new QLabel;
+        titleLabel->setStyleSheet("background:#0f0");
+        titleLabel->setText(txtList[i]);
+        rightIcon = new QLabel;
+        rightIcon->setFixedSize(10, 10);
+        if(i == 0){
+            QPixmap arrowPix(":/resource/images/right_small_arrow.png");
+            rightIcon->setPixmap(arrowPix);
+        }
+        rightIcon->setScaledContents(true);
+        itemLayout->addSpacing(5);
+        itemLayout->addWidget(leftIcon,0,Qt::AlignVCenter);
+        itemLayout->addSpacing(5);
+        itemLayout->addWidget(titleLabel);
+        itemLayout->addWidget(rightIcon);
+        middLabel[i]->setLayout(itemLayout);
+        if(i == 0){
+            middLayout->addSpacing(10);
+        }
+        middLayout->addWidget(middLabel[i]);
+        if(i == 1){
+            middLayout->addSpacing(10);
+        }
+    }
+    middWidget->setLayout(middLayout);
+    mainLayout->addWidget(middWidget);
 }
 
 bool SettMenu::eventFilter(QObject *obj, QEvent *e) {

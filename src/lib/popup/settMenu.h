@@ -41,16 +41,17 @@ public slots:
     void handleClear();
 
     void loadQSS();
-
+    void loadSettItem();
 protected:
 
 private:
+    int w = 260;
     QFrame *frame;
     QPushButton *clearBtn;
     QGraphicsDropShadowEffect *shadow;
     QLabel *hotLabel;
     QLabel *gradItem[10];
-    QLabel *hisTxtLabel[10];
+    QLabel *middLabel[2];
     QLabel *txtLabel;
     QLabel *imgLabel;
     QLabel *leftIcon;
@@ -75,11 +76,11 @@ private:
     QWidget *closeWidget;
     QGridLayout *gradLayout;
     QVBoxLayout *mainLayout;
-    QHBoxLayout *middLayout;
+    QVBoxLayout *middLayout;
     QHBoxLayout *txtLayout;
     QHBoxLayout *titLayout;
     QVBoxLayout *gradItemLayout;
-    QVBoxLayout *hotLayout;
+    QHBoxLayout *itemLayout;
     QVBoxLayout *hisLayout;
     QVBoxLayout *hisListLayout;
     QLineEdit *searInput;

@@ -135,17 +135,16 @@ HotSearch::HotSearch(QWidget *parent) : QWidget(parent) {
 
 
     noHisLabel = new QLabel;
-    noHisLabel->setFixedSize(74, 60);
+    noHisLabel->setFixedSize(60, 60);
     noHisLabel->setScaledContents(true);
     QPixmap nopix(":/resource/images/no_search_his.png");
     noHisLabel->setPixmap(nopix);
 
-    noHisLabel->setContentsMargins(14, 0, 0, 0);
     noHisTxt = new QLabel;
     noHisTxt->setContentsMargins(0, 8, 0, 0);
     noHisTxt->setText("暂无搜索历史记录");
 
-    hisListLayout->addWidget(noHisLabel);
+    hisListLayout->addWidget(noHisLabel,0,Qt::AlignCenter);
     hisListLayout->addWidget(noHisTxt);
 
     hisWidget->setLayout(hisTxtLayout);
