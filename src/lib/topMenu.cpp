@@ -298,6 +298,12 @@ bool TopMenu::eventFilter(QObject *o, QEvent *e) {
             if (o->objectName() != "setting") {
                 emit onSettPopup(false);
             }
+            if (o->objectName() == "down_arrow") {
+                emit onDownInfo(true);
+            }
+            if (o->objectName() != "down_arrow") {
+                emit onDownInfo(false);
+            }
             if (o->objectName() == "maxim") {
                 emit onHandle("maxim");
             }
@@ -314,6 +320,7 @@ bool TopMenu::eventFilter(QObject *o, QEvent *e) {
         if (mouseEvent->button() == Qt::RightButton) {
             emit onSettPopup(false);
             emit onFocus(false);
+            emit onDownInfo(false);
         }
         return true;
     }

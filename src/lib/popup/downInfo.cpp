@@ -6,7 +6,7 @@
 
 DownInfo::DownInfo(QWidget *parent) : QWidget(parent) {
     loadQSS();
-//    this->hide();
+    this->hide();
     int h = 210;
     this->setGeometry(416, 44, w + 18, h + 18);
     // 边框阴影 + 圆角

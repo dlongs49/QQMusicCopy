@@ -6,21 +6,18 @@
 #define QQMUSICCOPY_DOWNINFO_H
 
 #include <QWidget>
+#include <QFile>
 #include <QFrame>
 #include <QLabel>
 #include <QPushButton>
 #include <QHBoxLayout>
-#include <QGridLayout>
-#include <QFile>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QEventLoop>
 #include <QGraphicsDropShadowEffect>
-#include <QPixmap>
 #include <QDebug>
 #include <QEvent>
-#include <QList>
 
 class DownInfo : public QWidget {
 Q_OBJECT;

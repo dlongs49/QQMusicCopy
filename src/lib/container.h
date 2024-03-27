@@ -38,6 +38,7 @@ public slots:
     bool handleEmit(bool flag);
 
     bool showSettPopup(bool flag);
+    bool handleDownInfo(bool flag);
 
     QString emitHandle(QString str);
 

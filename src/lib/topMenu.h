@@ -32,6 +32,8 @@ signals:
 
     bool onSettPopup(bool flag);
 
+    bool onDownInfo(bool flag);
+
     bool onHandle(QString str);
 
 public slots:
