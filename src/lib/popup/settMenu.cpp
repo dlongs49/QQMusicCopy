@@ -113,9 +113,9 @@ void SettMenu::loadMiddleItem() {
         middLabel[i]->setCursor(Qt::PointingHandCursor);
         itemLayout = new QHBoxLayout;
 
-        leftIcon = new QLabel;
+        leftIcon = new QLabel(middLabel[i]);
         leftIcon->setScaledContents(true);
-        leftIcon->setFixedSize(20, 20);
+        leftIcon->setGeometry(14,7,20,20);
         if (i == 1) {
             QPixmap leftPix(":/resource/images/blacksett.png");
             leftIcon->setPixmap(leftPix);
@@ -131,9 +131,7 @@ void SettMenu::loadMiddleItem() {
             rightIcon->setPixmap(arrowPix);
         }
         rightIcon->setScaledContents(true);
-        itemLayout->addSpacing(5);
-        itemLayout->addWidget(leftIcon, 0, Qt::AlignVCenter);
-        itemLayout->addSpacing(5);
+        itemLayout->addSpacing(36);
         itemLayout->addWidget(titleLabel);
         itemLayout->addWidget(rightIcon);
         middLabel[i]->setLayout(itemLayout);
@@ -160,10 +158,12 @@ void SettMenu::loadBottomItem() {
         bottomLabel[i]->setObjectName("bottomSettBox");
         bottomLabel[i]->setCursor(Qt::PointingHandCursor);
         bomItemLayout = new QHBoxLayout;
+        bomItemLayout->setAlignment(Qt::AlignVCenter);
 
-        leftIcon = new QLabel;
+        leftIcon = new QLabel(bottomLabel[i]);
         leftIcon->setScaledContents(true);
-        leftIcon->setFixedSize(20, 20);
+        leftIcon->setGeometry(14,7,20,20);
+
         if (i == 0) {
             QPixmap leftPix(":/resource/images/setting_popup.png");
             leftIcon->setPixmap(leftPix);
@@ -182,9 +182,7 @@ void SettMenu::loadBottomItem() {
             rightIcon->setPixmap(arrowPix);
         }
         rightIcon->setScaledContents(true);
-        bomItemLayout->addSpacing(5);
-        bomItemLayout->addWidget(leftIcon, 0, Qt::AlignVCenter);
-        bomItemLayout->addSpacing(5);
+        bomItemLayout->addSpacing(36);
         bomItemLayout->addWidget(titleLabel);
         bomItemLayout->addWidget(rightIcon);
         bottomLabel[i]->setLayout(bomItemLayout);
