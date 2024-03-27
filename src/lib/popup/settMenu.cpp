@@ -8,7 +8,7 @@ SettMenu::SettMenu(QWidget *parent) : QWidget(parent) {
     loadQSS();
 //    this->hide();
     int h = 596;
-    this->setGeometry(150, 44, w + 18, h + 18);
+    this->setGeometry(500, 44, w + 18, h + 18);
     // 边框阴影 + 圆角
     frame = new QFrame(this);
     frame->setGeometry(9, 9, w, h);
