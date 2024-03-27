@@ -27,6 +27,7 @@ public:
 
 signals:
    bool onFocus(bool flag);
+    bool onSettPopup(bool flag);
 public slots:
     bool eventFilter(QObject *watched, QEvent *event);
     void loadQSS();

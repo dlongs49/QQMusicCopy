@@ -4,6 +4,7 @@
 
 #ifndef QTMUSIC_container_H
 #define QTMUSIC_container_H
+
 #include <QWidget>
 #include <QFrame>
 #include <QLabel>
@@ -21,11 +22,14 @@
 #include "./topMenu.h"
 #include "./popup/hotSearch.h"
 #include "./popup/settMenu.h"
-class container : public QWidget{
+
+class container : public QWidget {
 Q_OBJECT;
 public:
     container(QWidget *parent = nullptr);
+
     ~container();
+
     QLabel *lLabel;
     QLabel *rLabel;
     QLabel *refresh;
@@ -66,7 +70,11 @@ public:
     QPainter *painter;
     QPainterPath *path;
 public slots:
+
     bool handleEmit(bool flag);
+
+    bool showSettPopup(bool flag);
+
 protected:
 
 private:
@@ -74,4 +82,5 @@ private:
     HotSearch *hotSearch;
     SettMenu *settMenu;
 };
+
 #endif //QTMUSIC_container_H

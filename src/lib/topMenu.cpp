@@ -292,6 +292,12 @@ bool TopMenu::eventFilter(QObject *o, QEvent *e) {
                 emit onFocus(true);
                 return true;
             }
+            if (o->objectName() == "setting") {
+                emit onSettPopup(true);
+            }
+            if (o->objectName() != "setting") {
+                emit onSettPopup(false);
+            }
             if (o->objectName() != "searchBox") {
                 searInput->clearFocus();
                 if (!searInput->hasFocus()) {
@@ -301,6 +307,10 @@ bool TopMenu::eventFilter(QObject *o, QEvent *e) {
                     emit onFocus(false);
                 }
             }
+        }
+        if (mouseEvent->button() == Qt::RightButton) {
+            emit onSettPopup(false);
+            emit onFocus(false);
         }
         return true;
     }
@@ -418,7 +428,7 @@ bool TopMenu::eventFilter(QObject *o, QEvent *e) {
 }
 
 
-void TopMenu::loadQSS(){
+void TopMenu::loadQSS() {
     QFile qss(":/resource/qss/topMenu.qss");
     qss.open(QFile::ReadOnly);
     QString style = QLatin1String(qss.readAll());
