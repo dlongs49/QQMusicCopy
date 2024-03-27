@@ -18,6 +18,8 @@ add_executable(QQMusicCopy
         res.qrc
         src/mainwindow.h
         src/mainwindow.cpp
+		src/utils/tools.h
+        src/utils/tools.cpp
         src/lib/rightMenu.cpp
         src/lib/rightMenu.h
         src/lib/container.cpp
@@ -28,8 +30,8 @@ add_executable(QQMusicCopy
         src/lib/popup/hotSearch.h
         src/lib/popup/settMenu.cpp
         src/lib/popup/settMenu.h
-        src/utils/tools.h
-        src/utils/tools.cpp
+        src/lib/popup/downInfo.cpp
+		src/lib/popup/downInfo.h
 )
 
 target_link_libraries(QQMusicCopy PRIVATE Qt5::Widgets Qt5::Core Qt5::Network)

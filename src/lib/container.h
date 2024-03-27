@@ -24,6 +24,7 @@
 #include "./topMenu.h"
 #include "./popup/hotSearch.h"
 #include "./popup/settMenu.h"
+#include "./popup/downInfo.h"
 
 class container : public QWidget {
 Q_OBJECT;
@@ -50,6 +51,7 @@ private:
     TopMenu *topMenu;
     HotSearch *hotSearch;
     SettMenu *settMenu;
+    DownInfo *downInfo;
 };
 
 #endif //QTMUSIC_container_H

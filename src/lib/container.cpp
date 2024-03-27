@@ -9,6 +9,7 @@ container::container(QWidget *parent) : QWidget(parent) {
     connect(topMenu, SIGNAL(onSettPopup(bool)),this,SLOT(showSettPopup(bool)));
     connect(topMenu, SIGNAL(onHandle(QString)),this,SLOT(emitHandle(QString)));
     settMenu = new SettMenu(this);
+    downInfo = new DownInfo(this);
 }
 bool container::handleEmit(bool flag){
     if(flag){
