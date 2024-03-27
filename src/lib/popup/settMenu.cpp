@@ -33,6 +33,7 @@ SettMenu::SettMenu(QWidget *parent) : QWidget(parent) {
 
     frame->setLayout(mainLayout);
 }
+
 void SettMenu::loadGradItem() {
     gridWidget = new QWidget(frame);
     gridWidget->setFixedWidth(228);
@@ -66,6 +67,15 @@ void SettMenu::loadGradItem() {
         txtLabel = new QLabel;
         txtLabel->setText(txtList[i]);
         txtLabel->setObjectName("txt");
+
+        if (i == 9) {
+            newLabel = new QLabel(gradItem[9]);
+            newLabel->setObjectName("newTitle");
+            newLabel->setText("new");
+            newLabel->setAlignment(Qt::AlignCenter);
+            newLabel->setGeometry(43, 3, 30, 12);
+        }
+
         gradItemLayout->addSpacing(6);
         gradItemLayout->addWidget(txtLabel);
         gradItem[i]->setLayout(gradItemLayout);
@@ -83,9 +93,10 @@ void SettMenu::loadGradItem() {
 
     gridWidget->setLayout(gradLayout);
     mainLayout->addSpacing(11);
-    mainLayout->addWidget(gridWidget,0,Qt::AlignHCenter);
+    mainLayout->addWidget(gridWidget, 0, Qt::AlignHCenter);
     mainLayout->addSpacing(10);
 }
+
 void SettMenu::loadMiddleItem() {
     middWidget = new QWidget(frame);
     middWidget->setObjectName("middleBox");
@@ -105,7 +116,7 @@ void SettMenu::loadMiddleItem() {
         leftIcon = new QLabel;
         leftIcon->setScaledContents(true);
         leftIcon->setFixedSize(20, 20);
-        if(i == 1){
+        if (i == 1) {
             QPixmap leftPix(":/resource/images/blacksett.png");
             leftIcon->setPixmap(leftPix);
         }
@@ -115,18 +126,18 @@ void SettMenu::loadMiddleItem() {
         titleLabel->setText(txtList[i]);
         rightIcon = new QLabel;
         rightIcon->setFixedSize(10, 10);
-        if(i == 0){
+        if (i == 0) {
             QPixmap arrowPix(":/resource/images/right_small_arrow.png");
             rightIcon->setPixmap(arrowPix);
         }
         rightIcon->setScaledContents(true);
         itemLayout->addSpacing(5);
-        itemLayout->addWidget(leftIcon,0,Qt::AlignVCenter);
+        itemLayout->addWidget(leftIcon, 0, Qt::AlignVCenter);
         itemLayout->addSpacing(5);
         itemLayout->addWidget(titleLabel);
         itemLayout->addWidget(rightIcon);
         middLabel[i]->setLayout(itemLayout);
-        if(i == 0){
+        if (i == 0) {
             middLayout->addSpacing(10);
         }
         middLayout->addWidget(middLabel[i]);
@@ -134,6 +145,7 @@ void SettMenu::loadMiddleItem() {
     middWidget->setLayout(middLayout);
     mainLayout->addWidget(middWidget);
 }
+
 void SettMenu::loadBottomItem() {
     bottomWidget = new QWidget(frame);
     bottomLayout = new QVBoxLayout;
@@ -152,11 +164,11 @@ void SettMenu::loadBottomItem() {
         leftIcon = new QLabel;
         leftIcon->setScaledContents(true);
         leftIcon->setFixedSize(20, 20);
-        if(i == 0){
+        if (i == 0) {
             QPixmap leftPix(":/resource/images/setting_popup.png");
             leftIcon->setPixmap(leftPix);
         }
-        if(i == 4){
+        if (i == 4) {
             QPixmap leftPix(":/resource/images/tips_warn.png");
             leftIcon->setPixmap(leftPix);
         }
@@ -165,22 +177,22 @@ void SettMenu::loadBottomItem() {
         titleLabel->setText(txtList[i]);
         rightIcon = new QLabel;
         rightIcon->setFixedSize(10, 10);
-        if(i == 1){
+        if (i == 1) {
             QPixmap arrowPix(":/resource/images/right_small_arrow.png");
             rightIcon->setPixmap(arrowPix);
         }
         rightIcon->setScaledContents(true);
         bomItemLayout->addSpacing(5);
-        bomItemLayout->addWidget(leftIcon,0,Qt::AlignVCenter);
+        bomItemLayout->addWidget(leftIcon, 0, Qt::AlignVCenter);
         bomItemLayout->addSpacing(5);
         bomItemLayout->addWidget(titleLabel);
         bomItemLayout->addWidget(rightIcon);
         bottomLabel[i]->setLayout(bomItemLayout);
-        if(i == 0){
+        if (i == 0) {
             bottomLayout->addSpacing(10);
         }
         bottomLayout->addWidget(bottomLabel[i]);
-        if(i == 4){
+        if (i == 4) {
             middLayout->addSpacing(10);
         }
     }

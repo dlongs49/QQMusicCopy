@@ -53,6 +53,7 @@ private:
     QLabel *leftIcon;
     QLabel *titleLabel;
     QLabel *rightIcon;
+    QLabel *newLabel;
     QWidget *gridWidget;
     QWidget *middWidget;
     QWidget *bottomWidget;
