@@ -27,12 +27,12 @@ MainWindow::MainWindow(QWidget *parent)
     layout->addWidget(right_menu);
     layout->addWidget(container_);
     widget->setLayout(layout);
-    hotSearch = new HotSearch(this);
-//    LoadQSS(":/resource/qss/style.qss");
-//    LoadQSS(":/resource/qss/hotSearch.qss");
-}
-void MainWindow::LoadQSS(QString qss_path) {
+    connect(container_, SIGNAL(mainHandle(QString)),this,SLOT(onHandler(QString)));
 
+}
+QString MainWindow::onHandler(QString str){
+    qDebug() << 111<< str;
+    this->setWindowState(Qt::WindowMaximized);
 }
 MainWindow::~MainWindow() {
 }

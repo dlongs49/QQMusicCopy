@@ -298,6 +298,9 @@ bool TopMenu::eventFilter(QObject *o, QEvent *e) {
             if (o->objectName() != "setting") {
                 emit onSettPopup(false);
             }
+            if (o->objectName() == "maxim") {
+                emit onHandle("maxim");
+            }
             if (o->objectName() != "searchBox") {
                 searInput->clearFocus();
                 if (!searInput->hasFocus()) {

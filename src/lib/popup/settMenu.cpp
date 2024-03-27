@@ -198,9 +198,9 @@ void SettMenu::loadBottomItem() {
     mainLayout->addWidget(bottomWidget);
 }
 
-bool SettMenu::eventFilter(QObject *obj, QEvent *e) {
+bool SettMenu::eventFilter(QObject *o, QEvent *e) {
     if (e->type() == QEvent::MouseButtonRelease) {
-
+       
         return true;
     }
     return false;

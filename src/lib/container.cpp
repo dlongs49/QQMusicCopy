@@ -7,6 +7,7 @@ container::container(QWidget *parent) : QWidget(parent) {
     connect(topMenu, SIGNAL(onFocus(bool)),this,SLOT(handleEmit(bool)));
     hotSearch = new HotSearch(this);
     connect(topMenu, SIGNAL(onSettPopup(bool)),this,SLOT(showSettPopup(bool)));
+    connect(topMenu, SIGNAL(onHandle(QString)),this,SLOT(emitHandle(QString)));
     settMenu = new SettMenu(this);
 }
 bool container::handleEmit(bool flag){
@@ -22,6 +23,9 @@ bool container::showSettPopup(bool flag){
     }else{
         settMenu->hide();
     }
+}
+QString container::emitHandle(QString str){
+    emit mainHandle(str);
 }
 container::~container() {
 }

@@ -4,6 +4,7 @@
 
 #ifndef DEMO_2_MAINWINDOW_H
 #define DEMO_2_MAINWINDOW_H
+
 #include "./lib/rightMenu.h"
 #include "./lib/container.h"
 #include <QMainWindow>
@@ -21,15 +22,17 @@
 #include <QCursor>
 #include <QGraphicsDropShadowEffect>
 
-#include "./lib/popup/hotSearch.h"
-
-class MainWindow : public QMainWindow{
-    Q_OBJECT;
+class MainWindow : public QMainWindow {
+Q_OBJECT;
 public:
     MainWindow(QWidget *parent = nullptr);
+
     ~MainWindow();
+
 public slots:
-    void LoadQSS(QString  s);
+
+    QString onHandler(QString str);
+
 private:
     QHBoxLayout *layout;
     rightMenu *right_menu;
@@ -38,4 +41,5 @@ private:
     HotSearch *hotSearch;
 
 };
+
 #endif //DEMO_2_MAINWINDOW_H

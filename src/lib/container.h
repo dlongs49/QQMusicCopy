@@ -19,6 +19,8 @@
 #include <QPainter>
 #include <QPainterPath>
 #include <QRect>
+#include <QDebug>
+#include <QString>
 #include "./topMenu.h"
 #include "./popup/hotSearch.h"
 #include "./popup/settMenu.h"
@@ -30,50 +32,17 @@ public:
 
     ~container();
 
-    QLabel *lLabel;
-    QLabel *rLabel;
-    QLabel *refresh;
-    QLabel *simgLabel;
-    QLabel *txtLabel;
-    QLabel *rimgLabel;
-    QLabel *avatorLabel;
-    QLabel *uname;
-    QLabel *vipLabel;
-    QLabel *downLabel;
-    QLabel *skinLabel;
-    QLabel *settingLabel;
-    QLabel *recoverLabel;
-    QLabel *minimizeLabel;
-    QLabel *maximizeLabel;
-    QLabel *closeLabel;
-    QWidget *widget;
-    QWidget *lWidget;
-    QWidget *rWidget;
-    QWidget *sWidget;
-    QWidget *opearOut;
-    QWidget *minimWidget;
-    QWidget *maximWidget;
-    QWidget *closeWidget;
-    QHBoxLayout *layout;
-    QHBoxLayout *lLayout;
-    QHBoxLayout *sLayout;
-    QHBoxLayout *rLayout;
-    QHBoxLayout *opearLayout;
-    QVBoxLayout *minimLayout;
-    QLineEdit *searInput;
-    QPixmap *avatorPix;
-    QNetworkAccessManager *manager;
-    QNetworkRequest *request;
-    QNetworkReply *reply;
-    QEventLoop *loop;
-    QByteArray *byteArray;
-    QPainter *painter;
-    QPainterPath *path;
 public slots:
 
     bool handleEmit(bool flag);
 
     bool showSettPopup(bool flag);
+
+    QString emitHandle(QString str);
+
+signals:
+
+    QString mainHandle(QString str);
 
 protected:
 
