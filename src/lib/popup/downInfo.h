@@ -1,5 +1,5 @@
 //
-// Created by window on 2024/3/27 18:48
+// Created by dinglong on 2024/3/27 18:48
 //
 
 #ifndef QQMUSICCOPY_DOWNINFO_H
@@ -8,6 +8,7 @@
 #include <QWidget>
 #include <QFrame>
 #include <QLabel>
+#include <QPushButton>
 #include <QHBoxLayout>
 #include <QGridLayout>
 #include <QFile>
@@ -39,25 +40,21 @@ private:
     int w = 280;
     QFrame *frame;
     QGraphicsDropShadowEffect *shadow;
-    QLabel *gradItem[10];
-    QLabel *middLabel[2];
-    QLabel *bottomLabel[5];
-    QLabel *txtLabel;
-    QLabel *imgLabel;
-    QLabel *leftIcon;
-    QLabel *titleLabel;
-    QLabel *rightIcon;
-    QLabel *newLabel;
-    QWidget *gridWidget;
-    QWidget *middWidget;
-    QWidget *bottomWidget;
-    QGridLayout *gradLayout;
+    QLabel *numLabel;
+    QLabel *titLabel;
+    QLabel *songsLabel;
+    QLabel *followLabel;
+    QLabel *vermLabel;
+    QLabel *lineLabel;
+    QPushButton *homeBtn;
+    QPushButton *toggleBtn;
+    QWidget *pointsWidget;
+    QWidget *statisWidget;
+    QWidget *opearWidget;
     QVBoxLayout *mainLayout;
-    QVBoxLayout *middLayout;
-    QVBoxLayout *bottomLayout;
-    QVBoxLayout *gradItemLayout;
-    QHBoxLayout *itemLayout;
-    QHBoxLayout *bomItemLayout;
+    QHBoxLayout *pointsLayout;
+    QHBoxLayout *statisLayout;
+    QHBoxLayout *opearLayout;
 };
 
 #endif //QQMUSICCOPY_DOWNINFO_H

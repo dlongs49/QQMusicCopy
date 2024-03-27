@@ -3,22 +3,23 @@ QFrame#searchFrame {
     border-radius: 6px;
 }
 
-QLabel#gradItem:hover {
-    background: #eee;
+QWidget#pointsBox {
+    background: #f8f8f8;
+    border-radius: 6px;
 }
 
-QLabel#txt {
-    font-size: 12px;
+QLabel#pointsNum {
+    font-size: 22px;
+    font-weight: bold;
 }
-
-QLabel#middleSettBox:hover,
-QLabel#bottomSettBox:hover {
-    background: #eee;
+QWidget#statisBox,QWidget#opearBox{
+    border-bottom: 1px solid #eee;
 }
-
-QWidget#middleBox {
-    border-top: 1px solid #f3f3f3;
-    border-bottom: 1px solid #f3f3f3;
+.sfvLabel:hover,.opearBtn:hover{
+    color: #1ecc94;
+}
+.opearBtn {
+    background: transparent;
 }
 
 QLabel#newTitle {
