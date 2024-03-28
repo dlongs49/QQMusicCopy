@@ -1,5 +1,5 @@
-QWidget#topMenuBox{
-    background: #fff;
+QLabel#recomTit{
+    color: #646464;
 }
 QWidget#searchBox {
     border-radius: 16px;

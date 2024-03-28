@@ -7,11 +7,12 @@
 
 
 #include <QWidget>
+#include <QScrollArea>
 #include <QFrame>
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QLineEdit>
-#include <QFile>
+#include <QPropertyAnimation>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
@@ -50,8 +51,10 @@ public slots:
 protected:
 
 private:
-    QLabel *lLabel;
-    QLabel *rLabel;
+    QPropertyAnimation *animation;
+    QScrollArea *area;
+    QLabel *recomTit;
+    QLabel *recomSubTit;
     QLabel *refresh;
     QLabel *simgLabel;
     QLabel *txtLabel;
@@ -67,15 +70,16 @@ private:
     QLabel *maximizeLabel;
     QLabel *closeLabel;
     QWidget *widget;
-    QWidget *lWidget;
-    QWidget *rWidget;
-    QWidget *sWidget;
+    QWidget *recomBox;
+    QWidget *recomItemBox;
+    QWidget *recomImgBox;
     QWidget *opearOut;
     QWidget *minimWidget;
     QWidget *maximWidget;
     QWidget *closeWidget;
-    QHBoxLayout *layout;
-    QHBoxLayout *lLayout;
+    QVBoxLayout *layout;
+    QVBoxLayout *recomItemLayout;
+    QHBoxLayout *recomLayout;
     QHBoxLayout *sLayout;
     QHBoxLayout *rLayout;
     QHBoxLayout *opearLayout;
