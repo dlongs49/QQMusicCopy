@@ -3,14 +3,14 @@
 TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     installEventFilter(this);
     loadQSS();
+
+    widget = new QWidget(this);
+    widget->setObjectName("topMenuBox");
+    widget->setFixedSize(820,66);
+
     layout = new QHBoxLayout;
     layout->setSpacing(0);
     layout->setMargin(0);
-//    layout->setAlignment(Qt::AlignJustify);
-    widget = new QWidget(this);
-
-    widget->setFixedHeight(66);
-    widget->setFixedWidth(820);
 
     lWidget = new QWidget(this);
     lLayout = new QHBoxLayout;

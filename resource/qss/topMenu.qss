@@ -1,3 +1,6 @@
+QWidget#topMenuBox{
+    background: #fff;
+}
 QWidget#searchBox {
     border-radius: 16px;
     background-color: #e3e3e3;
