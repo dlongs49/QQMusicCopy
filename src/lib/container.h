@@ -25,7 +25,7 @@
 #include "./popup/hotSearch.h"
 #include "./popup/settMenu.h"
 #include "./popup/downInfo.h"
-
+#include "./recommend.h"
 class container : public QWidget {
 Q_OBJECT;
 public:
@@ -53,6 +53,7 @@ private:
     HotSearch *hotSearch;
     SettMenu *settMenu;
     DownInfo *downInfo;
+    Recommend *recommend;
 };
 
 #endif //QTMUSIC_container_H

@@ -39,5 +39,6 @@
         <file>resource/qss/topMenu.qss</file>
         <file>resource/qss/settMenu.qss</file>
 		<file>resource/qss/downInfo.qss</file>
+		<file>resource/qss/recommend.qss</file>
     </qresource>
 </RCC>
