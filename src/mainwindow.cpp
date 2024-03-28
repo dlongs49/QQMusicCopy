@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     right_menu = new rightMenu();
     container_ = new container();
     layout->addWidget(right_menu);
-    layout->addWidget(container_);
+    layout->addWidget(container_,0,Qt::AlignTop);
     widget->setLayout(layout);
     connect(container_, SIGNAL(mainHandle(QString)),this,SLOT(onHandler(QString)));
 

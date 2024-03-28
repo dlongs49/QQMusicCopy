@@ -6,19 +6,12 @@
 #define QTMUSIC_container_H
 
 #include <QWidget>
-#include <QFrame>
-#include <QLabel>
-#include <QHBoxLayout>
-#include <QLineEdit>
-#include <QFile>
+#include <QVBoxLayout>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QEventLoop>
 #include <QByteArray>
-#include <QPainter>
-#include <QPainterPath>
-#include <QRect>
 #include <QDebug>
 #include <QString>
 #include "./topMenu.h"
@@ -26,6 +19,7 @@
 #include "./popup/settMenu.h"
 #include "./popup/downInfo.h"
 #include "./recommend.h"
+
 class container : public QWidget {
 Q_OBJECT;
 public:
@@ -38,6 +32,7 @@ public slots:
     bool handleEmit(bool flag);
 
     bool showSettPopup(bool flag);
+
     bool handleDownInfo(bool flag);
 
     QString emitHandle(QString str);
@@ -49,6 +44,10 @@ signals:
 protected:
 
 private:
+    QVBoxLayout *containerLayout;
+    QWidget *containerBox;
+
+
     TopMenu *topMenu;
     HotSearch *hotSearch;
     SettMenu *settMenu;

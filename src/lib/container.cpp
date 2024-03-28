@@ -1,41 +1,54 @@
 #include "container.h"
 
 container::container(QWidget *parent) : QWidget(parent) {
-    this->setMinimumSize(100, 450);
+    this->setFixedSize(820, 600);
+    containerLayout = new QVBoxLayout;
+    containerLayout->setSpacing(0);
+    containerLayout->setMargin(0);
+    containerLayout->setAlignment(Qt::AlignTop);
 
     topMenu = new TopMenu(this);
+    containerLayout->addWidget(topMenu);
     recommend = new Recommend(this);
-    connect(topMenu, SIGNAL(onFocus(bool)),this,SLOT(handleEmit(bool)));
+    containerLayout->addWidget(recommend);
+    connect(topMenu, SIGNAL(onFocus(bool)), this, SLOT(handleEmit(bool)));
     hotSearch = new HotSearch(this);
-    connect(topMenu, SIGNAL(onSettPopup(bool)),this,SLOT(showSettPopup(bool)));
-    connect(topMenu, SIGNAL(onHandle(QString)),this,SLOT(emitHandle(QString)));
+    connect(topMenu, SIGNAL(onSettPopup(bool)), this, SLOT(showSettPopup(bool)));
+    connect(topMenu, SIGNAL(onHandle(QString)), this, SLOT(emitHandle(QString)));
     settMenu = new SettMenu(this);
-    connect(topMenu, SIGNAL(onDownInfo(bool)),this,SLOT(handleDownInfo(bool)));
+    connect(topMenu, SIGNAL(onDownInfo(bool)), this, SLOT(handleDownInfo(bool)));
     downInfo = new DownInfo(this);
+
+    this->setLayout(containerLayout);
 }
-bool container::handleEmit(bool flag){
-    if(flag){
+
+bool container::handleEmit(bool flag) {
+    if (flag) {
         hotSearch->show();
-    }else{
+    } else {
         hotSearch->hide();
     }
 }
-bool container::showSettPopup(bool flag){
-    if(flag){
+
+bool container::showSettPopup(bool flag) {
+    if (flag) {
         settMenu->show();
-    }else{
+    } else {
         settMenu->hide();
     }
 }
-bool container::handleDownInfo(bool flag){
-    if(flag){
+
+bool container::handleDownInfo(bool flag) {
+    if (flag) {
         downInfo->show();
-    }else{
+    } else {
         downInfo->hide();
     }
 }
-QString container::emitHandle(QString str){
+
+QString container::emitHandle(QString str) {
     emit mainHandle(str);
 }
+
 container::~container() {
 }

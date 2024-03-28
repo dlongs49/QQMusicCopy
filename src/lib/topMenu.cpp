@@ -3,6 +3,7 @@
 TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     installEventFilter(this);
     loadQSS();
+    this->setFixedSize(820,66);
 
     widget = new QWidget(this);
     widget->setObjectName("topMenuBox");
@@ -277,6 +278,7 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     widget->setLayout(layout);
     layout->addWidget(lWidget);
     layout->addWidget(rWidget);
+
     tools = new Tools();
 }
 
