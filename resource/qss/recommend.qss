@@ -1,5 +1,9 @@
+QWidget#recomImgBox{
+    border-radius: 3px;
+    background: #eee;
+}
 QLabel#recomTit{
-    color: #646464;
+    color: #4e4e4e;
 }
 QWidget#searchBox {
     border-radius: 16px;

@@ -55,9 +55,9 @@ private:
     QScrollArea *area;
     QLabel *recomTit;
     QLabel *recomSubTit;
-    QLabel *refresh;
-    QLabel *simgLabel;
-    QLabel *txtLabel;
+    QLabel *guessTit;
+    QLabel *guessSubTit;
+    QLabel *playBox;
     QLabel *rimgLabel;
     QLabel *avatorLabel;
     QLabel *uname;
@@ -71,7 +71,7 @@ private:
     QLabel *closeLabel;
     QWidget *widget;
     QWidget *recomBox;
-    QWidget *recomItemBox;
+    QWidget *recomItemBox[10];
     QWidget *recomImgBox;
     QWidget *opearOut;
     QWidget *minimWidget;
@@ -79,6 +79,7 @@ private:
     QWidget *closeWidget;
     QVBoxLayout *layout;
     QVBoxLayout *recomItemLayout;
+    QVBoxLayout *guessLayout;
     QHBoxLayout *recomLayout;
     QHBoxLayout *sLayout;
     QHBoxLayout *rLayout;
