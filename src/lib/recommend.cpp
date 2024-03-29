@@ -10,9 +10,11 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     this->setFixedSize(820, 800);
 
     widget = new QWidget(this);
-    widget->setStyleSheet("QWidget{background:#fff}");
+    widget->setObjectName("conbox");
+    widget->setStyleSheet("QWidget#conbox{background:#fff}");
     widget->setFixedSize(820, 800);
     layout = new QVBoxLayout;
+    layout->setAlignment(Qt::AlignTop|Qt::AlignRight);
     layout->setSpacing(0);
     layout->setMargin(0);
 
@@ -24,10 +26,11 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     area->setWidgetResizable(false);
 
 
-    recomBox = new QWidget(this);
-    recomBox->setFixedWidth(800);
-    recomBox->setFixedHeight(280);
+    recomBox = new QWidget(widget);
+    recomBox->setFixedWidth(810);
+    recomBox->setFixedHeight(218);
     recomBox->setObjectName("recomBox");
+    recomBox->setStyleSheet("QWidget#recomBox{background:#00f}");
 
     recomLayout = new QHBoxLayout;
     recomLayout->setSpacing(0);
@@ -35,13 +38,27 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     recomLayout->setAlignment(Qt::AlignTop);
     recomBox->setLayout(recomLayout);
 
+    recomScrollBox = new QWidget(recomBox);
+    recomScrollBox->setFixedSize(recomBox->width() - 70, recomBox->height());
+    recomScrollBox->setObjectName("recomScrollBox");
+    recomScrollBox->setStyleSheet("QWidget#recomScrollBox{background:#ff0}");
+
+    recomConLayout = new QHBoxLayout;
+    recomConLayout->setSpacing(0);
+    recomConLayout->setMargin(0);
+    recomConLayout->setAlignment(Qt::AlignLeft);
+
+    recomConBox = new QWidget(recomScrollBox);
+    recomConBox->setLayout(recomConLayout);
+//    recomConBox->move(-100,0);
 
     for (int i = 0; i < 3; ++i) {
         recomItemBox[i] = new QWidget(recomBox);
-        if(i == 0){
-            recomItemBox[0]->setFixedSize(356, 250);
-        }else{
-            recomItemBox[i]->setFixedSize(160, 250);
+        recomItemBox[i]->setObjectName("ff");
+        if (i == 0) {
+            recomItemBox[0]->setFixedWidth(356);
+        } else {
+            recomItemBox[i]->setFixedWidth(160);
         }
         recomItemLayout = new QVBoxLayout;
         recomItemLayout->setSpacing(0);
@@ -51,9 +68,9 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
         recomImgBox = new QWidget(recomItemBox[i]);
         recomImgBox->setObjectName("recomImgBox");
         recomImgBox->installEventFilter(this);
-        if(i == 0){
+        if (i == 0) {
             recomImgBox->setFixedSize(406, 160);
-            guessLayout = new  QVBoxLayout;
+            guessLayout = new QVBoxLayout;
             guessLayout->setAlignment(Qt::AlignVCenter);
             guessTit = new QLabel;
             guessTit->setStyleSheet("font-size:20px");
@@ -61,7 +78,7 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
             guessSubTit = new QLabel;
             guessSubTit->setText("尝试来点音\n乐提提神吧");
             playBox = new QLabel;
-            playBox->setFixedSize(40,30);
+            playBox->setFixedSize(40, 30);
             QPixmap playPix(":/resource/images/play.png");
             playBox->setPixmap(playPix);
             playBox->setScaledContents(true);
@@ -70,8 +87,18 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
             guessLayout->addSpacing(5);
             guessLayout->addWidget(playBox);
             recomImgBox->setLayout(guessLayout);
-        }else{
+        } else {
             recomImgBox->setFixedSize(160, 160);
+            maskBox = new QWidget(recomImgBox);
+            maskBox->setFixedSize(recomImgBox->width(), recomImgBox->height());
+            maskBox->setObjectName("maskBox");
+
+            playBox = new QLabel(recomImgBox);
+            playBox->setFixedSize(40, 30);
+            QPixmap playPix(":/resource/images/play.png");
+            playBox->setPixmap(playPix);
+            playBox->setScaledContents(true);
+            playBox->move(10, recomImgBox->height() - 40);
         }
 
         recomTit = new QLabel;
@@ -87,14 +114,40 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
         recomItemLayout->addWidget(recomTit);
         recomItemLayout->addSpacing(3);
         recomItemLayout->addWidget(recomSubTit);
-
         recomItemBox[i]->setLayout(recomItemLayout);
-        recomLayout->addSpacing(20);
-        recomLayout->addWidget(recomItemBox[i]);
+        recomConLayout->addWidget(recomItemBox[i]);
+        if(i != 2){
+            qDebug() << i;
+            recomConLayout->addSpacing(20);
+        }
     }
+
+    leftArrow = new QLabel;
+    leftArrow->setFixedSize(30, 38);
+    leftArrow->setCursor(Qt::PointingHandCursor);
+    QPixmap lfArrow(":/resource/images/br_lf_arrow.png");
+    leftArrow->setPixmap(lfArrow);
+    leftArrow->setScaledContents(true);
+    recomLayout->addWidget(leftArrow);
+
+
+    recomLayout->addWidget(recomScrollBox);
+
+    rightArrow = new QLabel;
+    rightArrow->setFixedSize(30, 38);
+    rightArrow->setCursor(Qt::PointingHandCursor);
+    QPixmap rhArrow(":/resource/images/br_rh_arrow.png");
+    rightArrow->setPixmap(rhArrow);
+    rightArrow->setScaledContents(true);
+    recomLayout->addWidget(rightArrow);
 
 
     layout->addWidget(recomBox);
+    closeWidget = new QWidget(widget);
+    closeWidget->setFixedSize(800, 200);
+    closeWidget->setStyleSheet("background:#000");
+    layout->addWidget(closeWidget);
+    widget->setLayout(layout);
 }
 
 bool Recommend::eventFilter(QObject *o, QEvent *e) {

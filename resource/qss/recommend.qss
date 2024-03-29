@@ -2,6 +2,9 @@ QWidget#recomImgBox{
     border-radius: 3px;
     background: #eee;
 }
+QWidget#maskBox{
+    background: rgba(0, 0, 0, 0.589);
+}
 QLabel#recomTit{
     color: #4e4e4e;
 }
