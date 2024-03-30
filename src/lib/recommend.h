@@ -48,6 +48,7 @@ public slots:
 
     void loadQSS();
 
+    QPixmap getImage(QString url);
 protected:
 
 private:
@@ -69,10 +70,10 @@ private:
     QLabel *minimizeLabel;
     QLabel *maximizeLabel;
     QLabel *closeLabel;
+    QLabel *recomImgBox;
     QWidget *widget;
     QWidget *recomBox;
     QWidget *recomItemBox[10];
-    QWidget *recomImgBox;
     QWidget *maskBox;
     QWidget *recomScrollBox;
     QWidget *recomConBox;
@@ -98,7 +99,7 @@ private:
     QPixmap *vipPix;
     QPixmap *downPix;
     QPixmap *skinPix;
-    QPixmap *settingPix;
+    QPixmap *coverImg;
     QPixmap *recoverPix;
     QPixmap *minimPix;
     QPixmap *maximPix;

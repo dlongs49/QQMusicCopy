@@ -52,9 +52,11 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     recomConBox->setLayout(recomConLayout);
 //    recomConBox->move(-100,0);
 
-    for (int i = 0; i < 3; ++i) {
+    QList<QString> imgList;
+    imgList << "http://y.qq.com/n3/wk_v20/entry/bg6.dab9cba46.png?max_age=2592000"
+    << "https://y.gtimg.cn/music/photo_new/T002R300x300M000003MvqCa0Fq3Mq_2.jpg";
+    for (int i = 0; i < imgList.size(); ++i) {
         recomItemBox[i] = new QWidget(recomBox);
-        recomItemBox[i]->setObjectName("ff");
         if (i == 0) {
             recomItemBox[0]->setFixedWidth(356);
         } else {
@@ -65,11 +67,14 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
         recomItemLayout->setMargin(0);
         recomItemLayout->setAlignment(Qt::AlignTop);
 
-        recomImgBox = new QWidget(recomItemBox[i]);
+        recomImgBox = new QLabel(recomItemBox[i]);
+        recomImgBox->setScaledContents(true);
         recomImgBox->setObjectName("recomImgBox");
         recomImgBox->installEventFilter(this);
+        recomImgBox->setPixmap(getImage(imgList[i]));
         if (i == 0) {
             recomImgBox->setFixedSize(406, 160);
+
             guessLayout = new QVBoxLayout;
             guessLayout->setAlignment(Qt::AlignVCenter);
             guessTit = new QLabel;
@@ -148,6 +153,17 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     closeWidget->setStyleSheet("background:#000");
     layout->addWidget(closeWidget);
     widget->setLayout(layout);
+}
+QPixmap Recommend::getImage(QString url){
+    manager = new QNetworkAccessManager;
+    reply = manager->get(QNetworkRequest(QUrl(url)));
+    loop = new QEventLoop();
+    connect(reply, SIGNAL(finished()), loop, SLOT(quit()));
+    loop->exec();
+    QByteArray imgData = reply->readAll();
+    coverImg = new QPixmap;
+    coverImg->loadFromData(imgData);
+    return *coverImg;
 }
 
 bool Recommend::eventFilter(QObject *o, QEvent *e) {
