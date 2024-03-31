@@ -8,3 +8,6 @@ QWidget#maskBox{
 QLabel#recomTit{
     color: #4e4e4e;
 }
+QLabel#recomTit:hover{
+    color: #10da67;
+}

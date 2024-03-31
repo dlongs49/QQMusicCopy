@@ -68,6 +68,7 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
         recomItemLayout->setAlignment(Qt::AlignTop);
 
         recomImgBox = new QLabel(recomItemBox[i]);
+        recomImgBox->setCursor(Qt::PointingHandCursor);
         recomImgBox->setScaledContents(true);
         recomImgBox->setObjectName("recomImgBox");
         recomImgBox->installEventFilter(this);
@@ -107,9 +108,11 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
         }
 
         recomTit = new QLabel;
+        recomTit->setCursor(Qt::PointingHandCursor);
         recomTit->setObjectName("recomTit");
         recomTit->setText("一生无悔-高安/杭娇");
         recomSubTit = new QLabel;
+        recomSubTit->setCursor(Qt::PointingHandCursor);
         recomSubTit->setObjectName("recomTit");
         recomSubTit->setText("每日三十首");
 
@@ -122,7 +125,6 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
         recomItemBox[i]->setLayout(recomItemLayout);
         recomConLayout->addWidget(recomItemBox[i]);
         if(i != 2){
-            qDebug() << i;
             recomConLayout->addSpacing(20);
         }
     }
@@ -167,6 +169,7 @@ QPixmap Recommend::getImage(QString url){
 }
 
 bool Recommend::eventFilter(QObject *o, QEvent *e) {
+    qDebug() << o->objectName();
     if (o->objectName() == "recomImgBox") {
         if (e->type() == QEvent::Enter) {
 //            animation->setStartValue(QRect(0, 10, recomImgBox->width(), recomImgBox->height()));
