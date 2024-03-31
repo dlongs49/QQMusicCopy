@@ -452,6 +452,7 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
         QLabel *box = treaItemBox[i]->findChild<QLabel *>("treaImgBox");
         QWidget *mask = treaItemBox[i]->findChild<QWidget *>("maskBox");
         QLabel *play_box = treaItemBox[i]->findChild<QLabel *>("playBox");
+        QLabel *play_count = treaItemBox[i]->findChild<QLabel *>("playCount");
         animation = new QPropertyAnimation(box, "geometry");
         animation->setDuration(150);
 
@@ -462,6 +463,7 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
             if (play_box) {
                 play_box->setVisible(true);
                 mask->setVisible(true);
+                play_count->setVisible(false);
             }
         }
         if (e->type() == QEvent::Leave) {
@@ -471,6 +473,7 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
             if (play_box) {
                 play_box->setVisible(false);
                 mask->setVisible(false);
+                play_count->setVisible(true);
             }
         }
     }
