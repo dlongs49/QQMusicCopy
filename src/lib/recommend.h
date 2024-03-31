@@ -63,8 +63,8 @@ private:
     QLabel *guessTit;
     QLabel *guessSubTit;
     QLabel *playBox;
-    QLabel *leftArrow;
-    QLabel *rightArrow;
+    QLabel *leftArrow[10];
+    QLabel *rightArrow[10];
     QLabel *uname;
     QLabel *vipLabel;
     QLabel *downLabel;
@@ -98,8 +98,8 @@ private:
     QPixmap *l_arrowPix;
     QPixmap *r_arrowPix;
     QPixmap *refreshPix;
-    QPixmap *listenPix;
-    QPixmap *vipPix;
+    QPixmap *leftArrowPix[10];
+    QPixmap *rightArrowPix[10];
     QPixmap *downPix;
     QPixmap *skinPix;
     QPixmap *coverImg;
@@ -109,11 +109,13 @@ private:
     QPixmap *closePix;
     QPainterPath *path;
     Tools *tools;
+//    QSizePolicy *policy;
+    QSizePolicy *policyHide;
     QString init_color = "#31c27c";
     QString hover_color = "#adadad";
 
-    QString leftArrowImgPath = ":/resource/images/left_arrow.png";
-    QString righArrowImgPath = ":/resource/images/right_arrow.png";
+    QString leftArrowImgPath = ":/resource/images/br_lf_arrow.png";
+    QString righArrowImgPath = ":/resource/images/br_rh_arrow.png";
     QString refreshImgPath = ":/resource/images/refresh.png";
     QString listenImgPath = ":/resource/images/listen_music.png";
     QString vipImgPath = ":/resource/images/vip.png";

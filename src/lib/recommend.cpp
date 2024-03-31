@@ -144,30 +144,38 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
         }
     }
 
-    leftArrow = new QLabel;
-    leftArrow->installEventFilter(this);
-    leftArrow->setObjectName("recomLfArrow");
-    leftArrow->setFixedSize(30, 38);
-    leftArrow->setCursor(Qt::PointingHandCursor);
-    QPixmap lfArrow(":/resource/images/br_lf_arrow.png");
-    leftArrow->setPixmap(lfArrow);
-    leftArrow->setScaledContents(true);
-    leftArrow->setHidden(true);
-    recomLayout->addWidget(leftArrow);
+    leftArrow[0] = new QLabel;
+    leftArrow[0]->setObjectName("leftArrow[0]");
+    leftArrow[0]->installEventFilter(this);
+    leftArrow[0]->setFixedSize(30, 38);
+    leftArrow[0]->setCursor(Qt::PointingHandCursor);
+    leftArrowPix[0] = new QPixmap;
+    leftArrowPix[0]->load(":/resource/images/br_lf_arrow.png");
+    leftArrow[0]->setPixmap(*leftArrowPix[0]);
+    leftArrow[0]->setScaledContents(true);
+    leftArrow[0]->setVisible(false);
+    QSizePolicy policy_lf = leftArrow[0]->sizePolicy();
+    policy_lf.setRetainSizeWhenHidden(true);
+    leftArrow[0]->setSizePolicy(policy_lf);
+    recomLayout->addWidget(leftArrow[0]);
 
 
     recomLayout->addWidget(recomScrollBox);
 
-    rightArrow = new QLabel;
-    rightArrow->installEventFilter(this);
-    rightArrow->setObjectName("recomRhArrow");
-    rightArrow->setFixedSize(30, 38);
-    rightArrow->setCursor(Qt::PointingHandCursor);
-    QPixmap rhArrow(":/resource/images/br_rh_arrow.png");
-    rightArrow->setPixmap(rhArrow);
-    rightArrow->setScaledContents(true);
-    rightArrow->setHidden(true);
-    recomLayout->addWidget(rightArrow);
+    rightArrow[0] = new QLabel;
+    rightArrow[0]->setObjectName("rightArrow[0]");
+    rightArrow[0]->installEventFilter(this);
+    rightArrow[0]->setFixedSize(30, 38);
+    rightArrow[0]->setCursor(Qt::PointingHandCursor);
+    rightArrowPix[0] = new QPixmap;
+    rightArrowPix[0]->load(":/resource/images/br_rh_arrow.png");
+    rightArrow[0]->setPixmap(*rightArrowPix[0]);
+    rightArrow[0]->setScaledContents(true);
+    rightArrow[0]->setVisible(false);
+    QSizePolicy policy = rightArrow[0]->sizePolicy();
+    policy.setRetainSizeWhenHidden(true);
+    rightArrow[0]->setSizePolicy(policy);
+    recomLayout->addWidget(rightArrow[0]);
 
 
     layout->addWidget(recomBox);
@@ -176,6 +184,9 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     closeWidget->setStyleSheet("background:#000");
     layout->addWidget(closeWidget);
     widget->setLayout(layout);
+
+    tools = new Tools();
+
 }
 
 QPixmap Recommend::getImage(QString url) {
@@ -192,22 +203,33 @@ QPixmap Recommend::getImage(QString url) {
 
 bool Recommend::eventFilter(QObject *o, QEvent *e) {
     if (o->objectName() == "recomBox") {
-        QList<QLabel *> lfArrow = recomBox->findChildren<QLabel *>("recomLfArrow");
-        QList<QLabel *> rhArrow = recomBox->findChildren<QLabel *>("recomRhArrow");
-
         if (e->type() == QEvent::Enter) {
-            if (lfArrow[0] && rhArrow[0]) {
-                lfArrow[0]->setHidden(false);
-                rhArrow[0]->setHidden(false);
-            }
+            leftArrow[0]->setVisible(true);
+            rightArrow[0]->setVisible(true);
         }
         if (e->type() == QEvent::Leave) {
-            if (lfArrow[0] && rhArrow[0]) {
-                lfArrow[0]->setHidden(true);
-                rhArrow[0]->setHidden(true);
-            }
+            leftArrow[0]->setVisible(false);
+            rightArrow[0]->setVisible(false);
         }
     }
+    if (o->objectName() == "leftArrow[0]") {
+        if (e->type() == QEvent::Enter) {
+            leftArrow[0]->setPixmap(tools->hoverPixColor(leftArrowPix[0], "#31c27c"));
+        }
+        if (e->type() == QEvent::Leave) {
+            leftArrow[0]->setPixmap(leftArrowImgPath);
+        }
+    }
+
+    if (o->objectName() == "rightArrow[0]") {
+        if (e->type() == QEvent::Enter) {
+            rightArrow[0]->setPixmap(tools->hoverPixColor(rightArrowPix[0], "#31c27c"));
+        }
+        if (e->type() == QEvent::Leave) {
+            rightArrow[0]->setPixmap(righArrowImgPath);
+        }
+    }
+
     if (o->objectName() == "recomImgBox") {
         int i = o->property("index").toInt();
         QLabel *box = recomItemBox[i]->findChild<QLabel *>("recomImgBox");
