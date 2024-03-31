@@ -53,8 +53,10 @@ public slots:
 protected:
 
 private:
+    int move_x = 0;
     QList<QString> recomAttrList;
     QPropertyAnimation *animation;
+    QPropertyAnimation *moveAnimation;
     QScrollArea *area;
     QLabel *recomTit;
     QLabel *recomSubTit;

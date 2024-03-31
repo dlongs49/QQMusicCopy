@@ -50,11 +50,18 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
 
     recomConBox = new QWidget(recomScrollBox);
     recomConBox->setLayout(recomConLayout);
-//    recomConBox->move(-100,0);
+    moveAnimation = new QPropertyAnimation(recomConBox, "geometry");
+    moveAnimation->setDuration(300);
 
     QList<QString> imgList;
+    QList<QString> txtList;
     imgList << "http://y.qq.com/n3/wk_v20/entry/bg6.dab9cba46.png?max_age=2592000"
-            << "https://y.gtimg.cn/music/photo_new/T002R300x300M000003MvqCa0Fq3Mq_2.jpg";
+            << "https://y.gtimg.cn/music/photo_new/T002R300x300M000003MvqCa0Fq3Mq_2.jpg"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000000J15TK3Afzlb_5.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M0000008mjyX38ncsg_2.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000003ldyaV1pgN3M_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000000cpBaV2uDCBC_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000003yGUXR2isN9F_2.jpg?max_age=2592000";
     for (int i = 0; i < imgList.size(); ++i) {
         recomItemBox[i] = new QWidget(recomBox);
         if (i == 0) {
@@ -75,6 +82,7 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
         recomAttrList.append("recomImgBox" + QString::number(i));
         recomImgBox->installEventFilter(this);
         recomImgBox->setPixmap(getImage(imgList[i]));
+
         if (i == 0) {
             recomImgBox->setFixedSize(406, 160);
 
@@ -100,8 +108,11 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
             maskBox = new QWidget(recomImgBox);
             maskBox->setFixedSize(recomImgBox->width(), recomImgBox->height());
             maskBox->setObjectName("maskBox");
+            maskBox->setVisible(false);
 
             playBox = new QLabel(recomImgBox);
+            playBox->setObjectName("playBox");
+            playBox->setVisible(false);
             playBox->setFixedSize(40, 30);
             QPixmap playPix(":/resource/images/play.png");
             playBox->setPixmap(playPix);
@@ -126,12 +137,14 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
         recomItemLayout->addWidget(recomSubTit);
         recomItemBox[i]->setLayout(recomItemLayout);
         recomConLayout->addWidget(recomItemBox[i]);
-        if (i != 2) {
+        if (i != imgList.size() - 1) {
             recomConLayout->addSpacing(20);
         }
     }
 
     leftArrow = new QLabel;
+    leftArrow->setObjectName("recomLfArrow");
+    leftArrow->installEventFilter(this);
     leftArrow->setFixedSize(30, 38);
     leftArrow->setCursor(Qt::PointingHandCursor);
     QPixmap lfArrow(":/resource/images/br_lf_arrow.png");
@@ -143,6 +156,8 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     recomLayout->addWidget(recomScrollBox);
 
     rightArrow = new QLabel;
+    rightArrow->setObjectName("recomRhArrow");
+    rightArrow->installEventFilter(this);
     rightArrow->setFixedSize(30, 38);
     rightArrow->setCursor(Qt::PointingHandCursor);
     QPixmap rhArrow(":/resource/images/br_rh_arrow.png");
@@ -174,16 +189,63 @@ QPixmap Recommend::getImage(QString url) {
 bool Recommend::eventFilter(QObject *o, QEvent *e) {
     if (o->objectName() == "recomImgBox") {
         int i = o->property("index").toInt();
+        QLabel *box = recomItemBox[i]->findChild<QLabel *>("recomImgBox");
+        QWidget *mask = recomItemBox[i]->findChild<QWidget *>("maskBox");
+        QLabel *play_box = recomItemBox[i]->findChild<QLabel *>("playBox");
+        animation = new QPropertyAnimation(box, "geometry");
+        animation->setDuration(150);
+
         if (e->type() == QEvent::Enter) {
-            QLabel *box = recomItemBox[i]->findChildren<QLabel *>("recomImgBox")[0];
             animation->setStartValue(QRect(0, 10, box->width(), box->height()));
             animation->setEndValue(QRect(0, 0, box->width(), box->height()));
             animation->start();
+            if (play_box) {
+                play_box->setVisible(true);
+                mask->setVisible(true);
+            }
         }
         if (e->type() == QEvent::Leave) {
-//            animation->setStartValue(QRect(0, 0, recomImgBox->width(), recomImgBox->height()));
-//            animation->setEndValue(QRect(0, 10, recomImgBox->width(), recomImgBox->height()));
-//            animation->start();
+            animation->setStartValue(QRect(0, 0, box->width(), box->height()));
+            animation->setEndValue(QRect(0, 10, box->width(), box->height()));
+            animation->start();
+            if (play_box) {
+                play_box->setVisible(false);
+                mask->setVisible(false);
+            }
+        }
+    }
+
+    if (e->type() == QEvent::MouseButtonPress) {
+        QMouseEvent *mouseEvent = (QMouseEvent *) e;
+        if (mouseEvent->button() == Qt::LeftButton) {
+            int r_width = recomConBox->width();
+            int s_width = recomScrollBox->width();
+            if (o->objectName() == "recomLfArrow") {
+                if (move_x == 0) {
+                    int moveLeft =  s_width - r_width;
+                    moveAnimation->setStartValue(QRect(move_x, 0, r_width, recomConBox->height()));
+                    moveAnimation->setEndValue(QRect(moveLeft, 0, r_width, recomConBox->height()));
+                    move_x = moveLeft;
+                } else {
+                    moveAnimation->setStartValue(QRect(move_x, 0, r_width, recomConBox->height()));
+                    moveAnimation->setEndValue(QRect(0, 0, r_width, recomConBox->height()));
+                    move_x = 0;
+                }
+                moveAnimation->start();
+            }
+            if (o->objectName() == "recomRhArrow") {
+                if(move_x == 0){
+                    int moveLeft =  s_width - r_width;
+                    moveAnimation->setStartValue(QRect(move_x, 0, r_width, recomConBox->height()));
+                    moveAnimation->setEndValue(QRect(moveLeft, 0, r_width, recomConBox->height()));
+                    move_x = moveLeft;
+                }else{
+                    moveAnimation->setStartValue(QRect(move_x, 0, r_width, recomConBox->height()));
+                    moveAnimation->setEndValue(QRect(0, 0, r_width, recomConBox->height()));
+                    move_x = 0;
+                }
+                moveAnimation->start();
+            }
         }
     }
     return QWidget::eventFilter(o, e);

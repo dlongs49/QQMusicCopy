@@ -284,7 +284,8 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
 
 bool TopMenu::eventFilter(QObject *o, QEvent *e) {
     if (e->type() == QEvent::MouseButtonPress) {
-        QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(e); // 事件转换
+//        QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(e); // 事件转换
+        QMouseEvent* mouseEvent = (QMouseEvent*)e;
         if (mouseEvent->button() == Qt::LeftButton) {
             if (o->objectName() == "searchBox") {
                 simgLabel->hide();
