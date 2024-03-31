@@ -18,19 +18,19 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     layout->setSpacing(0);
     layout->setMargin(0);
 
-    area = new QScrollArea(this);
-    area->setAlignment(Qt::AlignTop);
-    area->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    area->setGeometry(0, 0, 820, 600);
-    area->setWidget(widget);
-    area->setWidgetResizable(false);
+    scrollArea = new QScrollArea(this);
+    scrollArea->setAlignment(Qt::AlignTop);
+    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    scrollArea->setGeometry(0, 0, 820, 600);
+    scrollArea->setWidget(widget);
+    scrollArea->setWidgetResizable(false);
 
 
     recomBox = new QWidget(widget);
+    recomBox->installEventFilter(this);
     recomBox->setFixedWidth(810);
     recomBox->setFixedHeight(218);
     recomBox->setObjectName("recomBox");
-    recomBox->setStyleSheet("QWidget#recomBox{background:#00f}");
 
     recomLayout = new QHBoxLayout;
     recomLayout->setSpacing(0);
@@ -41,7 +41,6 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     recomScrollBox = new QWidget(recomBox);
     recomScrollBox->setFixedSize(recomBox->width() - 70, recomBox->height());
     recomScrollBox->setObjectName("recomScrollBox");
-    recomScrollBox->setStyleSheet("QWidget#recomScrollBox{background:#ff0}");
 
     recomConLayout = new QHBoxLayout;
     recomConLayout->setSpacing(0);
@@ -124,10 +123,13 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
         recomTit->setCursor(Qt::PointingHandCursor);
         recomTit->setObjectName("recomTit");
         recomTit->setText("一生无悔-高安/杭娇");
+        recomTit->setFixedSize(recomTit->sizeHint().width(), recomTit->sizeHint().height());
         recomSubTit = new QLabel;
         recomSubTit->setCursor(Qt::PointingHandCursor);
         recomSubTit->setObjectName("recomTit");
         recomSubTit->setText("每日三十首");
+        recomSubTit->setFixedSize(recomSubTit->sizeHint().width(), recomSubTit->sizeHint().height());
+
 
         recomItemLayout->addSpacing(10);
         recomItemLayout->addWidget(recomImgBox);
@@ -143,26 +145,28 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     }
 
     leftArrow = new QLabel;
-    leftArrow->setObjectName("recomLfArrow");
     leftArrow->installEventFilter(this);
+    leftArrow->setObjectName("recomLfArrow");
     leftArrow->setFixedSize(30, 38);
     leftArrow->setCursor(Qt::PointingHandCursor);
     QPixmap lfArrow(":/resource/images/br_lf_arrow.png");
     leftArrow->setPixmap(lfArrow);
     leftArrow->setScaledContents(true);
+    leftArrow->setHidden(true);
     recomLayout->addWidget(leftArrow);
 
 
     recomLayout->addWidget(recomScrollBox);
 
     rightArrow = new QLabel;
-    rightArrow->setObjectName("recomRhArrow");
     rightArrow->installEventFilter(this);
+    rightArrow->setObjectName("recomRhArrow");
     rightArrow->setFixedSize(30, 38);
     rightArrow->setCursor(Qt::PointingHandCursor);
     QPixmap rhArrow(":/resource/images/br_rh_arrow.png");
     rightArrow->setPixmap(rhArrow);
     rightArrow->setScaledContents(true);
+    rightArrow->setHidden(true);
     recomLayout->addWidget(rightArrow);
 
 
@@ -187,6 +191,23 @@ QPixmap Recommend::getImage(QString url) {
 }
 
 bool Recommend::eventFilter(QObject *o, QEvent *e) {
+    if (o->objectName() == "recomBox") {
+        QList<QLabel *> lfArrow = recomBox->findChildren<QLabel *>("recomLfArrow");
+        QList<QLabel *> rhArrow = recomBox->findChildren<QLabel *>("recomRhArrow");
+
+        if (e->type() == QEvent::Enter) {
+            if (lfArrow[0] && rhArrow[0]) {
+                lfArrow[0]->setHidden(false);
+                rhArrow[0]->setHidden(false);
+            }
+        }
+        if (e->type() == QEvent::Leave) {
+            if (lfArrow[0] && rhArrow[0]) {
+                lfArrow[0]->setHidden(true);
+                rhArrow[0]->setHidden(true);
+            }
+        }
+    }
     if (o->objectName() == "recomImgBox") {
         int i = o->property("index").toInt();
         QLabel *box = recomItemBox[i]->findChild<QLabel *>("recomImgBox");
@@ -222,7 +243,7 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
             int s_width = recomScrollBox->width();
             if (o->objectName() == "recomLfArrow") {
                 if (move_x == 0) {
-                    int moveLeft =  s_width - r_width;
+                    int moveLeft = s_width - r_width;
                     moveAnimation->setStartValue(QRect(move_x, 0, r_width, recomConBox->height()));
                     moveAnimation->setEndValue(QRect(moveLeft, 0, r_width, recomConBox->height()));
                     move_x = moveLeft;
@@ -234,12 +255,12 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
                 moveAnimation->start();
             }
             if (o->objectName() == "recomRhArrow") {
-                if(move_x == 0){
-                    int moveLeft =  s_width - r_width;
+                if (move_x == 0) {
+                    int moveLeft = s_width - r_width;
                     moveAnimation->setStartValue(QRect(move_x, 0, r_width, recomConBox->height()));
                     moveAnimation->setEndValue(QRect(moveLeft, 0, r_width, recomConBox->height()));
                     move_x = moveLeft;
-                }else{
+                } else {
                     moveAnimation->setStartValue(QRect(move_x, 0, r_width, recomConBox->height()));
                     moveAnimation->setEndValue(QRect(0, 0, r_width, recomConBox->height()));
                     move_x = 0;

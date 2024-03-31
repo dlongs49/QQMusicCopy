@@ -12,7 +12,7 @@
 #include <QFrame>
 #include <QLabel>
 #include <QHBoxLayout>
-#include <QLineEdit>
+#include <QSizePolicy>
 #include <QPropertyAnimation>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
@@ -57,7 +57,7 @@ private:
     QList<QString> recomAttrList;
     QPropertyAnimation *animation;
     QPropertyAnimation *moveAnimation;
-    QScrollArea *area;
+    QScrollArea *scrollArea;
     QLabel *recomTit;
     QLabel *recomSubTit;
     QLabel *guessTit;
@@ -89,7 +89,6 @@ private:
     QHBoxLayout *recomConLayout;
     QHBoxLayout *rLayout;
     QHBoxLayout *opearLayout;
-    QLineEdit *searInput;
     QPixmap *avatorPix;
     QNetworkAccessManager *manager;
     QNetworkRequest *request;
