@@ -1,13 +1,27 @@
-QWidget#recomImgBox{
+QWidget#recomImgBox,QWidget#treaImgBox {
     border-radius: 3px;
     background: #eee;
 }
-QWidget#maskBox{
+
+QWidget#maskBox {
     background: rgba(0, 0, 0, 0.589);
 }
-QLabel#recomTit{
+
+QLabel#recomTit {
     color: #4e4e4e;
 }
-QLabel#recomTit:hover{
+
+QLabel#recomTit:hover {
     color: #10da67;
+}
+
+QLabel#title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    padding-left: 30px;
+}
+QLabel#playCount{
+    color: #fff;
+    font-size: 13px;
 }

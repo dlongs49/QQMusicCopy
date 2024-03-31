@@ -7,12 +7,12 @@
 Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     installEventFilter(this);
     loadQSS();
-    this->setFixedSize(820, 800);
+    this->setFixedSize(820, 1400);
 
     widget = new QWidget(this);
     widget->setObjectName("conbox");
     widget->setStyleSheet("QWidget#conbox{background:#fff}");
-    widget->setFixedSize(820, 800);
+    widget->setFixedSize(820, 1400);
     layout = new QVBoxLayout;
     layout->setAlignment(Qt::AlignTop | Qt::AlignRight);
     layout->setSpacing(0);
@@ -26,11 +26,35 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     scrollArea->setWidgetResizable(false);
 
 
-    recomBox = new QWidget(widget);
+    RecommTop();
+    RecommTrea();
+
+
+    widget->setLayout(layout);
+
+    tools = new Tools();
+
+}
+
+void Recommend::RecommTop() {
+    recomOutBox = new QWidget(widget);
+    recomOutBox->setFixedWidth(810);
+    recomOutBox->setFixedHeight(240);
+    recomOutLayout = new QVBoxLayout;
+    recomOutLayout->setSpacing(0);
+    recomOutLayout->setMargin(0);
+    recomOutBox->setLayout(recomOutLayout);
+    title[0] = new QLabel;
+    title[0]->setObjectName("title");
+    title[0]->setText("嘿，冰消叶散，今日为你推荐");
+    recomOutLayout->addWidget(title[0]);
+
+
+    recomBox = new QWidget(recomOutBox);
+    recomBox->setFixedSize(recomOutBox->width(), 218);
     recomBox->installEventFilter(this);
-    recomBox->setFixedWidth(810);
-    recomBox->setFixedHeight(218);
     recomBox->setObjectName("recomBox");
+    recomOutLayout->addWidget(recomBox);
 
     recomLayout = new QHBoxLayout;
     recomLayout->setSpacing(0);
@@ -176,17 +200,156 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     policy.setRetainSizeWhenHidden(true);
     rightArrow[0]->setSizePolicy(policy);
     recomLayout->addWidget(rightArrow[0]);
+    layout->addWidget(recomOutBox);
+    layout->addSpacing(30);
+}
+
+void Recommend::RecommTrea() {
+    recomOutBox = new QWidget(widget);
+    recomOutBox->setFixedWidth(810);
+    recomOutLayout = new QVBoxLayout;
+    recomOutLayout->setSpacing(0);
+    recomOutLayout->setMargin(0);
+    recomOutBox->setLayout(recomOutLayout);
+    title[0] = new QLabel;
+    title[0]->setObjectName("title");
+    title[0]->setText("你的歌单宝藏库");
+    recomOutLayout->addWidget(title[0]);
 
 
-    layout->addWidget(recomBox);
-    closeWidget = new QWidget(widget);
-    closeWidget->setFixedSize(800, 200);
-    closeWidget->setStyleSheet("background:#000");
-    layout->addWidget(closeWidget);
-    widget->setLayout(layout);
+    recomBox = new QWidget(recomOutBox);
+    recomBox->setFixedSize(recomOutBox->width(), 460);
+    recomBox->installEventFilter(this);
+    recomBox->setObjectName("treaBox");
+    recomOutLayout->addWidget(recomBox);
 
-    tools = new Tools();
+    recomLayout = new QHBoxLayout;
+    recomLayout->setSpacing(0);
+    recomLayout->setMargin(0);
+    recomLayout->setAlignment(Qt::AlignTop);
+    recomBox->setLayout(recomLayout);
 
+    recomScrollBox = new QWidget(recomBox);
+    recomScrollBox->setFixedSize(recomBox->width() - 70, recomBox->height());
+    recomScrollBox->setObjectName("recomScrollBox");
+
+    treaLayout = new QGridLayout;
+    treaLayout->setSpacing(0);
+    treaLayout->setMargin(0);
+    treaLayout->setAlignment(Qt::AlignLeft);
+
+    recomConBox = new QWidget(recomScrollBox);
+    recomConBox->setLayout(treaLayout);
+    moveAnimation = new QPropertyAnimation(recomConBox, "geometry");
+    moveAnimation->setDuration(300);
+
+    QList<QString> imgList;
+    QList<QString> txtList;
+    imgList << "http://y.qq.com/music/photo_new/T002R300x300M000004RlJ4h0SOy7o_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000004IQrYm2aq13C_2.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000002RFvQa0KZgWT_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000001xEQO00PY9o4_2.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000003ytZCh3LYLkh_2.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000001rM9vP1z3OJl_1.jpg?max_age=2592000"
+            << "http://y.gtimg.cn/music/photo_new/T002R500x500M000002KhpvO2onL52_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000002jL3lo4QydNE_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000002iWYEP1NsXim_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000004SVT961IWY2U_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000000Cynhk1pfdmC_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000004SMH8t4336xW_1.jpg?max_age=25920000";
+    for (int i = 0; i < imgList.size(); ++i) {
+        treaItemBox[i] = new QWidget(recomBox);
+        treaItemBox[i]->setFixedWidth(160);
+        recomItemLayout = new QVBoxLayout;
+        recomItemLayout->setSpacing(0);
+        recomItemLayout->setMargin(0);
+        recomItemLayout->setAlignment(Qt::AlignTop);
+
+        recomImgBox = new QLabel(treaItemBox[i]);
+        recomImgBox->setCursor(Qt::PointingHandCursor);
+        recomImgBox->setScaledContents(true);
+        recomImgBox->setObjectName("treaImgBox");
+        recomImgBox->setProperty("index", i);
+        recomAttrList.append("treaImgBox" + QString::number(i));
+        recomImgBox->installEventFilter(this);
+        recomImgBox->setPixmap(getImage(imgList[i]));
+
+        recomImgBox->setFixedSize(160, 160);
+        maskBox = new QWidget(recomImgBox);
+        maskBox->setFixedSize(recomImgBox->width(), recomImgBox->height());
+        maskBox->setObjectName("maskBox");
+        maskBox->setVisible(false);
+
+        playBox = new QLabel(recomImgBox);
+        playBox->setObjectName("playBox");
+        playBox->setVisible(false);
+        playBox->setFixedSize(40, 30);
+        QPixmap playPix(":/resource/images/play.png");
+        playBox->setPixmap(playPix);
+        playBox->setScaledContents(true);
+        playBox->move(10, recomImgBox->height() - 40);
+
+        playCount = new QLabel(recomImgBox);
+        playCount->setFixedWidth(recomImgBox->width() - 10);
+        playCount->setText("5580亿");
+        playCount->setAlignment(Qt::AlignRight);
+        playCount->setObjectName("playCount");
+        playCount->move(0, recomImgBox->height() - 25);
+
+        recomTit = new QLabel;
+        recomTit->setCursor(Qt::PointingHandCursor);
+        recomTit->setObjectName("recomTit");
+        recomTit->setText("抖音最火BGM，根本停不下来");
+        recomTit->setWordWrap(true);
+        recomTit->setAlignment(Qt::AlignTop);
+        recomTit->setFixedHeight(38);
+
+
+        recomItemLayout->addSpacing(10);
+        recomItemLayout->addWidget(recomImgBox);
+        recomItemLayout->addSpacing(6);
+        recomItemLayout->addWidget(recomTit);
+        treaItemBox[i]->setLayout(recomItemLayout);
+        int r = floor(i / 6) + 1;
+        int c = (i % 6) + 1;
+        qDebug() << r <<c;
+        treaLayout->addWidget(treaItemBox[i], r, c);
+        treaLayout->setSpacing(25);
+    }
+
+    leftArrow[1] = new QLabel;
+    leftArrow[1]->setObjectName("leftArrow[1]");
+    leftArrow[1]->installEventFilter(this);
+    leftArrow[1]->setFixedSize(30, 38);
+    leftArrow[1]->setCursor(Qt::PointingHandCursor);
+    leftArrowPix[1] = new QPixmap;
+    leftArrowPix[1]->load(":/resource/images/br_lf_arrow.png");
+    leftArrow[1]->setPixmap(*leftArrowPix[1]);
+    leftArrow[1]->setScaledContents(true);
+    leftArrow[1]->setVisible(false);
+    QSizePolicy policy_lf = leftArrow[1]->sizePolicy();
+    policy_lf.setRetainSizeWhenHidden(true);
+    leftArrow[1]->setSizePolicy(policy_lf);
+    recomLayout->addWidget(leftArrow[1]);
+
+
+    recomLayout->addWidget(recomScrollBox);
+
+    rightArrow[1] = new QLabel;
+    rightArrow[1]->setObjectName("rightArrow[1]");
+    rightArrow[1]->installEventFilter(this);
+    rightArrow[1]->setFixedSize(30, 38);
+    rightArrow[1]->setCursor(Qt::PointingHandCursor);
+    rightArrowPix[1] = new QPixmap;
+    rightArrowPix[1]->load(":/resource/images/br_rh_arrow.png");
+    rightArrow[1]->setPixmap(*rightArrowPix[1]);
+    rightArrow[1]->setScaledContents(true);
+    rightArrow[1]->setVisible(false);
+    QSizePolicy policy = rightArrow[1]->sizePolicy();
+    policy.setRetainSizeWhenHidden(true);
+    rightArrow[1]->setSizePolicy(policy);
+    recomLayout->addWidget(rightArrow[1]);
+    layout->addWidget(recomOutBox);
 }
 
 QPixmap Recommend::getImage(QString url) {
@@ -212,6 +375,16 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
             rightArrow[0]->setVisible(false);
         }
     }
+    if (o->objectName() == "treaBox") {
+        if (e->type() == QEvent::Enter) {
+            leftArrow[1]->setVisible(true);
+            rightArrow[1]->setVisible(true);
+        }
+        if (e->type() == QEvent::Leave) {
+            leftArrow[1]->setVisible(false);
+            rightArrow[1]->setVisible(false);
+        }
+    }
     if (o->objectName() == "leftArrow[0]") {
         if (e->type() == QEvent::Enter) {
             leftArrow[0]->setPixmap(tools->hoverPixColor(leftArrowPix[0], "#31c27c"));
@@ -229,7 +402,23 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
             rightArrow[0]->setPixmap(righArrowImgPath);
         }
     }
+    if (o->objectName() == "leftArrow[1]") {
+        if (e->type() == QEvent::Enter) {
+            leftArrow[1]->setPixmap(tools->hoverPixColor(leftArrowPix[1], "#31c27c"));
+        }
+        if (e->type() == QEvent::Leave) {
+            leftArrow[1]->setPixmap(leftArrowImgPath);
+        }
+    }
 
+    if (o->objectName() == "rightArrow[1]") {
+        if (e->type() == QEvent::Enter) {
+            rightArrow[1]->setPixmap(tools->hoverPixColor(rightArrowPix[1], "#31c27c"));
+        }
+        if (e->type() == QEvent::Leave) {
+            rightArrow[1]->setPixmap(righArrowImgPath);
+        }
+    }
     if (o->objectName() == "recomImgBox") {
         int i = o->property("index").toInt();
         QLabel *box = recomItemBox[i]->findChild<QLabel *>("recomImgBox");
@@ -258,12 +447,41 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
         }
     }
 
+    if (o->objectName() == "treaImgBox") {
+        int i = o->property("index").toInt();
+        QLabel *box = treaItemBox[i]->findChild<QLabel *>("treaImgBox");
+        QWidget *mask = treaItemBox[i]->findChild<QWidget *>("maskBox");
+        QLabel *play_box = treaItemBox[i]->findChild<QLabel *>("playBox");
+        animation = new QPropertyAnimation(box, "geometry");
+        animation->setDuration(150);
+
+        if (e->type() == QEvent::Enter) {
+            animation->setStartValue(QRect(0, 10, box->width(), box->height()));
+            animation->setEndValue(QRect(0, 0, box->width(), box->height()));
+            animation->start();
+            if (play_box) {
+                play_box->setVisible(true);
+                mask->setVisible(true);
+            }
+        }
+        if (e->type() == QEvent::Leave) {
+            animation->setStartValue(QRect(0, 0, box->width(), box->height()));
+            animation->setEndValue(QRect(0, 10, box->width(), box->height()));
+            animation->start();
+            if (play_box) {
+                play_box->setVisible(false);
+                mask->setVisible(false);
+            }
+        }
+    }
+
+
     if (e->type() == QEvent::MouseButtonPress) {
         QMouseEvent *mouseEvent = (QMouseEvent *) e;
         if (mouseEvent->button() == Qt::LeftButton) {
             int r_width = recomConBox->width();
             int s_width = recomScrollBox->width();
-            if (o->objectName() == "recomLfArrow") {
+            if (o->objectName() == "leftArrow[1]") {
                 if (move_x == 0) {
                     int moveLeft = s_width - r_width;
                     moveAnimation->setStartValue(QRect(move_x, 0, r_width, recomConBox->height()));
@@ -276,7 +494,7 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
                 }
                 moveAnimation->start();
             }
-            if (o->objectName() == "recomRhArrow") {
+            if (o->objectName() == "rightArrow[1]") {
                 if (move_x == 0) {
                     int moveLeft = s_width - r_width;
                     moveAnimation->setStartValue(QRect(move_x, 0, r_width, recomConBox->height()));

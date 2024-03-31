@@ -25,6 +25,7 @@
 #include <QSize>
 #include <QIcon>
 #include <QMouseEvent>
+#include <cmath>
 #include "../utils/tools.h"
 
 class Recommend : public QWidget {
@@ -49,7 +50,10 @@ public slots:
 
     void loadQSS();
 
+    void RecommTop();
+    void RecommTrea();
     QPixmap getImage(QString url);
+
 protected:
 
 private:
@@ -65,8 +69,8 @@ private:
     QLabel *playBox;
     QLabel *leftArrow[10];
     QLabel *rightArrow[10];
-    QLabel *uname;
-    QLabel *vipLabel;
+    QLabel *title[5];
+    QLabel *playCount;
     QLabel *downLabel;
     QLabel *skinLabel;
     QLabel *settingLabel;
@@ -76,15 +80,19 @@ private:
     QLabel *closeLabel;
     QLabel *recomImgBox;
     QWidget *widget;
+    QWidget *recomOutBox;
     QWidget *recomBox;
-    QWidget *recomItemBox[10];
+    QWidget *recomItemBox[20];
+    QWidget *treaItemBox[20];
     QWidget *maskBox;
     QWidget *recomScrollBox;
     QWidget *recomConBox;
     QWidget *closeWidget;
     QVBoxLayout *layout;
+    QVBoxLayout *recomOutLayout;
     QVBoxLayout *recomItemLayout;
     QVBoxLayout *guessLayout;
+    QGridLayout *treaLayout;
     QHBoxLayout *recomLayout;
     QHBoxLayout *recomConLayout;
     QHBoxLayout *rLayout;
