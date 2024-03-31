@@ -14,7 +14,7 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     widget->setStyleSheet("QWidget#conbox{background:#fff}");
     widget->setFixedSize(820, 800);
     layout = new QVBoxLayout;
-    layout->setAlignment(Qt::AlignTop|Qt::AlignRight);
+    layout->setAlignment(Qt::AlignTop | Qt::AlignRight);
     layout->setSpacing(0);
     layout->setMargin(0);
 
@@ -54,7 +54,7 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
 
     QList<QString> imgList;
     imgList << "http://y.qq.com/n3/wk_v20/entry/bg6.dab9cba46.png?max_age=2592000"
-    << "https://y.gtimg.cn/music/photo_new/T002R300x300M000003MvqCa0Fq3Mq_2.jpg";
+            << "https://y.gtimg.cn/music/photo_new/T002R300x300M000003MvqCa0Fq3Mq_2.jpg";
     for (int i = 0; i < imgList.size(); ++i) {
         recomItemBox[i] = new QWidget(recomBox);
         if (i == 0) {
@@ -71,6 +71,8 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
         recomImgBox->setCursor(Qt::PointingHandCursor);
         recomImgBox->setScaledContents(true);
         recomImgBox->setObjectName("recomImgBox");
+        recomImgBox->setProperty("index", i);
+        recomAttrList.append("recomImgBox" + QString::number(i));
         recomImgBox->installEventFilter(this);
         recomImgBox->setPixmap(getImage(imgList[i]));
         if (i == 0) {
@@ -124,7 +126,7 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
         recomItemLayout->addWidget(recomSubTit);
         recomItemBox[i]->setLayout(recomItemLayout);
         recomConLayout->addWidget(recomItemBox[i]);
-        if(i != 2){
+        if (i != 2) {
             recomConLayout->addSpacing(20);
         }
     }
@@ -156,7 +158,8 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     layout->addWidget(closeWidget);
     widget->setLayout(layout);
 }
-QPixmap Recommend::getImage(QString url){
+
+QPixmap Recommend::getImage(QString url) {
     manager = new QNetworkAccessManager;
     reply = manager->get(QNetworkRequest(QUrl(url)));
     loop = new QEventLoop();
@@ -169,12 +172,13 @@ QPixmap Recommend::getImage(QString url){
 }
 
 bool Recommend::eventFilter(QObject *o, QEvent *e) {
-    qDebug() << o->objectName();
     if (o->objectName() == "recomImgBox") {
+        int i = o->property("index").toInt();
         if (e->type() == QEvent::Enter) {
-//            animation->setStartValue(QRect(0, 10, recomImgBox->width(), recomImgBox->height()));
-//            animation->setEndValue(QRect(0, 0, recomImgBox->width(), recomImgBox->height()));
-//            animation->start();
+            QLabel *box = recomItemBox[i]->findChildren<QLabel *>("recomImgBox")[0];
+            animation->setStartValue(QRect(0, 10, box->width(), box->height()));
+            animation->setEndValue(QRect(0, 0, box->width(), box->height()));
+            animation->start();
         }
         if (e->type() == QEvent::Leave) {
 //            animation->setStartValue(QRect(0, 0, recomImgBox->width(), recomImgBox->height()));

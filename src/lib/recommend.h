@@ -8,6 +8,7 @@
 
 #include <QWidget>
 #include <QScrollArea>
+#include <QList>
 #include <QFrame>
 #include <QLabel>
 #include <QHBoxLayout>
@@ -52,6 +53,7 @@ public slots:
 protected:
 
 private:
+    QList<QString> recomAttrList;
     QPropertyAnimation *animation;
     QScrollArea *area;
     QLabel *recomTit;
