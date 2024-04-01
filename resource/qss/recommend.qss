@@ -26,3 +26,10 @@ QLabel#playCount{
     color: #fff;
     font-size: 13px;
 }
+QLabel#songsTit{
+    font-size: 13px;
+}
+QLabel#authorTit{
+    font-size: 12px;
+    color: #4e4e4e;
+}

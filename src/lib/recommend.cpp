@@ -414,28 +414,19 @@ void Recommend::RecommListen() {
 
     QList<QString> imgList;
     QList<QString> txtList;
-    imgList << "http://y.qq.com/music/photo_new/T002R300x300M000004RlJ4h0SOy7o_1.jpg?max_age=2592000"
-            << "http://y.qq.com/music/photo_new/T002R300x300M000004IQrYm2aq13C_2.jpg?max_age=2592000"
-            << "http://y.qq.com/music/photo_new/T002R300x300M000002RFvQa0KZgWT_1.jpg?max_age=2592000"
-            << "http://y.qq.com/music/photo_new/T002R300x300M000001xEQO00PY9o4_2.jpg?max_age=2592000"
-            << "http://y.qq.com/music/photo_new/T002R300x300M000003ytZCh3LYLkh_2.jpg?max_age=2592000"
-            << "http://y.qq.com/music/photo_new/T002R300x300M000001rM9vP1z3OJl_1.jpg?max_age=2592000"
-            << "http://y.gtimg.cn/music/photo_new/T002R500x500M000002KhpvO2onL52_1.jpg?max_age=2592000"
-            << "http://y.qq.com/music/photo_new/T002R300x300M000002jL3lo4QydNE_1.jpg?max_age=2592000"
-            << "http://y.qq.com/music/photo_new/T002R300x300M000002iWYEP1NsXim_1.jpg?max_age=2592000"
-            << "http://y.qq.com/music/photo_new/T002R300x300M000004SVT961IWY2U_1.jpg?max_age=2592000"
-            << "http://y.qq.com/music/photo_new/T002R300x300M000000Cynhk1pfdmC_1.jpg?max_age=2592000"
-            << "http://y.qq.com/music/photo_new/T002R300x300M000004SMH8t4336xW_1.jpg?max_age=25920000";
+    imgList << "http://y.qq.com/music/photo_new/T002R300x300M000004RlJ4h0SOy7o_1.jpg?max_age=2592000";
     for (int i = 0; i < imgList.size(); ++i) {
         treaItemBox[i] = new QWidget(recomBox);
-        treaItemBox[i]->setFixedWidth(160);
-        recomItemLayout = new QVBoxLayout;
-        recomItemLayout->setSpacing(0);
-        recomItemLayout->setMargin(0);
-        recomItemLayout->setAlignment(Qt::AlignTop);
+        treaItemBox[i]->setFixedSize(240,66);
+        treaItemBox[i]->setObjectName("listenBox");
+        treaItemBox[i]->setStyleSheet("QWidget#listenBox{background:#eee;border-radius:6px;}");
+        listenLayout = new QHBoxLayout;
+        listenLayout->setSpacing(0);
+        listenLayout->setMargin(0);
+        listenLayout->setAlignment(Qt::AlignVCenter|Qt::AlignLeft);
 
         recomImgBox = new QLabel(treaItemBox[i]);
-        recomImgBox->setFixedSize(160, 160);
+        recomImgBox->setFixedSize(50, 50);
         recomImgBox->setCursor(Qt::PointingHandCursor);
         recomImgBox->setScaledContents(true);
         recomImgBox->setObjectName("treaImgBox");
@@ -453,33 +444,83 @@ void Recommend::RecommListen() {
         playBox = new QLabel(recomImgBox);
         playBox->setObjectName("playBox");
         playBox->setVisible(false);
-        playBox->setFixedSize(40, 30);
-        QPixmap playPix(":/resource/images/play.png");
+        playBox->setFixedSize(16, 16);
+        QPixmap playPix(":/resource/images/play_white.png");
         playBox->setPixmap(playPix);
         playBox->setScaledContents(true);
-        playBox->move(10, recomImgBox->height() - 40);
+        playBox->move(15, 15);
 
-        playCount = new QLabel(recomImgBox);
-        playCount->setFixedWidth(recomImgBox->width() - 10);
-        playCount->setText("5580亿");
-        playCount->setAlignment(Qt::AlignRight);
-        playCount->setObjectName("playCount");
-        playCount->move(0, recomImgBox->height() - 25);
+        rightLayout = new QVBoxLayout;
+        rightLayout->setMargin(0);
+        rightLayout->setSpacing(0);
+        rightBox = new QWidget(treaItemBox[i]);
+        rightBox->setFixedSize(treaItemBox[i]->width() -76,recomImgBox->height());
+        rightBox->setLayout(rightLayout);
+//        rightBox->setStyleSheet("background:#ff0");
+
+        songsLayout = new QHBoxLayout;
+        songsLayout->setMargin(0);
+        songsLayout->setSpacing(0);
+        songsLayout->setAlignment(Qt::AlignVCenter);
+        songsLabel = new QLabel;
+//        songsLabel->setStyleSheet("background:#f0f");
+        songsLabel->setLayout(songsLayout);
+        rightLayout->addWidget(songsLabel);
 
         recomTit = new QLabel;
-        recomTit->setCursor(Qt::PointingHandCursor);
-        recomTit->setObjectName("recomTit");
-        recomTit->setText("抖音最火BGM，根本停不下来");
-        recomTit->setWordWrap(true);
-        recomTit->setAlignment(Qt::AlignTop);
-        recomTit->setFixedHeight(38);
+        recomTit->setObjectName("songsTit");
+        recomTit->setText("五彩湖泊");
+        recomTit->setFixedSize(recomTit->sizeHint().width(),recomTit->sizeHint().height());
+        songsLayout->addWidget(recomTit);
 
 
-        recomItemLayout->addSpacing(10);
-        recomItemLayout->addWidget(recomImgBox);
-        recomItemLayout->addSpacing(6);
-        recomItemLayout->addWidget(recomTit);
-        treaItemBox[i]->setLayout(recomItemLayout);
+        idenLabel = new QLabel;
+        idenLabel->setObjectName("playBox");
+        idenLabel->setFixedSize(36, 12);
+        QPixmap idenPix(":/resource/images/sound.png");
+        idenLabel->setPixmap(idenPix);
+        idenLabel->setScaledContents(true);
+        songsLayout->addSpacing(5);
+        songsLayout->addWidget(idenLabel);
+
+        authorLabel = new QLabel;
+        authorLabel->setCursor(Qt::PointingHandCursor);
+        authorLabel->setObjectName("authorTit");
+        authorLabel->setText("衫和");
+        rightLayout->addWidget(authorLabel);
+
+        floatLayout = new QHBoxLayout;
+        floatLayout->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+        floatBox = new QWidget(rightBox);
+        floatBox->setFixedHeight(rightBox->height());
+        floatBox->move(rightBox->width() - 100,0);
+        floatBox->setLayout(floatLayout);
+
+        loveBox = new QLabel;
+        loveBox->setCursor(Qt::PointingHandCursor);
+        loveBox->setObjectName("loveBox");
+        loveBox->setFixedSize(19, 19);
+        QPixmap lovePix(":/resource/images/love.png");
+        loveBox->setPixmap(lovePix);
+        loveBox->setScaledContents(true);
+        floatLayout->addWidget(loveBox);
+        floatLayout->addSpacing(10);
+
+        moreBox = new QLabel;
+        moreBox->setCursor(Qt::PointingHandCursor);
+        moreBox->setObjectName("moreBox");
+        moreBox->setFixedSize(19, 19);
+        QPixmap morePix(":/resource/images/more.png");
+        moreBox->setPixmap(morePix);
+        moreBox->setScaledContents(true);
+        floatLayout->addWidget(moreBox);
+
+
+        listenLayout->addSpacing(8);
+        listenLayout->addWidget(recomImgBox);
+        listenLayout->addSpacing(10);
+        listenLayout->addWidget(rightBox);
+        treaItemBox[i]->setLayout(listenLayout);
         int r = floor(i / 6) + 1;
         int c = (i % 6) + 1;
         qDebug() << r <<c;
