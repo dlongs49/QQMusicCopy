@@ -52,6 +52,7 @@ public slots:
 
     void RecommTop();
     void RecommTrea();
+    void RecommListen();
     QPixmap* getImage(QString url);
 
 protected:
@@ -69,7 +70,7 @@ private:
     QLabel *playBox;
     QLabel *leftArrow[10];
     QLabel *rightArrow[10];
-    QLabel *title[5];
+    QLabel *title;
     QLabel *playCount;
     QLabel *downLabel;
     QLabel *skinLabel;
@@ -87,7 +88,7 @@ private:
     QWidget *maskBox;
     QWidget *recomScrollBox;
     QWidget *recomConBox;
-    QWidget *closeWidget;
+    QWidget *titleBox;
     QVBoxLayout *layout;
     QVBoxLayout *recomOutLayout;
     QVBoxLayout *recomItemLayout;
@@ -95,7 +96,7 @@ private:
     QGridLayout *treaLayout;
     QHBoxLayout *recomLayout;
     QHBoxLayout *recomConLayout;
-    QHBoxLayout *rLayout;
+    QHBoxLayout *titLayout;
     QHBoxLayout *opearLayout;
     QPixmap *avatorPix;
     QNetworkAccessManager *manager;

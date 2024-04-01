@@ -28,7 +28,7 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
 
     RecommTop();
     RecommTrea();
-
+    RecommListen();
 
     widget->setLayout(layout);
 
@@ -44,10 +44,10 @@ void Recommend::RecommTop() {
     recomOutLayout->setSpacing(0);
     recomOutLayout->setMargin(0);
     recomOutBox->setLayout(recomOutLayout);
-    title[0] = new QLabel;
-    title[0]->setObjectName("title");
-    title[0]->setText("嘿，冰消叶散，今日为你推荐");
-    recomOutLayout->addWidget(title[0]);
+    title = new QLabel;
+    title->setObjectName("title");
+    title->setText("嘿，冰消叶散，今日为你推荐");
+    recomOutLayout->addWidget(title);
 
 
     recomBox = new QWidget(recomOutBox);
@@ -212,10 +212,178 @@ void Recommend::RecommTrea() {
     recomOutLayout->setSpacing(0);
     recomOutLayout->setMargin(0);
     recomOutBox->setLayout(recomOutLayout);
-    title[0] = new QLabel;
-    title[0]->setObjectName("title");
-    title[0]->setText("你的歌单宝藏库");
-    recomOutLayout->addWidget(title[0]);
+    title = new QLabel;
+    title->setObjectName("title");
+    title->setText("你的歌单宝藏库");
+    recomOutLayout->addWidget(title);
+
+
+    recomBox = new QWidget(recomOutBox);
+    recomBox->setFixedSize(recomOutBox->width(), 460);
+    recomBox->installEventFilter(this);
+    recomBox->setObjectName("treaBox");
+    recomOutLayout->addWidget(recomBox);
+
+    recomLayout = new QHBoxLayout;
+    recomLayout->setSpacing(0);
+    recomLayout->setMargin(0);
+    recomLayout->setAlignment(Qt::AlignTop);
+    recomBox->setLayout(recomLayout);
+
+    recomScrollBox = new QWidget(recomBox);
+    recomScrollBox->setFixedSize(recomBox->width() - 70, recomBox->height());
+    recomScrollBox->setObjectName("recomScrollBox");
+
+    treaLayout = new QGridLayout;
+    treaLayout->setSpacing(0);
+    treaLayout->setMargin(0);
+    treaLayout->setAlignment(Qt::AlignLeft);
+
+    recomConBox = new QWidget(recomScrollBox);
+    recomConBox->setLayout(treaLayout);
+    moveAnimation = new QPropertyAnimation(recomConBox, "geometry");
+    moveAnimation->setDuration(300);
+
+    QList<QString> imgList;
+    QList<QString> txtList;
+    imgList << "http://y.qq.com/music/photo_new/T002R300x300M000004RlJ4h0SOy7o_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000004IQrYm2aq13C_2.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000002RFvQa0KZgWT_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000001xEQO00PY9o4_2.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000003ytZCh3LYLkh_2.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000001rM9vP1z3OJl_1.jpg?max_age=2592000"
+            << "http://y.gtimg.cn/music/photo_new/T002R500x500M000002KhpvO2onL52_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000002jL3lo4QydNE_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000002iWYEP1NsXim_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000004SVT961IWY2U_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000000Cynhk1pfdmC_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000004SMH8t4336xW_1.jpg?max_age=25920000";
+    for (int i = 0; i < imgList.size(); ++i) {
+        treaItemBox[i] = new QWidget(recomBox);
+        treaItemBox[i]->setFixedWidth(160);
+        recomItemLayout = new QVBoxLayout;
+        recomItemLayout->setSpacing(0);
+        recomItemLayout->setMargin(0);
+        recomItemLayout->setAlignment(Qt::AlignTop);
+
+        recomImgBox = new QLabel(treaItemBox[i]);
+        recomImgBox->setFixedSize(160, 160);
+        recomImgBox->setCursor(Qt::PointingHandCursor);
+        recomImgBox->setScaledContents(true);
+        recomImgBox->setObjectName("treaImgBox");
+        recomImgBox->setProperty("index", i);
+        recomAttrList.append("treaImgBox" + QString::number(i));
+        recomImgBox->installEventFilter(this);
+        // 先提取网络图片 再处理圆角 Tools
+        recomImgBox->setPixmap(tools->imgPixRadius(getImage(imgList[i]),getImage(imgList[i])->size(),6));
+
+        maskBox = new QWidget(recomImgBox);
+        maskBox->setFixedSize(recomImgBox->width(), recomImgBox->height());
+        maskBox->setObjectName("maskBox");
+        maskBox->setVisible(false);
+
+        playBox = new QLabel(recomImgBox);
+        playBox->setObjectName("playBox");
+        playBox->setVisible(false);
+        playBox->setFixedSize(40, 30);
+        QPixmap playPix(":/resource/images/play.png");
+        playBox->setPixmap(playPix);
+        playBox->setScaledContents(true);
+        playBox->move(10, recomImgBox->height() - 40);
+
+        playCount = new QLabel(recomImgBox);
+        playCount->setFixedWidth(recomImgBox->width() - 10);
+        playCount->setText("5580亿");
+        playCount->setAlignment(Qt::AlignRight);
+        playCount->setObjectName("playCount");
+        playCount->move(0, recomImgBox->height() - 25);
+
+        recomTit = new QLabel;
+        recomTit->setCursor(Qt::PointingHandCursor);
+        recomTit->setObjectName("recomTit");
+        recomTit->setText("抖音最火BGM，根本停不下来");
+        recomTit->setWordWrap(true);
+        recomTit->setAlignment(Qt::AlignTop);
+        recomTit->setFixedHeight(38);
+
+
+        recomItemLayout->addSpacing(10);
+        recomItemLayout->addWidget(recomImgBox);
+        recomItemLayout->addSpacing(6);
+        recomItemLayout->addWidget(recomTit);
+        treaItemBox[i]->setLayout(recomItemLayout);
+        int r = floor(i / 6) + 1;
+        int c = (i % 6) + 1;
+        qDebug() << r <<c;
+        treaLayout->addWidget(treaItemBox[i], r, c);
+        treaLayout->setSpacing(25);
+    }
+
+    leftArrow[1] = new QLabel;
+    leftArrow[1]->setObjectName("leftArrow[1]");
+    leftArrow[1]->installEventFilter(this);
+    leftArrow[1]->setFixedSize(30, 38);
+    leftArrow[1]->setCursor(Qt::PointingHandCursor);
+    leftArrowPix[1] = new QPixmap;
+    leftArrowPix[1]->load(":/resource/images/br_lf_arrow.png");
+    leftArrow[1]->setPixmap(*leftArrowPix[1]);
+    leftArrow[1]->setScaledContents(true);
+    leftArrow[1]->setVisible(false);
+    QSizePolicy policy_lf = leftArrow[1]->sizePolicy();
+    policy_lf.setRetainSizeWhenHidden(true);
+    leftArrow[1]->setSizePolicy(policy_lf);
+    recomLayout->addWidget(leftArrow[1]);
+
+
+    recomLayout->addWidget(recomScrollBox);
+
+    rightArrow[1] = new QLabel;
+    rightArrow[1]->setObjectName("rightArrow[1]");
+    rightArrow[1]->installEventFilter(this);
+    rightArrow[1]->setFixedSize(30, 38);
+    rightArrow[1]->setCursor(Qt::PointingHandCursor);
+    rightArrowPix[1] = new QPixmap;
+    rightArrowPix[1]->load(":/resource/images/br_rh_arrow.png");
+    rightArrow[1]->setPixmap(*rightArrowPix[1]);
+    rightArrow[1]->setScaledContents(true);
+    rightArrow[1]->setVisible(false);
+    QSizePolicy policy = rightArrow[1]->sizePolicy();
+    policy.setRetainSizeWhenHidden(true);
+    rightArrow[1]->setSizePolicy(policy);
+    recomLayout->addWidget(rightArrow[1]);
+    layout->addWidget(recomOutBox);
+    layout->addSpacing(30);
+}
+void Recommend::RecommListen() {
+    recomOutBox = new QWidget(widget);
+    recomOutBox->setFixedWidth(810);
+    recomOutLayout = new QVBoxLayout;
+    recomOutLayout->setSpacing(0);
+    recomOutLayout->setMargin(0);
+    recomOutBox->setLayout(recomOutLayout);
+
+    titLayout = new QHBoxLayout;
+    titLayout->setSpacing(0);
+    titLayout->setMargin(0);
+    titLayout->setAlignment(Qt::AlignLeft);
+    titleBox = new QWidget(recomOutBox);
+    titleBox->setLayout(titLayout);
+    title = new QLabel;
+    title->setObjectName("title");
+    title->setText("大家都在听");
+    titLayout->addWidget(title);
+    titLayout->addSpacing(10);
+
+    QLabel *titPlay = new QLabel(titleBox);
+    titPlay->setCursor(Qt::PointingHandCursor);
+    titPlay->setObjectName("playBox");
+    titPlay->setFixedSize(40, 30);
+    QPixmap titPlayPix(":/resource/images/play.png");
+    titPlay->setPixmap(titPlayPix);
+    titPlay->setScaledContents(true);
+    titLayout->addWidget(titPlay);
+
+    recomOutLayout->addWidget(titleBox);
 
 
     recomBox = new QWidget(recomOutBox);
@@ -353,7 +521,6 @@ void Recommend::RecommTrea() {
     recomLayout->addWidget(rightArrow[1]);
     layout->addWidget(recomOutBox);
 }
-
 QPixmap* Recommend::getImage(QString url) {
     manager = new QNetworkAccessManager;
     reply = manager->get(QNetworkRequest(QUrl(url)));
@@ -426,7 +593,7 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
         QLabel *box = recomItemBox[i]->findChild<QLabel *>("recomImgBox");
         QWidget *mask = recomItemBox[i]->findChild<QWidget *>("maskBox");
         QLabel *play_box = recomItemBox[i]->findChild<QLabel *>("playBox");
-        animation = new QPropertyAnimation(box, "geometry");
+        QPropertyAnimation *animation = new QPropertyAnimation(box, "geometry");
         animation->setDuration(150);
 
         if (e->type() == QEvent::Enter) {
@@ -455,7 +622,7 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
         QWidget *mask = treaItemBox[i]->findChild<QWidget *>("maskBox");
         QLabel *play_box = treaItemBox[i]->findChild<QLabel *>("playBox");
         QLabel *play_count = treaItemBox[i]->findChild<QLabel *>("playCount");
-        animation = new QPropertyAnimation(box, "geometry");
+        QPropertyAnimation *animation = new QPropertyAnimation(box, "geometry");
         animation->setDuration(150);
 
         if (e->type() == QEvent::Enter) {
