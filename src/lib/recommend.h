@@ -52,7 +52,7 @@ public slots:
 
     void RecommTop();
     void RecommTrea();
-    QPixmap getImage(QString url);
+    QPixmap* getImage(QString url);
 
 protected:
 

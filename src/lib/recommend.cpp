@@ -104,8 +104,8 @@ void Recommend::RecommTop() {
         recomImgBox->setProperty("index", i);
         recomAttrList.append("recomImgBox" + QString::number(i));
         recomImgBox->installEventFilter(this);
-        recomImgBox->setPixmap(getImage(imgList[i]));
-
+        // 先提取网络图片 再处理圆角 Tools
+        recomImgBox->setPixmap(tools->imgPixRadius(getImage(imgList[i]),getImage(imgList[i])->size(),6));
         if (i == 0) {
             recomImgBox->setFixedSize(406, 160);
 
@@ -128,6 +128,7 @@ void Recommend::RecommTop() {
             recomImgBox->setLayout(guessLayout);
         } else {
             recomImgBox->setFixedSize(160, 160);
+
             maskBox = new QWidget(recomImgBox);
             maskBox->setFixedSize(recomImgBox->width(), recomImgBox->height());
             maskBox->setObjectName("maskBox");
@@ -266,15 +267,16 @@ void Recommend::RecommTrea() {
         recomItemLayout->setAlignment(Qt::AlignTop);
 
         recomImgBox = new QLabel(treaItemBox[i]);
+        recomImgBox->setFixedSize(160, 160);
         recomImgBox->setCursor(Qt::PointingHandCursor);
         recomImgBox->setScaledContents(true);
         recomImgBox->setObjectName("treaImgBox");
         recomImgBox->setProperty("index", i);
         recomAttrList.append("treaImgBox" + QString::number(i));
         recomImgBox->installEventFilter(this);
-        recomImgBox->setPixmap(getImage(imgList[i]));
+        // 先提取网络图片 再处理圆角 Tools
+        recomImgBox->setPixmap(tools->imgPixRadius(getImage(imgList[i]),getImage(imgList[i])->size(),6));
 
-        recomImgBox->setFixedSize(160, 160);
         maskBox = new QWidget(recomImgBox);
         maskBox->setFixedSize(recomImgBox->width(), recomImgBox->height());
         maskBox->setObjectName("maskBox");
@@ -352,7 +354,7 @@ void Recommend::RecommTrea() {
     layout->addWidget(recomOutBox);
 }
 
-QPixmap Recommend::getImage(QString url) {
+QPixmap* Recommend::getImage(QString url) {
     manager = new QNetworkAccessManager;
     reply = manager->get(QNetworkRequest(QUrl(url)));
     loop = new QEventLoop();
@@ -361,7 +363,7 @@ QPixmap Recommend::getImage(QString url) {
     QByteArray imgData = reply->readAll();
     coverImg = new QPixmap;
     coverImg->loadFromData(imgData);
-    return *coverImg;
+    return coverImg;
 }
 
 bool Recommend::eventFilter(QObject *o, QEvent *e) {

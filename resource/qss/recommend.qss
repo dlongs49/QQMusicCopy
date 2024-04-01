@@ -1,9 +1,10 @@
-QWidget#recomImgBox,QWidget#treaImgBox {
-    border-radius: 3px;
+QLabel#recomImgBox,QLabel#treaImgBox {
+    border-radius: 6px;
     background: #eee;
 }
 
 QWidget#maskBox {
+    border-radius: 6px;
     background: rgba(0, 0, 0, 0.589);
 }
 
