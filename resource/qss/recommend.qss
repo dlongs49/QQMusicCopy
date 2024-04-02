@@ -1,4 +1,6 @@
-QLabel#recomImgBox,QLabel#treaImgBox {
+QLabel#recomImgBox,
+QLabel#treaImgBox,
+QLabel#everyImgBox {
     border-radius: 6px;
     background: #eee;
 }
@@ -22,14 +24,17 @@ QLabel#title {
     color: #333;
     padding-left: 30px;
 }
-QLabel#playCount{
+
+QLabel#playCount {
     color: #fff;
     font-size: 13px;
 }
-QLabel#songsTit{
+
+QLabel#songsTit {
     font-size: 13px;
 }
-QLabel#authorTit{
+
+QLabel#authorTit {
     font-size: 12px;
     color: #4e4e4e;
 }

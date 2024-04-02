@@ -85,6 +85,7 @@ private:
     QWidget *recomBox;
     QWidget *recomItemBox[20];
     QWidget *treaItemBox[20];
+    QWidget *everyItemBox[20];
     QWidget *maskBox;
     QWidget *recomScrollBox;
     QWidget *recomConBox;

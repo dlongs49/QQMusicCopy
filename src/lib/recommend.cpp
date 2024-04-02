@@ -416,20 +416,20 @@ void Recommend::RecommListen() {
     QList<QString> txtList;
     imgList << "http://y.qq.com/music/photo_new/T002R300x300M000004RlJ4h0SOy7o_1.jpg?max_age=2592000";
     for (int i = 0; i < imgList.size(); ++i) {
-        treaItemBox[i] = new QWidget(recomBox);
-        treaItemBox[i]->setFixedSize(240,66);
-        treaItemBox[i]->setObjectName("listenBox");
-        treaItemBox[i]->setStyleSheet("QWidget#listenBox{background:#eee;border-radius:6px;}");
+        everyItemBox[i] = new QWidget(recomBox);
+        everyItemBox[i]->setFixedSize(240,66);
+        everyItemBox[i]->setObjectName("listenBox");
+        everyItemBox[i]->setStyleSheet("QWidget#listenBox{background:#eee;border-radius:6px;}");
         listenLayout = new QHBoxLayout;
         listenLayout->setSpacing(0);
         listenLayout->setMargin(0);
         listenLayout->setAlignment(Qt::AlignVCenter|Qt::AlignLeft);
 
-        recomImgBox = new QLabel(treaItemBox[i]);
+        recomImgBox = new QLabel(everyItemBox[i]);
         recomImgBox->setFixedSize(50, 50);
         recomImgBox->setCursor(Qt::PointingHandCursor);
         recomImgBox->setScaledContents(true);
-        recomImgBox->setObjectName("treaImgBox");
+        recomImgBox->setObjectName("everyImgBox");
         recomImgBox->setProperty("index", i);
         recomAttrList.append("treaImgBox" + QString::number(i));
         recomImgBox->installEventFilter(this);
@@ -453,8 +453,8 @@ void Recommend::RecommListen() {
         rightLayout = new QVBoxLayout;
         rightLayout->setMargin(0);
         rightLayout->setSpacing(0);
-        rightBox = new QWidget(treaItemBox[i]);
-        rightBox->setFixedSize(treaItemBox[i]->width() -76,recomImgBox->height());
+        rightBox = new QWidget(everyItemBox[i]);
+        rightBox->setFixedSize(everyItemBox[i]->width() -76,recomImgBox->height());
         rightBox->setLayout(rightLayout);
 //        rightBox->setStyleSheet("background:#ff0");
 
@@ -472,7 +472,7 @@ void Recommend::RecommListen() {
         recomTit->setText("五彩湖泊");
         recomTit->setFixedSize(recomTit->sizeHint().width(),recomTit->sizeHint().height());
         songsLayout->addWidget(recomTit);
-
+        qDebug() << recomTit->font();
 
         idenLabel = new QLabel;
         idenLabel->setObjectName("playBox");
@@ -520,46 +520,46 @@ void Recommend::RecommListen() {
         listenLayout->addWidget(recomImgBox);
         listenLayout->addSpacing(10);
         listenLayout->addWidget(rightBox);
-        treaItemBox[i]->setLayout(listenLayout);
+        everyItemBox[i]->setLayout(listenLayout);
         int r = floor(i / 6) + 1;
         int c = (i % 6) + 1;
-        qDebug() << r <<c;
-        treaLayout->addWidget(treaItemBox[i], r, c);
+//        qDebug() << r <<c;
+        treaLayout->addWidget(everyItemBox[i], r, c);
         treaLayout->setSpacing(25);
     }
 
-    leftArrow[1] = new QLabel;
-    leftArrow[1]->setObjectName("leftArrow[1]");
-    leftArrow[1]->installEventFilter(this);
-    leftArrow[1]->setFixedSize(30, 38);
-    leftArrow[1]->setCursor(Qt::PointingHandCursor);
-    leftArrowPix[1] = new QPixmap;
-    leftArrowPix[1]->load(":/resource/images/br_lf_arrow.png");
-    leftArrow[1]->setPixmap(*leftArrowPix[1]);
-    leftArrow[1]->setScaledContents(true);
-    leftArrow[1]->setVisible(false);
-    QSizePolicy policy_lf = leftArrow[1]->sizePolicy();
+    leftArrow[2] = new QLabel;
+    leftArrow[2]->setObjectName("leftArrow[2]");
+    leftArrow[2]->installEventFilter(this);
+    leftArrow[2]->setFixedSize(30, 38);
+    leftArrow[2]->setCursor(Qt::PointingHandCursor);
+    leftArrowPix[2] = new QPixmap;
+    leftArrowPix[2]->load(":/resource/images/br_lf_arrow.png");
+    leftArrow[2]->setPixmap(*leftArrowPix[2]);
+    leftArrow[2]->setScaledContents(true);
+    leftArrow[2]->setVisible(false);
+    QSizePolicy policy_lf = leftArrow[2]->sizePolicy();
     policy_lf.setRetainSizeWhenHidden(true);
-    leftArrow[1]->setSizePolicy(policy_lf);
-    recomLayout->addWidget(leftArrow[1]);
+    leftArrow[2]->setSizePolicy(policy_lf);
+    recomLayout->addWidget(leftArrow[2]);
 
 
     recomLayout->addWidget(recomScrollBox);
 
-    rightArrow[1] = new QLabel;
-    rightArrow[1]->setObjectName("rightArrow[1]");
-    rightArrow[1]->installEventFilter(this);
-    rightArrow[1]->setFixedSize(30, 38);
-    rightArrow[1]->setCursor(Qt::PointingHandCursor);
-    rightArrowPix[1] = new QPixmap;
-    rightArrowPix[1]->load(":/resource/images/br_rh_arrow.png");
-    rightArrow[1]->setPixmap(*rightArrowPix[1]);
-    rightArrow[1]->setScaledContents(true);
-    rightArrow[1]->setVisible(false);
-    QSizePolicy policy = rightArrow[1]->sizePolicy();
+    rightArrow[2] = new QLabel;
+    rightArrow[2]->setObjectName("rightArrow[2]");
+    rightArrow[2]->installEventFilter(this);
+    rightArrow[2]->setFixedSize(30, 38);
+    rightArrow[2]->setCursor(Qt::PointingHandCursor);
+    rightArrowPix[2] = new QPixmap;
+    rightArrowPix[2]->load(":/resource/images/br_rh_arrow.png");
+    rightArrow[2]->setPixmap(*rightArrowPix[2]);
+    rightArrow[2]->setScaledContents(true);
+    rightArrow[2]->setVisible(false);
+    QSizePolicy policy = rightArrow[2]->sizePolicy();
     policy.setRetainSizeWhenHidden(true);
-    rightArrow[1]->setSizePolicy(policy);
-    recomLayout->addWidget(rightArrow[1]);
+    rightArrow[2]->setSizePolicy(policy);
+    recomLayout->addWidget(rightArrow[2]);
     layout->addWidget(recomOutBox);
 }
 QPixmap* Recommend::getImage(QString url) {
