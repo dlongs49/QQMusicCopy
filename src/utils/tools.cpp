@@ -38,3 +38,11 @@ QString Tools::textElps(QString text,int width,QFont font){
     }
     return text;
 }
+QFont Tools::aliIcon(){
+    QFontDatabase fdb;
+    int fontId = fdb.addApplicationFont(":/resource/iconfont.ttf");
+    QString fontName = fdb.applicationFontFamilies(fontId).at(0);
+    QFont iconFont = QFont(fontName);
+    iconFont.setHintingPreference(QFont::PreferNoHinting);
+    return iconFont;
+}

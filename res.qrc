@@ -42,6 +42,8 @@
 
 
 
+        <file>resource/iconfont.ttf</file>
+
         <file>resource/qss/style.qss</file>
         <file>resource/qss/hotSearch.qss</file>
         <file>resource/qss/topMenu.qss</file>

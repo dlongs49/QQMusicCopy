@@ -8,6 +8,7 @@
 #include <QSize>
 #include <QFont>
 #include <QFontMetrics>
+#include <QFontDatabase>
 
 class Tools : public QWidget {
 Q_OBJECT
@@ -20,6 +21,7 @@ public slots:
 
     QPixmap imgPixRadius(QPixmap *pix, QSize size,int radius);
     QString textElps(QString text,int width,QFont font);
+    QFont aliIcon();
 private:
 };
 
