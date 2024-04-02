@@ -506,11 +506,8 @@ void Recommend::RecommListen() {
         loveBox = new QLabel;
         loveBox->setCursor(Qt::PointingHandCursor);
         loveBox->setFont(tools->aliIcon());
-//        loveBox->setStyleSheet("font-family: iconfont");
-
         loveBox->setText(QChar(0xe86f));
         loveBox->setObjectName("loveBox");
-        loveBox->setFixedSize(19, 19);
         floatLayout->addWidget(loveBox);
         floatLayout->addSpacing(10);
 

@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft YaHei', 'iconfont';
+}
+
 QLabel#recomImgBox,
 QLabel#treaImgBox,
 QLabel#everyImgBox {
@@ -8,9 +14,11 @@ QLabel#everyImgBox {
 QWidget#everyItemBox {
     border-radius: 6px;
 }
+
 QWidget#everyItemBox:hover {
     background: #efefef;
 }
+
 QWidget#maskBox {
     border-radius: 6px;
     background: rgba(0, 0, 0, 0.589);
@@ -43,4 +51,10 @@ QLabel#songsTit {
 QLabel#authorTit {
     font-size: 12px;
     color: #4e4e4e;
+}
+QLabel#loveBox{
+    font-size: 18px;
+}
+QLabel#loveBox:hover{
+    color: #10da67;
 }
