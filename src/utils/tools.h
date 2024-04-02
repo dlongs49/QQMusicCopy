@@ -6,6 +6,8 @@
 #include <QPainterPath>
 #include <QPixmap>
 #include <QSize>
+#include <QFont>
+#include <QFontMetrics>
 
 class Tools : public QWidget {
 Q_OBJECT
@@ -17,7 +19,7 @@ public slots:
     QPixmap hoverPixColor(QPixmap *pix, QString color);
 
     QPixmap imgPixRadius(QPixmap *pix, QSize size,int radius);
-
+    QString textElps(QString text,int width,QFont font);
 private:
 };
 

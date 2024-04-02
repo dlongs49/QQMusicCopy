@@ -469,10 +469,10 @@ void Recommend::RecommListen() {
 
         recomTit = new QLabel;
         recomTit->setObjectName("songsTit");
-        recomTit->setText("五彩湖泊");
+        QString recomTxt = tools->textElps("五彩湖泊",40,recomTit->font());
+        recomTit->setText(recomTxt);
         recomTit->setFixedSize(recomTit->sizeHint().width(),recomTit->sizeHint().height());
         songsLayout->addWidget(recomTit);
-        qDebug() << recomTit->font();
 
         idenLabel = new QLabel;
         idenLabel->setObjectName("playBox");

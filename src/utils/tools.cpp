@@ -29,3 +29,12 @@ QPixmap Tools::imgPixRadius(QPixmap *pix,QSize size,int raidus){
     painter->end();
     return destImage;
 }
+// 文字过长省略三个点
+QString Tools::textElps(QString text,int width,QFont font){
+    QFontMetrics metrics(font);
+    if(metrics.width(text) > width)
+    {
+        text= QFontMetrics(font).elidedText(text, Qt::ElideRight, width);
+    }
+    return text;
+}
