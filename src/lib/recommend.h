@@ -98,6 +98,7 @@ private:
     QVBoxLayout *guessLayout;
     QVBoxLayout *rightLayout;
     QGridLayout *treaLayout;
+    QGridLayout *gridLayout;
     QHBoxLayout *recomLayout;
     QHBoxLayout *recomConLayout;
     QHBoxLayout *titLayout;

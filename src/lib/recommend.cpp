@@ -39,7 +39,7 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
 void Recommend::RecommTop() {
     recomOutBox = new QWidget(widget);
     recomOutBox->setFixedWidth(810);
-    recomOutBox->setFixedHeight(240);
+    recomOutBox->setFixedHeight(246);
     recomOutLayout = new QVBoxLayout;
     recomOutLayout->setSpacing(0);
     recomOutLayout->setMargin(0);
@@ -54,6 +54,7 @@ void Recommend::RecommTop() {
     recomBox->setFixedSize(recomOutBox->width(), 218);
     recomBox->installEventFilter(this);
     recomBox->setObjectName("recomBox");
+    recomOutLayout->addSpacing(6);
     recomOutLayout->addWidget(recomBox);
 
     recomLayout = new QHBoxLayout;
@@ -217,11 +218,11 @@ void Recommend::RecommTrea() {
     title->setText("你的歌单宝藏库");
     recomOutLayout->addWidget(title);
 
-
     recomBox = new QWidget(recomOutBox);
     recomBox->setFixedSize(recomOutBox->width(), 460);
     recomBox->installEventFilter(this);
     recomBox->setObjectName("treaBox");
+    recomOutLayout->addSpacing(6);
     recomOutLayout->addWidget(recomBox);
 
     recomLayout = new QHBoxLayout;
@@ -314,7 +315,6 @@ void Recommend::RecommTrea() {
         treaItemBox[i]->setLayout(recomItemLayout);
         int r = floor(i / 6) + 1;
         int c = (i % 6) + 1;
-        qDebug() << r <<c;
         treaLayout->addWidget(treaItemBox[i], r, c);
         treaLayout->setSpacing(25);
     }
@@ -382,14 +382,14 @@ void Recommend::RecommListen() {
     titPlay->setPixmap(titPlayPix);
     titPlay->setScaledContents(true);
     titLayout->addWidget(titPlay);
-
     recomOutLayout->addWidget(titleBox);
 
 
     recomBox = new QWidget(recomOutBox);
     recomBox->setFixedSize(recomOutBox->width(), 460);
     recomBox->installEventFilter(this);
-    recomBox->setObjectName("treaBox");
+    recomBox->setObjectName("listenBox");
+    recomOutLayout->addSpacing(15);
     recomOutLayout->addWidget(recomBox);
 
     recomLayout = new QHBoxLayout;
@@ -402,24 +402,34 @@ void Recommend::RecommListen() {
     recomScrollBox->setFixedSize(recomBox->width() - 70, recomBox->height());
     recomScrollBox->setObjectName("recomScrollBox");
 
-    treaLayout = new QGridLayout;
-    treaLayout->setSpacing(0);
-    treaLayout->setMargin(0);
-    treaLayout->setAlignment(Qt::AlignLeft);
+    gridLayout = new QGridLayout;
+    gridLayout->setSpacing(0);
+    gridLayout->setMargin(0);
+    gridLayout->setAlignment(Qt::AlignLeft);
 
     recomConBox = new QWidget(recomScrollBox);
-    recomConBox->setLayout(treaLayout);
+    recomConBox->setLayout(gridLayout);
     moveAnimation = new QPropertyAnimation(recomConBox, "geometry");
     moveAnimation->setDuration(300);
-
     QList<QString> imgList;
     QList<QString> txtList;
-    imgList << "http://y.qq.com/music/photo_new/T002R300x300M000004RlJ4h0SOy7o_1.jpg?max_age=2592000";
+    imgList << "http://y.qq.com/music/photo_new/T002R300x300M000004RlJ4h0SOy7o_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000004RlJ4h0SOy7o_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000004RlJ4h0SOy7o_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000004RlJ4h0SOy7o_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000004RlJ4h0SOy7o_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000004RlJ4h0SOy7o_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000004RlJ4h0SOy7o_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000004RlJ4h0SOy7o_1.jpg?max_age=2592000"
+            << "http://y.qq.com/music/photo_new/T002R300x300M000004RlJ4h0SOy7o_1.jpg?max_age=2592000"
+    ;
     for (int i = 0; i < imgList.size(); ++i) {
         everyItemBox[i] = new QWidget(recomBox);
+        everyItemBox[i]->installEventFilter(this);
         everyItemBox[i]->setFixedSize(240,66);
-        everyItemBox[i]->setObjectName("listenBox");
-        everyItemBox[i]->setStyleSheet("QWidget#listenBox{background:#eee;border-radius:6px;}");
+        everyItemBox[i]->setObjectName("everyItemBox");
+        everyItemBox[i]->setProperty("index", i);
+        recomAttrList.append("treaImgBox" + QString::number(i));
         listenLayout = new QHBoxLayout;
         listenLayout->setSpacing(0);
         listenLayout->setMargin(0);
@@ -430,9 +440,6 @@ void Recommend::RecommListen() {
         recomImgBox->setCursor(Qt::PointingHandCursor);
         recomImgBox->setScaledContents(true);
         recomImgBox->setObjectName("everyImgBox");
-        recomImgBox->setProperty("index", i);
-        recomAttrList.append("treaImgBox" + QString::number(i));
-        recomImgBox->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
         recomImgBox->setPixmap(tools->imgPixRadius(getImage(imgList[i]),getImage(imgList[i])->size(),6));
 
@@ -448,7 +455,7 @@ void Recommend::RecommListen() {
         QPixmap playPix(":/resource/images/play_white.png");
         playBox->setPixmap(playPix);
         playBox->setScaledContents(true);
-        playBox->move(15, 15);
+        playBox->move(17, 17);
 
         rightLayout = new QVBoxLayout;
         rightLayout->setMargin(0);
@@ -521,11 +528,11 @@ void Recommend::RecommListen() {
         listenLayout->addSpacing(10);
         listenLayout->addWidget(rightBox);
         everyItemBox[i]->setLayout(listenLayout);
-        int r = floor(i / 6) + 1;
-        int c = (i % 6) + 1;
+        int r = floor(i / 3) + 1;
+        int c = (i % 3) + 1;
 //        qDebug() << r <<c;
-        treaLayout->addWidget(everyItemBox[i], r, c);
-        treaLayout->setSpacing(25);
+        gridLayout->addWidget(everyItemBox[i], r, c);
+        gridLayout->setHorizontalSpacing(10);
     }
 
     leftArrow[2] = new QLabel;
@@ -687,7 +694,25 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
             }
         }
     }
+    if (o->objectName() == "everyItemBox") {
+        int i = o->property("index").toInt();
+        QWidget *mask = everyItemBox[i]->findChild<QWidget *>("maskBox");
+        QLabel *play_box = everyItemBox[i]->findChild<QLabel *>("playBox");
 
+        if (e->type() == QEvent::Enter) {
+            if (play_box) {
+                play_box->setVisible(true);
+                mask->setVisible(true);
+            }
+        }
+        if (e->type() == QEvent::Leave) {
+            if (play_box) {
+                play_box->setVisible(false);
+                mask->setVisible(false);
+            }
+
+        }
+    }
 
     if (e->type() == QEvent::MouseButtonPress) {
         QMouseEvent *mouseEvent = (QMouseEvent *) e;
