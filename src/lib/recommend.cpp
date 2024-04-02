@@ -449,12 +449,10 @@ void Recommend::RecommListen() {
         maskBox->setVisible(false);
 
         playBox = new QLabel(recomImgBox);
-        playBox->setObjectName("playBox");
+        playBox->setObjectName("listenPlay");
         playBox->setVisible(false);
-        playBox->setFixedSize(16, 16);
-        QPixmap playPix(":/resource/images/play_white.png");
-        playBox->setPixmap(playPix);
-        playBox->setScaledContents(true);
+        playBox->setFont(tools->aliIcon());
+        playBox->setText(QChar(0xea83));
         playBox->move(17, 17);
 
         rightLayout = new QVBoxLayout;
@@ -476,14 +474,14 @@ void Recommend::RecommListen() {
 
         recomTit = new QLabel;
         recomTit->setObjectName("songsTit");
-        QString recomTxt = tools->textElps("五彩湖泊",40,recomTit->font());
+        QString recomTxt = tools->textElps("五彩湖泊五彩湖泊五彩湖泊五彩湖泊",110,recomTit->font());
         recomTit->setText(recomTxt);
         recomTit->setFixedSize(recomTit->sizeHint().width(),recomTit->sizeHint().height());
         songsLayout->addWidget(recomTit);
 
         idenLabel = new QLabel;
-        idenLabel->setObjectName("playBox");
-        idenLabel->setFixedSize(36, 12);
+        idenLabel->setObjectName("idenLabel");
+        idenLabel->setFixedSize(34, 14);
         QPixmap idenPix(":/resource/images/sound.png");
         idenLabel->setPixmap(idenPix);
         idenLabel->setScaledContents(true);
@@ -499,25 +497,26 @@ void Recommend::RecommListen() {
         floatLayout = new QHBoxLayout;
         floatLayout->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
         floatBox = new QWidget(rightBox);
+        floatBox->setObjectName("floatBox");
+        floatBox->setVisible(false);
         floatBox->setFixedHeight(rightBox->height());
         floatBox->move(rightBox->width() - 100,0);
         floatBox->setLayout(floatLayout);
 
         loveBox = new QLabel;
         loveBox->setCursor(Qt::PointingHandCursor);
+        loveBox->setObjectName("loveBox");
         loveBox->setFont(tools->aliIcon());
         loveBox->setText(QChar(0xe86f));
-        loveBox->setObjectName("loveBox");
         floatLayout->addWidget(loveBox);
         floatLayout->addSpacing(10);
 
         moreBox = new QLabel;
         moreBox->setCursor(Qt::PointingHandCursor);
         moreBox->setObjectName("moreBox");
-        moreBox->setFixedSize(19, 19);
-        QPixmap morePix(":/resource/images/more.png");
-        moreBox->setPixmap(morePix);
-        moreBox->setScaledContents(true);
+        moreBox->setFont(tools->aliIcon());
+        moreBox->setText(QChar(0xe60f));
+        floatLayout->addWidget(moreBox);
         floatLayout->addWidget(moreBox);
 
 
@@ -695,18 +694,25 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
     if (o->objectName() == "everyItemBox") {
         int i = o->property("index").toInt();
         QWidget *mask = everyItemBox[i]->findChild<QWidget *>("maskBox");
-        QLabel *play_box = everyItemBox[i]->findChild<QLabel *>("playBox");
+        QLabel *play_box = everyItemBox[i]->findChild<QLabel *>("listenPlay");
+        QWidget *float_box = everyItemBox[i]->findChild<QWidget *>("floatBox");
+        QLabel *iden_label = everyItemBox[i]->findChild<QLabel *>("idenLabel");
+        QLabel *songs_tit = everyItemBox[i]->findChild<QLabel *>("songsTit");
 
         if (e->type() == QEvent::Enter) {
             if (play_box) {
                 play_box->setVisible(true);
                 mask->setVisible(true);
+                float_box->setVisible(true);
+                iden_label->setVisible(false);
             }
         }
         if (e->type() == QEvent::Leave) {
             if (play_box) {
                 play_box->setVisible(false);
                 mask->setVisible(false);
+                float_box->setVisible(false);
+                iden_label->setVisible(true);
             }
 
         }
