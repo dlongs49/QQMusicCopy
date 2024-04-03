@@ -71,9 +71,9 @@ void SettMenu::loadGradItem() {
 
         if (i == 9) {
             newLabel = new QLabel(gradItem[9]);
-            newLabel->setObjectName("newTitle");
-            newLabel->setText("new");
-            newLabel->setAlignment(Qt::AlignCenter);
+            QPixmap newPix(":/resource/images/new.png");
+            newLabel->setScaledContents(true);
+            newLabel->setPixmap(newPix);
             newLabel->setGeometry(43, 3, 30, 12);
         }
 

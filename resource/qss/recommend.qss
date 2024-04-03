@@ -11,9 +11,13 @@ QLabel#everyImgBox {
     background: #eee;
 }
 
+QLabel#leftArrow_0,
+QLabel#rightArrow_0,
 QLabel#leftArrow_1,
-QLabel#rightArrow_1 {
-    color: #515151;
+QLabel#rightArrow_1,
+QLabel#leftArrow_2,
+QLabel#rightArrow_2 {
+    color: #7e7e7e;
     font-size: 38px;
 }
 
@@ -40,7 +44,16 @@ QLabel#title {
     color: #333;
     padding-left: 30px;
 }
-
+QLabel#tit_playBox{
+    font-size: 15px;
+    border-radius: 15px;
+    color: #000;
+    background: #dedede;
+}
+QLabel#tit_playBox:hover{
+    color: #10da67;
+    background: #e1f2ed;
+}
 QLabel#playCount {
     color: #fff;
     font-size: 13px;
@@ -76,6 +89,8 @@ QLabel#moreBox:hover,
 QLabel#leftArrow_0:hover,
 QLabel#rightArrow_0:hover,
 QLabel#leftArrow_1:hover,
-QLabel#rightArrow_1:hover {
+QLabel#rightArrow_1:hover,
+QLabel#leftArrow_2:hover,
+QLabel#rightArrow_2:hover {
     color: #10da67;
 }
