@@ -20,6 +20,7 @@
 #include <QDebug>
 #include <QEvent>
 #include <QList>
+#include <cmath>
 #include "../../utils/tools.h"
 class SettMenu : public QWidget {
 Q_OBJECT;

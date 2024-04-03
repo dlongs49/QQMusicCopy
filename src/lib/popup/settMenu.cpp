@@ -80,17 +80,10 @@ void SettMenu::loadGradItem() {
         gradItemLayout->addSpacing(6);
         gradItemLayout->addWidget(txtLabel);
         gradItem[i]->setLayout(gradItemLayout);
+        int r = floor(i / 3) + 1;
+        int c = (i % 3) + 1;
+        gradLayout->addWidget(gradItem[i], r, c);
     }
-    gradLayout->addWidget(gradItem[0], 1, 1);
-    gradLayout->addWidget(gradItem[1], 1, 2);
-    gradLayout->addWidget(gradItem[2], 1, 3);
-    gradLayout->addWidget(gradItem[3], 2, 1);
-    gradLayout->addWidget(gradItem[4], 2, 2);
-    gradLayout->addWidget(gradItem[5], 2, 3);
-    gradLayout->addWidget(gradItem[6], 3, 1);
-    gradLayout->addWidget(gradItem[7], 3, 2);
-    gradLayout->addWidget(gradItem[8], 3, 3);
-    gradLayout->addWidget(gradItem[9], 4, 1);
 
     gridWidget->setLayout(gradLayout);
     mainLayout->addSpacing(11);
