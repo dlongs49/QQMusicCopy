@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft YaHei', 'iconfont';
+}
+
 QFrame#searchFrame {
     background: #fff;
     border-radius: 6px;
@@ -5,6 +11,19 @@ QFrame#searchFrame {
 
 QLabel#gradItem:hover {
     background: #eee;
+}
+
+QLabel#leftIcon,
+QLabel#outIcon {
+    font-size: 18px;
+    color: #515151;
+}
+QLabel#outIcon{
+    color: #ffa1a1;
+}
+QLabel#arrowIcon {
+    font-size: 12px;
+    color: #818181;
 }
 
 QLabel#txt {

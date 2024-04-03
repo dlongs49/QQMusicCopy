@@ -21,7 +21,7 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     scrollArea = new QScrollArea(this);
     scrollArea->setAlignment(Qt::AlignTop);
     scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    scrollArea->setGeometry(0, 0, 820, 600);
+    scrollArea->setGeometry(0, 0, 820, 800);
     scrollArea->setWidget(widget);
     scrollArea->setWidgetResizable(false);
 

@@ -1,6 +1,58 @@
-QWidget#topMenuBox{
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft YaHei', 'iconfont';
+}
+
+QLabel#right_arrow,
+QLabel#left_arrow,
+QLabel#down_arrow,
+QLabel#vip,
+QLabel#skin,
+QLabel#setting,
+QLabel#recover,
+QLabel#maxim,
+QLabel#close {
+    color: #777777;
+    font-size: 19px;
+}
+QLabel#listen_music,
+QLabel#down_arrow,
+QLabel#vip,
+QLabel#minim {
+    color: #979797;
+}
+
+QLabel#refresh,
+QLabel#minim {
+    color: #979797;
+    font-size: 21px;
+}
+
+QLabel#listen_music {
+    font-size: 26px;
+}
+
+QLabel#left_arrow:hover,
+QLabel#right_arrow:hover,
+QLabel#refresh:hover,
+QLabel#listen_music:hover,
+QLabel#down_arrow:hover,
+QLabel#vip:hover,
+QLabel#skin:hover,
+QLabel#setting:hover,
+QLabel#recover:hover,
+QLabel#minim:hover,
+QLabel#maxim:hover,
+QLabel#close:hover {
+    color: #31c27c;
+}
+
+
+QWidget#topMenuBox {
     background: #fff;
 }
+
 QWidget#searchBox {
     border-radius: 16px;
     background-color: #e3e3e3;
@@ -10,17 +62,20 @@ QLabel#packHolder {
     color: #999;
     font-size: 12px;
 }
-QLineEdit#searInput{
+
+QLineEdit#searInput {
     font-size: 13px;
     background: transparent;
     border: none;
     outline: none;
 }
-QLabel#avator{
-    border-radius:13px;
+
+QLabel#avator {
+    border-radius: 13px;
     background: #fff;
 }
-QLabel#uname{
+
+QLabel#uname {
     color: #666;
     font-size: 12px;
 }

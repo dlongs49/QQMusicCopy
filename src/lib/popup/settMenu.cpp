@@ -6,6 +6,7 @@
 
 SettMenu::SettMenu(QWidget *parent) : QWidget(parent) {
     loadQSS();
+    tools = new Tools();
     this->hide();
     int h = 596;
     this->setGeometry(500, 44, w + 18, h + 18);
@@ -114,21 +115,22 @@ void SettMenu::loadMiddleItem() {
         itemLayout = new QHBoxLayout;
 
         leftIcon = new QLabel(middLabel[i]);
-        leftIcon->setScaledContents(true);
+        leftIcon->setObjectName("leftIcon");
         leftIcon->setGeometry(14,7,20,20);
         if (i == 1) {
-            QPixmap leftPix(":/resource/images/blacksett.png");
-            leftIcon->setPixmap(leftPix);
+            leftIcon->setFont(tools->aliIcon());
+            leftIcon->setText(QChar(0xe60d));
         }
 
         titleLabel = new QLabel;
         titleLabel->setObjectName("txt");
         titleLabel->setText(txtList[i]);
         rightIcon = new QLabel;
-        rightIcon->setFixedSize(10, 10);
+        rightIcon->setObjectName("arrowIcon");
         if (i == 0) {
-            QPixmap arrowPix(":/resource/images/right_small_arrow.png");
-            rightIcon->setPixmap(arrowPix);
+            rightIcon->setFont(tools->aliIcon());
+            rightIcon->setText(QChar(0xe601));
+            rightIcon->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
         }
         rightIcon->setScaledContents(true);
         itemLayout->addSpacing(36);
@@ -163,25 +165,26 @@ void SettMenu::loadBottomItem() {
         leftIcon = new QLabel(bottomLabel[i]);
         leftIcon->setScaledContents(true);
         leftIcon->setGeometry(14,7,20,20);
-
         if (i == 0) {
-            QPixmap leftPix(":/resource/images/setting_popup.png");
-            leftIcon->setPixmap(leftPix);
+            leftIcon->setObjectName("leftIcon");
+            leftIcon->setFont(tools->aliIcon());
+            leftIcon->setText(QChar(0xe63a));
         }
         if (i == 4) {
-            QPixmap leftPix(":/resource/images/tips_warn.png");
-            leftIcon->setPixmap(leftPix);
+            leftIcon->setObjectName("outIcon");
+            leftIcon->setFont(tools->aliIcon());
+            leftIcon->setText(QChar(0xe636));
         }
         titleLabel = new QLabel;
         titleLabel->setObjectName("txt");
         titleLabel->setText(txtList[i]);
         rightIcon = new QLabel;
-        rightIcon->setFixedSize(10, 10);
+        rightIcon->setObjectName("arrowIcon");
         if (i == 1) {
-            QPixmap arrowPix(":/resource/images/right_small_arrow.png");
-            rightIcon->setPixmap(arrowPix);
+            rightIcon->setFont(tools->aliIcon());
+            rightIcon->setText(QChar(0xe601));
+            rightIcon->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
         }
-        rightIcon->setScaledContents(true);
         bomItemLayout->addSpacing(36);
         bomItemLayout->addWidget(titleLabel);
         bomItemLayout->addWidget(rightIcon);

@@ -20,7 +20,7 @@
 #include <QDebug>
 #include <QEvent>
 #include <QList>
-
+#include "../../utils/tools.h"
 class SettMenu : public QWidget {
 Q_OBJECT;
 public:
@@ -64,6 +64,7 @@ private:
     QVBoxLayout *gradItemLayout;
     QHBoxLayout *itemLayout;
     QHBoxLayout *bomItemLayout;
+    Tools *tools;
 };
 
 

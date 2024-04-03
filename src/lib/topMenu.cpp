@@ -3,6 +3,8 @@
 TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     installEventFilter(this);
     loadQSS();
+    tools = new Tools();
+
     this->setFixedSize(820,66);
 
     widget = new QWidget(this);
@@ -24,12 +26,9 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     lLabel->setObjectName("left_arrow");
     lLabel->installEventFilter(this);
     lLabel->setCursor(Qt::PointingHandCursor);
-    lLabel->setScaledContents(true);
     lLabel->setFixedSize(26, 26);
-    l_arrowPix = new QPixmap;
-    l_arrowPix->load(leftArrowImgPath);
-    lLabel->setPixmap(*l_arrowPix);
-    lLabel->setStyleSheet("padding:4px;");
+    lLabel->setFont(tools->aliIcon());
+    lLabel->setText(QChar(0xe600));
     lLayout->addSpacing(38);
     lLayout->addWidget(lLabel);
     // 右箭头
@@ -37,12 +36,9 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     rLabel->setObjectName("right_arrow");
     rLabel->installEventFilter(this);
     rLabel->setCursor(Qt::PointingHandCursor);
-    rLabel->setScaledContents(true);
     rLabel->setFixedSize(26, 26);
-    r_arrowPix = new QPixmap;
-    r_arrowPix->load(righArrowImgPath);
-    rLabel->setPixmap(*r_arrowPix);
-    rLabel->setStyleSheet("padding:4px;");
+    rLabel->setFont(tools->aliIcon());
+    rLabel->setText(QChar(0xe601));
     lLayout->addSpacing(10);
     lLayout->addWidget(rLabel);
     // 刷新
@@ -50,11 +46,9 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     refresh->setObjectName("refresh");
     refresh->installEventFilter(this);
     refresh->setCursor(Qt::PointingHandCursor);
-    refresh->setScaledContents(true);
-    refresh->setFixedSize(20, 20);
-    refreshPix = new QPixmap;
-    refreshPix->load(refreshImgPath);
-    refresh->setPixmap(*refreshPix);
+    refresh->setFixedHeight(refresh->sizeHint().height());
+    refresh->setFont(tools->aliIcon());
+    refresh->setText(QChar(0xe65c));
     lLayout->addSpacing(14);
     lLayout->addWidget(refresh);
     lLayout->addSpacing(20);
@@ -94,11 +88,10 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     rimgLabel->setObjectName("listen_music");
     rimgLabel->installEventFilter(this);
     rimgLabel->setCursor(Qt::PointingHandCursor);
-    listenPix = new QPixmap;
-    listenPix->load(listenImgPath);
-    rimgLabel->setPixmap(*listenPix);
-    rimgLabel->setFixedSize(22, 22);
-    rimgLabel->setScaledContents(true);
+    rimgLabel->setFont(tools->aliIcon());
+    rimgLabel->setText(QChar(0xe617));
+    rimgLabel->setFixedSize(30, 30);
+    rimgLabel->setAlignment(Qt::AlignCenter);
     lLayout->addWidget(sWidget);
     lLayout->addSpacing(10);
     lLayout->addWidget(rimgLabel);
@@ -154,55 +147,46 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     vipLabel->setObjectName("vip");
     vipLabel->installEventFilter(this);
     vipLabel->setCursor(Qt::PointingHandCursor);
-    vipLabel->setFixedSize(18, 18);
-    vipLabel->setScaledContents(true);
-    vipPix = new QPixmap;
-    vipPix->load(vipImgPath);
-    vipLabel->setPixmap(*vipPix);
+    vipLabel->setFixedSize(20, 20);
+    vipLabel->setFont(tools->aliIcon());
+    vipLabel->setText(QChar(0xe6a7));
     // 下箭头【切换账号】
     downLabel = new QLabel;
     downLabel->setObjectName("down_arrow");
     downLabel->installEventFilter(this);
     downLabel->setCursor(Qt::PointingHandCursor);
     downLabel->setToolTip("用户信息");
-    downLabel->setFixedSize(18, 18);
-    downLabel->setScaledContents(true);
-    downPix = new QPixmap;
-    downPix->load(downArrowImgPath);
-    downLabel->setPixmap(*downPix);
+    downLabel->setFont(tools->aliIcon());
+    downLabel->setText(QChar(0xe605));
+    downLabel->setFixedSize(20, 20);
+    downLabel->setAlignment(Qt::AlignCenter);
     // 皮肤
     skinLabel = new QLabel;
     skinLabel->setObjectName("skin");
     skinLabel->installEventFilter(this);
     skinLabel->setCursor(Qt::PointingHandCursor);
     skinLabel->setToolTip("换肤");
-    skinLabel->setFixedSize(18, 18);
-    skinLabel->setScaledContents(true);
-    skinPix = new QPixmap;
-    skinPix->load(skinImgPath);
-    skinLabel->setPixmap(*skinPix);
+    skinLabel->setFixedSize(20, 20);
+    skinLabel->setFont(tools->aliIcon());
+    skinLabel->setText(QChar(0xe711));
     // 设置
     settingLabel = new QLabel;
     settingLabel->setObjectName("setting");
     settingLabel->installEventFilter(this);
     settingLabel->setCursor(Qt::PointingHandCursor);
     settingLabel->setToolTip("主菜单");
-    settingLabel->setFixedSize(18, 18);
-    settingLabel->setScaledContents(true);
-    settingPix = new QPixmap;
-    settingPix->load(settingImgPath);
-    settingLabel->setPixmap(*settingPix);
+    settingLabel->setFixedSize(20, 20);
+    settingLabel->setFont(tools->aliIcon());
+    settingLabel->setText(QChar(0xe63d));
     // 恢复
     recoverLabel = new QLabel;
     recoverLabel->setObjectName("recover");
     recoverLabel->installEventFilter(this);
     recoverLabel->setCursor(Qt::PointingHandCursor);
     recoverLabel->setToolTip("开启精简模式");
-    recoverLabel->setFixedSize(18, 18);
-    recoverLabel->setScaledContents(true);
-    recoverPix = new QPixmap;
-    recoverPix->load(recoverImgPath);
-    recoverLabel->setPixmap(*recoverPix);
+    recoverLabel->setFixedSize(20, 20);
+    recoverLabel->setFont(tools->aliIcon());
+    recoverLabel->setText(QChar(0xe638));
 
 
     // 最大化 最小化 关闭 布局
@@ -223,10 +207,9 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     minimizeLabel->setObjectName("minim");
     minimizeLabel->installEventFilter(this);
     minimizeLabel->setGeometry(iconX, 24, 18, 18);
-    minimizeLabel->setScaledContents(true);
-    minimPix = new QPixmap;
-    minimPix->load(minimImgPath);
-    minimizeLabel->setPixmap(*minimPix);
+    minimizeLabel->setAlignment(Qt::AlignCenter);
+    minimizeLabel->setFont(tools->aliIcon());
+    minimizeLabel->setText(QChar(0xe61d));
     opearLayout->addWidget(minimWidget);
     // 最大化
     maximWidget = new QWidget(opearOut);
@@ -237,10 +220,9 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     maximizeLabel->setObjectName("maxim");
     maximizeLabel->installEventFilter(this);
     maximizeLabel->setGeometry(iconX, 24, 18, 18);
-    maximizeLabel->setScaledContents(true);
-    maximPix = new QPixmap;
-    maximPix->load(maximImgPath);
-    maximizeLabel->setPixmap(*maximPix);
+    maximizeLabel->setAlignment(Qt::AlignCenter);
+    maximizeLabel->setFont(tools->aliIcon());
+    maximizeLabel->setText(QChar(0xe652));
     opearLayout->addWidget(maximWidget);
     // 关闭
     closeWidget = new QWidget(opearOut);
@@ -251,10 +233,9 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     closeLabel->setObjectName("close");
     closeLabel->installEventFilter(this);
     closeLabel->setGeometry(iconX, 24, 18, 18);
-    closeLabel->setScaledContents(true);
-    closePix = new QPixmap;
-    closePix->load(closeImgPath);
-    closeLabel->setPixmap(*closePix);
+    closeLabel->setAlignment(Qt::AlignCenter);
+    closeLabel->setFont(tools->aliIcon());
+    closeLabel->setText(QChar(0xe603));
     opearLayout->addWidget(closeWidget);
 
     opearOut->setLayout(opearLayout);
@@ -279,7 +260,6 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     layout->addWidget(lWidget);
     layout->addWidget(rWidget);
 
-    tools = new Tools();
 }
 
 bool TopMenu::eventFilter(QObject *o, QEvent *e) {
@@ -328,114 +308,6 @@ bool TopMenu::eventFilter(QObject *o, QEvent *e) {
         return true;
     }
 
-    // 左箭头
-    if (o->objectName() == "left_arrow") {
-        if (e->type() == QEvent::Enter) {
-            lLabel->setPixmap(tools->hoverPixColor(l_arrowPix, init_color));
-        }
-        if (e->type() == QEvent::Leave) {
-            lLabel->setPixmap(leftArrowImgPath);
-        }
-    }
-    // 右箭头
-    if (o->objectName() == "right_arrow") {
-        if (e->type() == QEvent::Enter) {
-            rLabel->setPixmap(tools->hoverPixColor(r_arrowPix, init_color));
-        }
-        if (e->type() == QEvent::Leave) {
-            rLabel->setPixmap(righArrowImgPath);
-        }
-    }
-    // 刷新
-    if (o->objectName() == "refresh") {
-        if (e->type() == QEvent::Enter) {
-            refresh->setPixmap(tools->hoverPixColor(refreshPix, init_color));
-        }
-        if (e->type() == QEvent::Leave) {
-            refresh->setPixmap(refreshImgPath);
-        }
-    }
-    // 听歌识曲
-    if (o->objectName() == "listen_music") {
-        if (e->type() == QEvent::Enter) {
-            rimgLabel->setPixmap(tools->hoverPixColor(listenPix, init_color));
-        }
-        if (e->type() == QEvent::Leave) {
-            rimgLabel->setPixmap(listenImgPath);
-        }
-    }
-    // 听歌识曲
-    if (o->objectName() == "vip") {
-        if (e->type() == QEvent::Enter) {
-            vipLabel->setPixmap(tools->hoverPixColor(vipPix, init_color));
-        }
-        if (e->type() == QEvent::Leave) {
-            vipLabel->setPixmap(vipImgPath);
-        }
-    }
-    // 下箭头
-    if (o->objectName() == "down_arrow") {
-        if (e->type() == QEvent::Enter) {
-            downLabel->setPixmap(tools->hoverPixColor(downPix, init_color));
-        }
-        if (e->type() == QEvent::Leave) {
-            downLabel->setPixmap(downArrowImgPath);
-        }
-    }
-    // 皮肤
-    if (o->objectName() == "skin") {
-        if (e->type() == QEvent::Enter) {
-            skinLabel->setPixmap(tools->hoverPixColor(skinPix, init_color));
-        }
-        if (e->type() == QEvent::Leave) {
-            skinLabel->setPixmap(skinImgPath);
-        }
-    }
-    // 设置
-    if (o->objectName() == "setting") {
-        if (e->type() == QEvent::Enter) {
-            settingLabel->setPixmap(tools->hoverPixColor(settingPix, init_color));
-        }
-        if (e->type() == QEvent::Leave) {
-            settingLabel->setPixmap(settingImgPath);
-        }
-    }
-    // 设置
-    if (o->objectName() == "recover") {
-        if (e->type() == QEvent::Enter) {
-            recoverLabel->setPixmap(tools->hoverPixColor(recoverPix, init_color));
-        }
-        if (e->type() == QEvent::Leave) {
-            recoverLabel->setPixmap(recoverImgPath);
-        }
-    }
-    // 最小化
-    if (o->objectName() == "minim") {
-        if (e->type() == QEvent::Enter) {
-            minimizeLabel->setPixmap(tools->hoverPixColor(minimPix, init_color));
-        }
-        if (e->type() == QEvent::Leave) {
-            minimizeLabel->setPixmap(minimImgPath);
-        }
-    }
-    // 最大化
-    if (o->objectName() == "maxim") {
-        if (e->type() == QEvent::Enter) {
-            maximizeLabel->setPixmap(tools->hoverPixColor(maximPix, init_color));
-        }
-        if (e->type() == QEvent::Leave) {
-            maximizeLabel->setPixmap(maximImgPath);
-        }
-    }
-    // 关闭
-    if (o->objectName() == "close") {
-        if (e->type() == QEvent::Enter) {
-            closeLabel->setPixmap(tools->hoverPixColor(closePix, init_color));
-        }
-        if (e->type() == QEvent::Leave) {
-            closeLabel->setPixmap(QPixmap(closeImgPath));
-        }
-    }
 
     return QWidget::eventFilter(o, e);
 }

@@ -2,20 +2,8 @@
     <qresource prefix="/">
         <file>resource/images/test.png</file>
         <file>resource/icon/nav_music.png</file>
-        <file>resource/images/left_arrow.png</file>
-        <file>resource/images/right_arrow.png</file>
-        <file>resource/images/refresh.png</file>
         <file>resource/images/search.png</file>
-        <file>resource/images/listen_music.png</file>
         <file>resource/images/logo.png</file>
-        <file>resource/images/vip.png</file>
-        <file>resource/images/down_arrow.png</file>
-        <file>resource/images/skin.png</file>
-        <file>resource/images/setting.png</file>
-        <file>resource/images/recover.png</file>
-        <file>resource/images/minim.png</file>
-        <file>resource/images/maxim.png</file>
-        <file>resource/images/close.png</file>
         <file>resource/images/no_search_his.png</file>
         <file>resource/images/phone.png</file>
         <file>resource/images/audio.png</file>
@@ -27,10 +15,6 @@
         <file>resource/images/message.png</file>
         <file>resource/images/earprint.png</file>
         <file>resource/images/micro.png</file>
-        <file>resource/images/blacksett.png</file>
-        <file>resource/images/right_small_arrow.png</file>
-        <file>resource/images/tips_warn.png</file>
-        <file>resource/images/setting_popup.png</file>
         <file>resource/images/play.png</file>
         <file>resource/images/pause.png</file>
         <file>resource/images/sound.png</file>

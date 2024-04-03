@@ -1,7 +1,7 @@
 #include "container.h"
 
 container::container(QWidget *parent) : QWidget(parent) {
-    this->setFixedSize(820, 600);
+    this->setFixedSize(820, 700);
     containerLayout = new QVBoxLayout;
     containerLayout->setSpacing(0);
     containerLayout->setMargin(0);
