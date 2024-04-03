@@ -171,14 +171,12 @@ void Recommend::RecommTop() {
     }
 
     leftArrow[0] = new QLabel;
-    leftArrow[0]->setObjectName("leftArrow[0]");
+    leftArrow[0]->setObjectName("leftArrow_0");
     leftArrow[0]->installEventFilter(this);
     leftArrow[0]->setFixedSize(30, 38);
     leftArrow[0]->setCursor(Qt::PointingHandCursor);
-    leftArrowPix[0] = new QPixmap;
-    leftArrowPix[0]->load(":/resource/images/br_lf_arrow.png");
-    leftArrow[0]->setPixmap(*leftArrowPix[0]);
-    leftArrow[0]->setScaledContents(true);
+    leftArrow[0]->setFont(tools->aliIcon());
+    leftArrow[0]->setText(QChar(0xe6dc));
     leftArrow[0]->setVisible(false);
     QSizePolicy policy_lf = leftArrow[0]->sizePolicy();
     policy_lf.setRetainSizeWhenHidden(true);
@@ -189,14 +187,12 @@ void Recommend::RecommTop() {
     recomLayout->addWidget(recomScrollBox);
 
     rightArrow[0] = new QLabel;
-    rightArrow[0]->setObjectName("rightArrow[0]");
+    rightArrow[0]->setObjectName("rightArrow_0");
     rightArrow[0]->installEventFilter(this);
     rightArrow[0]->setFixedSize(30, 38);
     rightArrow[0]->setCursor(Qt::PointingHandCursor);
-    rightArrowPix[0] = new QPixmap;
-    rightArrowPix[0]->load(":/resource/images/br_rh_arrow.png");
-    rightArrow[0]->setPixmap(*rightArrowPix[0]);
-    rightArrow[0]->setScaledContents(true);
+    rightArrow[0]->setFont(tools->aliIcon());
+    rightArrow[0]->setText(QChar(0xe6dc));
     rightArrow[0]->setVisible(false);
     QSizePolicy policy = rightArrow[0]->sizePolicy();
     policy.setRetainSizeWhenHidden(true);
@@ -593,40 +589,6 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
         if (e->type() == QEvent::Leave) {
             leftArrow[1]->setVisible(false);
             rightArrow[1]->setVisible(false);
-        }
-    }
-    if (o->objectName() == "leftArrow[0]") {
-        if (e->type() == QEvent::Enter) {
-            leftArrow[0]->setPixmap(tools->hoverPixColor(leftArrowPix[0], "#31c27c"));
-        }
-        if (e->type() == QEvent::Leave) {
-            leftArrow[0]->setPixmap(leftArrowImgPath);
-        }
-    }
-
-    if (o->objectName() == "rightArrow[0]") {
-        if (e->type() == QEvent::Enter) {
-            rightArrow[0]->setPixmap(tools->hoverPixColor(rightArrowPix[0], "#31c27c"));
-        }
-        if (e->type() == QEvent::Leave) {
-            rightArrow[0]->setPixmap(righArrowImgPath);
-        }
-    }
-    if (o->objectName() == "leftArrow[1]") {
-        if (e->type() == QEvent::Enter) {
-            leftArrow[1]->setPixmap(tools->hoverPixColor(leftArrowPix[1], "#31c27c"));
-        }
-        if (e->type() == QEvent::Leave) {
-            leftArrow[1]->setPixmap(leftArrowImgPath);
-        }
-    }
-
-    if (o->objectName() == "rightArrow[1]") {
-        if (e->type() == QEvent::Enter) {
-            rightArrow[1]->setPixmap(tools->hoverPixColor(rightArrowPix[1], "#31c27c"));
-        }
-        if (e->type() == QEvent::Leave) {
-            rightArrow[1]->setPixmap(righArrowImgPath);
         }
     }
     if (o->objectName() == "recomImgBox") {
