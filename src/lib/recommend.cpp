@@ -374,15 +374,12 @@ void Recommend::RecommListen() {
     titPlay->setFont(tools->aliIcon());
     titPlay->setText(QChar(0xea83));
     titPlay->setAlignment(Qt::AlignCenter);
-//    QPixmap titPlayPix(":/resource/images/play.png");
-//    titPlay->setPixmap(titPlayPix);
-//    titPlay->setScaledContents(true);
     titLayout->addWidget(titPlay);
     recomOutLayout->addWidget(titleBox);
 
 
     recomBox = new QWidget(recomOutBox);
-    recomBox->setFixedSize(recomOutBox->width(), 460);
+    recomBox->setFixedSize(recomOutBox->width(), 200);
     recomBox->installEventFilter(this);
     recomBox->setObjectName("listenBox");
     recomOutLayout->addSpacing(15);
@@ -531,10 +528,10 @@ void Recommend::RecommListen() {
     leftArrow[2]->setObjectName("leftArrow_2");
     leftArrow[2]->installEventFilter(this);
     leftArrow[2]->setFixedSize(30, 38);
-    leftArrow[1]->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    leftArrow[1]->setCursor(Qt::PointingHandCursor);
-    leftArrow[1]->setFont(tools->aliIcon());
-    leftArrow[1]->setText(QChar(0xea84));
+    leftArrow[2]->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    leftArrow[2]->setCursor(Qt::PointingHandCursor);
+    leftArrow[2]->setFont(tools->aliIcon());
+    leftArrow[2]->setText(QChar(0xea84));
     leftArrow[2]->setVisible(false);
     QSizePolicy policy_lf = leftArrow[2]->sizePolicy();
     policy_lf.setRetainSizeWhenHidden(true);
@@ -548,8 +545,8 @@ void Recommend::RecommListen() {
     rightArrow[2]->installEventFilter(this);
     rightArrow[2]->setFixedSize(30, 38);
     rightArrow[2]->setCursor(Qt::PointingHandCursor);
-    rightArrow[1]->setFont(tools->aliIcon());
-    rightArrow[1]->setText(QChar(0xe63e));
+    rightArrow[2]->setFont(tools->aliIcon());
+    rightArrow[2]->setText(QChar(0xe63e));
     rightArrow[2]->setVisible(false);
     QSizePolicy policy = rightArrow[2]->sizePolicy();
     policy.setRetainSizeWhenHidden(true);
@@ -588,6 +585,16 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
         if (e->type() == QEvent::Leave) {
             leftArrow[1]->setVisible(false);
             rightArrow[1]->setVisible(false);
+        }
+    }
+    if (o->objectName() == "listenBox") {
+        if (e->type() == QEvent::Enter) {
+            leftArrow[2]->setVisible(true);
+            rightArrow[2]->setVisible(true);
+        }
+        if (e->type() == QEvent::Leave) {
+            leftArrow[2]->setVisible(false);
+            rightArrow[2]->setVisible(false);
         }
     }
     if (o->objectName() == "recomImgBox") {
@@ -680,7 +687,7 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
         if (mouseEvent->button() == Qt::LeftButton) {
             int r_width = recomConBox->width();
             int s_width = recomScrollBox->width();
-            if (o->objectName() == "leftArrow[1]") {
+            if (o->objectName() == "leftArrow_1") {
                 if (move_x == 0) {
                     int moveLeft = s_width - r_width;
                     moveAnimation->setStartValue(QRect(move_x, 0, r_width, recomConBox->height()));
@@ -693,7 +700,7 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
                 }
                 moveAnimation->start();
             }
-            if (o->objectName() == "rightArrow[1]") {
+            if (o->objectName() == "rightArrow_1") {
                 if (move_x == 0) {
                     int moveLeft = s_width - r_width;
                     moveAnimation->setStartValue(QRect(move_x, 0, r_width, recomConBox->height()));
