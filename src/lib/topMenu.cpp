@@ -63,11 +63,10 @@ TopMenu::TopMenu(QWidget *parent) : QWidget(parent) {
     sWidget->setFixedSize(search_w, 32);
     sWidget->setObjectName("searchBox");
     simgLabel = new QLabel;
-    QPixmap searchIcon(":/resource/images/search.png");
-    simgLabel->setPixmap(searchIcon);
-    simgLabel->setFixedSize(16, 18);
-    simgLabel->setScaledContents(true);
-    simgLabel->setContentsMargins(0, 2, 0, 0);
+    simgLabel->setObjectName("searchIcon");
+    simgLabel->setFont(tools->aliIcon());
+    simgLabel->setText(QChar(0xe657));
+    simgLabel->setFixedSize(18, 18);
     txtLabel = new QLabel;
     txtLabel->setObjectName("packHolder");
     txtLabel->setText("搜索音乐");
