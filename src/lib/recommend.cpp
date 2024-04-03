@@ -320,14 +320,12 @@ void Recommend::RecommTrea() {
     }
 
     leftArrow[1] = new QLabel;
-    leftArrow[1]->setObjectName("leftArrow[1]");
+    leftArrow[1]->setObjectName("leftArrow_1");
     leftArrow[1]->installEventFilter(this);
     leftArrow[1]->setFixedSize(30, 38);
     leftArrow[1]->setCursor(Qt::PointingHandCursor);
-    leftArrowPix[1] = new QPixmap;
-    leftArrowPix[1]->load(":/resource/images/br_lf_arrow.png");
-    leftArrow[1]->setPixmap(*leftArrowPix[1]);
-    leftArrow[1]->setScaledContents(true);
+    leftArrow[1]->setFont(tools->aliIcon());
+    leftArrow[1]->setText(QChar(0xe6dc));
     leftArrow[1]->setVisible(false);
     QSizePolicy policy_lf = leftArrow[1]->sizePolicy();
     policy_lf.setRetainSizeWhenHidden(true);
@@ -338,14 +336,12 @@ void Recommend::RecommTrea() {
     recomLayout->addWidget(recomScrollBox);
 
     rightArrow[1] = new QLabel;
-    rightArrow[1]->setObjectName("rightArrow[1]");
+    rightArrow[1]->setObjectName("rightArrow_1");
     rightArrow[1]->installEventFilter(this);
     rightArrow[1]->setFixedSize(30, 38);
     rightArrow[1]->setCursor(Qt::PointingHandCursor);
-    rightArrowPix[1] = new QPixmap;
-    rightArrowPix[1]->load(":/resource/images/br_rh_arrow.png");
-    rightArrow[1]->setPixmap(*rightArrowPix[1]);
-    rightArrow[1]->setScaledContents(true);
+    rightArrow[1]->setFont(tools->aliIcon());
+    rightArrow[1]->setText(QChar(0xe6dc));
     rightArrow[1]->setVisible(false);
     QSizePolicy policy = rightArrow[1]->sizePolicy();
     policy.setRetainSizeWhenHidden(true);

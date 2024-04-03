@@ -11,6 +11,12 @@ QLabel#everyImgBox {
     background: #eee;
 }
 
+QLabel#leftArrow_1,
+QLabel#rightArrow_1 {
+    color: #515151;
+    font-size: 38px;
+}
+
 QWidget#everyItemBox {
     border-radius: 6px;
 }
@@ -28,10 +34,6 @@ QLabel#recomTit {
     color: #4e4e4e;
 }
 
-QLabel#recomTit:hover {
-    color: #10da67;
-}
-
 QLabel#title {
     font-size: 16px;
     font-weight: bold;
@@ -47,24 +49,31 @@ QLabel#playCount {
 QLabel#songsTit {
     font-size: 13px;
 }
-QWidget#floatBox{
+
+QWidget#floatBox {
     background: #efefef;
 }
+
 QLabel#authorTit {
     font-size: 12px;
     color: #4e4e4e;
 }
-QLabel#listenPlay{
+
+QLabel#listenPlay {
     color: #fff;
     font-size: 14px;
 }
+
 QLabel#loveBox,
 QLabel#moreBox {
     font-size: 18px;
     color: #4e4e4e;
 }
 
+QLabel#recomTit:hover,
 QLabel#loveBox:hover,
-QLabel#moreBox:hover {
+QLabel#moreBox:hover,
+QLabel#leftArrow_1:hover,
+QLabel#rightArrow_1:hover {
     color: #10da67;
 }
