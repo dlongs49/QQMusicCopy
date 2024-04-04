@@ -3,7 +3,9 @@
     padding: 0;
     font-family: 'Microsoft YaHei', 'iconfont';
 }
-
+QWidget#conbox{
+    background-color: #FFF;
+}
 QLabel#recomImgBox,
 QLabel#treaImgBox,
 QLabel#everyImgBox {
@@ -82,18 +84,8 @@ QLabel#moreBox {
 
 
 
-QLabel#leftArrow_0,
-QLabel#rightArrow_0,
-QLabel#leftArrow_1,
-QLabel#rightArrow_1,
-QLabel#leftArrow_2,
-QLabel#rightArrow_2,
-QLabel#leftArrow_3,
-QLabel#rightArrow_3,
-QLabel#leftArrow_4,
-QLabel#rightArrow_4,
-QLabel#leftArrow_5,
-QLabel#rightArrow_5 {
+.leftArrow,
+.rightArrow {
     color: #7e7e7e;
     font-size: 38px;
 }
@@ -101,17 +93,7 @@ QLabel#rightArrow_5 {
 QLabel#recomTit:hover,
 QLabel#loveBox:hover,
 QLabel#moreBox:hover,
-QLabel#leftArrow_0:hover,
-QLabel#rightArrow_0:hover,
-QLabel#leftArrow_1:hover,
-QLabel#rightArrow_1:hover,
-QLabel#leftArrow_2:hover,
-QLabel#rightArrow_2:hover,
-QLabel#leftArrow_3:hover,
-QLabel#rightArrow_3:hover,
-QLabel#leftArrow_4:hover,
-QLabel#rightArrow_4:hover,
-QLabel#leftArrow_5:hover,
-QLabel#rightArrow_5:hover {
+.leftArrow:hover,
+.rightArrow:hover {
     color: #10da67;
 }

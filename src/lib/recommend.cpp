@@ -7,15 +7,11 @@
 Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     installEventFilter(this);
     loadQSS();
+    tools = new Tools();
+
     this->setFixedSize(820, 2000);
-//    this->setFixedWidth(820);
-//    this->setMinimumHeight(700);
     widget = new QWidget(this);
     widget->setObjectName("conbox");
-    widget->setStyleSheet("QWidget#conbox{background:#fff}");
-    widget->setFixedSize(820, 2000);
-//    widget->setFixedWidth(820);
-//    widget->setMinimumHeight(700);
     layout = new QVBoxLayout;
     layout->setAlignment(Qt::AlignTop | Qt::AlignRight);
     layout->setSpacing(0);
@@ -24,9 +20,9 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     scrollArea = new QScrollArea(this);
     scrollArea->setAlignment(Qt::AlignTop);
     scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    scrollArea->setGeometry(0, 0, 820, 700);
+    scrollArea->setGeometry(0, 0, 820, 500);
     scrollArea->setWidget(widget);
-    scrollArea->setWidgetResizable(false);
+    scrollArea->setWidgetResizable(true);
 
 
     RecommTop();
@@ -37,7 +33,6 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     RecommProgram();
     widget->setLayout(layout);
 
-    tools = new Tools();
 
 }
 
@@ -108,7 +103,6 @@ void Recommend::RecommTop() {
         recomImgBox->setScaledContents(true);
         recomImgBox->setObjectName("recomImgBox");
         recomImgBox->setProperty("index", i);
-        recomAttrList.append("recomImgBox" + QString::number(i));
         recomImgBox->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
         recomImgBox->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 6));
@@ -175,34 +169,10 @@ void Recommend::RecommTop() {
         }
     }
 
-    leftArrow[0] = new QLabel;
-    leftArrow[0]->setObjectName("leftArrow_0");
-    leftArrow[0]->installEventFilter(this);
-    leftArrow[0]->setFixedSize(30, 38);
-    leftArrow[0]->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    leftArrow[0]->setCursor(Qt::PointingHandCursor);
-    leftArrow[0]->setFont(tools->aliIcon());
-    leftArrow[0]->setText(QChar(0xea84));
-    leftArrow[0]->setVisible(false);
-    QSizePolicy policy_lf = leftArrow[0]->sizePolicy();
-    policy_lf.setRetainSizeWhenHidden(true);
-    leftArrow[0]->setSizePolicy(policy_lf);
-    recomLayout->addWidget(leftArrow[0]);
-
+    recomLayout->addWidget(arrowBox(0, "left"));
     recomLayout->addWidget(recomScrollBox);
+    recomLayout->addWidget(arrowBox(0, "right"));
 
-    rightArrow[0] = new QLabel;
-    rightArrow[0]->setObjectName("rightArrow_0");
-    rightArrow[0]->installEventFilter(this);
-    rightArrow[0]->setFixedSize(30, 38);
-    rightArrow[0]->setCursor(Qt::PointingHandCursor);
-    rightArrow[0]->setFont(tools->aliIcon());
-    rightArrow[0]->setText(QChar(0xe63e));
-    rightArrow[0]->setVisible(false);
-    QSizePolicy policy = rightArrow[0]->sizePolicy();
-    policy.setRetainSizeWhenHidden(true);
-    rightArrow[0]->setSizePolicy(policy);
-    recomLayout->addWidget(rightArrow[0]);
     layout->addWidget(recomOutBox);
     layout->addSpacing(30);
 }
@@ -274,7 +244,6 @@ void Recommend::RecommTrea() {
         recomImgBox->setScaledContents(true);
         recomImgBox->setObjectName("treaImgBox");
         recomImgBox->setProperty("index", i);
-        recomAttrList.append("treaImgBox" + QString::number(i));
         recomImgBox->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
         recomImgBox->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 6));
@@ -320,35 +289,10 @@ void Recommend::RecommTrea() {
         treaLayout->setSpacing(25);
     }
 
-    leftArrow[1] = new QLabel;
-    leftArrow[1]->setObjectName("leftArrow_1");
-    leftArrow[1]->installEventFilter(this);
-    leftArrow[1]->setFixedSize(30, 38);
-    leftArrow[1]->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    leftArrow[1]->setCursor(Qt::PointingHandCursor);
-    leftArrow[1]->setFont(tools->aliIcon());
-    leftArrow[1]->setText(QChar(0xea84));
-    leftArrow[1]->setVisible(false);
-    QSizePolicy policy_lf = leftArrow[1]->sizePolicy();
-    policy_lf.setRetainSizeWhenHidden(true);
-    leftArrow[1]->setSizePolicy(policy_lf);
-    recomLayout->addWidget(leftArrow[1]);
-
-
+    recomLayout->addWidget(arrowBox(1, "left"));
     recomLayout->addWidget(recomScrollBox);
+    recomLayout->addWidget(arrowBox(1, "right"));
 
-    rightArrow[1] = new QLabel;
-    rightArrow[1]->setObjectName("rightArrow_1");
-    rightArrow[1]->installEventFilter(this);
-    rightArrow[1]->setFixedSize(30, 38);
-    rightArrow[1]->setCursor(Qt::PointingHandCursor);
-    rightArrow[1]->setFont(tools->aliIcon());
-    rightArrow[1]->setText(QChar(0xe63e));
-    rightArrow[1]->setVisible(false);
-    QSizePolicy policy = rightArrow[1]->sizePolicy();
-    policy.setRetainSizeWhenHidden(true);
-    rightArrow[1]->setSizePolicy(policy);
-    recomLayout->addWidget(rightArrow[1]);
     layout->addWidget(recomOutBox);
     layout->addSpacing(30);
 }
@@ -436,7 +380,6 @@ void Recommend::RecommListen() {
         everyItemBox[i]->setFixedSize(240, 66);
         everyItemBox[i]->setObjectName("everyItemBox");
         everyItemBox[i]->setProperty("index", i);
-        recomAttrList.append("treaImgBox" + QString::number(i));
         listenLayout = new QHBoxLayout;
         listenLayout->setSpacing(0);
         listenLayout->setMargin(0);
@@ -468,14 +411,12 @@ void Recommend::RecommListen() {
         rightBox = new QWidget(everyItemBox[i]);
         rightBox->setFixedSize(everyItemBox[i]->width() - 76, recomImgBox->height());
         rightBox->setLayout(rightLayout);
-//        rightBox->setStyleSheet("background:#ff0");
 
         songsLayout = new QHBoxLayout;
         songsLayout->setMargin(0);
         songsLayout->setSpacing(0);
         songsLayout->setAlignment(Qt::AlignVCenter);
         songsLabel = new QLabel;
-//        songsLabel->setStyleSheet("background:#f0f");
         songsLabel->setLayout(songsLayout);
         rightLayout->addWidget(songsLabel);
 
@@ -498,7 +439,7 @@ void Recommend::RecommListen() {
         authorLabel = new QLabel;
         authorLabel->setCursor(Qt::PointingHandCursor);
         authorLabel->setObjectName("authorTit");
-        authorLabel->setText("衫和"+QString::number(i));
+        authorLabel->setText("衫和" + QString::number(i));
         rightLayout->addWidget(authorLabel);
 
         floatLayout = new QHBoxLayout;
@@ -534,42 +475,18 @@ void Recommend::RecommListen() {
         everyItemBox[i]->setLayout(listenLayout);
         int r = floor(i / 6) + 1;
         int c = (i % 6) + 1;
-        qDebug() << r << c;
         gridLayout->addWidget(everyItemBox[i], r, c);
         gridLayout->setHorizontalSpacing(10);
     }
 
-    leftArrow[2] = new QLabel;
-    leftArrow[2]->setObjectName("leftArrow_2");
-    leftArrow[2]->installEventFilter(this);
-    leftArrow[2]->setFixedSize(30, 38);
-    leftArrow[2]->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    leftArrow[2]->setCursor(Qt::PointingHandCursor);
-    leftArrow[2]->setFont(tools->aliIcon());
-    leftArrow[2]->setText(QChar(0xea84));
-    leftArrow[2]->setVisible(false);
-    QSizePolicy policy_lf = leftArrow[2]->sizePolicy();
-    policy_lf.setRetainSizeWhenHidden(true);
-    leftArrow[2]->setSizePolicy(policy_lf);
-    recomLayout->addWidget(leftArrow[2]);
-
+    recomLayout->addWidget(arrowBox(2, "left"));
     recomLayout->addWidget(recomScrollBox);
+    recomLayout->addWidget(arrowBox(2, "right"));
 
-    rightArrow[2] = new QLabel;
-    rightArrow[2]->setObjectName("rightArrow_2");
-    rightArrow[2]->installEventFilter(this);
-    rightArrow[2]->setFixedSize(30, 38);
-    rightArrow[2]->setCursor(Qt::PointingHandCursor);
-    rightArrow[2]->setFont(tools->aliIcon());
-    rightArrow[2]->setText(QChar(0xe63e));
-    rightArrow[2]->setVisible(false);
-    QSizePolicy policy = rightArrow[2]->sizePolicy();
-    policy.setRetainSizeWhenHidden(true);
-    rightArrow[2]->setSizePolicy(policy);
-    recomLayout->addWidget(rightArrow[2]);
     layout->addWidget(recomOutBox);
     layout->addSpacing(30);
 }
+
 void Recommend::RecommRoam() {
     recomOutBox = new QWidget(widget);
     recomOutBox->setFixedWidth(810);
@@ -638,7 +555,6 @@ void Recommend::RecommRoam() {
         recomImgBox->setScaledContents(true);
         recomImgBox->setObjectName("roamImgBox");
         recomImgBox->setProperty("index", i);
-        recomAttrList.append("treaImgBox" + QString::number(i));
         recomImgBox->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
         recomImgBox->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 6));
@@ -682,38 +598,14 @@ void Recommend::RecommRoam() {
         recomConLayout->setSpacing(25);
     }
 
-    leftArrow[3] = new QLabel;
-    leftArrow[3]->setObjectName("leftArrow_3");
-    leftArrow[3]->installEventFilter(this);
-    leftArrow[3]->setFixedSize(30, 38);
-    leftArrow[3]->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    leftArrow[3]->setCursor(Qt::PointingHandCursor);
-    leftArrow[3]->setFont(tools->aliIcon());
-    leftArrow[3]->setText(QChar(0xea84));
-    leftArrow[3]->setVisible(false);
-    QSizePolicy policy_lf = leftArrow[3]->sizePolicy();
-    policy_lf.setRetainSizeWhenHidden(true);
-    leftArrow[3]->setSizePolicy(policy_lf);
-    recomLayout->addWidget(leftArrow[3]);
-
-
+    recomLayout->addWidget(arrowBox(3, "left"));
     recomLayout->addWidget(recomScrollBox);
+    recomLayout->addWidget(arrowBox(3, "right"));
 
-    rightArrow[3] = new QLabel;
-    rightArrow[3]->setObjectName("rightArrow_3");
-    rightArrow[3]->installEventFilter(this);
-    rightArrow[3]->setFixedSize(30, 38);
-    rightArrow[3]->setCursor(Qt::PointingHandCursor);
-    rightArrow[3]->setFont(tools->aliIcon());
-    rightArrow[3]->setText(QChar(0xe63e));
-    rightArrow[3]->setVisible(false);
-    QSizePolicy policy = rightArrow[3]->sizePolicy();
-    policy.setRetainSizeWhenHidden(true);
-    rightArrow[3]->setSizePolicy(policy);
-    recomLayout->addWidget(rightArrow[3]);
     layout->addWidget(recomOutBox);
     layout->addSpacing(30);
 }
+
 void Recommend::RecommHeartbeat() {
     recomOutBox = new QWidget(widget);
     recomOutBox->setFixedWidth(810);
@@ -797,7 +689,6 @@ void Recommend::RecommHeartbeat() {
         heartItemBox[i]->setFixedSize(240, 66);
         heartItemBox[i]->setObjectName("heartItemBox");
         heartItemBox[i]->setProperty("index", i);
-        recomAttrList.append("treaImgBox" + QString::number(i));
         listenLayout = new QHBoxLayout;
         listenLayout->setSpacing(0);
         listenLayout->setMargin(0);
@@ -829,14 +720,12 @@ void Recommend::RecommHeartbeat() {
         rightBox = new QWidget(heartItemBox[i]);
         rightBox->setFixedSize(heartItemBox[i]->width() - 76, recomImgBox->height());
         rightBox->setLayout(rightLayout);
-//        rightBox->setStyleSheet("background:#ff0");
 
         songsLayout = new QHBoxLayout;
         songsLayout->setMargin(0);
         songsLayout->setSpacing(0);
         songsLayout->setAlignment(Qt::AlignVCenter);
         songsLabel = new QLabel;
-//        songsLabel->setStyleSheet("background:#f0f");
         songsLabel->setLayout(songsLayout);
         rightLayout->addWidget(songsLabel);
 
@@ -859,7 +748,7 @@ void Recommend::RecommHeartbeat() {
         authorLabel = new QLabel;
         authorLabel->setCursor(Qt::PointingHandCursor);
         authorLabel->setObjectName("authorTit");
-        authorLabel->setText("衫和"+QString::number(i));
+        authorLabel->setText("衫和" + QString::number(i));
         rightLayout->addWidget(authorLabel);
 
         floatLayout = new QHBoxLayout;
@@ -895,42 +784,18 @@ void Recommend::RecommHeartbeat() {
         heartItemBox[i]->setLayout(listenLayout);
         int r = floor(i / 6) + 1;
         int c = (i % 6) + 1;
-        qDebug() << r << c;
         gridLayout->addWidget(heartItemBox[i], r, c);
         gridLayout->setHorizontalSpacing(10);
     }
 
-    leftArrow[4] = new QLabel;
-    leftArrow[4]->setObjectName("leftArrow_4");
-    leftArrow[4]->installEventFilter(this);
-    leftArrow[4]->setFixedSize(30, 38);
-    leftArrow[4]->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    leftArrow[4]->setCursor(Qt::PointingHandCursor);
-    leftArrow[4]->setFont(tools->aliIcon());
-    leftArrow[4]->setText(QChar(0xea84));
-    leftArrow[4]->setVisible(false);
-    QSizePolicy policy_lf = leftArrow[4]->sizePolicy();
-    policy_lf.setRetainSizeWhenHidden(true);
-    leftArrow[4]->setSizePolicy(policy_lf);
-    recomLayout->addWidget(leftArrow[4]);
-
+    recomLayout->addWidget(arrowBox(4, "left"));
     recomLayout->addWidget(recomScrollBox);
+    recomLayout->addWidget(arrowBox(4, "right"));
 
-    rightArrow[4] = new QLabel;
-    rightArrow[4]->setObjectName("rightArrow_4");
-    rightArrow[4]->installEventFilter(this);
-    rightArrow[4]->setFixedSize(30, 38);
-    rightArrow[4]->setCursor(Qt::PointingHandCursor);
-    rightArrow[4]->setFont(tools->aliIcon());
-    rightArrow[4]->setText(QChar(0xe63e));
-    rightArrow[4]->setVisible(false);
-    QSizePolicy policy = rightArrow[4]->sizePolicy();
-    policy.setRetainSizeWhenHidden(true);
-    rightArrow[4]->setSizePolicy(policy);
-    recomLayout->addWidget(rightArrow[4]);
     layout->addWidget(recomOutBox);
     layout->addSpacing(30);
 }
+
 void Recommend::RecommProgram() {
     recomOutBox = new QWidget(widget);
     recomOutBox->setFixedWidth(810);
@@ -999,7 +864,6 @@ void Recommend::RecommProgram() {
         recomImgBox->setScaledContents(true);
         recomImgBox->setObjectName("programImgBox");
         recomImgBox->setProperty("index", i);
-        recomAttrList.append("treaImgBox" + QString::number(i));
         recomImgBox->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
         recomImgBox->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 6));
@@ -1043,35 +907,10 @@ void Recommend::RecommProgram() {
         recomConLayout->setSpacing(25);
     }
 
-    leftArrow[5] = new QLabel;
-    leftArrow[5]->setObjectName("leftArrow_5");
-    leftArrow[5]->installEventFilter(this);
-    leftArrow[5]->setFixedSize(30, 38);
-    leftArrow[5]->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    leftArrow[5]->setCursor(Qt::PointingHandCursor);
-    leftArrow[5]->setFont(tools->aliIcon());
-    leftArrow[5]->setText(QChar(0xea84));
-    leftArrow[5]->setVisible(false);
-    QSizePolicy policy_lf = leftArrow[5]->sizePolicy();
-    policy_lf.setRetainSizeWhenHidden(true);
-    leftArrow[5]->setSizePolicy(policy_lf);
-    recomLayout->addWidget(leftArrow[5]);
-
-
+    recomLayout->addWidget(arrowBox(5, "left"));
     recomLayout->addWidget(recomScrollBox);
+    recomLayout->addWidget(arrowBox(5, "right"));
 
-    rightArrow[5] = new QLabel;
-    rightArrow[5]->setObjectName("rightArrow_5");
-    rightArrow[5]->installEventFilter(this);
-    rightArrow[5]->setFixedSize(30, 38);
-    rightArrow[5]->setCursor(Qt::PointingHandCursor);
-    rightArrow[5]->setFont(tools->aliIcon());
-    rightArrow[5]->setText(QChar(0xe63e));
-    rightArrow[5]->setVisible(false);
-    QSizePolicy policy = rightArrow[5]->sizePolicy();
-    policy.setRetainSizeWhenHidden(true);
-    rightArrow[5]->setSizePolicy(policy);
-    recomLayout->addWidget(rightArrow[5]);
     layout->addWidget(recomOutBox);
     layout->addSpacing(30);
 }
@@ -1087,126 +926,123 @@ QPixmap *Recommend::getImage(QString url) {
     coverImg->loadFromData(imgData);
     return coverImg;
 }
+// 左右箭头部件
+QLabel *Recommend::arrowBox(int i, QString type) {
+    if (type == "left") {
+        QLabel *leftArrow = new QLabel;
+        leftArrow->setObjectName("leftArrow"+QString::number(i));
+        leftArrow->setProperty("class","leftArrow");
+        leftArrow->installEventFilter(this);
+        leftArrow->setFixedSize(30, 38);
+        leftArrow->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+        leftArrow->setCursor(Qt::PointingHandCursor);
+        leftArrow->setFont(tools->aliIcon());
+        leftArrow->setText(QChar(0xea84));
+        leftArrow->setVisible(false);
+        QSizePolicy policy_lf = leftArrow->sizePolicy();
+        policy_lf.setRetainSizeWhenHidden(true);
+        leftArrow->setSizePolicy(policy_lf);
+        return leftArrow;
+    }
+    if (type == "right") {
+        QLabel *rightArrow = new QLabel;
+        rightArrow->setObjectName("rightArrow"+QString::number(i));
+        rightArrow->setProperty("class","rightArrow");
+        rightArrow->installEventFilter(this);
+        rightArrow->setFixedSize(30, 38);
+        rightArrow->setCursor(Qt::PointingHandCursor);
+        rightArrow->setFont(tools->aliIcon());
+        rightArrow->setText(QChar(0xe63e));
+        rightArrow->setVisible(false);
+        QSizePolicy policy = rightArrow->sizePolicy();
+        policy.setRetainSizeWhenHidden(true);
+        rightArrow->setSizePolicy(policy);
+        return rightArrow;
+    }
+}
+// 左右箭头切换隐藏
+void Recommend::showArrow(QObject *o, QEvent *e,int i){
+    QLabel * leftArrow = o->findChild<QLabel *>("leftArrow"+QString::number(i));
+    QLabel * rightArrow = o->findChild<QLabel *>("rightArrow"+QString::number(i));
+    if (e->type() == QEvent::Enter) {
+        if(leftArrow != NULL && rightArrow != NULL){
+            leftArrow->setVisible(true);
+            rightArrow->setVisible(true);
+        }
+    }
+    if (e->type() == QEvent::Leave) {
+        if(leftArrow != NULL && rightArrow != NULL){
+            leftArrow->setVisible(false);
+            rightArrow->setVisible(false);
+        }
+    }
+}
+void Recommend::toggleItem(QWidget *itemBox,QString objName,QEvent *e){
+    QLabel *box = itemBox->findChild<QLabel *>(objName);
+    QWidget *mask = itemBox->findChild<QWidget *>("maskBox");
+    QLabel *play_box = itemBox->findChild<QLabel *>("playBox");
+    QLabel *play_count = itemBox->findChild<QLabel *>("playCount");
 
+
+    QPropertyAnimation *animation = new QPropertyAnimation(box, "geometry");
+    animation->setDuration(150);
+
+    if (e->type() == QEvent::Enter) {
+        animation->setStartValue(QRect(0, 10, box->width(), box->height()));
+        animation->setEndValue(QRect(0, 0, box->width(), box->height()));
+        animation->start();
+        if (play_box) {
+            play_box->setVisible(true);
+            mask->setVisible(true);
+        }
+        if(play_count){
+            play_count->setVisible(false);
+        }
+    }
+    if (e->type() == QEvent::Leave) {
+        animation->setStartValue(QRect(0, 0, box->width(), box->height()));
+        animation->setEndValue(QRect(0, 10, box->width(), box->height()));
+        animation->start();
+        if (play_box) {
+            play_box->setVisible(false);
+            mask->setVisible(false);
+        }
+        if(play_count){
+            play_count->setVisible(true);
+        }
+    }
+}
 bool Recommend::eventFilter(QObject *o, QEvent *e) {
-    if (o->objectName() == "recomBox") {
-        if (e->type() == QEvent::Enter) {
-            leftArrow[0]->setVisible(true);
-            rightArrow[0]->setVisible(true);
-        }
-        if (e->type() == QEvent::Leave) {
-            leftArrow[0]->setVisible(false);
-            rightArrow[0]->setVisible(false);
-        }
+
+    // 左右箭头交互
+    if(o->objectName() == "recomBox"){
+        showArrow(o, e,0);
     }
-    if (o->objectName() == "treaBox") {
-        if (e->type() == QEvent::Enter) {
-            leftArrow[1]->setVisible(true);
-            rightArrow[1]->setVisible(true);
-        }
-        if (e->type() == QEvent::Leave) {
-            leftArrow[1]->setVisible(false);
-            rightArrow[1]->setVisible(false);
-        }
+    if(o->objectName() == "treaBox"){
+        showArrow(o, e,1);
     }
-    if (o->objectName() == "listenBox") {
-        if (e->type() == QEvent::Enter) {
-            leftArrow[2]->setVisible(true);
-            rightArrow[2]->setVisible(true);
-        }
-        if (e->type() == QEvent::Leave) {
-            leftArrow[2]->setVisible(false);
-            rightArrow[2]->setVisible(false);
-        }
+    if(o->objectName() == "listenBox"){
+        showArrow(o, e,2);
     }
-    if (o->objectName() == "roamBox") {
-        if (e->type() == QEvent::Enter) {
-            leftArrow[3]->setVisible(true);
-            rightArrow[3]->setVisible(true);
-        }
-        if (e->type() == QEvent::Leave) {
-            leftArrow[3]->setVisible(false);
-            rightArrow[3]->setVisible(false);
-        }
+    if(o->objectName() == "roamBox"){
+        showArrow(o, e,3);
     }
-    if (o->objectName() == "heartBox") {
-        if (e->type() == QEvent::Enter) {
-            leftArrow[4]->setVisible(true);
-            rightArrow[4]->setVisible(true);
-        }
-        if (e->type() == QEvent::Leave) {
-            leftArrow[4]->setVisible(false);
-            rightArrow[4]->setVisible(false);
-        }
+    if(o->objectName() == "heartBox"){
+        showArrow(o, e,4);
     }
-    if (o->objectName() == "programBox") {
-        if (e->type() == QEvent::Enter) {
-            leftArrow[5]->setVisible(true);
-            rightArrow[5]->setVisible(true);
-        }
-        if (e->type() == QEvent::Leave) {
-            leftArrow[5]->setVisible(false);
-            rightArrow[5]->setVisible(false);
-        }
+    if(o->objectName() == "programBox"){
+        showArrow(o, e,5);
     }
 
+    // 轮播图切换
     if (o->objectName() == "recomImgBox") {
         int i = o->property("index").toInt();
-        QLabel *box = recomItemBox[i]->findChild<QLabel *>("recomImgBox");
-        QWidget *mask = recomItemBox[i]->findChild<QWidget *>("maskBox");
-        QLabel *play_box = recomItemBox[i]->findChild<QLabel *>("playBox");
-        QPropertyAnimation *animation = new QPropertyAnimation(box, "geometry");
-        animation->setDuration(150);
-
-        if (e->type() == QEvent::Enter) {
-            animation->setStartValue(QRect(0, 10, box->width(), box->height()));
-            animation->setEndValue(QRect(0, 0, box->width(), box->height()));
-            animation->start();
-            if (play_box) {
-                play_box->setVisible(true);
-                mask->setVisible(true);
-            }
-        }
-        if (e->type() == QEvent::Leave) {
-            animation->setStartValue(QRect(0, 0, box->width(), box->height()));
-            animation->setEndValue(QRect(0, 10, box->width(), box->height()));
-            animation->start();
-            if (play_box) {
-                play_box->setVisible(false);
-                mask->setVisible(false);
-            }
-        }
+        toggleItem( recomItemBox[i],"recomImgBox",e);
     }
 
     if (o->objectName() == "treaImgBox") {
         int i = o->property("index").toInt();
-        QLabel *box = treaItemBox[i]->findChild<QLabel *>("treaImgBox");
-        QWidget *mask = treaItemBox[i]->findChild<QWidget *>("maskBox");
-        QLabel *play_box = treaItemBox[i]->findChild<QLabel *>("playBox");
-        QLabel *play_count = treaItemBox[i]->findChild<QLabel *>("playCount");
-        QPropertyAnimation *animation = new QPropertyAnimation(box, "geometry");
-        animation->setDuration(150);
-
-        if (e->type() == QEvent::Enter) {
-            animation->setStartValue(QRect(0, 10, box->width(), box->height()));
-            animation->setEndValue(QRect(0, 0, box->width(), box->height()));
-            animation->start();
-            if (play_box) {
-                play_box->setVisible(true);
-                mask->setVisible(true);
-                play_count->setVisible(false);
-            }
-        }
-        if (e->type() == QEvent::Leave) {
-            animation->setStartValue(QRect(0, 0, box->width(), box->height()));
-            animation->setEndValue(QRect(0, 10, box->width(), box->height()));
-            animation->start();
-            if (play_box) {
-                play_box->setVisible(false);
-                mask->setVisible(false);
-                play_count->setVisible(true);
-            }
-        }
+        toggleItem( treaItemBox[i],"treaImgBox",e);
     }
     if (o->objectName() == "everyItemBox") {
         int i = o->property("index").toInt();
@@ -1214,7 +1050,6 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
         QLabel *play_box = everyItemBox[i]->findChild<QLabel *>("listenPlay");
         QWidget *float_box = everyItemBox[i]->findChild<QWidget *>("floatBox");
         QLabel *iden_label = everyItemBox[i]->findChild<QLabel *>("idenLabel");
-        QLabel *songs_tit = everyItemBox[i]->findChild<QLabel *>("songsTit");
 
         if (e->type() == QEvent::Enter) {
             if (play_box) {
@@ -1237,72 +1072,15 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
 
     if (o->objectName() == "roamImgBox") {
         int i = o->property("index").toInt();
-        QLabel *box = roamItemBox[i]->findChild<QLabel *>("roamImgBox");
-        QWidget *mask = roamItemBox[i]->findChild<QWidget *>("maskBox");
-        QLabel *play_box = roamItemBox[i]->findChild<QLabel *>("playBox");
-        QLabel *play_count = roamItemBox[i]->findChild<QLabel *>("playCount");
-        QPropertyAnimation *animation = new QPropertyAnimation(box, "geometry");
-        animation->setDuration(150);
-
-        if (e->type() == QEvent::Enter) {
-            animation->setStartValue(QRect(0, 10, box->width(), box->height()));
-            animation->setEndValue(QRect(0, 0, box->width(), box->height()));
-            animation->start();
-            if (play_box) {
-                play_box->setVisible(true);
-                mask->setVisible(true);
-                play_count->setVisible(false);
-            }
-        }
-        if (e->type() == QEvent::Leave) {
-            animation->setStartValue(QRect(0, 0, box->width(), box->height()));
-            animation->setEndValue(QRect(0, 10, box->width(), box->height()));
-            animation->start();
-            if (play_box) {
-                play_box->setVisible(false);
-                mask->setVisible(false);
-                play_count->setVisible(true);
-            }
-        }
+        toggleItem( roamItemBox[i],"roamImgBox",e);
     }
 
-    if (o->objectName() == "heartImgBox") {
-        int i = o->property("index").toInt();
-        QLabel *box = heartItemBox[i]->findChild<QLabel *>("treaImgBox");
-        QWidget *mask = heartItemBox[i]->findChild<QWidget *>("maskBox");
-        QLabel *play_box = heartItemBox[i]->findChild<QLabel *>("playBox");
-        QLabel *play_count = heartItemBox[i]->findChild<QLabel *>("playCount");
-        QPropertyAnimation *animation = new QPropertyAnimation(box, "geometry");
-        animation->setDuration(150);
-
-        if (e->type() == QEvent::Enter) {
-            animation->setStartValue(QRect(0, 10, box->width(), box->height()));
-            animation->setEndValue(QRect(0, 0, box->width(), box->height()));
-            animation->start();
-            if (play_box) {
-                play_box->setVisible(true);
-                mask->setVisible(true);
-                play_count->setVisible(false);
-            }
-        }
-        if (e->type() == QEvent::Leave) {
-            animation->setStartValue(QRect(0, 0, box->width(), box->height()));
-            animation->setEndValue(QRect(0, 10, box->width(), box->height()));
-            animation->start();
-            if (play_box) {
-                play_box->setVisible(false);
-                mask->setVisible(false);
-                play_count->setVisible(true);
-            }
-        }
-    }
     if (o->objectName() == "heartItemBox") {
         int i = o->property("index").toInt();
         QWidget *mask = heartItemBox[i]->findChild<QWidget *>("maskBox");
         QLabel *play_box = heartItemBox[i]->findChild<QLabel *>("listenPlay");
         QWidget *float_box = heartItemBox[i]->findChild<QWidget *>("floatBox");
         QLabel *iden_label = heartItemBox[i]->findChild<QLabel *>("idenLabel");
-        QLabel *songs_tit = everyItemBox[i]->findChild<QLabel *>("songsTit");
 
         if (e->type() == QEvent::Enter) {
             if (play_box) {
@@ -1325,215 +1103,71 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
 
     if (o->objectName() == "programImgBox") {
         int i = o->property("index").toInt();
-        QLabel *box = programItemBox[i]->findChild<QLabel *>("programImgBox");
-        QWidget *mask = programItemBox[i]->findChild<QWidget *>("maskBox");
-        QLabel *play_box = programItemBox[i]->findChild<QLabel *>("playBox");
-        QLabel *play_count = programItemBox[i]->findChild<QLabel *>("playCount");
-        QPropertyAnimation *animation = new QPropertyAnimation(box, "geometry");
-        animation->setDuration(150);
-        if (e->type() == QEvent::Enter) {
-            animation->setStartValue(QRect(0, 10, box->width(), box->height()));
-            animation->setEndValue(QRect(0, 0, box->width(), box->height()));
-            animation->start();
-            if (play_box) {
-                play_box->setVisible(true);
-                mask->setVisible(true);
-                play_count->setVisible(false);
-            }
-        }
-        if (e->type() == QEvent::Leave) {
-            animation->setStartValue(QRect(0, 0, box->width(), box->height()));
-            animation->setEndValue(QRect(0, 10, box->width(), box->height()));
-            animation->start();
-            if (play_box) {
-                play_box->setVisible(false);
-                mask->setVisible(false);
-                play_count->setVisible(true);
-            }
-        }
+        toggleItem( programItemBox[i],"programImgBox",e);
     }
 
 
     if (e->type() == QEvent::MouseButtonPress) {
         QMouseEvent *mouseEvent = (QMouseEvent *) e;
         if (mouseEvent->button() == Qt::LeftButton) {
-            if (o->objectName() == "leftArrow_0" || o->objectName() == "rightArrow_0") {
-                int r_width = wrapconBox[0]->width();
-                int s_width = recomScrollBox->width();
-                qDebug() << r_width << s_width;
-                if (o->objectName() == "leftArrow_0") {
-                    if (move_x == 0) {
-                        int moveLeft = s_width - r_width;
-                        animation[0]->setStartValue(QRect(move_x, 0, r_width, wrapconBox[0]->height()));
-                        animation[0]->setEndValue(QRect(moveLeft, 0, r_width, wrapconBox[0]->height()));
-                        move_x = moveLeft;
-                    } else {
-                        animation[0]->setStartValue(QRect(move_x, 0, r_width, wrapconBox[0]->height()));
-                        animation[0]->setEndValue(QRect(0, 0, r_width, wrapconBox[0]->height()));
-                        move_x = 0;
-                    }
-                    animation[0]->start();
-                }
-                if (o->objectName() == "rightArrow_0") {
-                    if (move_x == 0) {
-                        int moveLeft = s_width - r_width;
-                        animation[0]->setStartValue(QRect(move_x, 0, r_width, wrapconBox[0]->height()));
-                        animation[0]->setEndValue(QRect(moveLeft, 0, r_width, wrapconBox[0]->height()));
-                        move_x = moveLeft;
-                    } else {
-                        animation[0]->setStartValue(QRect(move_x, 0, r_width, wrapconBox[0]->height()));
-                        animation[0]->setEndValue(QRect(0, 0, r_width, wrapconBox[0]->height()));
-                        move_x = 0;
-                    }
-                    animation[0]->start();
-                }
-            }
-            if (o->objectName() == "leftArrow_1" || o->objectName() == "rightArrow_1") {
-                int r_width = wrapconBox[1]->width();
-                int s_width = recomScrollBox->width();
-                qDebug() << r_width << s_width;
-                if (o->objectName() == "leftArrow_1") {
-                    if (move_x == 0) {
-                        int moveLeft = s_width - r_width;
-                        animation[1]->setStartValue(QRect(move_x, 0, r_width, wrapconBox[1]->height()));
-                        animation[1]->setEndValue(QRect(moveLeft, 0, r_width, wrapconBox[1]->height()));
-                        move_x = moveLeft;
-                    } else {
-                        animation[1]->setStartValue(QRect(move_x, 0, r_width, wrapconBox[1]->height()));
-                        animation[1]->setEndValue(QRect(0, 0, r_width, wrapconBox[1]->height()));
-                        move_x = 0;
-                    }
-                    animation[1]->start();
-                }
-                if (o->objectName() == "rightArrow_1") {
-                    if (move_x == 0) {
-                        int moveLeft = s_width - r_width;
-                        animation[1]->setStartValue(QRect(move_x, 0, r_width, wrapconBox[1]->height()));
-                        animation[1]->setEndValue(QRect(moveLeft, 0, r_width, wrapconBox[1]->height()));
-                        move_x = moveLeft;
-                    } else {
-                        animation[1]->setStartValue(QRect(move_x, 0, r_width, wrapconBox[1]->height()));
-                        animation[1]->setEndValue(QRect(0, 0, r_width, wrapconBox[1]->height()));
-                        move_x = 0;
-                    }
-                    animation[1]->start();
-                }
-            }
-            if (o->objectName() == "leftArrow_2" || o->objectName() == "rightArrow_2") {
-                int r_width = wrapconBox[2]->width();
-                int s_width = recomScrollBox->width();
-                qDebug() << r_width << s_width;
-                if (o->objectName() == "leftArrow_2") {
-                    if (move_x == 0) {
-                        int moveLeft = s_width - r_width;
-                        wrapconBox[2]->move(moveLeft,0);
-                        move_x = moveLeft;
-                    }else{
-                        wrapconBox[2]->move(0,0);
-                        move_x = 0;
-                    }
+            // 每个区域左右轮播切换
+            for (int i = 0; i < 6; ++i) {
+               if(i != 2 && i != 4){
+                   int width = wrapconBox[i]->width();
+                   int height = wrapconBox[i]->height();
+                   int s_width = recomScrollBox->width();
+                   if (o->objectName() == "leftArrow"+QString::number(i)) {
+                       if (move_x == 0) {
+                           int moveLeft = s_width - width;
+                           animation[i]->setStartValue(QRect(move_x, 0, width, height));
+                           animation[i]->setEndValue(QRect(moveLeft, 0, width, height));
+                           move_x = moveLeft;
+                       } else {
+                           animation[i]->setStartValue(QRect(move_x, 0, width, height));
+                           animation[i]->setEndValue(QRect(0, 0, width, height));
+                           move_x = 0;
+                       }
+                       animation[i]->start();
+                   }
+                   if (o->objectName() == "rightArrow"+QString::number(i)) {
+                       if (move_x == 0) {
+                           int moveLeft = s_width - width;
+                           animation[i]->setStartValue(QRect(move_x, 0, width, height));
+                           animation[i]->setEndValue(QRect(moveLeft, 0, width, height));
+                           move_x = moveLeft;
+                       } else {
+                           animation[i]->setStartValue(QRect(move_x, 0, width, height));
+                           animation[i]->setEndValue(QRect(0, 0, width, height));
+                           move_x = 0;
+                       }
+                       animation[i]->start();
+                   }
+               }else{
+                   int width = wrapconBox[i]->width();
+                   int s_width = recomScrollBox->width();
+                   if (o->objectName() == "leftArrow"+QString::number(i)) {
+                       if (move_x == 0) {
+                           int moveLeft = s_width - width;
+                           wrapconBox[i]->move(moveLeft, 0);
+                           move_x = moveLeft;
+                       } else {
+                           wrapconBox[i]->move(0, 0);
+                           move_x = 0;
+                       }
 
-                }
-                if (o->objectName() == "rightArrow_2") {
-                    if (move_x == 0) {
-                        int moveLeft = s_width - r_width;
-                        wrapconBox[2]->move(moveLeft,0);
-                        move_x = moveLeft;
-                    } else {
-                        wrapconBox[2]->move(0,0);
-                        move_x = 0;
-                    }
-                }
+                   }
+                   if (o->objectName() == "rightArrow"+QString::number(i)) {
+                       if (move_x == 0) {
+                           int moveLeft = s_width - width;
+                           wrapconBox[i]->move(moveLeft, 0);
+                           move_x = moveLeft;
+                       } else {
+                           wrapconBox[i]->move(0, 0);
+                           move_x = 0;
+                       }
+                   }
+               }
             }
-            if (o->objectName() == "leftArrow_3" || o->objectName() == "rightArrow_3") {
-                int r_width = wrapconBox[3]->width();
-                int s_width = recomScrollBox->width();
-                qDebug() << r_width << s_width;
-                if (o->objectName() == "leftArrow_3") {
-                    if (move_x == 0) {
-                        int moveLeft = s_width - r_width;
-                        animation[3]->setStartValue(QRect(move_x, 0, r_width, wrapconBox[3]->height()));
-                        animation[3]->setEndValue(QRect(moveLeft, 0, r_width, wrapconBox[3]->height()));
-                        move_x = moveLeft;
-                    } else {
-                        animation[3]->setStartValue(QRect(move_x, 0, r_width, wrapconBox[3]->height()));
-                        animation[3]->setEndValue(QRect(0, 0, r_width, wrapconBox[3]->height()));
-                        move_x = 0;
-                    }
-                    animation[3]->start();
-                }
-                if (o->objectName() == "rightArrow_3") {
-                    if (move_x == 0) {
-                        int moveLeft = s_width - r_width;
-                        animation[3]->setStartValue(QRect(move_x, 0, r_width, wrapconBox[3]->height()));
-                        animation[3]->setEndValue(QRect(moveLeft, 0, r_width, wrapconBox[3]->height()));
-                        move_x = moveLeft;
-                    } else {
-                        animation[3]->setStartValue(QRect(move_x, 0, r_width, wrapconBox[3]->height()));
-                        animation[3]->setEndValue(QRect(0, 0, r_width, wrapconBox[3]->height()));
-                        move_x = 0;
-                    }
-                    animation[3]->start();
-                }
-            }
-            if (o->objectName() == "leftArrow_4" || o->objectName() == "rightArrow_4") {
-                int r_width = wrapconBox[4]->width();
-                int s_width = recomScrollBox->width();
-                qDebug() << r_width << s_width;
-                if (o->objectName() == "leftArrow_4") {
-                    if (move_x == 0) {
-                        int moveLeft = s_width - r_width;
-                        wrapconBox[4]->move(moveLeft,0);
-                        move_x = moveLeft;
-                    }else{
-                        wrapconBox[4]->move(0,0);
-                        move_x = 0;
-                    }
-
-                }
-                if (o->objectName() == "rightArrow_4") {
-                    if (move_x == 0) {
-                        int moveLeft = s_width - r_width;
-                        wrapconBox[4]->move(moveLeft,0);
-                        move_x = moveLeft;
-                    } else {
-                        wrapconBox[4]->move(0,0);
-                        move_x = 0;
-                    }
-                }
-            }
-            if (o->objectName() == "leftArrow_5" || o->objectName() == "rightArrow_5") {
-                int r_width = wrapconBox[5]->width();
-                int s_width = recomScrollBox->width();
-                qDebug() << r_width << s_width;
-                if (o->objectName() == "leftArrow_5") {
-                    if (move_x == 0) {
-                        int moveLeft = s_width - r_width;
-                        animation[5]->setStartValue(QRect(move_x, 0, r_width, wrapconBox[5]->height()));
-                        animation[5]->setEndValue(QRect(moveLeft, 0, r_width, wrapconBox[5]->height()));
-                        move_x = moveLeft;
-                    } else {
-                        animation[5]->setStartValue(QRect(move_x, 0, r_width, wrapconBox[5]->height()));
-                        animation[5]->setEndValue(QRect(0, 0, r_width, wrapconBox[5]->height()));
-                        move_x = 0;
-                    }
-                    animation[5]->start();
-                }
-                if (o->objectName() == "rightArrow_5") {
-                    if (move_x == 0) {
-                        int moveLeft = s_width - r_width;
-                        animation[5]->setStartValue(QRect(move_x, 0, r_width, wrapconBox[5]->height()));
-                        animation[5]->setEndValue(QRect(moveLeft, 0, r_width, wrapconBox[5]->height()));
-                        move_x = moveLeft;
-                    } else {
-                        animation[5]->setStartValue(QRect(move_x, 0, r_width, wrapconBox[5]->height()));
-                        animation[5]->setEndValue(QRect(0, 0, r_width, wrapconBox[5]->height()));
-                        move_x = 0;
-                    }
-                    animation[5]->start();
-                }
-            }
-
         }
     }
     return QWidget::eventFilter(o, e);
