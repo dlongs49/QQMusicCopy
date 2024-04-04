@@ -977,6 +977,7 @@ void Recommend::showArrow(QObject *o, QEvent *e,int i){
         }
     }
 }
+// 轮播图切换
 void Recommend::toggleItem(QWidget *itemBox,QString objName,QEvent *e){
     QLabel *box = itemBox->findChild<QLabel *>(objName);
     QWidget *mask = itemBox->findChild<QWidget *>("maskBox");
@@ -1034,7 +1035,7 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
         showArrow(o, e,5);
     }
 
-    // 轮播图切换
+
     if (o->objectName() == "recomImgBox") {
         int i = o->property("index").toInt();
         toggleItem( recomItemBox[i],"recomImgBox",e);
