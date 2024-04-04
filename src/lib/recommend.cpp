@@ -1180,10 +1180,8 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
                 int i = o->property("index").toInt();
                 QWidget *moreBox = heartItemBox[i]->findChild<QWidget *>("moreBox");
                 if (moreBox) {
-                    int x = mouseEvent->pos().x();
-                    int y = mouseEvent->pos().y();
-                    QPoint c = QCursor::pos();
-                    handleMenu->move(x, y);
+                    QPoint point = this->mapFromGlobal(QCursor::pos());
+                    handleMenu->move(point.x(), point.y());
                     handleMenu->show();
                 }
             }
