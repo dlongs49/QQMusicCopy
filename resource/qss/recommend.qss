@@ -11,21 +11,15 @@ QLabel#everyImgBox {
     background: #eee;
 }
 
-QLabel#leftArrow_0,
-QLabel#rightArrow_0,
-QLabel#leftArrow_1,
-QLabel#rightArrow_1,
-QLabel#leftArrow_2,
-QLabel#rightArrow_2 {
-    color: #7e7e7e;
-    font-size: 38px;
-}
 
-QWidget#everyItemBox {
+
+QWidget#everyItemBox,
+QWidget#heartItemBox {
     border-radius: 6px;
 }
 
-QWidget#everyItemBox:hover {
+QWidget#everyItemBox:hover,
+QWidget#heartItemBox:hover {
     background: #efefef;
 }
 
@@ -44,16 +38,19 @@ QLabel#title {
     color: #333;
     padding-left: 30px;
 }
-QLabel#tit_playBox{
+
+QLabel#tit_playBox {
     font-size: 15px;
     border-radius: 15px;
     color: #000;
     background: #dedede;
 }
-QLabel#tit_playBox:hover{
+
+QLabel#tit_playBox:hover {
     color: #10da67;
     background: #e1f2ed;
 }
+
 QLabel#playCount {
     color: #fff;
     font-size: 13px;
@@ -83,6 +80,24 @@ QLabel#moreBox {
     color: #4e4e4e;
 }
 
+
+
+QLabel#leftArrow_0,
+QLabel#rightArrow_0,
+QLabel#leftArrow_1,
+QLabel#rightArrow_1,
+QLabel#leftArrow_2,
+QLabel#rightArrow_2,
+QLabel#leftArrow_3,
+QLabel#rightArrow_3,
+QLabel#leftArrow_4,
+QLabel#rightArrow_4,
+QLabel#leftArrow_5,
+QLabel#rightArrow_5 {
+    color: #7e7e7e;
+    font-size: 38px;
+}
+
 QLabel#recomTit:hover,
 QLabel#loveBox:hover,
 QLabel#moreBox:hover,
@@ -91,6 +106,12 @@ QLabel#rightArrow_0:hover,
 QLabel#leftArrow_1:hover,
 QLabel#rightArrow_1:hover,
 QLabel#leftArrow_2:hover,
-QLabel#rightArrow_2:hover {
+QLabel#rightArrow_2:hover,
+QLabel#leftArrow_3:hover,
+QLabel#rightArrow_3:hover,
+QLabel#leftArrow_4:hover,
+QLabel#rightArrow_4:hover,
+QLabel#leftArrow_5:hover,
+QLabel#rightArrow_5:hover {
     color: #10da67;
 }

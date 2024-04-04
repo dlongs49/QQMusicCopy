@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file>resource/images/test.png</file>
         <file>resource/icon/nav_music.png</file>
-        <file>resource/images/search.png</file>
         <file>resource/images/logo.png</file>
         <file>resource/images/no_search_his.png</file>
         <file>resource/images/phone.png</file>

@@ -53,6 +53,9 @@ public slots:
     void RecommTop();
     void RecommTrea();
     void RecommListen();
+    void RecommRoam();
+    void RecommHeartbeat();
+    void RecommProgram();
     QPixmap* getImage(QString url);
 
 protected:
@@ -60,8 +63,8 @@ protected:
 private:
     int move_x = 0;
     QList<QString> recomAttrList;
-    QPropertyAnimation *animation;
     QPropertyAnimation *moveAnimation;
+    QPropertyAnimation *animation[6];
     QScrollArea *scrollArea;
     QLabel *recomTit;
     QLabel *recomSubTit;
@@ -83,9 +86,13 @@ private:
     QWidget *widget;
     QWidget *recomOutBox;
     QWidget *recomBox;
+    QWidget *wrapconBox[6];
     QWidget *recomItemBox[20];
     QWidget *treaItemBox[20];
+    QWidget *roamItemBox[20];
     QWidget *everyItemBox[20];
+    QWidget *heartItemBox[20];
+    QWidget *programItemBox[20];
     QWidget *maskBox;
     QWidget *recomScrollBox;
     QWidget *recomConBox;
