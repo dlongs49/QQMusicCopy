@@ -26,7 +26,9 @@ add_executable(QQMusicCopy
         src/lib/popup/settMenu.h
         src/lib/popup/downInfo.cpp
 		src/lib/popup/downInfo.h
-        src/lib/rightMenu.cpp
+		src/lib/popup/handleMenu.cpp
+		src/lib/popup/handleMenu.h
+		src/lib/rightMenu.cpp
         src/lib/rightMenu.h
         src/lib/container.cpp
         src/lib/container.h

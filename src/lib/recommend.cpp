@@ -9,6 +9,7 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     loadQSS();
     tools = new Tools();
 
+
     this->setFixedSize(820, 2000);
     widget = new QWidget(this);
     widget->setObjectName("conbox");
@@ -23,6 +24,7 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     scrollArea->setGeometry(0, 0, 820, 500);
     scrollArea->setWidget(widget);
     scrollArea->setWidgetResizable(true);
+    handleMenu = new HandleMenu(scrollArea);
 
 
     RecommTop();
@@ -926,12 +928,13 @@ QPixmap *Recommend::getImage(QString url) {
     coverImg->loadFromData(imgData);
     return coverImg;
 }
+
 // 左右箭头部件
 QLabel *Recommend::arrowBox(int i, QString type) {
     if (type == "left") {
         QLabel *leftArrow = new QLabel;
-        leftArrow->setObjectName("leftArrow"+QString::number(i));
-        leftArrow->setProperty("class","leftArrow");
+        leftArrow->setObjectName("leftArrow" + QString::number(i));
+        leftArrow->setProperty("class", "leftArrow");
         leftArrow->installEventFilter(this);
         leftArrow->setFixedSize(30, 38);
         leftArrow->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
@@ -946,8 +949,8 @@ QLabel *Recommend::arrowBox(int i, QString type) {
     }
     if (type == "right") {
         QLabel *rightArrow = new QLabel;
-        rightArrow->setObjectName("rightArrow"+QString::number(i));
-        rightArrow->setProperty("class","rightArrow");
+        rightArrow->setObjectName("rightArrow" + QString::number(i));
+        rightArrow->setProperty("class", "rightArrow");
         rightArrow->installEventFilter(this);
         rightArrow->setFixedSize(30, 38);
         rightArrow->setCursor(Qt::PointingHandCursor);
@@ -960,25 +963,27 @@ QLabel *Recommend::arrowBox(int i, QString type) {
         return rightArrow;
     }
 }
+
 // 左右箭头切换隐藏
-void Recommend::showArrow(QObject *o, QEvent *e,int i){
-    QLabel * leftArrow = o->findChild<QLabel *>("leftArrow"+QString::number(i));
-    QLabel * rightArrow = o->findChild<QLabel *>("rightArrow"+QString::number(i));
+void Recommend::showArrow(QObject *o, QEvent *e, int i) {
+    QLabel *leftArrow = o->findChild<QLabel *>("leftArrow" + QString::number(i));
+    QLabel *rightArrow = o->findChild<QLabel *>("rightArrow" + QString::number(i));
     if (e->type() == QEvent::Enter) {
-        if(leftArrow != NULL && rightArrow != NULL){
+        if (leftArrow != NULL && rightArrow != NULL) {
             leftArrow->setVisible(true);
             rightArrow->setVisible(true);
         }
     }
     if (e->type() == QEvent::Leave) {
-        if(leftArrow != NULL && rightArrow != NULL){
+        if (leftArrow != NULL && rightArrow != NULL) {
             leftArrow->setVisible(false);
             rightArrow->setVisible(false);
         }
     }
 }
+
 // 轮播图切换
-void Recommend::toggleItem(QWidget *itemBox,QString objName,QEvent *e){
+void Recommend::toggleItem(QWidget *itemBox, QString objName, QEvent *e) {
     QLabel *box = itemBox->findChild<QLabel *>(objName);
     QWidget *mask = itemBox->findChild<QWidget *>("maskBox");
     QLabel *play_box = itemBox->findChild<QLabel *>("playBox");
@@ -996,7 +1001,7 @@ void Recommend::toggleItem(QWidget *itemBox,QString objName,QEvent *e){
             play_box->setVisible(true);
             mask->setVisible(true);
         }
-        if(play_count){
+        if (play_count) {
             play_count->setVisible(false);
         }
     }
@@ -1008,42 +1013,43 @@ void Recommend::toggleItem(QWidget *itemBox,QString objName,QEvent *e){
             play_box->setVisible(false);
             mask->setVisible(false);
         }
-        if(play_count){
+        if (play_count) {
             play_count->setVisible(true);
         }
     }
 }
+
 bool Recommend::eventFilter(QObject *o, QEvent *e) {
 
     // 左右箭头交互
-    if(o->objectName() == "recomBox"){
-        showArrow(o, e,0);
+    if (o->objectName() == "recomBox") {
+        showArrow(o, e, 0);
     }
-    if(o->objectName() == "treaBox"){
-        showArrow(o, e,1);
+    if (o->objectName() == "treaBox") {
+        showArrow(o, e, 1);
     }
-    if(o->objectName() == "listenBox"){
-        showArrow(o, e,2);
+    if (o->objectName() == "listenBox") {
+        showArrow(o, e, 2);
     }
-    if(o->objectName() == "roamBox"){
-        showArrow(o, e,3);
+    if (o->objectName() == "roamBox") {
+        showArrow(o, e, 3);
     }
-    if(o->objectName() == "heartBox"){
-        showArrow(o, e,4);
+    if (o->objectName() == "heartBox") {
+        showArrow(o, e, 4);
     }
-    if(o->objectName() == "programBox"){
-        showArrow(o, e,5);
+    if (o->objectName() == "programBox") {
+        showArrow(o, e, 5);
     }
 
 
     if (o->objectName() == "recomImgBox") {
         int i = o->property("index").toInt();
-        toggleItem( recomItemBox[i],"recomImgBox",e);
+        toggleItem(recomItemBox[i], "recomImgBox", e);
     }
 
     if (o->objectName() == "treaImgBox") {
         int i = o->property("index").toInt();
-        toggleItem( treaItemBox[i],"treaImgBox",e);
+        toggleItem(treaItemBox[i], "treaImgBox", e);
     }
     if (o->objectName() == "everyItemBox") {
         int i = o->property("index").toInt();
@@ -1073,7 +1079,7 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
 
     if (o->objectName() == "roamImgBox") {
         int i = o->property("index").toInt();
-        toggleItem( roamItemBox[i],"roamImgBox",e);
+        toggleItem(roamItemBox[i], "roamImgBox", e);
     }
 
     if (o->objectName() == "heartItemBox") {
@@ -1104,7 +1110,7 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
 
     if (o->objectName() == "programImgBox") {
         int i = o->property("index").toInt();
-        toggleItem( programItemBox[i],"programImgBox",e);
+        toggleItem(programItemBox[i], "programImgBox", e);
     }
 
 
@@ -1113,62 +1119,69 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
         if (mouseEvent->button() == Qt::LeftButton) {
             // 每个区域左右轮播切换
             for (int i = 0; i < 6; ++i) {
-               if(i != 2 && i != 4){
-                   int width = wrapconBox[i]->width();
-                   int height = wrapconBox[i]->height();
-                   int s_width = recomScrollBox->width();
-                   if (o->objectName() == "leftArrow"+QString::number(i)) {
-                       if (move_x == 0) {
-                           int moveLeft = s_width - width;
-                           animation[i]->setStartValue(QRect(move_x, 0, width, height));
-                           animation[i]->setEndValue(QRect(moveLeft, 0, width, height));
-                           move_x = moveLeft;
-                       } else {
-                           animation[i]->setStartValue(QRect(move_x, 0, width, height));
-                           animation[i]->setEndValue(QRect(0, 0, width, height));
-                           move_x = 0;
-                       }
-                       animation[i]->start();
-                   }
-                   if (o->objectName() == "rightArrow"+QString::number(i)) {
-                       if (move_x == 0) {
-                           int moveLeft = s_width - width;
-                           animation[i]->setStartValue(QRect(move_x, 0, width, height));
-                           animation[i]->setEndValue(QRect(moveLeft, 0, width, height));
-                           move_x = moveLeft;
-                       } else {
-                           animation[i]->setStartValue(QRect(move_x, 0, width, height));
-                           animation[i]->setEndValue(QRect(0, 0, width, height));
-                           move_x = 0;
-                       }
-                       animation[i]->start();
-                   }
-               }else{
-                   int width = wrapconBox[i]->width();
-                   int s_width = recomScrollBox->width();
-                   if (o->objectName() == "leftArrow"+QString::number(i)) {
-                       if (move_x == 0) {
-                           int moveLeft = s_width - width;
-                           wrapconBox[i]->move(moveLeft, 0);
-                           move_x = moveLeft;
-                       } else {
-                           wrapconBox[i]->move(0, 0);
-                           move_x = 0;
-                       }
+                if (i != 2 && i != 4) {
+                    int width = wrapconBox[i]->width();
+                    int height = wrapconBox[i]->height();
+                    int s_width = recomScrollBox->width();
+                    if (o->objectName() == "leftArrow" + QString::number(i)) {
+                        if (move_x == 0) {
+                            int moveLeft = s_width - width;
+                            animation[i]->setStartValue(QRect(move_x, 0, width, height));
+                            animation[i]->setEndValue(QRect(moveLeft, 0, width, height));
+                            move_x = moveLeft;
+                        } else {
+                            animation[i]->setStartValue(QRect(move_x, 0, width, height));
+                            animation[i]->setEndValue(QRect(0, 0, width, height));
+                            move_x = 0;
+                        }
+                        animation[i]->start();
+                    }
+                    if (o->objectName() == "rightArrow" + QString::number(i)) {
+                        if (move_x == 0) {
+                            int moveLeft = s_width - width;
+                            animation[i]->setStartValue(QRect(move_x, 0, width, height));
+                            animation[i]->setEndValue(QRect(moveLeft, 0, width, height));
+                            move_x = moveLeft;
+                        } else {
+                            animation[i]->setStartValue(QRect(move_x, 0, width, height));
+                            animation[i]->setEndValue(QRect(0, 0, width, height));
+                            move_x = 0;
+                        }
+                        animation[i]->start();
+                    }
+                } else {
+                    int width = wrapconBox[i]->width();
+                    int s_width = recomScrollBox->width();
+                    if (o->objectName() == "leftArrow" + QString::number(i)) {
+                        if (move_x == 0) {
+                            int moveLeft = s_width - width;
+                            wrapconBox[i]->move(moveLeft, 0);
+                            move_x = moveLeft;
+                        } else {
+                            wrapconBox[i]->move(0, 0);
+                            move_x = 0;
+                        }
 
-                   }
-                   if (o->objectName() == "rightArrow"+QString::number(i)) {
-                       if (move_x == 0) {
-                           int moveLeft = s_width - width;
-                           wrapconBox[i]->move(moveLeft, 0);
-                           move_x = moveLeft;
-                       } else {
-                           wrapconBox[i]->move(0, 0);
-                           move_x = 0;
-                       }
-                   }
-               }
+                    }
+                    if (o->objectName() == "rightArrow" + QString::number(i)) {
+                        if (move_x == 0) {
+                            int moveLeft = s_width - width;
+                            wrapconBox[i]->move(moveLeft, 0);
+                            move_x = moveLeft;
+                        } else {
+                            wrapconBox[i]->move(0, 0);
+                            move_x = 0;
+                        }
+                    }
+                }
             }
+
+            if(o->objectName() == "heartItemBox"){
+                qDebug() << 11;
+//                heartItemBox[i]
+            }
+
+
         }
     }
     return QWidget::eventFilter(o, e);

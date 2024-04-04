@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft YaHei', 'iconfont';
+}
+
+QFrame#boxFrame {
+    background: #fff;
+    border-radius: 6px;
+}
+
+QWidget#topBox {
+    border-bottom: 1px solid #d6d6d6;
+}
+
+QLabel#leftIcon {
+    font-size: 14px;
+    color: #000;
+}
+
+QLabel#arrowIcon {
+    font-size: 10px;
+    color: #9b9b9b;
+}
+
+QLabel#txt {
+    font-size: 12px;
+}
+
+QLabel#topItem:hover,
+QLabel#bomItem:hover {
+    background: #f8f8f8;
+}

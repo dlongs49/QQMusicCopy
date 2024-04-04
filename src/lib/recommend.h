@@ -26,7 +26,7 @@
 #include <QMouseEvent>
 #include <cmath>
 #include "../utils/tools.h"
-
+#include "./popup/handleMenu.h"
 class Recommend : public QWidget {
 Q_OBJECT;
 public:
@@ -106,7 +106,7 @@ private:
     QEventLoop *loop;
     QPixmap *coverImg;
     Tools *tools;
-
+    HandleMenu *handleMenu;
 };
 
 
