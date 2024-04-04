@@ -7,7 +7,7 @@
 HandleMenu::HandleMenu(QWidget *parent) : QWidget(parent) {
     loadQSS();
     tools = new Tools();
-//    this->hide();
+    this->hide();
     int h = 436;
     this->setGeometry(210, 14, w + 18, h + 18);
     // 边框阴影 + 圆角

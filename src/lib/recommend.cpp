@@ -1176,12 +1176,26 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
                 }
             }
 
-            if(o->objectName() == "heartItemBox"){
-                qDebug() << 11;
-//                heartItemBox[i]
+            if (o->objectName() == "heartItemBox") {
+                int i = o->property("index").toInt();
+                QWidget *moreBox = heartItemBox[i]->findChild<QWidget *>("moreBox");
+                if (moreBox) {
+                    int x = mouseEvent->pos().x();
+                    int y = mouseEvent->pos().y();
+                    QPoint c = QCursor::pos();
+                    handleMenu->move(x, y);
+                    handleMenu->show();
+                }
             }
-
-
+        }
+        if (mouseEvent->button() == Qt::RightButton) {
+            if (o->objectName() == "heartItemBox") {
+                int i = o->property("index").toInt();
+                //  heartItemBox[i]
+                handleMenu->show();
+            } else {
+                handleMenu->hide();
+            }
         }
     }
     return QWidget::eventFilter(o, e);
