@@ -176,7 +176,7 @@ void Recommend::RecommTop() {
     recomLayout->addWidget(arrowBox(0, "left"));
     recomLayout->addWidget(recomScrollBox);
     recomLayout->addWidget(arrowBox(0, "right"));
-
+    layout->addSpacing(10);
     layout->addWidget(recomOutBox);
     layout->addSpacing(30);
 }
