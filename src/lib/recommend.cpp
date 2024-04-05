@@ -24,8 +24,9 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     scrollArea->setGeometry(0, 0, 820, 500);
     scrollArea->setWidget(widget);
     scrollArea->setWidgetResizable(true);
-    handleMenu = new HandleMenu(scrollArea);
 
+    handleMenu = new HandleMenu(scrollArea);
+    songInfo = new SongInfo(scrollArea);
 
     RecommTop();
     RecommTrea();
@@ -1096,6 +1097,9 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
                 float_box->setVisible(true);
                 iden_label->setVisible(false);
             }
+            QPoint point = this->mapFromGlobal(QCursor::pos());
+            songInfo->move(point.x(), point.y());
+            songInfo->show();
         }
         if (e->type() == QEvent::Leave) {
             if (play_box) {
@@ -1104,7 +1108,7 @@ bool Recommend::eventFilter(QObject *o, QEvent *e) {
                 float_box->setVisible(false);
                 iden_label->setVisible(true);
             }
-
+            songInfo->hide();
         }
     }
 

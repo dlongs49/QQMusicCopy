@@ -27,6 +27,7 @@
 #include <cmath>
 #include "../utils/tools.h"
 #include "./popup/handleMenu.h"
+#include "./popup/songInfo.h"
 class Recommend : public QWidget {
 Q_OBJECT;
 public:
@@ -107,6 +108,7 @@ private:
     QPixmap *coverImg;
     Tools *tools;
     HandleMenu *handleMenu;
+    SongInfo *songInfo;
 };
 
 

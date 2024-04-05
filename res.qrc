@@ -30,5 +30,6 @@
 		<file>resource/qss/downInfo.qss</file>
 		<file>resource/qss/recommend.qss</file>
 		<file>resource/qss/handleMenu.qss</file>
+		<file>resource/qss/songInfo.qss</file>
     </qresource>
 </RCC>

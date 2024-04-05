@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+QFrame#boxFrame {
+    background: #fff;
+    border-radius: 6px;
+}
+QWidget#bomBox{
+    background: #fff;
+}
+QLabel#titleBox {
+    background: #f8f8f8;
+    color: #333;
+    padding: 14px 16px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+QLabel#txt {
+    font-size: 12px;
+}
