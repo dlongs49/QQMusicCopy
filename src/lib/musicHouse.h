@@ -1,10 +1,9 @@
 //
-// Created by dinglong on 2024/3/28 12:27
+// Created by dinglong on 2024/4/6 12:41
 //
 
-#ifndef QQMUSICCOPY_RECOMMEND_H
-#define QQMUSICCOPY_RECOMMEND_H
-
+#ifndef QQMUSICCOPY_MUSICHOUSE_H
+#define QQMUSICCOPY_MUSICHOUSE_H
 
 #include <QWidget>
 #include <QScrollArea>
@@ -29,10 +28,10 @@
 #include "./popup/handleMenu.h"
 #include "./popup/songInfo.h"
 
-class Recommend : public QWidget {
+class MusicHouese : public QWidget {
 Q_OBJECT;
 public:
-    Recommend(QWidget *parent = nullptr);
+    MusicHouese(QWidget *parent = nullptr);
 
 
 signals:
@@ -122,4 +121,4 @@ private:
 };
 
 
-#endif //QQMUSICCOPY_RECOMMEND_H
+#endif //QQMUSICCOPY_MUSICHOUSE_H

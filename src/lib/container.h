@@ -19,7 +19,7 @@
 #include "./popup/settMenu.h"
 #include "./popup/downInfo.h"
 #include "./recommend.h"
-
+#include "./musicHouse.h"
 class container : public QWidget {
 Q_OBJECT;
 public:
@@ -53,6 +53,7 @@ private:
     SettMenu *settMenu;
     DownInfo *downInfo;
     Recommend *recommend;
+    MusicHouese *musicHouse;
 };
 
 #endif //QTMUSIC_container_H

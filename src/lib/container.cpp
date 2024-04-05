@@ -9,8 +9,13 @@ container::container(QWidget *parent) : QWidget(parent) {
 
     topMenu = new TopMenu(this);
     containerLayout->addWidget(topMenu);
-    recommend = new Recommend(this);
-    containerLayout->addWidget(recommend);
+
+//    recommend = new Recommend(this);
+//    containerLayout->addWidget(recommend);
+
+    musicHouse = new MusicHouese(this);
+    containerLayout->addWidget(musicHouse);
+
     connect(topMenu, SIGNAL(onFocus(bool)), this, SLOT(handleEmit(bool)));
     hotSearch = new HotSearch(this);
     connect(topMenu, SIGNAL(onSettPopup(bool)), this, SLOT(showSettPopup(bool)));
