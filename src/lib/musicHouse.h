@@ -70,6 +70,7 @@ private:
     QList<QString> recomAttrList;
     QPropertyAnimation *animation[6];
     QScrollArea *scrollArea;
+    QLabel *navItem[5];
     QLabel *recomTit;
     QLabel *recomSubTit;
     QLabel *guessTit;
