@@ -14,7 +14,7 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     widget = new QWidget(this);
     widget->setObjectName("conbox");
     layout = new QVBoxLayout;
-    layout->setAlignment(Qt::AlignTop | Qt::AlignRight);
+    layout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
     layout->setSpacing(0);
     layout->setMargin(0);
 
@@ -41,8 +41,9 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
 
 void Recommend::RecommTop() {
     recomOutBox = new QWidget(widget);
-    recomOutBox->setFixedWidth(810);
-    recomOutBox->setFixedHeight(246);
+    recomOutBox->setFixedWidth(this->width()- 20);
+    recomOutBox->setFixedHeight(260);
+    recomOutBox->setObjectName("recomOutBox");
     recomOutLayout = new QVBoxLayout;
     recomOutLayout->setSpacing(0);
     recomOutLayout->setMargin(0);
@@ -54,7 +55,7 @@ void Recommend::RecommTop() {
 
 
     recomBox = new QWidget(recomOutBox);
-    recomBox->setFixedSize(recomOutBox->width(), 218);
+    recomBox->setFixedSize(recomOutBox->width(), 230);
     recomBox->installEventFilter(this);
     recomBox->setObjectName("recomBox");
     recomOutLayout->addSpacing(6);
@@ -67,7 +68,7 @@ void Recommend::RecommTop() {
     recomBox->setLayout(recomLayout);
 
     recomScrollBox = new QWidget(recomBox);
-    recomScrollBox->setFixedSize(recomBox->width() - 70, recomBox->height());
+    recomScrollBox->setFixedSize(recomBox->width() - 60, recomBox->height());
     recomScrollBox->setObjectName("recomScrollBox");
 
     recomConLayout = new QHBoxLayout;
@@ -92,9 +93,9 @@ void Recommend::RecommTop() {
     for (int i = 0; i < imgList.size(); ++i) {
         recomItemBox[i] = new QWidget(recomBox);
         if (i == 0) {
-            recomItemBox[0]->setFixedWidth(356);
+            recomItemBox[0]->setFixedWidth(360);
         } else {
-            recomItemBox[i]->setFixedWidth(160);
+            recomItemBox[i]->setFixedWidth(170);
         }
         recomItemLayout = new QVBoxLayout;
         recomItemLayout->setSpacing(0);
@@ -110,7 +111,7 @@ void Recommend::RecommTop() {
         // 先提取网络图片 再处理圆角 Tools
         recomImgBox->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 6));
         if (i == 0) {
-            recomImgBox->setFixedSize(406, 160);
+            recomImgBox->setFixedSize(410, 170);
 
             guessLayout = new QVBoxLayout;
             guessLayout->setAlignment(Qt::AlignVCenter);
@@ -130,7 +131,7 @@ void Recommend::RecommTop() {
             guessLayout->addWidget(playBox);
             recomImgBox->setLayout(guessLayout);
         } else {
-            recomImgBox->setFixedSize(160, 160);
+            recomImgBox->setFixedSize(170, 170);
 
             maskBox = new QWidget(recomImgBox);
             maskBox->setFixedSize(recomImgBox->width(), recomImgBox->height());
@@ -182,7 +183,7 @@ void Recommend::RecommTop() {
 
 void Recommend::RecommTrea() {
     recomOutBox = new QWidget(widget);
-    recomOutBox->setFixedWidth(810);
+    recomOutBox->setFixedWidth(this->width()- 20);
     recomOutLayout = new QVBoxLayout;
     recomOutLayout->setSpacing(0);
     recomOutLayout->setMargin(0);
@@ -193,7 +194,7 @@ void Recommend::RecommTrea() {
     recomOutLayout->addWidget(title);
 
     recomBox = new QWidget(recomOutBox);
-    recomBox->setFixedSize(recomOutBox->width(), 460);
+    recomBox->setFixedSize(recomOutBox->width(), 470);
     recomBox->installEventFilter(this);
     recomBox->setObjectName("treaBox");
     recomOutLayout->addSpacing(6);
@@ -206,7 +207,7 @@ void Recommend::RecommTrea() {
     recomBox->setLayout(recomLayout);
 
     recomScrollBox = new QWidget(recomBox);
-    recomScrollBox->setFixedSize(recomBox->width() - 70, recomBox->height());
+    recomScrollBox->setFixedSize(recomBox->width() - 60, recomBox->height());
     recomScrollBox->setObjectName("recomScrollBox");
 
     treaLayout = new QGridLayout;
@@ -235,14 +236,14 @@ void Recommend::RecommTrea() {
             << "http://y.qq.com/music/photo_new/T002R300x300M000004SMH8t4336xW_1.jpg?max_age=25920000";
     for (int i = 0; i < imgList.size(); ++i) {
         treaItemBox[i] = new QWidget(recomBox);
-        treaItemBox[i]->setFixedWidth(160);
+        treaItemBox[i]->setFixedWidth(170);
         recomItemLayout = new QVBoxLayout;
         recomItemLayout->setSpacing(0);
         recomItemLayout->setMargin(0);
         recomItemLayout->setAlignment(Qt::AlignTop);
 
         recomImgBox = new QLabel(treaItemBox[i]);
-        recomImgBox->setFixedSize(160, 160);
+        recomImgBox->setFixedSize(170, 170);
         recomImgBox->setCursor(Qt::PointingHandCursor);
         recomImgBox->setScaledContents(true);
         recomImgBox->setObjectName("treaImgBox");
@@ -289,7 +290,7 @@ void Recommend::RecommTrea() {
         int r = floor(i / 6) + 1;
         int c = (i % 6) + 1;
         treaLayout->addWidget(treaItemBox[i], r, c);
-        treaLayout->setSpacing(25);
+        treaLayout->setSpacing(20);
     }
 
     recomLayout->addWidget(arrowBox(1, "left"));
@@ -302,7 +303,7 @@ void Recommend::RecommTrea() {
 
 void Recommend::RecommListen() {
     recomOutBox = new QWidget(widget);
-    recomOutBox->setFixedWidth(810);
+    recomOutBox->setFixedWidth(this->width()- 20);
     recomOutLayout = new QVBoxLayout;
     recomOutLayout->setSpacing(0);
     recomOutLayout->setMargin(0);
@@ -345,7 +346,7 @@ void Recommend::RecommListen() {
     recomBox->setLayout(recomLayout);
 
     recomScrollBox = new QWidget(recomBox);
-    recomScrollBox->setMinimumSize(recomBox->width() - 70, recomBox->height());
+    recomScrollBox->setMinimumSize(recomBox->width() - 60, recomBox->height());
     recomScrollBox->setObjectName("recomScrollBox");
 
     gridLayout = new QGridLayout;
@@ -492,7 +493,7 @@ void Recommend::RecommListen() {
 
 void Recommend::RecommRoam() {
     recomOutBox = new QWidget(widget);
-    recomOutBox->setFixedWidth(810);
+    recomOutBox->setFixedWidth(this->width()- 20);
     recomOutLayout = new QVBoxLayout;
     recomOutLayout->setSpacing(0);
     recomOutLayout->setMargin(0);
@@ -503,7 +504,7 @@ void Recommend::RecommRoam() {
     recomOutLayout->addWidget(title);
 
     recomBox = new QWidget(recomOutBox);
-    recomBox->setFixedSize(recomOutBox->width(), 220);
+    recomBox->setFixedSize(recomOutBox->width(), 230);
     recomBox->installEventFilter(this);
     recomBox->setObjectName("roamBox");
     recomOutLayout->addSpacing(6);
@@ -516,7 +517,7 @@ void Recommend::RecommRoam() {
     recomBox->setLayout(recomLayout);
 
     recomScrollBox = new QWidget(recomBox);
-    recomScrollBox->setFixedSize(recomBox->width() - 70, recomBox->height());
+    recomScrollBox->setFixedSize(recomBox->width() - 60, recomBox->height());
     recomScrollBox->setObjectName("recomScrollBox");
 
     recomConLayout = new QHBoxLayout;
@@ -545,7 +546,7 @@ void Recommend::RecommRoam() {
             << "http://y.qq.com/music/photo_new/T002R300x300M000004SMH8t4336xW_1.jpg?max_age=25920000";
     for (int i = 0; i < imgList.size(); ++i) {
         roamItemBox[i] = new QWidget(recomBox);
-        roamItemBox[i]->setFixedWidth(160);
+        roamItemBox[i]->setFixedWidth(170);
         roamItemBox[i]->setObjectName("roamItemBox");
         recomItemLayout = new QVBoxLayout;
         recomItemLayout->setSpacing(0);
@@ -553,7 +554,7 @@ void Recommend::RecommRoam() {
         recomItemLayout->setAlignment(Qt::AlignTop);
 
         recomImgBox = new QLabel(roamItemBox[i]);
-        recomImgBox->setFixedSize(160, 160);
+        recomImgBox->setFixedSize(170, 170);
         recomImgBox->setCursor(Qt::PointingHandCursor);
         recomImgBox->setScaledContents(true);
         recomImgBox->setObjectName("roamImgBox");
@@ -598,7 +599,7 @@ void Recommend::RecommRoam() {
         recomItemLayout->addWidget(recomTit);
         roamItemBox[i]->setLayout(recomItemLayout);
         recomConLayout->addWidget(roamItemBox[i]);
-        recomConLayout->setSpacing(25);
+        recomConLayout->setSpacing(20);
     }
 
     recomLayout->addWidget(arrowBox(3, "left"));
@@ -611,7 +612,7 @@ void Recommend::RecommRoam() {
 
 void Recommend::RecommHeartbeat() {
     recomOutBox = new QWidget(widget);
-    recomOutBox->setFixedWidth(810);
+    recomOutBox->setFixedWidth(this->width()- 20);
     recomOutLayout = new QVBoxLayout;
     recomOutLayout->setSpacing(0);
     recomOutLayout->setMargin(0);
@@ -654,7 +655,7 @@ void Recommend::RecommHeartbeat() {
     recomBox->setLayout(recomLayout);
 
     recomScrollBox = new QWidget(recomBox);
-    recomScrollBox->setMinimumSize(recomBox->width() - 70, recomBox->height());
+    recomScrollBox->setMinimumSize(recomBox->width() - 60, recomBox->height());
     recomScrollBox->setObjectName("recomScrollBox");
 
     gridLayout = new QGridLayout;
@@ -801,7 +802,7 @@ void Recommend::RecommHeartbeat() {
 
 void Recommend::RecommProgram() {
     recomOutBox = new QWidget(widget);
-    recomOutBox->setFixedWidth(810);
+    recomOutBox->setFixedWidth(this->width()- 20);
     recomOutLayout = new QVBoxLayout;
     recomOutLayout->setSpacing(0);
     recomOutLayout->setMargin(0);
@@ -812,7 +813,7 @@ void Recommend::RecommProgram() {
     recomOutLayout->addWidget(title);
 
     recomBox = new QWidget(recomOutBox);
-    recomBox->setFixedSize(recomOutBox->width(), 220);
+    recomBox->setFixedSize(recomOutBox->width(), 230);
     recomBox->installEventFilter(this);
     recomBox->setObjectName("programBox");
     recomOutLayout->addSpacing(6);
@@ -825,7 +826,7 @@ void Recommend::RecommProgram() {
     recomBox->setLayout(recomLayout);
 
     recomScrollBox = new QWidget(recomBox);
-    recomScrollBox->setFixedSize(recomBox->width() - 70, recomBox->height());
+    recomScrollBox->setFixedSize(recomBox->width() - 60, recomBox->height());
     recomScrollBox->setObjectName("recomScrollBox");
 
     recomConLayout = new QHBoxLayout;
@@ -854,7 +855,7 @@ void Recommend::RecommProgram() {
             << "http://y.qq.com/music/photo_new/T002R300x300M000004SMH8t4336xW_1.jpg?max_age=25920000";
     for (int i = 0; i < imgList.size(); ++i) {
         programItemBox[i] = new QWidget(recomBox);
-        programItemBox[i]->setFixedWidth(160);
+        programItemBox[i]->setFixedWidth(170);
         programItemBox[i]->setObjectName("programItemBox");
         recomItemLayout = new QVBoxLayout;
         recomItemLayout->setSpacing(0);
@@ -862,7 +863,7 @@ void Recommend::RecommProgram() {
         recomItemLayout->setAlignment(Qt::AlignTop);
 
         recomImgBox = new QLabel(programItemBox[i]);
-        recomImgBox->setFixedSize(160, 160);
+        recomImgBox->setFixedSize(170, 170);
         recomImgBox->setCursor(Qt::PointingHandCursor);
         recomImgBox->setScaledContents(true);
         recomImgBox->setObjectName("programImgBox");
@@ -907,7 +908,7 @@ void Recommend::RecommProgram() {
         recomItemLayout->addWidget(recomTit);
         programItemBox[i]->setLayout(recomItemLayout);
         recomConLayout->addWidget(programItemBox[i]);
-        recomConLayout->setSpacing(25);
+        recomConLayout->setSpacing(20);
     }
 
     recomLayout->addWidget(arrowBox(5, "left"));
