@@ -32,5 +32,6 @@
 		<file>resource/qss/handleMenu.qss</file>
 		<file>resource/qss/songInfo.qss</file>
 		<file>resource/qss/musicHouse.qss</file>
+		<file>resource/qss/houseSelected.qss</file>
     </qresource>
 </RCC>

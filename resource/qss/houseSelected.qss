@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft YaHei', 'iconfont';
+}
+
+QLabel#recomImgBox,
+QLabel#treaImgBox,
+QLabel#everyImgBox {
+    border-radius: 6px;
+    background: #eee;
+}
+
+
+QWidget#conbox{
+    background-color: #fff;
+}
+
+QWidget#everyItemBox,
+QWidget#heartItemBox {
+    border-radius: 6px;
+}
+
+QWidget#everyItemBox:hover,
+QWidget#heartItemBox:hover {
+    background: #efefef;
+}
+
+QWidget#maskBox {
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.589);
+}
+
+QLabel#recomTit {
+    color: #4e4e4e;
+}
+
+QLabel#title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    padding-left: 30px;
+}
+
+QLabel#tit_playBox {
+    font-size: 15px;
+    border-radius: 15px;
+    color: #000;
+    background: #dedede;
+}
+
+QLabel#tit_playBox:hover {
+    color: #10da67;
+    background: #e1f2ed;
+}
+
+QLabel#playCount {
+    color: #fff;
+    font-size: 13px;
+}
+
+QLabel#songsTit {
+    font-size: 13px;
+}
+
+QWidget#floatBox {
+    background: #efefef;
+}
+
+QLabel#authorTit {
+    font-size: 12px;
+    color: #4e4e4e;
+}
+
+QLabel#listenPlay {
+    color: #fff;
+    font-size: 14px;
+}
+
+QLabel#loveBox,
+QLabel#moreBox {
+    font-size: 18px;
+    color: #4e4e4e;
+}
+
+
+
+.leftArrow,
+.rightArrow {
+    color: #7e7e7e;
+    font-size: 38px;
+}
+
+QLabel#recomTit:hover,
+QLabel#loveBox:hover,
+QLabel#moreBox:hover,
+.leftArrow:hover,
+.rightArrow:hover {
+    color: #10da67;
+}

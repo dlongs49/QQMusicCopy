@@ -13,7 +13,7 @@ container::container(QWidget *parent) : QWidget(parent) {
 //    recommend = new Recommend(this);
 //    containerLayout->addWidget(recommend);
 
-    musicHouse = new MusicHouese(this);
+    musicHouse = new MusicHouse(this);
     containerLayout->addWidget(musicHouse);
 
     connect(topMenu, SIGNAL(onFocus(bool)), this, SLOT(handleEmit(bool)));

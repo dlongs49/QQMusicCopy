@@ -9,29 +9,16 @@
 #include <QScrollArea>
 #include <QList>
 #include <QLabel>
+#include <QDebug>
 #include <QHBoxLayout>
-#include <QSizePolicy>
-#include <QPropertyAnimation>
-#include <QNetworkAccessManager>
-#include <QNetworkRequest>
-#include <QNetworkReply>
-#include <QEventLoop>
-#include <QByteArray>
-#include <QPainter>
-#include <QPainterPath>
-#include <QRect>
-#include <QSize>
-#include <QIcon>
 #include <QMouseEvent>
 #include <cmath>
-#include "../utils/tools.h"
-#include "./popup/handleMenu.h"
-#include "./popup/songInfo.h"
+#include "./houseSelected.h"
 
-class MusicHouese : public QWidget {
+class MusicHouse : public QWidget {
 Q_OBJECT;
 public:
-    MusicHouese(QWidget *parent = nullptr);
+    MusicHouse(QWidget *parent = nullptr);
 
 
 signals:
@@ -43,82 +30,21 @@ public slots:
 
     void loadQSS();
 
-    void RecommTop();
-
-    void RecommTrea();
-
-    void RecommListen();
-
-    void RecommRoam();
-
-    void RecommHeartbeat();
-
-    void RecommProgram();
-
-    void toggleItem(QWidget *itemBox, QString objName, QEvent *e);
-
-    void showArrow(QObject *o, QEvent *e, int i);
-
-    QLabel *arrowBox(int i, QString type);
-
-    QPixmap *getImage(QString url);
-
 protected:
 
 private:
-    int move_x = 0;
-    QList<QString> recomAttrList;
-    QPropertyAnimation *animation[6];
-    QScrollArea *scrollArea;
-    QLabel *navItem[5];
-    QLabel *recomTit;
-    QLabel *recomSubTit;
-    QLabel *guessTit;
-    QLabel *guessSubTit;
-    QLabel *playBox;
     QLabel *title;
-    QLabel *playCount;
-    QLabel *songsLabel;
-    QLabel *idenLabel;
-    QLabel *authorLabel;
-    QLabel *loveBox;
-    QLabel *moreBox;
-    QLabel *recomImgBox;
+    QLabel *activeLine;
+    QLabel *navItem[4];
     QWidget *widget;
-    QWidget *recomOutBox;
+    QWidget *containerBox;
+    QWidget *navBox;
     QWidget *recomBox;
-    QWidget *wrapconBox[6];
-    QWidget *recomItemBox[20];
-    QWidget *treaItemBox[20];
-    QWidget *roamItemBox[20];
-    QWidget *everyItemBox[20];
-    QWidget *heartItemBox[20];
-    QWidget *programItemBox[20];
-    QWidget *maskBox;
-    QWidget *recomScrollBox;
-    QWidget *titleBox;
-    QWidget *rightBox;
-    QWidget *floatBox;
+    QHBoxLayout *navLayout;
     QVBoxLayout *layout;
-    QVBoxLayout *recomOutLayout;
-    QVBoxLayout *recomItemLayout;
-    QVBoxLayout *guessLayout;
-    QVBoxLayout *rightLayout;
-    QGridLayout *treaLayout;
-    QGridLayout *gridLayout;
-    QHBoxLayout *recomLayout;
-    QHBoxLayout *recomConLayout;
-    QHBoxLayout *titLayout;
-    QHBoxLayout *listenLayout;
-    QHBoxLayout *songsLayout;
-    QHBoxLayout *floatLayout;
-    QNetworkAccessManager *manager;
-    QNetworkReply *reply;
-    QEventLoop *loop;
-    QPixmap *coverImg;
-    Tools *tools;
-    HandleMenu *handleMenu;
-    SongInfo *songInfo;
+    QVBoxLayout *containerLayout;
+    QScrollArea *scrollArea;
+    HouseSelected *houseSelected;
 };
 
 

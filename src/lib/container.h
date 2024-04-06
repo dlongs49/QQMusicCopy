@@ -53,7 +53,7 @@ private:
     SettMenu *settMenu;
     DownInfo *downInfo;
     Recommend *recommend;
-    MusicHouese *musicHouse;
+    MusicHouse *musicHouse;
 };
 
 #endif //QTMUSIC_container_H
