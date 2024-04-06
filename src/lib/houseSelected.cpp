@@ -40,144 +40,56 @@ HouseSelected::HouseSelected(QWidget *parent) : QWidget(parent) {
 }
 
 void HouseSelected::RecommTop() {
-    recomOutBox = new QWidget(widget);
-    recomOutBox->setFixedWidth(this->width()- 20);
-    recomOutBox->setFixedHeight(260);
-    recomOutBox->setObjectName("recomOutBox");
-    recomOutLayout = new QVBoxLayout;
-    recomOutLayout->setSpacing(0);
-    recomOutLayout->setMargin(0);
-    recomOutBox->setLayout(recomOutLayout);
-    title = new QLabel;
-    title->setObjectName("title");
-    title->setText("嘿，冰消叶散，今日为你推荐");
-    recomOutLayout->addWidget(title);
+    containerBox = new QWidget(widget);
+    containerBox->setFixedWidth(this->width() - 20);
+    containerBox->setFixedHeight(176);
+
+    contentLayout = new QHBoxLayout;
+    contentLayout->setSpacing(0);
+    contentLayout->setMargin(0);
+    containerBox->setLayout(contentLayout);
 
 
-    recomBox = new QWidget(recomOutBox);
-    recomBox->setFixedSize(recomOutBox->width(), 230);
-    recomBox->installEventFilter(this);
-    recomBox->setObjectName("recomBox");
-    recomOutLayout->addSpacing(6);
-    recomOutLayout->addWidget(recomBox);
+    scrollLayout = new QHBoxLayout;
+    scrollLayout->setSpacing(0);
+    scrollLayout->setMargin(0);
+    scrollLayout->setAlignment(Qt::AlignTop);
 
-    recomLayout = new QHBoxLayout;
-    recomLayout->setSpacing(0);
-    recomLayout->setMargin(0);
-    recomLayout->setAlignment(Qt::AlignTop);
-    recomBox->setLayout(recomLayout);
+    scrollBox = new QWidget(containerBox);
+    scrollBox->setFixedSize(containerBox->width()-60, containerBox->height());
+    scrollBox->setLayout(scrollLayout);
 
-    recomScrollBox = new QWidget(recomBox);
-    recomScrollBox->setFixedSize(recomBox->width() - 60, recomBox->height());
-    recomScrollBox->setObjectName("recomScrollBox");
+    bannerLayout = new QHBoxLayout;
+    bannerLayout->setSpacing(0);
+    bannerLayout->setMargin(0);
+    bannerLayout->setAlignment(Qt::AlignLeft);
 
-    recomConLayout = new QHBoxLayout;
-    recomConLayout->setSpacing(0);
-    recomConLayout->setMargin(0);
-    recomConLayout->setAlignment(Qt::AlignLeft);
-
-    wrapconBox[0] = new QWidget(recomScrollBox);
-    wrapconBox[0]->setLayout(recomConLayout);
-    animation[0] = new QPropertyAnimation(wrapconBox[0], "geometry");
-    animation[0]->setDuration(300);
+    bannerBox = new QWidget(scrollBox);
+    bannerBox->setStyleSheet("background:#f0f");
+//    bannerBox->setObjectName("containerBox");
+    bannerBox->setLayout(bannerLayout);
 
     QList<QString> imgList;
-    QList<QString> txtList;
     imgList << "http://y.qq.com/n3/wk_v20/entry/bg6.dab9cba46.png?max_age=2592000"
-            << "https://y.gtimg.cn/music/photo_new/T002R300x300M000003MvqCa0Fq3Mq_2.jpg"
             << "http://y.qq.com/music/photo_new/T002R300x300M000000J15TK3Afzlb_5.jpg?max_age=2592000"
             << "http://y.qq.com/music/photo_new/T002R300x300M0000008mjyX38ncsg_2.jpg?max_age=2592000"
             << "http://y.qq.com/music/photo_new/T002R300x300M000003ldyaV1pgN3M_1.jpg?max_age=2592000"
             << "http://y.qq.com/music/photo_new/T002R300x300M000000cpBaV2uDCBC_1.jpg?max_age=2592000"
             << "http://y.qq.com/music/photo_new/T002R300x300M000003yGUXR2isN9F_2.jpg?max_age=2592000";
     for (int i = 0; i < imgList.size(); ++i) {
-        recomItemBox[i] = new QWidget(recomBox);
-        if (i == 0) {
-            recomItemBox[0]->setFixedWidth(360);
-        } else {
-            recomItemBox[i]->setFixedWidth(170);
-        }
-        recomItemLayout = new QVBoxLayout;
-        recomItemLayout->setSpacing(0);
-        recomItemLayout->setMargin(0);
-        recomItemLayout->setAlignment(Qt::AlignTop);
-
-        recomImgBox = new QLabel(recomItemBox[i]);
-        recomImgBox->setCursor(Qt::PointingHandCursor);
-        recomImgBox->setScaledContents(true);
-        recomImgBox->setObjectName("recomImgBox");
-        recomImgBox->setProperty("index", i);
-        recomImgBox->installEventFilter(this);
-        // 先提取网络图片 再处理圆角 Tools
-        recomImgBox->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 6));
-        if (i == 0) {
-            recomImgBox->setFixedSize(410, 170);
-
-            guessLayout = new QVBoxLayout;
-            guessLayout->setAlignment(Qt::AlignVCenter);
-            guessTit = new QLabel;
-            guessTit->setStyleSheet("font-size:20px");
-            guessTit->setText("晚上好");
-            guessSubTit = new QLabel;
-            guessSubTit->setText("尝试来点音\n乐提提神吧");
-            playBox = new QLabel;
-            playBox->setFixedSize(40, 30);
-            QPixmap playPix(":/resource/images/play.png");
-            playBox->setPixmap(playPix);
-            playBox->setScaledContents(true);
-            guessLayout->addWidget(guessTit);
-            guessLayout->addWidget(guessSubTit);
-            guessLayout->addSpacing(5);
-            guessLayout->addWidget(playBox);
-            recomImgBox->setLayout(guessLayout);
-        } else {
-            recomImgBox->setFixedSize(170, 170);
-
-            maskBox = new QWidget(recomImgBox);
-            maskBox->setFixedSize(recomImgBox->width(), recomImgBox->height());
-            maskBox->setObjectName("maskBox");
-            maskBox->setVisible(false);
-
-            playBox = new QLabel(recomImgBox);
-            playBox->setObjectName("playBox");
-            playBox->setVisible(false);
-            playBox->setFixedSize(40, 30);
-            QPixmap playPix(":/resource/images/play.png");
-            playBox->setPixmap(playPix);
-            playBox->setScaledContents(true);
-            playBox->move(10, recomImgBox->height() - 40);
-        }
-
-        recomTit = new QLabel;
-        recomTit->setCursor(Qt::PointingHandCursor);
-        recomTit->setObjectName("recomTit");
-        recomTit->setText("一生无悔-高安/杭娇");
-        recomTit->setFixedSize(recomTit->sizeHint().width(), recomTit->sizeHint().height());
-        recomSubTit = new QLabel;
-        recomSubTit->setCursor(Qt::PointingHandCursor);
-        recomSubTit->setObjectName("recomTit");
-        recomSubTit->setText("每日三十首");
-        recomSubTit->setFixedSize(recomSubTit->sizeHint().width(), recomSubTit->sizeHint().height());
-
-
-        recomItemLayout->addSpacing(10);
-        recomItemLayout->addWidget(recomImgBox);
-        recomItemLayout->addSpacing(6);
-        recomItemLayout->addWidget(recomTit);
-        recomItemLayout->addSpacing(3);
-        recomItemLayout->addWidget(recomSubTit);
-        recomItemBox[i]->setLayout(recomItemLayout);
-        recomConLayout->addWidget(recomItemBox[i]);
-        if (i != imgList.size() - 1) {
-            recomConLayout->addSpacing(20);
-        }
+        bannerItem[i] = new QWidget();
+        bannerItem[i]->setFixedSize(240,176);
+        bannerItem[i]->setStyleSheet("background:#ff0");
+        bannerLayout->addWidget(bannerItem[i]);
+        bannerLayout->addSpacing(20);
     }
 
-    recomLayout->addWidget(arrowBox(0, "left"));
-    recomLayout->addWidget(recomScrollBox);
-    recomLayout->addWidget(arrowBox(0, "right"));
+    contentLayout->addWidget(arrowBox(0, "left"));
+    contentLayout->addWidget(scrollBox);
+    contentLayout->addWidget(arrowBox(0, "right"));
+
     layout->addSpacing(10);
-    layout->addWidget(recomOutBox);
+    layout->addWidget(containerBox);
     layout->addSpacing(30);
 }
 

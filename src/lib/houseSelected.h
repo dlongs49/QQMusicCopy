@@ -88,9 +88,10 @@ private:
     QLabel *recomImgBox;
     QWidget *widget;
     QWidget *containerBox;
-    QWidget *navBox;
+    QWidget *scrollBox;
     QWidget *recomOutBox;
     QWidget *recomBox;
+    QWidget *bannerBox;
     QWidget *wrapconBox[6];
     QWidget *recomItemBox[20];
     QWidget *treaItemBox[20];
@@ -103,6 +104,7 @@ private:
     QWidget *titleBox;
     QWidget *rightBox;
     QWidget *floatBox;
+    QWidget *bannerItem[6];
     QVBoxLayout *layout;
     QVBoxLayout *containerLayout;
     QVBoxLayout *recomOutLayout;
@@ -111,7 +113,9 @@ private:
     QVBoxLayout *rightLayout;
     QGridLayout *treaLayout;
     QGridLayout *gridLayout;
-    QHBoxLayout *navLayout;
+    QHBoxLayout *contentLayout;
+    QHBoxLayout *bannerLayout;
+    QHBoxLayout *scrollLayout;
     QHBoxLayout *recomLayout;
     QHBoxLayout *recomConLayout;
     QHBoxLayout *titLayout;
