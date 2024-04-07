@@ -40,23 +40,10 @@ signals:
 
 public slots:
 
-    bool eventFilter(QObject *watched, QEvent *event);
 
     void loadQSS();
 
-    void RecommTop();
-
-    void RecommTrea();
-
-    void RecommListen();
-
-    void RecommRoam();
-
-    void RecommHeartbeat();
-
-    void RecommProgram();
-
-    void toggleItem(QWidget *itemBox, QString objName, QEvent *e);
+    void RecommTops();
 
     void showArrow(QObject *o, QEvent *e, int i);
 
@@ -78,7 +65,7 @@ private:
     QLabel *guessTit;
     QLabel *guessSubTit;
     QLabel *playBox;
-    QLabel *title;
+    QLabel *bannerImg;
     QLabel *playCount;
     QLabel *songsLabel;
     QLabel *idenLabel;
@@ -104,11 +91,11 @@ private:
     QWidget *titleBox;
     QWidget *rightBox;
     QWidget *floatBox;
-    QWidget *bannerItem[6];
+    QWidget *bannerItem[8];
     QVBoxLayout *layout;
     QVBoxLayout *containerLayout;
     QVBoxLayout *recomOutLayout;
-    QVBoxLayout *recomItemLayout;
+    QVBoxLayout *bannerImgLayout;
     QVBoxLayout *guessLayout;
     QVBoxLayout *rightLayout;
     QGridLayout *treaLayout;
