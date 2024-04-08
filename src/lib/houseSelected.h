@@ -60,6 +60,8 @@ private:
     QScrollArea *scrollArea;
     QLabel *navItem[5];
     QLabel *recomTit;
+    QLabel *tagLabel;
+    QLabel *titleLabel;
     QLabel *activeLine;
     QLabel *recomSubTit;
     QLabel *guessTit;
@@ -91,6 +93,7 @@ private:
     QWidget *titleBox;
     QWidget *rightBox;
     QWidget *floatBox;
+    QWidget *bomBox;
     QWidget *bannerItem[8];
     QVBoxLayout *layout;
     QVBoxLayout *containerLayout;
@@ -102,6 +105,7 @@ private:
     QGridLayout *gridLayout;
     QHBoxLayout *contentLayout;
     QHBoxLayout *bannerLayout;
+    QHBoxLayout *bomLayout;
     QHBoxLayout *scrollLayout;
     QHBoxLayout *recomLayout;
     QHBoxLayout *recomConLayout;

@@ -88,6 +88,25 @@ void HouseSelected::RecommTops() {
         bannerImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 6));
         bannerImg->setFixedSize(240, 178);
 
+        bomBox = new QWidget(bannerImg);
+        bomBox->setGeometry(0,bannerImg->height()-40,bannerImg->width(),40);
+        bomLayout = new QHBoxLayout;
+        bomLayout->setAlignment(Qt::AlignBottom);
+        bomBox->setLayout(bomLayout);
+
+        tagLabel = new QLabel;
+        tagLabel->setObjectName("tagLabel");
+        tagLabel->setText("音乐人");
+        tagLabel->setFixedSize(tagLabel->sizeHint().width()+5,tagLabel->sizeHint().height());
+
+        titleLabel = new QLabel;
+        QString txt = tools->textElps("胡夏《烟花刹那》诉说最真实的想法 ", 150, titleLabel->font());
+        titleLabel->setText(txt);
+        titleLabel->setObjectName("titleLabel");
+
+        bomLayout->addWidget(tagLabel);
+        bomLayout->addWidget(titleLabel);
+
         bannerImgLayout->addWidget(bannerImg);
         bannerItem[i]->setLayout(bannerImgLayout);
         bannerLayout->addWidget(bannerItem[i]);

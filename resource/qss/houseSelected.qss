@@ -13,8 +13,18 @@ QLabel#everyImgBox {
     border-radius: 6px;
     background: #eee;
 }
-
-
+QLabel#tagLabel{
+    color: #000;
+    font-size: 12px;
+    border-radius: 2px;
+    padding: 1px 2px;
+    margin-top: 3px;
+    background: #fff;
+}
+QLabel#titleLabel{
+    color: #fff;
+    font-size: 14px;
+}
 QWidget#conbox{
     background-color: #fff;
 }
