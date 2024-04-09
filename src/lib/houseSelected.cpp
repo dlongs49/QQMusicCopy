@@ -63,13 +63,10 @@ void HouseSelected::RecommTops() {
 
     QList<QString> imgList;
     QList<QString> txtList;
-    imgList << "http://y.qq.com/n3/wk_v20/entry/bg6.dab9cba46.png?max_age=2592000"
-            << "https://y.gtimg.cn/music/photo_new/T002R300x300M000003MvqCa0Fq3Mq_2.jpg"
-            << "http://y.qq.com/music/photo_new/T002R300x300M000000J15TK3Afzlb_5.jpg?max_age=2592000"
-            << "http://y.qq.com/music/photo_new/T002R300x300M0000008mjyX38ncsg_2.jpg?max_age=2592000"
-            << "http://y.qq.com/music/photo_new/T002R300x300M000003ldyaV1pgN3M_1.jpg?max_age=2592000"
-            << "http://y.qq.com/music/photo_new/T002R300x300M000000cpBaV2uDCBC_1.jpg?max_age=2592000"
-            << "http://y.qq.com/music/photo_new/T002R300x300M000003yGUXR2isN9F_2.jpg?max_age=2592000";
+    imgList << "https://y.qq.com/music/common/upload/MUSIC_FOCUS/6483999.jpg"
+            << "https://y.qq.com/music/common/upload/MUSIC_FOCUS/6484203.jpg"
+            << "https://y.qq.com/music/common/upload/ocs/2681676c054da54091a9f000208e81bf.png"
+            << "https://y.qq.com/music/common/upload/MUSIC_FOCUS/6482174.jpg";
     for (int i = 0; i < imgList.size(); ++i) {
         bannerItem[i] = new QWidget;
         bannerItem[i] -> installEventFilter(this);
@@ -101,7 +98,7 @@ void HouseSelected::RecommTops() {
         tagLabel->setFixedSize(tagLabel->sizeHint().width()+5,tagLabel->sizeHint().height());
 
         titleLabel = new QLabel;
-        QString txt = tools->textElps("胡夏《烟花刹那》诉说最真实的想法 ", 150, titleLabel->font());
+        QString txt = tools->textElps("贺峻霖全新单曲《缘故》正式上线 ", 150, titleLabel->font());
         titleLabel->setText(txt);
         titleLabel->setObjectName("titleLabel");
 
