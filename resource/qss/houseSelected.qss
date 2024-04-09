@@ -55,7 +55,10 @@ QLabel#arrowMore{
     color: #333;
 }
 
-
+QLabel#officialImg{
+    background: #eee;
+    border-radius: 6px;
+}
 
 
 

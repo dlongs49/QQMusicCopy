@@ -217,14 +217,16 @@ void HouseSelected::officialPlayList(){
     animation[0] = new QPropertyAnimation(wrapconBox[0], "geometry");
     animation[0]->setDuration(300);
 
+
+    // qq音乐精选接口 http://u6.y.qq.com/cgi-bin/musics.fcg?_=1712662759896&sign=zzcd87edc7qul46ovmthfs0znwytvxsfm6kmwd0777b5b
     QList<QString> imgList;
     QList<QString> txtList;
-    imgList << "http://y.qq.com/music/photo_new/T002R300x300M000004RlJ4h0SOy7o_1.jpg?max_age=2592000"
-            << "http://y.qq.com/music/photo_new/T002R300x300M000004IQrYm2aq13C_2.jpg?max_age=2592000"
-            << "http://y.qq.com/music/photo_new/T002R300x300M000002RFvQa0KZgWT_1.jpg?max_age=2592000"
-            << "http://y.qq.com/music/photo_new/T002R300x300M000001xEQO00PY9o4_2.jpg?max_age=2592000"
-            << "http://y.qq.com/music/photo_new/T002R300x300M000003ytZCh3LYLkh_2.jpg?max_age=2592000"
-            << "http://y.qq.com/music/photo_new/T002R300x300M000004SMH8t4336xW_1.jpg?max_age=25920000";
+    imgList << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QfX3MU2dzluKMUOBEjz0h6g/300"
+            << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QY8gA4UrJxhxQ9BBHZHDyFQ/300?n=1"
+            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqojSibubibse2uIWSaZhZ39n1F1CQCXVuMGdw/300?n=1"
+            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqoglWn5x5ITgE8KljTdMrDCyBpia0Jkn6BDg/300?n=1"
+            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
+            << "https://qpic.y.qq.com/music_cover/4pmnRu5sL5QbtO8OS8NKJTN5qBpjx5XMS8vhm4hcZSN7PEHPQ68C0Q/300?n=1";
     for (int i = 0; i < imgList.size(); ++i) {
         officialItem[i] = new QWidget(contentBox);
         officialItem[i]->setFixedWidth(170);
@@ -268,7 +270,7 @@ void HouseSelected::officialPlayList(){
         title = new QLabel;
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
-        title->setText("抖音最火BGM，根本停不下来");
+        title->setText("华语摇滚|川流不息");
         title->setWordWrap(true);
         title->setAlignment(Qt::AlignTop);
         title->setFixedHeight(38);
@@ -404,8 +406,10 @@ bool HouseSelected::eventFilter(QObject *o, QEvent *e) {
 
     if (o->objectName() == "officialImg") {
         int i = o->property("index").toInt();
-//        toggleItem(officialItem[i], "officialImg", e);
+        toggleItem(officialItem[i], "officialImg", e);
     }
+    return QWidget::eventFilter(o, e);
+
 }
 void HouseSelected::loadQSS() {
     QFile qss(":/resource/qss/houseSelected.qss");
