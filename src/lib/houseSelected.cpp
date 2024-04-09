@@ -38,7 +38,7 @@ void HouseSelected::RecommTops() {
     containerBox = new QWidget(widget);
     containerBox->setFixedSize(widget->width(), 230);
     containerBox->installEventFilter(this);
-    containerBox->setObjectName("recomBox");
+    containerBox->setObjectName("selectedBox");
 
 
     contentLayout = new QHBoxLayout;
@@ -72,6 +72,7 @@ void HouseSelected::RecommTops() {
             << "http://y.qq.com/music/photo_new/T002R300x300M000003yGUXR2isN9F_2.jpg?max_age=2592000";
     for (int i = 0; i < imgList.size(); ++i) {
         bannerItem[i] = new QWidget;
+        bannerItem[i] -> installEventFilter(this);
         bannerItem[i]->setFixedSize(240,178);
         bannerImgLayout = new QVBoxLayout;
         bannerImgLayout->setSpacing(0);
@@ -187,6 +188,14 @@ void HouseSelected::showArrow(QObject *o, QEvent *e, int i) {
             leftArrow->setVisible(false);
             rightArrow->setVisible(false);
         }
+    }
+}
+
+
+bool HouseSelected::eventFilter(QObject *o, QEvent *e) {
+    // 左右箭头交互
+    if (o->objectName() == "selectedBox") {
+        showArrow(o, e, 0);
     }
 }
 void HouseSelected::loadQSS() {

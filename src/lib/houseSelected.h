@@ -40,6 +40,7 @@ signals:
 
 public slots:
 
+    bool eventFilter(QObject *watched, QEvent *event);
 
     void loadQSS();
 
