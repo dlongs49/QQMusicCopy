@@ -44,7 +44,7 @@ public slots:
 
     void loadQSS();
 
-    void RecommTops();
+    void bannerTop();
 
     void showArrow(QObject *o, QEvent *e, int i);
 

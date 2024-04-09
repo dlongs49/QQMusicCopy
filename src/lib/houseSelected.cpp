@@ -28,18 +28,17 @@ HouseSelected::HouseSelected(QWidget *parent) : QWidget(parent) {
     handleMenu = new HandleMenu(scrollArea);
     songInfo = new SongInfo(scrollArea);
 
-    RecommTops();
+    bannerTop();
     widget->setLayout(layout);
 
 
 }
-void HouseSelected::RecommTops() {
+void HouseSelected::bannerTop() {
 
     containerBox = new QWidget(widget);
-    containerBox->setFixedSize(widget->width(), 230);
+    containerBox->setFixedSize(widget->width()-20, 178);
     containerBox->installEventFilter(this);
     containerBox->setObjectName("selectedBox");
-
 
     contentLayout = new QHBoxLayout;
     contentLayout->setSpacing(0);
@@ -70,7 +69,8 @@ void HouseSelected::RecommTops() {
     for (int i = 0; i < imgList.size(); ++i) {
         bannerItem[i] = new QWidget;
         bannerItem[i] -> installEventFilter(this);
-        bannerItem[i]->setFixedSize(240,178);
+        bannerItem[i]->setObjectName("bannerItem");
+        bannerItem[i]->setFixedSize(240,containerBox->height());
         bannerImgLayout = new QVBoxLayout;
         bannerImgLayout->setSpacing(0);
         bannerImgLayout->setMargin(0);
@@ -83,8 +83,8 @@ void HouseSelected::RecommTops() {
         bannerImg->setProperty("index", i);
         bannerImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        bannerImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 6));
-        bannerImg->setFixedSize(240, 178);
+        bannerImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 16));
+        bannerImg->setFixedSize(240, containerBox->height());
 
         bomBox = new QWidget(bannerImg);
         bomBox->setGeometry(0,bannerImg->height()-40,bannerImg->width(),40);
