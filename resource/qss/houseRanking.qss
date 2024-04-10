@@ -3,22 +3,38 @@
     padding: 0;
     font-family: 'Microsoft YaHei', 'iconfont';
 }
-
+QWidget#item{
+    background-color: #eee;
+    border-radius: 10px;
+}
+QLabel#itemImg{
+    border-radius: 12px;
+}
 QWidget#playCountBox{
     background: rgba(0, 0, 0, 0.603);
-    border-radius: 12px;
-    padding: 0 4px;
+    border-radius: 11px;
 }
 QLabel#playSicon{
     color: #fff;
     font-size: 12px;
-    background: #f0f;
 }
 QLabel#playCount {
     color: #fff;
     font-size: 12px;
-    background: #10da67;
 }
+
+QLabel#blodTit{
+    font-weight: bold;
+    font-size: 20px;
+}
+QLabel#songItem{
+    color: #797979;
+    font-size: 12px;
+}
+
+
+
+
 QLabel#tagLabel {
     color: #000;
     font-size: 12px;

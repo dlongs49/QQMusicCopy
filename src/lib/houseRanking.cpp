@@ -52,26 +52,28 @@ void HouseRanking::rankingTop() {
             << "https://y.qq.com/music/common/upload/ocs/2681676c054da54091a9f000208e81bf.png"
             << "https://y.qq.com/music/common/upload/MUSIC_FOCUS/6482174.jpg";
     for (int i = 0; i < imgList.size(); ++i) {
+        int box_w = containerBox->width() / 2;
+        int item_h = 150;
         item[i] = new QWidget;
         item[i]->installEventFilter(this);
         item[i]->setObjectName("item");
-        item[i]->setFixedSize(containerBox->width()/2, 150);
+        item[i]->setFixedSize(box_w - 20, item_h);
+        item[i]->setCursor(Qt::PointingHandCursor);
+
 
         contentLayout = new QHBoxLayout;
         contentLayout->setSpacing(0);
         contentLayout->setMargin(0);
-        contentLayout->setAlignment(Qt::AlignTop);
+        item[i]->setLayout(contentLayout);
 
 
-
-        itemImg = new QLabel(item[i]);
-        itemImg->setCursor(Qt::PointingHandCursor);
+        itemImg = new QLabel;
         itemImg->setScaledContents(true);
-        itemImg->setObjectName("bannerImg");
+        itemImg->setObjectName("itemImg");
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 16));
+        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 40));
         itemImg->setFixedSize(150, 150);
 
         maskBox = new QWidget(itemImg);
@@ -89,37 +91,62 @@ void HouseRanking::rankingTop() {
         playCountBox->setLayout(playCountLayout);
 
         playSicon = new QLabel;
-        playSicon->setFixedSize(14, 14);
+        playSicon->setFixedSize(18, 14);
         playSicon->setObjectName("playSicon");
         playSicon->setFont(tools->aliIcon());
         playSicon->setText(QChar(0xe841));
-
+        playSicon->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
 
         playCount = new QLabel;
         playCount->setObjectName("playCount");
         playCount->setText("203.6万");
         playCount->setFixedSize(playCount->sizeHint());
+        playCount->setAlignment(Qt::AlignCenter);
 
         playCountLayout->addWidget(playSicon);
+        playCountLayout->addSpacing(2);
         playCountLayout->addWidget(playCount);
-        int sc = playCount->sizeHint().width();
-        playCountBox->setGeometry(itemImg->width()-10, itemImg->height() - 40, sc+32, 24);
+        int sc = playCount->sizeHint().width() + 26;
+        playCountBox->setGeometry(itemImg->width() - sc - 10, itemImg->height() - 30, sc, 22);
 
 
-        rightSongBox = new QWidget;
+        rightListLayout = new QVBoxLayout;
+        rightListLayout->setMargin(0);
+        rightListLayout->setSpacing(0);
+        rightListLayout->setAlignment(Qt::AlignTop);
+        rightListBox = new QWidget;
+        int rw = box_w - itemImg->width() - 40;
+        rightListBox->setFixedSize(rw, item_h - 30);
+        rightListBox->setLayout(rightListLayout);
 
+        title = new QLabel;
+        title->setText("腾讯音乐人原创榜");
+        title->setObjectName("blodTit");
+        title->setFixedSize(rw,30);
+        rightListLayout->addWidget(title);
+        rightListLayout->addSpacing(20);
 
-        titleLabel = new QLabel;
-        QString txt = tools->textElps("贺峻霖全新单曲《缘故》正式上线 ", 150, titleLabel->font());
-        titleLabel->setText(txt);
-        titleLabel->setObjectName("titleLabel");
-
+        QStringList slist = {"缘故-贺均分", "蜃楼-周深", "总有人留在过去-黑雾乐队"};
+        for (int j = 0; j < slist.size(); ++j) {
+            songItem[j] = new QLabel;
+            QString txt = tools->textElps(slist[j], rightListBox->width(), songItem[j]->font());
+            songItem[j]->setText(txt);
+            songItem[j]->setObjectName("songItem");
+            rightListLayout->addWidget(songItem[j]);
+            rightListLayout->addSpacing(10);
+            if(j == slist.size() - 1){
+                rightListLayout->addSpacing(0);
+            }
+        }
 
         contentLayout->addWidget(itemImg);
+        contentLayout->addSpacing(15);
+        contentLayout->addWidget(rightListBox);
 
         int r = floor(i / 2) + 1;
         int c = (i % 2) + 1;
-        containerLayout->addWidget(item[i],r,c);
+        containerLayout->addWidget(item[i], r, c);
+        containerLayout->setSpacing(20);
     }
     layout->addSpacing(10);
     layout->addWidget(containerBox);

@@ -63,6 +63,7 @@ private:
     QLabel *itemImg;
     QLabel *playSicon;
     QLabel *playCount;
+    QLabel *songItem[3];
     QWidget *widget;
     QWidget *containerBox;
     QWidget *contentBox;
@@ -73,14 +74,14 @@ private:
     QWidget *latestNavBox;
     QWidget *titleBox;
     QWidget *leftTitBox;
-    QWidget *rightSongBox;
+    QWidget *rightListBox;
     QWidget *item[10];
     QWidget *officialItem[6];
     QWidget *listenBookItem[6];
     QWidget *classItem[6];
     QWidget *latestItem[6];
     QVBoxLayout *layout;
-    QVBoxLayout *bannerImgLayout;
+    QVBoxLayout *rightListLayout;
     QVBoxLayout *itemLayout;
     QHBoxLayout *contentLayout;
     QHBoxLayout *bannerLayout;
