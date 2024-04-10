@@ -349,12 +349,15 @@ void HouseSelected::listenBook() {
 
     QList<QString> imgList;
     QList<QString> txtList;
-    imgList << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QfX3MU2dzluKMUOBEjz0h6g/300"
-            << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QY8gA4UrJxhxQ9BBHZHDyFQ/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqojSibubibse2uIWSaZhZ39n1F1CQCXVuMGdw/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqoglWn5x5ITgE8KljTdMrDCyBpia0Jkn6BDg/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/4pmnRu5sL5QbtO8OS8NKJTN5qBpjx5XMS8vhm4hcZSN7PEHPQ68C0Q/300?n=1";
+    imgList << "https://y.gtimg.cn/music/photo_new/T002R500x500M000002ecDYa4W8Etq.jpg"
+            << "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Yh5Lq2ttNjH.jpg"
+            << "https://y.gtimg.cn/music/photo_new/T002R500x500M000004O1yg94X8WZT.jpg"
+            << "https://y.gtimg.cn/music/photo_new/T002R500x500M000002C8imL3ZjTKl.jpg"
+            << "https://y.gtimg.cn/music/photo_new/T002R500x500M000003Lp9xx4bZJFm.jpg"
+            //<< "https://y.gtimg.cn/music/photo_new/T002R500x500M000002hyVDd2SGIit.jpg"
+            //<< "https://y.gtimg.cn/music/photo_new/T002R500x500M000002FPE0c0NPEx9.jpg"
+            //<< "https://y.gtimg.cn/music/photo_new/T002R500x500M000002FHfQJ3ULEdE.jpg"
+            << "https://y.gtimg.cn/music/photo_new/T002R500x500M0000048ss5v1COV8J.jpg";
     for (int i = 0; i < imgList.size(); ++i) {
         listenBookItem[i] = new QWidget(contentBox);
         listenBookItem[i]->setFixedWidth(170);
@@ -398,7 +401,7 @@ void HouseSelected::listenBook() {
         title = new QLabel;
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
-        title->setText("华语摇滚|川流不息");
+        title->setText("孤独患者 | 人生而孤独");
         title->setWordWrap(true);
         title->setAlignment(Qt::AlignTop);
         title->setFixedHeight(38);
@@ -458,7 +461,7 @@ void HouseSelected::latestIssue() {
 
     latestNavBox = new QWidget;
     titLeftLayout->addWidget(latestNavBox);
-    QStringList nav = {"最新","内地","港台","欧美","韩国","日本"};
+    QStringList nav = {"最新", "内地", "港台", "欧美", "韩国", "日本"};
     for (int i = 0; i < nav.size(); ++i) {
         latestNavItem[i] = new QLabel;
         latestNavItem[i]->setCursor(Qt::PointingHandCursor);
@@ -573,16 +576,20 @@ void HouseSelected::latestIssue() {
         title = new QLabel;
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
-        title->setText("华语摇滚|川流不息");
-        title->setWordWrap(true);
-        title->setAlignment(Qt::AlignTop);
-        title->setFixedHeight(38);
+        QString titleTxt = tools->textElps("华语摇滚|川流不息", itemImg->width()-20, title->font());
+        title->setText(titleTxt);
 
+        exTitle = new QLabel;
+        exTitle->setObjectName("exTitle");
+        QString txt = tools->textElps("GAT周延/威尔Will.T", itemImg->width()-20, exTitle->font());
+        exTitle->setText(txt);
 
         itemLayout->addSpacing(10);
         itemLayout->addWidget(itemImg);
         itemLayout->addSpacing(6);
         itemLayout->addWidget(title);
+        itemLayout->addSpacing(3);
+        itemLayout->addWidget(exTitle);
         latestItem[i]->setLayout(itemLayout);
         bannerLayout->addWidget(latestItem[i]);
         bannerLayout->setSpacing(20);
@@ -650,12 +657,14 @@ void HouseSelected::classPrefe() {
 
     QList<QString> imgList;
     QList<QString> txtList;
-    imgList << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QfX3MU2dzluKMUOBEjz0h6g/300"
-            << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QY8gA4UrJxhxQ9BBHZHDyFQ/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqojSibubibse2uIWSaZhZ39n1F1CQCXVuMGdw/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqoglWn5x5ITgE8KljTdMrDCyBpia0Jkn6BDg/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/4pmnRu5sL5QbtO8OS8NKJTN5qBpjx5XMS8vhm4hcZSN7PEHPQ68C0Q/300?n=1";
+    imgList << "https://y.gtimg.cn/music/common/upload/category_area/4522613.jpg"
+            << "https://y.gtimg.cn/music/common/upload/category_area/4370381.png"
+            << "https://y.gtimg.cn/music/common/upload/category_area/4522642.jpg"
+            << "https://y.gtimg.cn/music/common/upload/category_area/4104860.jpg"
+            << "https://y.gtimg.cn/music/common/upload/category_area/4427772.jpg"
+            // << "https://y.gtimg.cn/music/common/upload/category_area/2447186.jpg"
+            // << "https://y.gtimg.cn/music/common/upload/category_area/1348191.jpg"
+            << "https://y.gtimg.cn/music/common/upload/category_area/4461729.png";
     for (int i = 0; i < imgList.size(); ++i) {
         classItem[i] = new QWidget(contentBox);
         classItem[i]->setFixedWidth(170);
@@ -684,16 +693,19 @@ void HouseSelected::classPrefe() {
         title = new QLabel;
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
-        title->setText("华语摇滚|川流不息");
-        title->setWordWrap(true);
-        title->setAlignment(Qt::AlignTop);
-        title->setFixedHeight(38);
+        title->setText("杜比全景声");
 
+        exTitle = new QLabel;
+        exTitle->setObjectName("exTitle");
+        QString txt = tools->textElps("高解析度音乐，如临现场，栩栩如生", itemImg->width()-20, exTitle->font());
+        exTitle->setText(txt);
 
         itemLayout->addSpacing(10);
         itemLayout->addWidget(itemImg);
         itemLayout->addSpacing(6);
         itemLayout->addWidget(title);
+        itemLayout->addSpacing(3);
+        itemLayout->addWidget(exTitle);
         classItem[i]->setLayout(itemLayout);
         bannerLayout->addWidget(classItem[i]);
         bannerLayout->setSpacing(20);

@@ -61,6 +61,7 @@ private:
     QLabel *titleLabel;
     QLabel *title;
     QLabel *subTitle;
+    QLabel *exTitle;
     QLabel *playBox;
     QLabel *bannerImg;
     QLabel *playCount;

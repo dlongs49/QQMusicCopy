@@ -37,6 +37,10 @@ QLabel#subTitle {
     font-size: 13px;
     color: #777;
 }
+QLabel#exTitle {
+    font-size: 13px;
+    color: #8b8b8b;
+}
 
 QLabel#moreTit {
     font-size: 12px;
