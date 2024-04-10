@@ -66,6 +66,10 @@ QLabel#classPrefeImg {
     border-radius: 6px;
 }
 
+QLabel#latestNavItem {
+    font-size: 12px;
+    color: #505050;
+}
 
 
 QWidget#everyItemBox,
@@ -139,6 +143,7 @@ QLabel#recomTit:hover,
 QLabel#loveBox:hover,
 QLabel#moreBox:hover,
 .leftArrow:hover,
-.rightArrow:hover {
+.rightArrow:hover,
+QLabel#latestNavItem:hover {
     color: #10da67;
 }
