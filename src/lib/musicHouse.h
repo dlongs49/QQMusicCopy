@@ -14,6 +14,7 @@
 #include <QMouseEvent>
 #include <cmath>
 #include "./houseSelected.h"
+#include "./houseRanking.h"
 
 class MusicHouse : public QWidget {
 Q_OBJECT;
@@ -45,6 +46,7 @@ private:
     QVBoxLayout *containerLayout;
     QScrollArea *scrollArea;
     HouseSelected *houseSelected;
+    HouseRanking *houseRanking;
 };
 
 

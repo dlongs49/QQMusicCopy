@@ -4,6 +4,21 @@
     font-family: 'Microsoft YaHei', 'iconfont';
 }
 
+QWidget#playCountBox{
+    background: rgba(0, 0, 0, 0.603);
+    border-radius: 12px;
+    padding: 0 4px;
+}
+QLabel#playSicon{
+    color: #fff;
+    font-size: 12px;
+    background: #f0f;
+}
+QLabel#playCount {
+    color: #fff;
+    font-size: 12px;
+    background: #10da67;
+}
 QLabel#tagLabel {
     color: #000;
     font-size: 12px;
@@ -76,10 +91,7 @@ QLabel#recomTit {
 }
 
 
-QLabel#playCount {
-    color: #fff;
-    font-size: 13px;
-}
+
 
 
 .leftArrow,

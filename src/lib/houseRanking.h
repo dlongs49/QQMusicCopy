@@ -10,6 +10,7 @@
 #include <QList>
 #include <QLabel>
 #include <QHBoxLayout>
+#include <QScrollArea>
 #include <QSizePolicy>
 #include <QPropertyAnimation>
 #include <QNetworkAccessManager>
@@ -57,40 +58,38 @@ private:
     QLabel *subTitle;
     QLabel *exTitle;
     QLabel *playBox;
-    QLabel *bannerImg;
-    QLabel *playCount;
     QLabel *moreTitle;
     QLabel *arrowTitle;
     QLabel *itemImg;
-    QLabel *rightMoreBox;
+    QLabel *playSicon;
+    QLabel *playCount;
     QWidget *widget;
     QWidget *containerBox;
-    QWidget *scrollBox;
     QWidget *contentBox;
-    QWidget *bannerBox;
+    QWidget *playCountBox;
     QWidget *wrapconBox[6];
     QLabel *latestNavItem[6];
     QWidget *maskBox;
     QWidget *latestNavBox;
     QWidget *titleBox;
     QWidget *leftTitBox;
-    QWidget *bomBox;
-    QWidget *bannerItem[10];
+    QWidget *rightSongBox;
+    QWidget *item[10];
     QWidget *officialItem[6];
     QWidget *listenBookItem[6];
     QWidget *classItem[6];
     QWidget *latestItem[6];
     QVBoxLayout *layout;
-    QVBoxLayout *containerLayout;
     QVBoxLayout *bannerImgLayout;
     QVBoxLayout *itemLayout;
     QHBoxLayout *contentLayout;
     QHBoxLayout *bannerLayout;
     QHBoxLayout *bomLayout;
-    QHBoxLayout *titleLayout;
+    QHBoxLayout *playCountLayout;
     QHBoxLayout *titLeftLayout;
     QHBoxLayout *moreRightLayout;
     QHBoxLayout *latestNavLayout;
+    QGridLayout *containerLayout;
     QNetworkAccessManager *manager;
     QNetworkReply *reply;
     QEventLoop *loop;

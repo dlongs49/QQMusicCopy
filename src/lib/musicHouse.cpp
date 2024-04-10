@@ -68,8 +68,11 @@ MusicHouse::MusicHouse(QWidget *parent) : QWidget(parent) {
 
 
     layout->addWidget(containerBox);
-    houseSelected = new HouseSelected(scrollArea);
-    layout->addWidget(houseSelected);
+//    houseSelected = new HouseSelected(scrollArea);
+//    layout->addWidget(houseSelected);
+
+    houseRanking = new HouseRanking(scrollArea);
+    layout->addWidget(houseRanking);
 
     layout->addSpacing(30);
 
