@@ -271,6 +271,7 @@ void HouseSelected::officialPlayList() {
         title = new QLabel;
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
+        title->setObjectName("recomTit");
         title->setText("华语摇滚|川流不息");
         title->setWordWrap(true);
         title->setAlignment(Qt::AlignTop);
