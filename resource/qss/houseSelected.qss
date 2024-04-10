@@ -36,26 +36,32 @@ QWidget#conbox {
 QLabel#bannerImg {
     border-radius: 6px;
 }
+
 QLabel#title {
     font-size: 16px;
     font-weight: bold;
     color: #333;
     padding-left: 30px;
 }
+
 QLabel#subTitle {
     font-size: 13px;
     color: #777;
 }
-QLabel#moreTit{
+
+QLabel#moreTit {
     font-size: 12px;
     color: #777;
 }
-QLabel#arrowMore{
+
+QLabel#arrowMore {
     font-size: 10px;
     color: #333;
 }
 
-QLabel#officialImg{
+QLabel#officialImg,
+QLabel#listenBookImg,
+QLabel#classPrefeImg {
     background: #eee;
     border-radius: 6px;
 }

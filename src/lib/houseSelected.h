@@ -46,6 +46,8 @@ public slots:
 
     void bannerTop();
     void officialPlayList();
+    void listenBook();
+    void classPrefe();
     void toggleItem(QWidget *itemBox, QString objName, QEvent *e);
 
     void showArrow(QObject *o, QEvent *e, int i);
@@ -100,6 +102,8 @@ private:
     QWidget *bomBox;
     QWidget *bannerItem[10];
     QWidget *officialItem[6];
+    QWidget *listenBookItem[6];
+    QWidget *classItem[6];
     QVBoxLayout *layout;
     QVBoxLayout *containerLayout;
     QVBoxLayout *recomOutLayout;

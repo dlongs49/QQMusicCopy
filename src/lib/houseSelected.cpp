@@ -9,6 +9,7 @@ HouseSelected::HouseSelected(QWidget *parent) : QWidget(parent) {
     loadQSS();
     tools = new Tools();
 
+    // qq音乐精选接口 http://u6.y.qq.com/cgi-bin/musics.fcg?_=1712662759896&sign=zzcd87edc7qul46ovmthfs0znwytvxsfm6kmwd0777b5b
 
     this->setFixedSize(820, 2000);
     widget = new QWidget(this);
@@ -30,6 +31,8 @@ HouseSelected::HouseSelected(QWidget *parent) : QWidget(parent) {
 
     bannerTop();
     officialPlayList();
+    listenBook();
+    classPrefe();
     widget->setLayout(layout);
 
 
@@ -218,7 +221,6 @@ void HouseSelected::officialPlayList(){
     animation[0]->setDuration(300);
 
 
-    // qq音乐精选接口 http://u6.y.qq.com/cgi-bin/musics.fcg?_=1712662759896&sign=zzcd87edc7qul46ovmthfs0znwytvxsfm6kmwd0777b5b
     QList<QString> imgList;
     QList<QString> txtList;
     imgList << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QfX3MU2dzluKMUOBEjz0h6g/300"
@@ -292,7 +294,241 @@ void HouseSelected::officialPlayList(){
     layout->addWidget(containerBox);
     layout->addSpacing(30);
 }
+// 推荐听书
+void HouseSelected::listenBook(){
+    containerBox = new QWidget(widget);
+    containerBox->setFixedWidth(this->width()- 20);
 
+    containerLayout = new QVBoxLayout;
+    containerLayout->setSpacing(0);
+    containerLayout->setMargin(0);
+    containerBox->setLayout(containerLayout);
+
+
+    titleLayout = new QHBoxLayout;
+    titleLayout->setSpacing(0);
+    titleLayout->setMargin(0);
+    titleBox = new QWidget(containerBox);
+    titleBox->setLayout(titleLayout);
+
+    title = new QLabel;
+    title->setObjectName("title");
+    title->setText("推荐听书");
+    titleLayout->addWidget(title);
+    containerLayout->addWidget(titleBox);
+
+    contentBox = new QWidget(containerBox);
+    contentBox->setFixedSize(containerBox->width(), 230);
+    contentBox->installEventFilter(this);
+    contentBox->setObjectName("listenBookBox");
+
+    containerLayout->addSpacing(6);
+    containerLayout->addWidget(contentBox);
+
+    contentLayout = new QHBoxLayout;
+    contentLayout->setSpacing(0);
+    contentLayout->setMargin(0);
+    contentLayout->setAlignment(Qt::AlignTop);
+    contentBox->setLayout(contentLayout);
+
+    bannerBox = new QWidget(contentBox);
+    bannerBox->setFixedSize(contentBox->width() - 60, contentBox->height());
+    bannerBox->setObjectName("bannerBox");
+
+    bannerLayout = new QHBoxLayout;
+    bannerLayout->setSpacing(0);
+    bannerLayout->setMargin(0);
+    bannerLayout->setAlignment(Qt::AlignLeft);
+
+    wrapconBox[1] = new QWidget(bannerBox);
+    wrapconBox[1]->setLayout(bannerLayout);
+    animation[1] = new QPropertyAnimation(wrapconBox[1], "geometry");
+    animation[1]->setDuration(300);
+
+
+    QList<QString> imgList;
+    QList<QString> txtList;
+    imgList << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QfX3MU2dzluKMUOBEjz0h6g/300"
+            << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QY8gA4UrJxhxQ9BBHZHDyFQ/300?n=1"
+            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqojSibubibse2uIWSaZhZ39n1F1CQCXVuMGdw/300?n=1"
+            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqoglWn5x5ITgE8KljTdMrDCyBpia0Jkn6BDg/300?n=1"
+            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
+            << "https://qpic.y.qq.com/music_cover/4pmnRu5sL5QbtO8OS8NKJTN5qBpjx5XMS8vhm4hcZSN7PEHPQ68C0Q/300?n=1";
+    for (int i = 0; i < imgList.size(); ++i) {
+        listenBookItem[i] = new QWidget(contentBox);
+        listenBookItem[i]->setFixedWidth(170);
+        listenBookItem[i]->setObjectName("listenBookItem");
+        itemLayout = new QVBoxLayout;
+        itemLayout->setSpacing(0);
+        itemLayout->setMargin(0);
+        itemLayout->setAlignment(Qt::AlignTop);
+
+        itemImg = new QLabel(listenBookItem[i]);
+        itemImg->setFixedSize(170, 170);
+        itemImg->setCursor(Qt::PointingHandCursor);
+        itemImg->setScaledContents(true);
+        itemImg->setObjectName("listenBookImg");
+        itemImg->setProperty("index", i);
+        itemImg->installEventFilter(this);
+        // 先提取网络图片 再处理圆角 Tools
+        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 6));
+
+        maskBox = new QWidget(itemImg);
+        maskBox->setFixedSize(itemImg->width(), itemImg->height());
+        maskBox->setObjectName("maskBox");
+        maskBox->setVisible(false);
+
+        playBox = new QLabel(itemImg);
+        playBox->setObjectName("playBox");
+        playBox->setVisible(false);
+        playBox->setFixedSize(40, 30);
+        QPixmap playPix(":/resource/images/play.png");
+        playBox->setPixmap(playPix);
+        playBox->setScaledContents(true);
+        playBox->move(10, itemImg->height() - 40);
+
+        playCount = new QLabel(itemImg);
+        playCount->setFixedWidth(itemImg->width() - 10);
+        playCount->setText("5580亿");
+        playCount->setAlignment(Qt::AlignRight);
+        playCount->setObjectName("playCount");
+        playCount->move(0, itemImg->height() - 25);
+
+        title = new QLabel;
+        title->setCursor(Qt::PointingHandCursor);
+        title->setObjectName("recomTit");
+        title->setText("华语摇滚|川流不息");
+        title->setWordWrap(true);
+        title->setAlignment(Qt::AlignTop);
+        title->setFixedHeight(38);
+
+
+        itemLayout->addSpacing(10);
+        itemLayout->addWidget(itemImg);
+        itemLayout->addSpacing(6);
+        itemLayout->addWidget(title);
+        listenBookItem[i]->setLayout(itemLayout);
+        bannerLayout->addWidget(listenBookItem[i]);
+        bannerLayout->setSpacing(20);
+    }
+
+    contentLayout->addWidget(arrowBox(1, "left"));
+    contentLayout->addWidget(bannerBox);
+    contentLayout->addWidget(arrowBox(1, "right"));
+
+    layout->addWidget(containerBox);
+    layout->addSpacing(30);
+}
+// 分类专区
+void HouseSelected::classPrefe(){
+    containerBox = new QWidget(widget);
+    containerBox->setFixedWidth(this->width()- 20);
+
+    containerLayout = new QVBoxLayout;
+    containerLayout->setSpacing(0);
+    containerLayout->setMargin(0);
+    containerBox->setLayout(containerLayout);
+
+
+    titleLayout = new QHBoxLayout;
+    titleLayout->setSpacing(0);
+    titleLayout->setMargin(0);
+    titleBox = new QWidget(containerBox);
+    titleBox->setLayout(titleLayout);
+
+    title = new QLabel;
+    title->setObjectName("title");
+    title->setText("分类专区");
+    titleLayout->addWidget(title);
+    containerLayout->addWidget(titleBox);
+
+    contentBox = new QWidget(containerBox);
+    contentBox->setFixedSize(containerBox->width(), 230);
+    contentBox->installEventFilter(this);
+    contentBox->setObjectName("classPrefeBox");
+
+    containerLayout->addSpacing(6);
+    containerLayout->addWidget(contentBox);
+
+    contentLayout = new QHBoxLayout;
+    contentLayout->setSpacing(0);
+    contentLayout->setMargin(0);
+    contentLayout->setAlignment(Qt::AlignTop);
+    contentBox->setLayout(contentLayout);
+
+    bannerBox = new QWidget(contentBox);
+    bannerBox->setFixedSize(contentBox->width() - 60, contentBox->height());
+    bannerBox->setObjectName("bannerBox");
+
+    bannerLayout = new QHBoxLayout;
+    bannerLayout->setSpacing(0);
+    bannerLayout->setMargin(0);
+    bannerLayout->setAlignment(Qt::AlignLeft);
+
+    wrapconBox[3] = new QWidget(bannerBox);
+    wrapconBox[3]->setLayout(bannerLayout);
+    animation[3] = new QPropertyAnimation(wrapconBox[3], "geometry");
+    animation[3]->setDuration(300);
+
+
+    QList<QString> imgList;
+    QList<QString> txtList;
+    imgList << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QfX3MU2dzluKMUOBEjz0h6g/300"
+            << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QY8gA4UrJxhxQ9BBHZHDyFQ/300?n=1"
+            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqojSibubibse2uIWSaZhZ39n1F1CQCXVuMGdw/300?n=1"
+            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqoglWn5x5ITgE8KljTdMrDCyBpia0Jkn6BDg/300?n=1"
+            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
+            << "https://qpic.y.qq.com/music_cover/4pmnRu5sL5QbtO8OS8NKJTN5qBpjx5XMS8vhm4hcZSN7PEHPQ68C0Q/300?n=1";
+    for (int i = 0; i < imgList.size(); ++i) {
+        classItem[i] = new QWidget(contentBox);
+        classItem[i]->setFixedWidth(170);
+        classItem[i]->setObjectName("classPrefeItem");
+        itemLayout = new QVBoxLayout;
+        itemLayout->setSpacing(0);
+        itemLayout->setMargin(0);
+        itemLayout->setAlignment(Qt::AlignTop);
+
+        itemImg = new QLabel(classItem[i]);
+        itemImg->setFixedSize(170, 170);
+        itemImg->setCursor(Qt::PointingHandCursor);
+        itemImg->setScaledContents(true);
+        itemImg->setObjectName("classPrefeImg");
+        itemImg->setProperty("index", i);
+        itemImg->installEventFilter(this);
+        // 先提取网络图片 再处理圆角 Tools
+        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 6));
+
+        maskBox = new QWidget(itemImg);
+        maskBox->setFixedSize(itemImg->width(), itemImg->height());
+        maskBox->setObjectName("maskBox");
+        maskBox->setVisible(false);
+
+
+        title = new QLabel;
+        title->setCursor(Qt::PointingHandCursor);
+        title->setObjectName("recomTit");
+        title->setText("华语摇滚|川流不息");
+        title->setWordWrap(true);
+        title->setAlignment(Qt::AlignTop);
+        title->setFixedHeight(38);
+
+
+        itemLayout->addSpacing(10);
+        itemLayout->addWidget(itemImg);
+        itemLayout->addSpacing(6);
+        itemLayout->addWidget(title);
+        classItem[i]->setLayout(itemLayout);
+        bannerLayout->addWidget(classItem[i]);
+        bannerLayout->setSpacing(20);
+    }
+
+    contentLayout->addWidget(arrowBox(1, "left"));
+    contentLayout->addWidget(bannerBox);
+    contentLayout->addWidget(arrowBox(1, "right"));
+
+    layout->addWidget(containerBox);
+    layout->addSpacing(30);
+}
 QPixmap *HouseSelected::getImage(QString url) {
     manager = new QNetworkAccessManager;
     reply = manager->get(QNetworkRequest(QUrl(url)));
@@ -374,6 +610,8 @@ void HouseSelected::toggleItem(QWidget *itemBox, QString objName, QEvent *e) {
         animation->start();
         if (play_box) {
             play_box->setVisible(true);
+        }
+        if(mask){
             mask->setVisible(true);
         }
         if (play_count) {
@@ -386,6 +624,8 @@ void HouseSelected::toggleItem(QWidget *itemBox, QString objName, QEvent *e) {
         animation->start();
         if (play_box) {
             play_box->setVisible(false);
+        }
+        if(mask){
             mask->setVisible(false);
         }
         if (play_count) {
@@ -400,14 +640,29 @@ bool HouseSelected::eventFilter(QObject *o, QEvent *e) {
     if (o->objectName() == "selectedBox") {
         showArrow(o, e, 0);
     }
-    if (o->objectName() == "officialBox") {
+    if (o->objectName() == "listenBookBox") {
         showArrow(o, e, 1);
     }
 
+    if (o->objectName() == "classPrefeBox") {
+        showArrow(o, e, 3);
+    }
     if (o->objectName() == "officialImg") {
         int i = o->property("index").toInt();
         toggleItem(officialItem[i], "officialImg", e);
     }
+    if (o->objectName() == "listenBookImg") {
+        int i = o->property("index").toInt();
+        toggleItem(listenBookItem[i], "listenBookImg", e);
+    }
+
+
+
+    if (o->objectName() == "classPrefeImg") {
+        int i = o->property("index").toInt();
+        toggleItem(classItem[i], "classPrefeImg", e);
+    }
+
     return QWidget::eventFilter(o, e);
 
 }
