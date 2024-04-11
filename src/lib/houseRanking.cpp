@@ -8,7 +8,8 @@ HouseRanking::HouseRanking(QWidget *parent) : QWidget(parent) {
     installEventFilter(this);
     loadQSS();
     tools = new Tools();
-
+    // 更多qq音乐客户端对应的页面 https://y.qq.com/m/client/config/url.pc.json?pcachetime=1712844941
+    //对应的qq页面  https://y.qq.com/wk_v17/#/musicroom/recommend
     this->setFixedSize(820, 2000);
     widget = new QWidget(this);
     widget->setObjectName("conbox");
@@ -70,7 +71,6 @@ void HouseRanking::rankingTop() {
         itemImg = new QLabel;
         itemImg->setScaledContents(true);
         itemImg->setObjectName("itemImg");
-        itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
         itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 40));
@@ -181,11 +181,6 @@ QPixmap *HouseRanking::getImage(QString url) {
 // 向上动画
 void HouseRanking::toggleItem(QWidget *itemBox, QString objName, QEvent *e) {
     QLabel *box = itemBox->findChild<QLabel *>(objName);
-    QWidget *mask = itemBox->findChild<QWidget *>("maskBox");
-    QLabel *play_box = itemBox->findChild<QLabel *>("playBox");
-    QLabel *play_count = itemBox->findChild<QLabel *>("playCount");
-
-
     QPropertyAnimation *animation = new QPropertyAnimation(box, "geometry");
     animation->setDuration(150);
 
@@ -193,38 +188,17 @@ void HouseRanking::toggleItem(QWidget *itemBox, QString objName, QEvent *e) {
         animation->setStartValue(QRect(0, 10, box->width(), box->height()));
         animation->setEndValue(QRect(0, 0, box->width(), box->height()));
         animation->start();
-        if (play_box) {
-            play_box->setVisible(true);
-        }
-        if (mask) {
-            mask->setVisible(true);
-        }
-        if (play_count) {
-            play_count->setVisible(false);
-        }
     }
     if (e->type() == QEvent::Leave) {
         animation->setStartValue(QRect(0, 0, box->width(), box->height()));
         animation->setEndValue(QRect(0, 10, box->width(), box->height()));
         animation->start();
-        if (play_box) {
-            play_box->setVisible(false);
-        }
-        if (mask) {
-            mask->setVisible(false);
-        }
-        if (play_count) {
-            play_count->setVisible(true);
-        }
     }
 }
 
 
 bool HouseRanking::eventFilter(QObject *o, QEvent *e) {
-    if (o->objectName() == "officialImg") {
-        int i = o->property("index").toInt();
-        toggleItem(officialItem[i], "officialImg", e);
-    }
+
     if (o->objectName() == "listenBookImg") {
         int i = o->property("index").toInt();
         toggleItem(listenBookItem[i], "listenBookImg", e);
