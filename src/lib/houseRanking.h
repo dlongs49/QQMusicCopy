@@ -41,6 +41,7 @@ public slots:
     void regional();
     void feature();
     void globa();
+    void toggleTopItem(QWidget *itemBox, QString objName, QEvent *e);
     void toggleItem(QWidget *itemBox, QString objName, QEvent *e);
 
     QPixmap *getImage(QString url);
@@ -76,6 +77,8 @@ private:
     QWidget *rightListBox;
     QWidget *item[10];
     QWidget *regItem[10];
+    QWidget *feaItem[10];
+    QWidget *globItem[10];
     QWidget *listenBookItem[6];
     QWidget *classItem[6];
     QWidget *latestItem[6];
@@ -86,7 +89,7 @@ private:
     QHBoxLayout *bannerLayout;
     QHBoxLayout *bomLayout;
     QHBoxLayout *playCountLayout;
-    QHBoxLayout *titLeftLayout;
+    QHBoxLayout *containerHLayout;
     QHBoxLayout *moreRightLayout;
     QHBoxLayout *latestNavLayout;
     QGridLayout *containerLayout;
