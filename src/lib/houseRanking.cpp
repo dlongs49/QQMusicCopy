@@ -596,6 +596,10 @@ bool HouseRanking::eventFilter(QObject *o, QEvent *e) {
         int i = o->property("index").toInt();
         toggleItem(regItem[i], "regImg", e);
     }
+    if (o->objectName() == "feaImg") {
+        int i = o->property("index").toInt();
+        toggleItem(feaItem[i], "feaImg", e);
+    }
     if (o->objectName() == "globImg") {
         int i = o->property("index").toInt();
         toggleItem(globItem[i], "globImg", e);
