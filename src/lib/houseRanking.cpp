@@ -37,8 +37,7 @@ HouseRanking::HouseRanking(QWidget *parent) : QWidget(parent) {
 void HouseRanking::rankingTop() {
 
     containerBox = new QWidget(widget);
-    containerBox->setFixedSize(widget->width() - 20, 558);
-    containerBox->setObjectName("selectedBox");
+    containerBox->setFixedSize(widget->width() - 20, 678);
 
     containerLayout = new QGridLayout;
     containerLayout->setSpacing(0);
@@ -48,10 +47,13 @@ void HouseRanking::rankingTop() {
 
     QList<QString> imgList;
     QList<QString> txtList;
-    imgList << "https://y.qq.com/music/common/upload/MUSIC_FOCUS/6483999.jpg"
-            << "https://y.qq.com/music/common/upload/MUSIC_FOCUS/6484203.jpg"
-            << "https://y.qq.com/music/common/upload/ocs/2681676c054da54091a9f000208e81bf.png"
-            << "https://y.qq.com/music/common/upload/MUSIC_FOCUS/6482174.jpg";
+    imgList << "https://y.qq.com/music/photo_new/T003R300x300M000003jPzHn4JkfK1.jpg"
+            << "https://y.qq.com/music/photo_new/T003R300x300M000002MMbGH3LbfTS.jpg"
+            << "https://y.qq.com/music/photo_new/T003R300x300M000001heSXA0sxaTY.jpg"
+            << "https://y.qq.com/music/photo_new/T003R300x300M0000011BU8d2iufia.jpg"
+            << "https://y.qq.com/music/photo_new/T003R300x300M000002eYcg0312V98.jpg"
+            << "https://y.qq.com/music/photo_new/T003R300x300M000004H76012Gkas2.jpg"
+            << "https://y.qq.com/music/photo_new/T003R300x300M000003SSGWk0N4fI0.jpg";
     for (int i = 0; i < imgList.size(); ++i) {
         int box_w = containerBox->width() / 2;
         int item_h = 150;
@@ -71,9 +73,10 @@ void HouseRanking::rankingTop() {
         itemImg = new QLabel;
         itemImg->setScaledContents(true);
         itemImg->setObjectName("itemImg");
+        itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 40));
+        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 20));
         itemImg->setFixedSize(150, 150);
 
         maskBox = new QWidget(itemImg);
@@ -81,6 +84,16 @@ void HouseRanking::rankingTop() {
         maskBox->setObjectName("maskBox");
         maskBox->setVisible(false);
 
+        playBox = new QLabel(itemImg);
+        playBox->setFixedSize(51, 51);
+        playBox->setObjectName("playBox");
+        playBox->setFont(tools->aliIcon());
+        playBox->setText(QChar(0xea85));
+        playBox->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+        int p_w = (itemImg->width()/2) - (playBox->width()/2);
+        int p_h = (itemImg->height()/2) - (playBox->height()/2);
+        playBox->move(p_w,p_h);
+        playBox->setVisible(false);
 
         playCountBox = new QWidget(itemImg);
         playCountBox->setObjectName("playCountBox");
@@ -122,7 +135,7 @@ void HouseRanking::rankingTop() {
         title = new QLabel;
         title->setText("腾讯音乐人原创榜");
         title->setObjectName("blodTit");
-        title->setFixedSize(rw,30);
+        title->setFixedSize(rw, 30);
         rightListLayout->addWidget(title);
         rightListLayout->addSpacing(20);
 
@@ -134,7 +147,7 @@ void HouseRanking::rankingTop() {
             songItem[j]->setObjectName("songItem");
             rightListLayout->addWidget(songItem[j]);
             rightListLayout->addSpacing(10);
-            if(j == slist.size() - 1){
+            if (j == slist.size() - 1) {
                 rightListLayout->addSpacing(0);
             }
         }
@@ -155,7 +168,117 @@ void HouseRanking::rankingTop() {
 
 // 地区榜
 void HouseRanking::regional() {
+    containerVBox = new QWidget(widget);
+    containerVBox->setFixedSize(widget->width() - 20, 678);
 
+    containerVLayout = new QVBoxLayout;
+    containerVLayout->setSpacing(0);
+    containerVLayout->setMargin(0);
+    containerVLayout->setAlignment(Qt::AlignTop);
+    containerVBox->setLayout(containerVLayout);
+
+    title = new QLabel;
+    title->setText("地区榜");
+    title->setObjectName("title");
+    containerVLayout->addWidget(title);
+    containerVLayout->addSpacing(20);
+
+    containerBox = new QWidget(widget);
+    containerBox->setFixedSize(containerVBox->width(), 678);
+
+    containerLayout = new QGridLayout;
+    containerLayout->setSpacing(0);
+    containerLayout->setMargin(0);
+    containerLayout->setAlignment(Qt::AlignTop);
+    containerBox->setLayout(containerLayout);
+
+    QList<QString> imgList;
+    QList<QString> txtList;
+    imgList << "https://y.qq.com/music/photo_new/T003R300x300M000000kyP0Y41mVgr.jpg"
+            << "https://y.qq.com/music/photo_new/T003R300x300M000003CPSUH29Htzl.jpg"
+            << "https://y.qq.com/music/photo_new/T003R300x300M000004IjbuM0yx0i2.jpg"
+            << "https://y.qq.com/music/photo_new/T003R300x300M0000041fyIo1W7VzR.jpg"
+            << "https://y.qq.com/music/photo_new/T003R300x300M00000084GsF3zkK62.jpg"
+            << "https://y.qq.com/music/photo_new/T003R300x300M000001e2aJF1DYb74.jpg"
+            << "https://y.qq.com/music/photo_new/T003R300x300M000003RpQin0xR8Sb.jpg"
+            << "https://y.qq.com/music/photo_new/T003R300x300M000001SRF6I0z2v3I.jpg"
+            << "https://y.qq.com/music/photo_new/T003R300x300M0000013o4V60ch0es.jpg"
+    for (int i = 0; i < imgList.size(); ++i) {
+        int box_w = containerBox->width() / 5;
+        int item_h  = 130;
+        regItem[i] = new QWidget;
+        regItem[i]->installEventFilter(this);
+        regItem[i]->setObjectName("regItem");
+        regItem[i]->setFixedSize(box_w - 20, item_h);
+        regItem[i]->setCursor(Qt::PointingHandCursor);
+
+        contentLayout = new QHBoxLayout;
+        contentLayout->setSpacing(0);
+        contentLayout->setMargin(0);
+        regItem[i]->setLayout(contentLayout);
+
+        itemImg = new QLabel;
+        itemImg->setScaledContents(true);
+        itemImg->setObjectName("itemImg");
+        itemImg->setProperty("index", i);
+        itemImg->installEventFilter(this);
+        // 先提取网络图片 再处理圆角 Tools
+        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 20));
+        itemImg->setFixedSize(150, 150);
+
+        maskBox = new QWidget(itemImg);
+        maskBox->setFixedSize(itemImg->width(), itemImg->height());
+        maskBox->setObjectName("maskBox");
+        maskBox->setVisible(false);
+
+        playBox = new QLabel(itemImg);
+        playBox->setFixedSize(51, 51);
+        playBox->setObjectName("playBox");
+        playBox->setFont(tools->aliIcon());
+        playBox->setText(QChar(0xea85));
+        playBox->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+        int p_w = (itemImg->width()/2) - (playBox->width()/2);
+        int p_h = (itemImg->height()/2) - (playBox->height()/2);
+        playBox->move(p_w,p_h);
+        playBox->setVisible(false);
+
+        playCountBox = new QWidget(itemImg);
+        playCountBox->setObjectName("playCountBox");
+        playCountLayout = new QHBoxLayout;
+        playCountLayout->setMargin(0);
+        playCountLayout->setSpacing(0);
+        playCountLayout->setAlignment(Qt::AlignCenter);
+        playCountBox->setLayout(playCountLayout);
+
+        playSicon = new QLabel;
+        playSicon->setFixedSize(18, 14);
+        playSicon->setObjectName("playSicon");
+        playSicon->setFont(tools->aliIcon());
+        playSicon->setText(QChar(0xe841));
+        playSicon->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+
+        playCount = new QLabel;
+        playCount->setObjectName("playCount");
+        playCount->setText("203.6万");
+        playCount->setFixedSize(playCount->sizeHint());
+        playCount->setAlignment(Qt::AlignCenter);
+
+        playCountLayout->addWidget(playSicon);
+        playCountLayout->addSpacing(2);
+        playCountLayout->addWidget(playCount);
+        int sc = playCount->sizeHint().width() + 26;
+        playCountBox->setGeometry(itemImg->width() - sc - 10, itemImg->height() - 30, sc, 22);
+
+        contentLayout->addWidget(itemImg);
+
+        int r = floor(i / 2) + 1;
+        int c = (i % 2) + 1;
+        containerLayout->addWidget(regItem[i], r, c);
+        containerLayout->setSpacing(20);
+    }
+    layout->addSpacing(10);
+    layout->addWidget(containerBox);
+    layout->addSpacing(30);
 }
 
 // 特色榜
@@ -181,27 +304,40 @@ QPixmap *HouseRanking::getImage(QString url) {
 // 向上动画
 void HouseRanking::toggleItem(QWidget *itemBox, QString objName, QEvent *e) {
     QLabel *box = itemBox->findChild<QLabel *>(objName);
-    QPropertyAnimation *animation = new QPropertyAnimation(box, "geometry");
-    animation->setDuration(150);
+    QWidget *mask = itemBox->findChild<QWidget *>("maskBox");
+    QLabel *play_box = itemBox->findChild<QLabel *>("playBox");
+    QWidget *play_count = itemBox->findChild<QWidget *>("playCountBox");
 
     if (e->type() == QEvent::Enter) {
-        animation->setStartValue(QRect(0, 10, box->width(), box->height()));
-        animation->setEndValue(QRect(0, 0, box->width(), box->height()));
-        animation->start();
+        if (play_box) {
+            play_box->setVisible(true);
+        }
+        if (mask) {
+            mask->setVisible(true);
+        }
+        if (play_count) {
+            play_count->setVisible(false);
+        }
     }
     if (e->type() == QEvent::Leave) {
-        animation->setStartValue(QRect(0, 0, box->width(), box->height()));
-        animation->setEndValue(QRect(0, 10, box->width(), box->height()));
-        animation->start();
+        if (play_box) {
+            play_box->setVisible(false);
+        }
+        if (mask) {
+            mask->setVisible(false);
+        }
+        if (play_count) {
+            play_count->setVisible(true);
+        }
     }
 }
 
 
 bool HouseRanking::eventFilter(QObject *o, QEvent *e) {
 
-    if (o->objectName() == "listenBookImg") {
+    if (o->objectName() == "itemImg") {
         int i = o->property("index").toInt();
-        toggleItem(listenBookItem[i], "listenBookImg", e);
+        toggleItem(item[i], "itemImg", e);
     }
 
     if (o->objectName() == "latestImg") {
