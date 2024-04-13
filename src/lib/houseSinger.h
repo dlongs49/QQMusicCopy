@@ -33,7 +33,6 @@ signals:
 
 public slots:
 
-    bool eventFilter(QObject *watched, QEvent *event);
 
     void loadQSS();
 
@@ -55,7 +54,7 @@ private:
     QLabel *subTitle;
     QLabel *exTitle;
     QLabel *playBox;
-    QLabel *moreTitle;
+    QLabel *singerName;
     QLabel *itemImg;
     QLabel *playSicon;
     QLabel *playCount;
@@ -71,17 +70,16 @@ private:
     QWidget *titleBox;
     QWidget *leftTitBox;
     QWidget *rightListBox;
-    QWidget *item[10];
-    QWidget *regItem[10];
+    QWidget *singerItem[10];
+    QWidget *item[40];
     QWidget *feaItem[10];
     QWidget *globItem[10];
     QWidget *listenBookItem[6];
     QWidget *classItem[6];
     QWidget *latestItem[6];
     QVBoxLayout *layout;
-    QVBoxLayout *rightListLayout;
-    QVBoxLayout *containerVLayout;
-    QHBoxLayout *contentLayout;
+    QVBoxLayout *contentLayout;
+    QHBoxLayout *itemLayout;
     QHBoxLayout *bannerLayout;
     QHBoxLayout *bomLayout;
     QHBoxLayout *playCountLayout;

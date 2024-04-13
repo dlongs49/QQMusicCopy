@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft YaHei', 'iconfont';
+}
+QLabel#singerName {
+    font-size: 16px;
+    color: #333;
+}
+
+QLabel#singerName:hover {
+    color: #10da67;
+}

@@ -15,6 +15,7 @@
 #include <cmath>
 #include "./houseSelected.h"
 #include "./houseRanking.h"
+#include "./houseSinger.h"
 
 class MusicHouse : public QWidget {
 Q_OBJECT;
@@ -47,6 +48,7 @@ private:
     QScrollArea *scrollArea;
     HouseSelected *houseSelected;
     HouseRanking *houseRanking;
+    HouseSinger *houseSinger;
 };
 
 
