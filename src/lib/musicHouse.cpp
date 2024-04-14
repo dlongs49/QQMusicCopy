@@ -68,14 +68,16 @@ MusicHouse::MusicHouse(QWidget *parent) : QWidget(parent) {
 
 
     layout->addWidget(containerBox);
-//    houseSelected = new HouseSelected(scrollArea);
-//    layout->addWidget(houseSelected);
+    houseSelected = new HouseSelected(scrollArea);
+    layout->addWidget(houseSelected);
 
-//    houseRanking = new HouseRanking(scrollArea);
-//    layout->addWidget(houseRanking);
+    houseRanking = new HouseRanking(scrollArea);
+    layout->addWidget(houseRanking);
+    houseRanking->hide();
 
     houseSinger = new HouseSinger(scrollArea);
     layout->addWidget(houseSinger);
+    houseSinger->hide();
 
     layout->addSpacing(30);
 
@@ -91,15 +93,18 @@ bool MusicHouse::eventFilter(QObject *o, QEvent *e) {
 
             if (o->objectName() == "navItem") {
                 int i = o->property("index").toInt();
-                QPoint point = navBox->mapFromGlobal(QCursor::pos());
+                houseSelected->hide();
+                houseRanking->hide();
+                houseSinger->hide();
                 if(i == 0){
+                    houseSelected->show();
                     activeLine->move(2,26);
                 }else if(i == 1){
+                    houseRanking->show();
                     activeLine->move(77,26);
-                }else if(i == 2){
-                    activeLine->move(154,26);
                 }else{
-                    activeLine->move(244,26);
+                    houseSinger->show();
+                    activeLine->move(154,26);
                 }
             }
         }
