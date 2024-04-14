@@ -10,20 +10,16 @@ HouseRanking::HouseRanking(QWidget *parent) : QWidget(parent) {
     tools = new Tools();
     // 更多qq音乐客户端对应的页面 https://y.qq.com/m/client/config/url.pc.json?pcachetime=1712844941
     //对应的qq页面  https://y.qq.com/wk_v17/#/musicroom/recommend
-    this->setFixedSize(820, 1000);
+    this->setFixedSize(820, 1690);
     widget = new QWidget(this);
+    widget->setFixedSize(this->size());
     widget->setObjectName("conbox");
+
     layout = new QVBoxLayout;
     layout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
     layout->setSpacing(0);
     layout->setMargin(0);
-
-    scrollArea = new QScrollArea(this);
-    scrollArea->setAlignment(Qt::AlignTop);
-    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    scrollArea->setGeometry(0, 0, 820, 500);
-    scrollArea->setWidget(widget);
-    scrollArea->setWidgetResizable(true);
+    layout->setAlignment(Qt::AlignRight);
 
     rankingTop();
     regional();
@@ -146,9 +142,6 @@ void HouseRanking::rankingTop() {
             songItem[j]->setObjectName("songItem");
             rightListLayout->addWidget(songItem[j]);
             rightListLayout->addSpacing(10);
-            if (j == slist.size() - 1) {
-                rightListLayout->addSpacing(0);
-            }
         }
 
         contentLayout->addWidget(itemImg);
@@ -399,7 +392,7 @@ void HouseRanking::feature() {
 // 全球榜
 void HouseRanking::globa() {
     containerVBox = new QWidget(widget);
-    containerVBox->setFixedSize(widget->width() - 20, 376);
+    containerVBox->setFixedSize(widget->width() - 20, 202);
 
     containerVLayout = new QVBoxLayout;
     containerVLayout->setSpacing(0);
