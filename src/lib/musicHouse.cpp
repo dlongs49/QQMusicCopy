@@ -53,7 +53,7 @@ MusicHouse::MusicHouse(QWidget *parent) : QWidget(parent) {
     navLayout->setAlignment(Qt::AlignTop);
     navBox->setLayout(navLayout);
 
-    QStringList navList = {"精选", "排行", "歌手", "分类歌单"};
+    QStringList navList = {"精选", "排行", "歌手"};
     for (int i = 0; i < navList.size(); ++i) {
         navItem[i] = new QLabel;
         navItem[i]->installEventFilter(this);
