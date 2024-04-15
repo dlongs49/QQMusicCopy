@@ -11,20 +11,14 @@ HouseSelected::HouseSelected(QWidget *parent) : QWidget(parent) {
 
     // qq音乐精选接口 http://u6.y.qq.com/cgi-bin/musics.fcg?_=1712662759896&sign=zzcd87edc7qul46ovmthfs0znwytvxsfm6kmwd0777b5b
 
-    this->setFixedSize(820, 2000);
+    this->setFixedSize(820, 1350);
     widget = new QWidget(this);
+    widget->setFixedSize(this->size());
     widget->setObjectName("conbox");
     layout = new QVBoxLayout;
     layout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
     layout->setSpacing(0);
     layout->setMargin(0);
-
-    scrollArea = new QScrollArea(this);
-    scrollArea->setAlignment(Qt::AlignTop);
-    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    scrollArea->setGeometry(0, 0, 820, 500);
-    scrollArea->setWidget(widget);
-    scrollArea->setWidgetResizable(true);
 
     bannerTop();
     officialPlayList();
@@ -128,7 +122,6 @@ void HouseSelected::bannerTop() {
 void HouseSelected::officialPlayList() {
     containerBox = new QWidget(widget);
     containerBox->setFixedWidth(this->width() - 20);
-
     containerLayout = new QVBoxLayout;
     containerLayout->setSpacing(0);
     containerLayout->setMargin(0);
@@ -245,7 +238,7 @@ void HouseSelected::officialPlayList() {
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 6));
+        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 12));
 
         maskBox = new QWidget(itemImg);
         maskBox->setFixedSize(itemImg->width(), itemImg->height());
@@ -375,7 +368,7 @@ void HouseSelected::listenBook() {
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 6));
+        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 12));
 
         maskBox = new QWidget(itemImg);
         maskBox->setFixedSize(itemImg->width(), itemImg->height());
@@ -557,7 +550,7 @@ void HouseSelected::latestIssue() {
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 6));
+        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 12));
 
         maskBox = new QWidget(itemImg);
         maskBox->setFixedSize(itemImg->width(), itemImg->height());
@@ -607,7 +600,6 @@ void HouseSelected::latestIssue() {
 void HouseSelected::classPrefe() {
     containerBox = new QWidget(widget);
     containerBox->setFixedWidth(this->width() - 20);
-
     containerLayout = new QVBoxLayout;
     containerLayout->setSpacing(0);
     containerLayout->setMargin(0);
@@ -630,7 +622,6 @@ void HouseSelected::classPrefe() {
     contentBox->setFixedSize(containerBox->width(), 230);
     contentBox->installEventFilter(this);
     contentBox->setObjectName("classPrefeBox");
-
     containerLayout->addSpacing(6);
     containerLayout->addWidget(contentBox);
 
@@ -682,7 +673,7 @@ void HouseSelected::classPrefe() {
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 6));
+        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 12));
 
         maskBox = new QWidget(itemImg);
         maskBox->setFixedSize(itemImg->width(), itemImg->height());
@@ -716,7 +707,6 @@ void HouseSelected::classPrefe() {
     contentLayout->addWidget(arrowBox(4, "right"));
 
     layout->addWidget(containerBox);
-    layout->addSpacing(30);
 }
 
 QPixmap *HouseSelected::getImage(QString url) {
