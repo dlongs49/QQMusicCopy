@@ -13,7 +13,7 @@
 #include <QHBoxLayout>
 #include <QMouseEvent>
 #include <cmath>
-#include "./houseSelected.h"
+#include "./videoRecom.h"
 #include "./houseRanking.h"
 #include "./houseSinger.h"
 
@@ -46,7 +46,7 @@ private:
     QVBoxLayout *layout;
     QVBoxLayout *containerLayout;
     QScrollArea *scrollArea;
-    HouseSelected *houseSelected;
+    VideoRecom *videoRecom;
     HouseRanking *houseRanking;
     HouseSinger *houseSinger;
 };

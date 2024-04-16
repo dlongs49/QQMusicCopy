@@ -8,7 +8,7 @@ MusicHouse::MusicHouse(QWidget *parent) : QWidget(parent) {
     installEventFilter(this);
     loadQSS();
 
-    this->setFixedSize(820, 2000);
+    this->setFixedSize(820, 500);
     widget = new QWidget(this);
     widget->setObjectName("conbox");
     layout = new QVBoxLayout;
@@ -19,7 +19,7 @@ MusicHouse::MusicHouse(QWidget *parent) : QWidget(parent) {
     scrollArea = new QScrollArea(this);
     scrollArea->setAlignment(Qt::AlignTop);
     scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    scrollArea->setGeometry(0, 0, 820, 500);
+    scrollArea->setGeometry(0, 0, this->width(), this->height());
     scrollArea->setWidget(widget);
     scrollArea->setWidgetResizable(true);
 

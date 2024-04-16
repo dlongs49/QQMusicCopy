@@ -7,7 +7,7 @@ VideoContent::VideoContent(QWidget *parent) : QWidget(parent) {
     installEventFilter(this);
     loadQSS();
 
-    this->setFixedSize(820, 2000);
+    this->setFixedSize(820, 500);
     widget = new QWidget(this);
     widget->setObjectName("conbox");
     layout = new QVBoxLayout;
@@ -18,7 +18,7 @@ VideoContent::VideoContent(QWidget *parent) : QWidget(parent) {
     scrollArea = new QScrollArea(this);
     scrollArea->setAlignment(Qt::AlignTop);
     scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    scrollArea->setGeometry(0, 0, 820, 500);
+    scrollArea->setGeometry(0, 0, this->width(), this->height());
     scrollArea->setWidget(widget);
     scrollArea->setWidgetResizable(true);
 
@@ -32,7 +32,7 @@ VideoContent::VideoContent(QWidget *parent) : QWidget(parent) {
     containerBox->setLayout(containerLayout);
     title = new QLabel;
     title->setObjectName("title");
-    title->setText("乐馆");
+    title->setText("视频");
     containerLayout->addSpacing(20);
     containerLayout->addWidget(title);
     containerLayout->addSpacing(22);
@@ -52,7 +52,7 @@ VideoContent::VideoContent(QWidget *parent) : QWidget(parent) {
     navLayout->setAlignment(Qt::AlignTop);
     navBox->setLayout(navLayout);
 
-    QStringList navList = {"精选", "排行", "歌手"};
+    QStringList navList = {"推荐", "排行榜", "视频库"};
     for (int i = 0; i < navList.size(); ++i) {
         navItem[i] = new QLabel;
         navItem[i]->installEventFilter(this);
@@ -67,8 +67,8 @@ VideoContent::VideoContent(QWidget *parent) : QWidget(parent) {
 
 
     layout->addWidget(containerBox);
-    houseSelected = new HouseSelected(scrollArea);
-    layout->addWidget(houseSelected);
+    videoRecom = new VideoRecom(scrollArea);
+    layout->addWidget(videoRecom);
 
     houseRanking = new HouseRanking(scrollArea);
     layout->addWidget(houseRanking);
@@ -92,18 +92,18 @@ bool VideoContent::eventFilter(QObject *o, QEvent *e) {
 
             if (o->objectName() == "navItem") {
                 int i = o->property("index").toInt();
-                houseSelected->hide();
+                videoRecom->hide();
                 houseRanking->hide();
                 houseSinger->hide();
                 if(i == 0){
-                    houseSelected->show();
+                    videoRecom->show();
                     activeLine->move(2,26);
                 }else if(i == 1){
                     houseRanking->show();
-                    activeLine->move(77,26);
+                    activeLine->move(84,26);
                 }else{
                     houseSinger->show();
-                    activeLine->move(154,26);
+                    activeLine->move(174,26);
                 }
             }
         }

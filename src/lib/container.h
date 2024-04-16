@@ -20,6 +20,7 @@
 #include "./popup/downInfo.h"
 #include "./recommend.h"
 #include "./musicHouse.h"
+#include "./videoContent.h"
 class container : public QWidget {
 Q_OBJECT;
 public:
@@ -54,6 +55,7 @@ private:
     DownInfo *downInfo;
     Recommend *recommend;
     MusicHouse *musicHouse;
+    VideoContent *videoContent;
 };
 
 #endif //QTMUSIC_container_H
