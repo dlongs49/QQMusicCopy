@@ -38,7 +38,7 @@ public slots:
     void loadQSS();
 
     void bannerTop();
-    void officialPlayList();
+    void newest();
     void listenBook();
     void classPrefe();
     void latestIssue();
@@ -71,6 +71,7 @@ private:
     QLabel *rightMoreBox;
     QWidget *widget;
     QWidget *containerBox;
+    QWidget *leftTitBox;
     QWidget *scrollBox;
     QWidget *contentBox;
     QWidget *bannerBox;
@@ -79,10 +80,9 @@ private:
     QWidget *maskBox;
     QWidget *latestNavBox;
     QWidget *titleBox;
-    QWidget *leftTitBox;
     QWidget *bomBox;
     QWidget *bannerItem[10];
-    QWidget *officialItem[6];
+    QWidget *newestItem[6];
     QWidget *listenBookItem[6];
     QWidget *classItem[6];
     QWidget *latestItem[6];
