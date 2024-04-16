@@ -41,7 +41,7 @@ public slots:
     void newest();
     void hotList();
     void classPrefe();
-    void latestIssue();
+    void assemble();
     void toggleItem(QWidget *itemBox, QString objName, QEvent *e);
 
     void showArrow(QObject *o, QEvent *e, int i);
@@ -68,6 +68,8 @@ private:
     QLabel *playCount;
     QLabel *moreTitle;
     QLabel *arrowTitle;
+    QLabel *l;
+    QLabel *ll;
     QLabel *itemImg;
     QLabel *rightMoreBox;
     QWidget *widget;
@@ -88,7 +90,7 @@ private:
     QWidget *hotItem[6];
     QWidget *listenBookItem[6];
     QWidget *classItem[6];
-    QWidget *latestItem[6];
+    QWidget *assemItem[6];
     QVBoxLayout *layout;
     QVBoxLayout *containerLayout;
     QVBoxLayout *bannerImgLayout;

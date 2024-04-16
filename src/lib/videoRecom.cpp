@@ -23,7 +23,7 @@ VideoRecom::VideoRecom(QWidget *parent) : QWidget(parent) {
     bannerTop();
     newest();
     hotList();
-    latestIssue();
+    assemble();
     classPrefe();
     widget->setLayout(layout);
 
@@ -368,7 +368,7 @@ void VideoRecom::hotList() {
 
     wrapconBox[2] = new QWidget(bannerBox);
     wrapconBox[2]->setLayout(bannerLayout);
-    animation[2] = new QPropertyAnimation(wrapconBox[1], "geometry");
+    animation[2] = new QPropertyAnimation(wrapconBox[2], "geometry");
     animation[2]->setDuration(300);
 
 
@@ -470,19 +470,18 @@ void VideoRecom::hotList() {
         bannerLayout->setSpacing(20);
     }
 
-    contentLayout->addWidget(arrowBox(1, "left"));
+    contentLayout->addWidget(arrowBox(2, "left"));
     contentLayout->addWidget(bannerBox);
-    contentLayout->addWidget(arrowBox(1, "right"));
+    contentLayout->addWidget(arrowBox(2, "right"));
 
     layout->addWidget(containerBox);
     layout->addSpacing(20);
 }
 
-// 最新发行
-void VideoRecom::latestIssue() {
+// 合集
+void VideoRecom::assemble() {
     containerBox = new QWidget(widget);
     containerBox->setFixedWidth(this->width() - 20);
-
     containerLayout = new QVBoxLayout;
     containerLayout->setSpacing(0);
     containerLayout->setMargin(0);
@@ -500,32 +499,9 @@ void VideoRecom::latestIssue() {
     titLeftLayout->setMargin(0);
     titLeftLayout->setAlignment(Qt::AlignLeft);
 
-    leftTitBox = new QWidget;
-    leftTitBox->setLayout(titLeftLayout);
-
     title = new QLabel;
     title->setObjectName("title");
-    title->setText("最新发行");
-    titLeftLayout->addWidget(title);
-    titLeftLayout->addSpacing(10);
-
-    latestNavLayout = new QHBoxLayout;
-    latestNavLayout->setSpacing(0);
-    latestNavLayout->setMargin(0);
-
-    latestNavBox = new QWidget;
-    titLeftLayout->addWidget(latestNavBox);
-    QStringList nav = {"最新", "内地", "港台", "欧美", "韩国", "日本"};
-    for (int i = 0; i < nav.size(); ++i) {
-        latestNavItem[i] = new QLabel;
-        latestNavItem[i]->setCursor(Qt::PointingHandCursor);
-        latestNavItem[i]->setObjectName("latestNavItem");
-        latestNavItem[i]->setText(nav[i]);
-        latestNavLayout->addWidget(latestNavItem[i]);
-        latestNavLayout->addSpacing(30);
-        latestNavBox->setLayout(latestNavLayout);
-    }
-    titLeftLayout->addWidget(latestNavBox);
+    title->setText("合集");
 
     moreRightLayout = new QHBoxLayout;
     moreRightLayout->setSpacing(0);
@@ -552,16 +528,15 @@ void VideoRecom::latestIssue() {
     moreRightLayout->addWidget(arrowTitle);
 
 
-    titleLayout->addWidget(leftTitBox);
+    titleLayout->addWidget(title);
     titleLayout->addWidget(rightMoreBox);
     titleLayout->addSpacing(20);
     containerLayout->addWidget(titleBox);
 
     contentBox = new QWidget(containerBox);
-    contentBox->setFixedSize(containerBox->width(), 230);
+    contentBox->setFixedSize(containerBox->width(), 205);
     contentBox->installEventFilter(this);
-    contentBox->setObjectName("latestBox");
-
+    contentBox->setObjectName("assembleBox");
     containerLayout->addSpacing(6);
     containerLayout->addWidget(contentBox);
 
@@ -595,19 +570,29 @@ void VideoRecom::latestIssue() {
             << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
             << "https://qpic.y.qq.com/music_cover/4pmnRu5sL5QbtO8OS8NKJTN5qBpjx5XMS8vhm4hcZSN7PEHPQ68C0Q/300?n=1";
     for (int i = 0; i < imgList.size(); ++i) {
-        latestItem[i] = new QWidget(contentBox);
-        latestItem[i]->setFixedWidth(170);
-        latestItem[i]->setObjectName("latestItem");
+        int item_w = (bannerBox->width()/3) - 12;
+        assemItem[i] = new QWidget(contentBox);
+        assemItem[i]->setFixedWidth(item_w);
+        assemItem[i]->setObjectName("bannerItem");
         itemLayout = new QVBoxLayout;
         itemLayout->setSpacing(0);
         itemLayout->setMargin(0);
         itemLayout->setAlignment(Qt::AlignTop);
 
-        itemImg = new QLabel(latestItem[i]);
-        itemImg->setFixedSize(170, 170);
+        l = new QLabel(assemItem[i]);
+        l->setFixedSize(item_w-20,4);
+        l->move(((item_w - l->width())/2),5);
+        l->setObjectName("bg_l");
+        ll = new QLabel(assemItem[i]);
+        ll->setFixedSize(item_w-36,4);
+        ll->move(((item_w - ll->width())/2),1);
+        ll->setObjectName("bg_ll");
+
+        itemImg = new QLabel(assemItem[i]);
+        itemImg->setFixedSize(item_w, 142);
         itemImg->setCursor(Qt::PointingHandCursor);
         itemImg->setScaledContents(true);
-        itemImg->setObjectName("latestImg");
+        itemImg->setObjectName("assemImg");
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
@@ -619,33 +604,38 @@ void VideoRecom::latestIssue() {
         maskBox->setVisible(false);
 
         playBox = new QLabel(itemImg);
+        playBox->setFixedSize(51, 51);
         playBox->setObjectName("playBox");
+        playBox->setFont(tools->aliIcon());
+        playBox->setText(QChar(0xea85));
+        playBox->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+        int p_w = (itemImg->width() / 2) - (playBox->width() / 2);
+        int p_h = (itemImg->height() / 2) - (playBox->height() / 2);
+        playBox->move(p_w, p_h);
         playBox->setVisible(false);
-        playBox->setFixedSize(40, 30);
-        QPixmap playPix(":/resource/images/play.png");
-        playBox->setPixmap(playPix);
-        playBox->setScaledContents(true);
-        playBox->move(10, itemImg->height() - 40);
 
         title = new QLabel;
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
-        QString titleTxt = tools->textElps("华语摇滚|川流不息", itemImg->width()-20, title->font());
-        title->setText(titleTxt);
+        QString txt = tools->textElps("贺峻霖全新单曲《缘故》正式上线正式上线正式上线 ", itemImg->width()-6, title->font());
+        title->setText(txt);
+        title->setAlignment(Qt::AlignTop);
 
-        exTitle = new QLabel;
-        exTitle->setObjectName("exTitle");
-        QString txt = tools->textElps("GAT周延/威尔Will.T", itemImg->width()-20, exTitle->font());
-        exTitle->setText(txt);
+        author = new QLabel;
+        author->setCursor(Qt::PointingHandCursor);
+        author->setObjectName("author");
+        author->setText("弦子");
+        author->setFixedSize(author->sizeHint());
+        author->setAlignment(Qt::AlignTop);
 
         itemLayout->addSpacing(10);
         itemLayout->addWidget(itemImg);
         itemLayout->addSpacing(6);
         itemLayout->addWidget(title);
         itemLayout->addSpacing(3);
-        itemLayout->addWidget(exTitle);
-        latestItem[i]->setLayout(itemLayout);
-        bannerLayout->addWidget(latestItem[i]);
+        itemLayout->addWidget(author);
+        assemItem[i]->setLayout(itemLayout);
+        bannerLayout->addWidget(assemItem[i]);
         bannerLayout->setSpacing(20);
     }
 
@@ -654,10 +644,10 @@ void VideoRecom::latestIssue() {
     contentLayout->addWidget(arrowBox(3, "right"));
 
     layout->addWidget(containerBox);
-    layout->addSpacing(30);
+    layout->addSpacing(20);
 }
 
-// 分类专区
+// 个性推荐
 void VideoRecom::classPrefe() {
     containerBox = new QWidget(widget);
     containerBox->setFixedWidth(this->width() - 20);
@@ -888,11 +878,8 @@ bool VideoRecom::eventFilter(QObject *o, QEvent *e) {
     if (o->objectName() == "hotBox") {
         showArrow(o, e, 2);
     }
-    if (o->objectName() == "latestBox") {
+    if (o->objectName() == "assembleBox") {
         showArrow(o, e, 3);
-    }
-    if (o->objectName() == "classPrefeBox") {
-        showArrow(o, e, 4);
     }
     if (o->objectName() == "newestImg") {
         int i = o->property("index").toInt();
@@ -903,9 +890,9 @@ bool VideoRecom::eventFilter(QObject *o, QEvent *e) {
         toggleItem(hotItem[i], "hotImg", e);
     }
 
-    if (o->objectName() == "latestImg") {
+    if (o->objectName() == "assemImg") {
         int i = o->property("index").toInt();
-        toggleItem(latestItem[i], "latestImg", e);
+        toggleItem(assemItem[i], "assemImg", e);
     }
     if (o->objectName() == "classPrefeImg") {
         int i = o->property("index").toInt();
