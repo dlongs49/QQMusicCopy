@@ -32,7 +32,22 @@ QLabel#title {
     color: #333;
     padding-left: 30px;
 }
+QLabel#playBox {
+    font-size: 50px;
+    color: #fff;
+}
 
+QLabel#playBox:hover {
+    color: #10da67;
+}
+QWidget#playCountBox {
+    background: rgba(0, 0, 0, 0.603);
+    border-radius: 11px;
+}
+QLabel#playSicon {
+    color: #fff;
+    font-size: 14px;
+}
 QLabel#subTitle {
     font-size: 13px;
     color: #777;
@@ -76,7 +91,10 @@ QWidget#maskBox {
 QLabel#recomTit {
     color: #4e4e4e;
 }
-
+QLabel#author{
+    color: #4e4e4e;
+    font-size: 13px;
+}
 
 QLabel#playCount {
     color: #fff;
@@ -95,6 +113,7 @@ QLabel#loveBox:hover,
 QLabel#moreBox:hover,
 .leftArrow:hover,
 .rightArrow:hover,
+QLabel#author:hover,
 QLabel#latestNavItem:hover {
     color: #10da67;
 }

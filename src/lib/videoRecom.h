@@ -39,7 +39,7 @@ public slots:
 
     void bannerTop();
     void newest();
-    void listenBook();
+    void hotList();
     void classPrefe();
     void latestIssue();
     void toggleItem(QWidget *itemBox, QString objName, QEvent *e);
@@ -57,11 +57,12 @@ private:
     QList<QString> recomAttrList;
     QPropertyAnimation *animation[6];
     QScrollArea *scrollArea;
-    QLabel *tagLabel;
+    QLabel *playSicon;
     QLabel *titleLabel;
     QLabel *title;
     QLabel *subTitle;
     QLabel *exTitle;
+    QLabel *author;
     QLabel *playBox;
     QLabel *bannerImg;
     QLabel *playCount;
@@ -77,12 +78,14 @@ private:
     QWidget *bannerBox;
     QWidget *wrapconBox[6];
     QLabel *latestNavItem[6];
+    QWidget *playCountBox;
     QWidget *maskBox;
     QWidget *latestNavBox;
     QWidget *titleBox;
     QWidget *bomBox;
     QWidget *bannerItem[10];
     QWidget *newestItem[6];
+    QWidget *hotItem[6];
     QWidget *listenBookItem[6];
     QWidget *classItem[6];
     QWidget *latestItem[6];
@@ -92,7 +95,7 @@ private:
     QVBoxLayout *itemLayout;
     QHBoxLayout *contentLayout;
     QHBoxLayout *bannerLayout;
-    QHBoxLayout *bomLayout;
+    QHBoxLayout *playCountLayout;
     QHBoxLayout *titleLayout;
     QHBoxLayout *titLeftLayout;
     QHBoxLayout *moreRightLayout;

@@ -22,7 +22,7 @@ VideoRecom::VideoRecom(QWidget *parent) : QWidget(parent) {
 
     bannerTop();
     newest();
-    listenBook();
+    hotList();
     latestIssue();
     classPrefe();
     widget->setLayout(layout);
@@ -156,10 +156,9 @@ void VideoRecom::newest() {
     containerLayout->addWidget(titleBox);
 
     contentBox = new QWidget(containerBox);
-    contentBox->setFixedSize(containerBox->width(), 230);
+    contentBox->setFixedSize(containerBox->width(), 205);
     contentBox->installEventFilter(this);
-    contentBox->setObjectName("officialBox");
-
+    contentBox->setObjectName("newestBox");
     containerLayout->addSpacing(6);
     containerLayout->addWidget(contentBox);
 
@@ -193,8 +192,9 @@ void VideoRecom::newest() {
             << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
             << "https://qpic.y.qq.com/music_cover/4pmnRu5sL5QbtO8OS8NKJTN5qBpjx5XMS8vhm4hcZSN7PEHPQ68C0Q/300?n=1";
     for (int i = 0; i < imgList.size(); ++i) {
+        int item_w = (bannerBox->width()/3) - 12;
         newestItem[i] = new QWidget(contentBox);
-        newestItem[i]->setFixedWidth(170);
+        newestItem[i]->setFixedWidth(item_w);
         newestItem[i]->setObjectName("bannerItem");
         itemLayout = new QVBoxLayout;
         itemLayout->setSpacing(0);
@@ -202,7 +202,7 @@ void VideoRecom::newest() {
         itemLayout->setAlignment(Qt::AlignTop);
 
         itemImg = new QLabel(newestItem[i]);
-        itemImg->setFixedSize(170, 170);
+        itemImg->setFixedSize(item_w, 142);
         itemImg->setCursor(Qt::PointingHandCursor);
         itemImg->setScaledContents(true);
         itemImg->setObjectName("newestImg");
@@ -217,35 +217,65 @@ void VideoRecom::newest() {
         maskBox->setVisible(false);
 
         playBox = new QLabel(itemImg);
+        playBox->setFixedSize(51, 51);
         playBox->setObjectName("playBox");
+        playBox->setFont(tools->aliIcon());
+        playBox->setText(QChar(0xea85));
+        playBox->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+        int p_w = (itemImg->width() / 2) - (playBox->width() / 2);
+        int p_h = (itemImg->height() / 2) - (playBox->height() / 2);
+        playBox->move(p_w, p_h);
         playBox->setVisible(false);
-        playBox->setFixedSize(40, 30);
-        QPixmap playPix(":/resource/images/play.png");
-        playBox->setPixmap(playPix);
-        playBox->setScaledContents(true);
-        playBox->move(10, itemImg->height() - 40);
 
-        playCount = new QLabel(itemImg);
-        playCount->setFixedWidth(itemImg->width() - 10);
-        playCount->setText("5580亿");
-        playCount->setAlignment(Qt::AlignRight);
+        playCountBox = new QWidget(itemImg);
+        playCountBox->setObjectName("playCountBox");
+        playCountLayout = new QHBoxLayout;
+        playCountLayout->setMargin(0);
+        playCountLayout->setSpacing(0);
+        playCountLayout->setAlignment(Qt::AlignCenter);
+        playCountBox->setLayout(playCountLayout);
+        playCountBox->setVisible(false);
+
+        playSicon = new QLabel;
+        playSicon->setFixedSize(18, 14);
+        playSicon->setObjectName("playSicon");
+        playSicon->setFont(tools->aliIcon());
+        playSicon->setText(QChar(0xe633));
+        playSicon->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+
+        playCount = new QLabel;
         playCount->setObjectName("playCount");
-        playCount->move(0, itemImg->height() - 25);
+        playCount->setText("203.6万");
+        playCount->setFixedSize(playCount->sizeHint());
+        playCount->setAlignment(Qt::AlignCenter);
+
+        playCountLayout->addWidget(playSicon);
+        playCountLayout->addSpacing(3);
+        playCountLayout->addWidget(playCount);
+        int sc = playCount->sizeHint().width() + 26;
+        playCountBox->setGeometry(itemImg->width() - sc - 10, itemImg->height() - 30, sc, 22);
+
 
         title = new QLabel;
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
-        title->setObjectName("recomTit");
-        title->setText("华语摇滚|川流不息");
-        title->setWordWrap(true);
+        QString txt = tools->textElps("贺峻霖全新单曲《缘故》正式上线正式上线正式上线 ", itemImg->width()-6, title->font());
+        title->setText(txt);
         title->setAlignment(Qt::AlignTop);
-        title->setFixedHeight(38);
 
+        author = new QLabel;
+        author->setCursor(Qt::PointingHandCursor);
+        author->setObjectName("author");
+        author->setText("弦子");
+        author->setFixedSize(author->sizeHint());
+        author->setAlignment(Qt::AlignTop);
 
         itemLayout->addSpacing(10);
         itemLayout->addWidget(itemImg);
         itemLayout->addSpacing(6);
         itemLayout->addWidget(title);
+        itemLayout->addSpacing(3);
+        itemLayout->addWidget(author);
         newestItem[i]->setLayout(itemLayout);
         bannerLayout->addWidget(newestItem[i]);
         bannerLayout->setSpacing(20);
@@ -256,14 +286,13 @@ void VideoRecom::newest() {
     contentLayout->addWidget(arrowBox(1, "right"));
 
     layout->addWidget(containerBox);
-    layout->addSpacing(30);
+    layout->addSpacing(20);
 }
 
-// 推荐听书
-void VideoRecom::listenBook() {
+// 热门
+void VideoRecom::hotList() {
     containerBox = new QWidget(widget);
     containerBox->setFixedWidth(this->width() - 20);
-
     containerLayout = new QVBoxLayout;
     containerLayout->setSpacing(0);
     containerLayout->setMargin(0);
@@ -276,17 +305,49 @@ void VideoRecom::listenBook() {
     titleBox = new QWidget(containerBox);
     titleBox->setLayout(titleLayout);
 
+    titLeftLayout = new QHBoxLayout;
+    titLeftLayout->setSpacing(0);
+    titLeftLayout->setMargin(0);
+    titLeftLayout->setAlignment(Qt::AlignLeft);
+
     title = new QLabel;
     title->setObjectName("title");
-    title->setText("推荐听书");
+    title->setText("热门");
+
+    moreRightLayout = new QHBoxLayout;
+    moreRightLayout->setSpacing(0);
+    moreRightLayout->setMargin(0);
+    moreRightLayout->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+
+    rightMoreBox = new QLabel;
+    rightMoreBox->setFixedWidth(45);
+    rightMoreBox->setObjectName("rightMoreBox");
+    rightMoreBox->setCursor(Qt::PointingHandCursor);
+    rightMoreBox->setLayout(moreRightLayout);
+
+    moreTitle = new QLabel;
+    moreTitle->setObjectName("moreTit");
+    moreTitle->setText("更多");
+    moreRightLayout->addWidget(moreTitle);
+    moreRightLayout->addSpacing(5);
+
+    arrowTitle = new QLabel;
+    arrowTitle->setObjectName("arrowMore");
+    arrowTitle->setFont(tools->aliIcon());
+    arrowTitle->setText(QChar(0xe601));
+    arrowTitle->setFixedSize(14, 22);
+    moreRightLayout->addWidget(arrowTitle);
+
+
     titleLayout->addWidget(title);
+    titleLayout->addWidget(rightMoreBox);
+    titleLayout->addSpacing(20);
     containerLayout->addWidget(titleBox);
 
     contentBox = new QWidget(containerBox);
-    contentBox->setFixedSize(containerBox->width(), 230);
+    contentBox->setFixedSize(containerBox->width(), 205);
     contentBox->installEventFilter(this);
-    contentBox->setObjectName("listenBookBox");
-
+    contentBox->setObjectName("hotBox");
     containerLayout->addSpacing(6);
     containerLayout->addWidget(contentBox);
 
@@ -307,35 +368,33 @@ void VideoRecom::listenBook() {
 
     wrapconBox[2] = new QWidget(bannerBox);
     wrapconBox[2]->setLayout(bannerLayout);
-    animation[2] = new QPropertyAnimation(wrapconBox[2], "geometry");
+    animation[2] = new QPropertyAnimation(wrapconBox[1], "geometry");
     animation[2]->setDuration(300);
 
 
     QList<QString> imgList;
     QList<QString> txtList;
-    imgList << "https://y.gtimg.cn/music/photo_new/T002R500x500M000002ecDYa4W8Etq.jpg"
-            << "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Yh5Lq2ttNjH.jpg"
-            << "https://y.gtimg.cn/music/photo_new/T002R500x500M000004O1yg94X8WZT.jpg"
-            << "https://y.gtimg.cn/music/photo_new/T002R500x500M000002C8imL3ZjTKl.jpg"
-            << "https://y.gtimg.cn/music/photo_new/T002R500x500M000003Lp9xx4bZJFm.jpg"
-            //<< "https://y.gtimg.cn/music/photo_new/T002R500x500M000002hyVDd2SGIit.jpg"
-            //<< "https://y.gtimg.cn/music/photo_new/T002R500x500M000002FPE0c0NPEx9.jpg"
-            //<< "https://y.gtimg.cn/music/photo_new/T002R500x500M000002FHfQJ3ULEdE.jpg"
-            << "https://y.gtimg.cn/music/photo_new/T002R500x500M0000048ss5v1COV8J.jpg";
+    imgList << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QfX3MU2dzluKMUOBEjz0h6g/300"
+            << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QY8gA4UrJxhxQ9BBHZHDyFQ/300?n=1"
+            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqojSibubibse2uIWSaZhZ39n1F1CQCXVuMGdw/300?n=1"
+            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqoglWn5x5ITgE8KljTdMrDCyBpia0Jkn6BDg/300?n=1"
+            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
+            << "https://qpic.y.qq.com/music_cover/4pmnRu5sL5QbtO8OS8NKJTN5qBpjx5XMS8vhm4hcZSN7PEHPQ68C0Q/300?n=1";
     for (int i = 0; i < imgList.size(); ++i) {
-        listenBookItem[i] = new QWidget(contentBox);
-        listenBookItem[i]->setFixedWidth(170);
-        listenBookItem[i]->setObjectName("listenBookItem");
+        int item_w = (bannerBox->width()/3) - 12;
+        hotItem[i] = new QWidget(contentBox);
+        hotItem[i]->setFixedWidth(item_w);
+        hotItem[i]->setObjectName("bannerItem");
         itemLayout = new QVBoxLayout;
         itemLayout->setSpacing(0);
         itemLayout->setMargin(0);
         itemLayout->setAlignment(Qt::AlignTop);
 
-        itemImg = new QLabel(listenBookItem[i]);
-        itemImg->setFixedSize(170, 170);
+        itemImg = new QLabel(hotItem[i]);
+        itemImg->setFixedSize(item_w, 142);
         itemImg->setCursor(Qt::PointingHandCursor);
         itemImg->setScaledContents(true);
-        itemImg->setObjectName("listenBookImg");
+        itemImg->setObjectName("hotImg");
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
@@ -347,45 +406,76 @@ void VideoRecom::listenBook() {
         maskBox->setVisible(false);
 
         playBox = new QLabel(itemImg);
+        playBox->setFixedSize(51, 51);
         playBox->setObjectName("playBox");
+        playBox->setFont(tools->aliIcon());
+        playBox->setText(QChar(0xea85));
+        playBox->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+        int p_w = (itemImg->width() / 2) - (playBox->width() / 2);
+        int p_h = (itemImg->height() / 2) - (playBox->height() / 2);
+        playBox->move(p_w, p_h);
         playBox->setVisible(false);
-        playBox->setFixedSize(40, 30);
-        QPixmap playPix(":/resource/images/play.png");
-        playBox->setPixmap(playPix);
-        playBox->setScaledContents(true);
-        playBox->move(10, itemImg->height() - 40);
 
-        playCount = new QLabel(itemImg);
-        playCount->setFixedWidth(itemImg->width() - 10);
-        playCount->setText("5580亿");
-        playCount->setAlignment(Qt::AlignRight);
+        playCountBox = new QWidget(itemImg);
+        playCountBox->setObjectName("playCountBox");
+        playCountLayout = new QHBoxLayout;
+        playCountLayout->setMargin(0);
+        playCountLayout->setSpacing(0);
+        playCountLayout->setAlignment(Qt::AlignCenter);
+        playCountBox->setLayout(playCountLayout);
+        playCountBox->setVisible(false);
+
+        playSicon = new QLabel;
+        playSicon->setFixedSize(18, 14);
+        playSicon->setObjectName("playSicon");
+        playSicon->setFont(tools->aliIcon());
+        playSicon->setText(QChar(0xe633));
+        playSicon->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+
+        playCount = new QLabel;
         playCount->setObjectName("playCount");
-        playCount->move(0, itemImg->height() - 25);
+        playCount->setText("203.6万");
+        playCount->setFixedSize(playCount->sizeHint());
+        playCount->setAlignment(Qt::AlignCenter);
+
+        playCountLayout->addWidget(playSicon);
+        playCountLayout->addSpacing(3);
+        playCountLayout->addWidget(playCount);
+        int sc = playCount->sizeHint().width() + 26;
+        playCountBox->setGeometry(itemImg->width() - sc - 10, itemImg->height() - 30, sc, 22);
+
 
         title = new QLabel;
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
-        title->setText("孤独患者 | 人生而孤独");
-        title->setWordWrap(true);
+        QString txt = tools->textElps("贺峻霖全新单曲《缘故》正式上线正式上线正式上线 ", itemImg->width()-6, title->font());
+        title->setText(txt);
         title->setAlignment(Qt::AlignTop);
-        title->setFixedHeight(38);
 
+        author = new QLabel;
+        author->setCursor(Qt::PointingHandCursor);
+        author->setObjectName("author");
+        author->setText("弦子");
+        author->setFixedSize(author->sizeHint());
+        author->setAlignment(Qt::AlignTop);
 
         itemLayout->addSpacing(10);
         itemLayout->addWidget(itemImg);
         itemLayout->addSpacing(6);
         itemLayout->addWidget(title);
-        listenBookItem[i]->setLayout(itemLayout);
-        bannerLayout->addWidget(listenBookItem[i]);
+        itemLayout->addSpacing(3);
+        itemLayout->addWidget(author);
+        hotItem[i]->setLayout(itemLayout);
+        bannerLayout->addWidget(hotItem[i]);
         bannerLayout->setSpacing(20);
     }
 
-    contentLayout->addWidget(arrowBox(2, "left"));
+    contentLayout->addWidget(arrowBox(1, "left"));
     contentLayout->addWidget(bannerBox);
-    contentLayout->addWidget(arrowBox(2, "right"));
+    contentLayout->addWidget(arrowBox(1, "right"));
 
     layout->addWidget(containerBox);
-    layout->addSpacing(30);
+    layout->addSpacing(20);
 }
 
 // 最新发行
@@ -750,7 +840,7 @@ void VideoRecom::toggleItem(QWidget *itemBox, QString objName, QEvent *e) {
     QLabel *box = itemBox->findChild<QLabel *>(objName);
     QWidget *mask = itemBox->findChild<QWidget *>("maskBox");
     QLabel *play_box = itemBox->findChild<QLabel *>("playBox");
-    QLabel *play_count = itemBox->findChild<QLabel *>("playCount");
+    QWidget *play_count = itemBox->findChild<QWidget *>("playCountBox");
 
 
     QPropertyAnimation *animation = new QPropertyAnimation(box, "geometry");
@@ -792,10 +882,10 @@ bool VideoRecom::eventFilter(QObject *o, QEvent *e) {
     if (o->objectName() == "selectedBox") {
         showArrow(o, e, 0);
     }
-    if (o->objectName() == "officialBox") {
+    if (o->objectName() == "newestBox") {
         showArrow(o, e, 1);
     }
-    if (o->objectName() == "listenBookBox") {
+    if (o->objectName() == "hotBox") {
         showArrow(o, e, 2);
     }
     if (o->objectName() == "latestBox") {
@@ -804,13 +894,13 @@ bool VideoRecom::eventFilter(QObject *o, QEvent *e) {
     if (o->objectName() == "classPrefeBox") {
         showArrow(o, e, 4);
     }
-    if (o->objectName() == "officialImg") {
+    if (o->objectName() == "newestImg") {
         int i = o->property("index").toInt();
-        toggleItem(newestItem[i], "officialImg", e);
+        toggleItem(newestItem[i], "newestImg", e);
     }
-    if (o->objectName() == "listenBookImg") {
+    if (o->objectName() == "hotImg") {
         int i = o->property("index").toInt();
-        toggleItem(listenBookItem[i], "listenBookImg", e);
+        toggleItem(hotItem[i], "hotImg", e);
     }
 
     if (o->objectName() == "latestImg") {
