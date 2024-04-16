@@ -8,8 +8,7 @@ VideoRecom::VideoRecom(QWidget *parent) : QWidget(parent) {
     installEventFilter(this);
     loadQSS();
     tools = new Tools();
-
-    // qq音乐精选接口 http://u6.y.qq.com/cgi-bin/musics.fcg?_=1712662759896&sign=zzcd87edc7qul46ovmthfs0znwytvxsfm6kmwd0777b5b
+    // 页面  https://y.qq.com/wk_v17/#/mv/recommend
 
     this->setFixedSize(820, 1350);
     widget = new QWidget(this);

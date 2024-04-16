@@ -7,7 +7,7 @@
 MusicHouse::MusicHouse(QWidget *parent) : QWidget(parent) {
     installEventFilter(this);
     loadQSS();
-
+    // 页面 https://y.qq.com/wk_v17/#/musicroom/recommend
     this->setFixedSize(820, 500);
     widget = new QWidget(this);
     widget->setObjectName("conbox");

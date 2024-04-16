@@ -8,8 +8,7 @@ HouseSinger::HouseSinger(QWidget *parent) : QWidget(parent) {
     installEventFilter(this);
     loadQSS();
     tools = new Tools();
-    // 更多qq音乐客户端对应的页面 https://y.qq.com/m/client/config/url.pc.json?pcachetime=1712844941
-    //对应的qq页面  https://y.qq.com/wk_v17/#/musicroom/recommend
+    //对应页面  https://y.qq.com/wk_v17/#/musicroom/singer
     this->setFixedSize(820, 1400);
     widget = new QWidget(this);
     widget->setFixedSize(this->size());
