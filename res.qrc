@@ -35,5 +35,6 @@
 		<file>resource/qss/houseSelected.qss</file>
 		<file>resource/qss/houseRanking.qss</file>
 		<file>resource/qss/houseSinger.qss</file>
+		<file>resource/qss/videoContent.qss</file>
     </qresource>
 </RCC>

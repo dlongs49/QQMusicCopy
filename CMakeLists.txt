@@ -46,6 +46,8 @@ add_executable(QQMusicCopy
 		src/lib/houseRanking.h
 		src/lib/houseSinger.cpp
 		src/lib/houseSinger.h
+		src/lib/videoContent.cpp
+		src/lib/videoContent.h
 )
 
 target_link_libraries(QQMusicCopy PRIVATE Qt5::Widgets Qt5::Core Qt5::Network)

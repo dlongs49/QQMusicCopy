@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft YaHei', 'iconfont';
+}
+QLabel#title {
+    font-size: 30px;
+    font-weight: bold;
+    color: #000;
+    padding-left: 28px;
+}
+QLabel#navItem{
+    color: #333;
+    font-size: 13px;
+}
+QLabel#activeLine{
+    background: #10da67;
+    border-radius: 1.5px;
+}
+QLabel#navItem:hover{
+    color: #10da67;
+}
+
+QWidget#conbox{
+    background-color: #fff;
+}
