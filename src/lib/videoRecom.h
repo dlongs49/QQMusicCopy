@@ -40,8 +40,8 @@ public slots:
     void bannerTop();
     void newest();
     void hotList();
-    void classPrefe();
     void assemble();
+    void indiv();
     void toggleItem(QWidget *itemBox, QString objName, QEvent *e);
 
     void showArrow(QObject *o, QEvent *e, int i);
@@ -89,8 +89,8 @@ private:
     QWidget *newestItem[6];
     QWidget *hotItem[6];
     QWidget *listenBookItem[6];
-    QWidget *classItem[6];
     QWidget *assemItem[6];
+    QWidget *indivItem[66];
     QVBoxLayout *layout;
     QVBoxLayout *containerLayout;
     QVBoxLayout *bannerImgLayout;
@@ -101,7 +101,7 @@ private:
     QHBoxLayout *titleLayout;
     QHBoxLayout *titLeftLayout;
     QHBoxLayout *moreRightLayout;
-    QHBoxLayout *latestNavLayout;
+    QGridLayout *indivLayout;
     QNetworkAccessManager *manager;
     QNetworkReply *reply;
     QEventLoop *loop;

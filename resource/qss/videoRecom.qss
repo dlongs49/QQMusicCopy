@@ -79,7 +79,10 @@ QLabel#arrowMore {
     font-size: 10px;
     color: #333;
 }
-
+QLabel#refresh{
+    font-size: 14px;
+    color: #333;
+}
 QLabel#newestImg,
 QLabel#listenBookImg,
 QLabel#classPrefeImg {
