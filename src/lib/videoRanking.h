@@ -44,6 +44,7 @@ private:
     QLabel *itemImg;
     QLabel *dateTit;
     QLabel *sort;
+    QLabel *num;
     QLabel *songItem[3];
     QWidget *widget;
     QWidget *containerBox;

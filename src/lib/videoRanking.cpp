@@ -58,7 +58,7 @@ void VideoRanking::rankingTop() {
     title->setText("巅峰榜.MV");
     title->setObjectName("blodTit");
     rightLayout->addWidget(title);
-    rightLayout->addSpacing(20);
+    rightLayout->addSpacing(26);
 
     dateTit = new QLabel;
     dateTit->setText("04.15-05.26");
@@ -71,13 +71,13 @@ void VideoRanking::rankingTop() {
 
     layout->addSpacing(10);
     layout->addWidget(containerBox);
-    layout->addSpacing(10);
+    layout->addSpacing(40);
 }
 
 // 排行榜列表
 void VideoRanking::rankList() {
     containerBox = new QWidget(widget);
-    containerBox->setFixedSize(widget->width() - 20, 900);
+    containerBox->setFixedSize(widget->width() - 20, 1000);
 
     containerVLayout = new QVBoxLayout;
     containerVLayout->setSpacing(0);
@@ -107,9 +107,23 @@ void VideoRanking::rankList() {
         item[i]->setObjectName("item");
         item[i]->setLayout(contentLayout);
 
+
+
+        QPixmap sortPix(":/resource/images/sort.png");
         sort = new QLabel;
-        sort->setText("1");
-        sort->setObjectName("title");
+        sort->setFixedSize(20,24);
+        num = new QLabel(sort);
+        if(i < 3){
+            sort->setPixmap(sortPix);
+            num->setObjectName("bg_title");
+        }else{
+            num->setObjectName("title");
+        }
+        sort->setScaledContents(true);
+        num->setFixedSize(sort->size());
+        num->setAlignment(Qt::AlignCenter);
+        num->setText(QString::number(i+1));
+
 
         itemImg = new QLabel;
         itemImg->setScaledContents(true);
@@ -162,16 +176,15 @@ void VideoRanking::rankList() {
 
 
         contentLayout->addWidget(sort);
-        contentLayout->addSpacing(20);
+        contentLayout->addSpacing(40);
         contentLayout->addWidget(itemImg);
         contentLayout->addSpacing(20);
         contentLayout->addWidget(rightBox);
 
         containerVLayout->addWidget(item[i]);
-        containerVLayout->setSpacing(20);
+        containerVLayout->setSpacing(30);
     }
     layout->addWidget(containerBox);
-    layout->addSpacing(10);
 }
 
 QPixmap *VideoRanking::getImage(QString url) {
