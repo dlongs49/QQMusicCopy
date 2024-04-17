@@ -2,6 +2,8 @@
 #define TOOLS_H
 
 #include <QWidget>
+#include <QLabel>
+#include <QHBoxLayout>
 #include <QPainter>
 #include <QPainterPath>
 #include <QPixmap>
@@ -9,6 +11,7 @@
 #include <QFont>
 #include <QFontMetrics>
 #include <QFontDatabase>
+#include <cmath>
 
 class Tools : public QWidget {
 Q_OBJECT

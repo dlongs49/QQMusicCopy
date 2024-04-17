@@ -37,5 +37,6 @@
 		<file>resource/qss/houseSinger.qss</file>
 		<file>resource/qss/videoContent.qss</file>
 		<file>resource/qss/videoRecom.qss</file>
+		<file>resource/qss/videoRanking.qss</file>
     </qresource>
 </RCC>

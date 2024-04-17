@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft YaHei', 'iconfont';
+}
+QWidget#conbox{
+    background-color: #fff;
+}
+
+QLabel#itemImg {
+    border-radius: 12px;
+}
+QLabel#blodTit {
+    font-weight: bold;
+    font-size: 28px;
+}
+QLabel#dateTit{
+    color: rgba(0, 0, 0, .5);
+}
+QLabel#songItem {
+    color: #333;
+    font-size: 12px;
+}
+QLabel#songItem:hover{
+    color: #10da67;
+}
+QLabel#dateItem{
+    color: #797979;
+    font-size: 12px;
+}
+QLabel#playBox {
+    font-size: 50px;
+    color: #10da67;
+}
+
+QLabel#title {
+    font-size: 12px;
+    color: #333;
+}
+
+
+QWidget#maskBox {
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.589);
+}

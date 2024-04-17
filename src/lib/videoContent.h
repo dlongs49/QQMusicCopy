@@ -14,7 +14,7 @@
 #include <QMouseEvent>
 #include <cmath>
 #include "./videoRecom.h"
-#include "./houseRanking.h"
+#include "./videoRanking.h"
 #include "./houseSinger.h"
 
 class VideoContent : public QWidget {
@@ -47,7 +47,7 @@ private:
     QVBoxLayout *containerLayout;
     QScrollArea *scrollArea;
     VideoRecom *videoRecom;
-    HouseRanking *houseRanking;
+    VideoRanking *videoRanking;
     HouseSinger *houseSinger;
 };
 

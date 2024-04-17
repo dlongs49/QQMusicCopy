@@ -10,7 +10,7 @@ VideoRecom::VideoRecom(QWidget *parent) : QWidget(parent) {
     tools = new Tools();
     // 页面  https://y.qq.com/wk_v17/#/mv/recommend
 
-    this->setFixedSize(820, 2050);
+    this->setFixedSize(820, 1700);
     widget = new QWidget(this);
     widget->setFixedSize(this->size());
     widget->setObjectName("conbox");

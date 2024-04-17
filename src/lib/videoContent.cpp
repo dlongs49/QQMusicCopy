@@ -70,9 +70,9 @@ VideoContent::VideoContent(QWidget *parent) : QWidget(parent) {
     videoRecom = new VideoRecom(scrollArea);
     layout->addWidget(videoRecom);
 
-    houseRanking = new HouseRanking(scrollArea);
-    layout->addWidget(houseRanking);
-    houseRanking->hide();
+    videoRanking = new VideoRanking(scrollArea);
+    layout->addWidget(videoRanking);
+    videoRanking->hide();
 
     houseSinger = new HouseSinger(scrollArea);
     layout->addWidget(houseSinger);
@@ -93,13 +93,13 @@ bool VideoContent::eventFilter(QObject *o, QEvent *e) {
             if (o->objectName() == "navItem") {
                 int i = o->property("index").toInt();
                 videoRecom->hide();
-                houseRanking->hide();
+                videoRanking->hide();
                 houseSinger->hide();
                 if(i == 0){
                     videoRecom->show();
                     activeLine->move(2,26);
                 }else if(i == 1){
-                    houseRanking->show();
+                    videoRanking->show();
                     activeLine->move(84,26);
                 }else{
                     houseSinger->show();
