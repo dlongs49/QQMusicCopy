@@ -111,7 +111,7 @@ void VideoRanking::rankList() {
 
         QPixmap sortPix(":/resource/images/sort.png");
         sort = new QLabel;
-        sort->setFixedSize(20,24);
+        sort->setFixedSize(18,20);
         num = new QLabel(sort);
         if(i < 3){
             sort->setPixmap(sortPix);
