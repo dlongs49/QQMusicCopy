@@ -52,6 +52,8 @@ add_executable(QQMusicCopy
 		src/lib/videoRecom.h
 		src/lib/videoRanking.cpp
 		src/lib/videoRanking.h
+		src/lib/videoLibrary.cpp
+		src/lib/videoLibrary.h
 )
 
 target_link_libraries(QQMusicCopy PRIVATE Qt5::Widgets Qt5::Core Qt5::Network)

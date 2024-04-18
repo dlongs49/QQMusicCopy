@@ -1,9 +1,10 @@
 //
-// Created by dinglong on 2024/4/16 11:20
+// Created by dinglong on 2024/4/18 14:54
 //
 
-#ifndef QQMUSICCOPY_VIDEOCONTENT_H
-#define QQMUSICCOPY_VIDEOCONTENT_H
+#ifndef QQMUSICCOPY_VIDEOLIBRARY_H
+#define QQMUSICCOPY_VIDEOLIBRARY_H
+
 
 #include <QWidget>
 #include <QScrollArea>
@@ -17,10 +18,10 @@
 #include "./videoRanking.h"
 #include "./videoLibrary.h"
 
-class VideoContent : public QWidget {
+class VideoLibrary : public QWidget {
 Q_OBJECT;
 public:
-    VideoContent(QWidget *parent = nullptr);
+    VideoLibrary(QWidget *parent = nullptr);
 
 
 signals:
@@ -53,4 +54,5 @@ private:
 
 
 
-#endif //QQMUSICCOPY_VIDEOCONTENT_H
+
+#endif //QQMUSICCOPY_VIDEOLIBRARY_H

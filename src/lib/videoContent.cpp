@@ -74,9 +74,9 @@ VideoContent::VideoContent(QWidget *parent) : QWidget(parent) {
     layout->addWidget(videoRanking);
     videoRanking->hide();
 
-    houseSinger = new HouseSinger(scrollArea);
-    layout->addWidget(houseSinger);
-    houseSinger->hide();
+    videoLibrary = new VideoLibrary(scrollArea);
+    layout->addWidget(videoLibrary);
+    videoLibrary->hide();
 
     layout->addSpacing(30);
 
@@ -94,7 +94,7 @@ bool VideoContent::eventFilter(QObject *o, QEvent *e) {
                 int i = o->property("index").toInt();
                 videoRecom->hide();
                 videoRanking->hide();
-                houseSinger->hide();
+                videoLibrary->hide();
                 if(i == 0){
                     videoRecom->show();
                     activeLine->move(2,26);
@@ -102,7 +102,7 @@ bool VideoContent::eventFilter(QObject *o, QEvent *e) {
                     videoRanking->show();
                     activeLine->move(84,26);
                 }else{
-                    houseSinger->show();
+                    videoLibrary->show();
                     activeLine->move(174,26);
                 }
             }
