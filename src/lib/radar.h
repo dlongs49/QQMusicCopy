@@ -40,6 +40,8 @@ public slots:
     void radarList();
 
     QPixmap *getImage(QString url);
+    void toggleItem(QWidget *itemBox, QString objName, QEvent *e);
+    bool eventFilter(QObject *watched, QEvent *event);
 
 protected:
 
@@ -50,6 +52,7 @@ private:
     QLabel *typeTxt;
     QLabel *title;
     QLabel *bot;
+    QLabel *playBox;
     QWidget *widget;
     QWidget *typeBox;
     QWidget *containerBox;

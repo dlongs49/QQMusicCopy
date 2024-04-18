@@ -3,9 +3,12 @@
     padding: 0;
     font-family: 'Microsoft YaHei', 'iconfont';
 }
+QWidget#conbox{
+    background: #fff;
+}
 QLabel#blodTit{
     font-weight: bold;
-    font-size: 26px;
+    font-size: 20px;
 }
 QLabel#bot{
     background: #ccc;
@@ -14,8 +17,4 @@ QLabel#bot{
 QLabel#singerName {
     font-size: 16px;
     color: #333;
-}
-
-QLabel#singerName:hover {
-    color: #10da67;
 }
