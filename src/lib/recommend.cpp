@@ -8,7 +8,7 @@ Recommend::Recommend(QWidget *parent) : QWidget(parent) {
     installEventFilter(this);
     loadQSS();
     tools = new Tools();
-
+    // qq音乐渲染json https://y.qq.com/m/client/config/url.pc.json
 
     this->setFixedSize(820, 2000);
     widget = new QWidget(this);
