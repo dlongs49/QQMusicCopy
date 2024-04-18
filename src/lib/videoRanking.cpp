@@ -29,7 +29,7 @@ VideoRanking::VideoRanking(QWidget *parent) : QWidget(parent) {
 void VideoRanking::rankingTop() {
 
     containerBox = new QWidget(widget);
-    containerBox->setFixedSize(widget->width() - 20, 170);
+    containerBox->setFixedSize(widget->width() - 80, 170);
     containerLayout = new QHBoxLayout;
     containerLayout->setSpacing(0);
     containerLayout->setMargin(0);
@@ -77,8 +77,7 @@ void VideoRanking::rankingTop() {
 // 排行榜列表
 void VideoRanking::rankList() {
     containerBox = new QWidget(widget);
-    containerBox->setFixedSize(widget->width() - 20, 1000);
-
+    containerBox->setFixedSize(widget->width() - 80, 1000);
     containerVLayout = new QVBoxLayout;
     containerVLayout->setSpacing(0);
     containerVLayout->setMargin(0);
