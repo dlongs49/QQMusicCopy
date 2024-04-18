@@ -7,7 +7,6 @@
 
 
 #include <QWidget>
-#include <QScrollArea>
 #include <QList>
 #include <QLabel>
 #include <QDebug>
@@ -29,30 +28,56 @@ signals:
 
 public slots:
 
+    void tagList();
+
+    void allMV();
+
     bool eventFilter(QObject *watched, QEvent *event);
 
     void loadQSS();
 
+    QPixmap *getImage(QString url);
+
+    void toggleItem(QWidget *itemBox, QString objName, QEvent *e);
+
 protected:
 
 private:
+    QPropertyAnimation *animation;
+    QLabel *author;
+    QLabel *playBox;
+    QLabel *rNavTit[2];
+    QLabel *areaLabel[6];
+    QLabel *distLabel[8];
+    QLabel *itemImg;
+    QLabel *rightBox;
     QLabel *title;
-    QLabel *activeLine;
-    QLabel *navItem[4];
     QWidget *widget;
     QWidget *containerBox;
-    QWidget *navBox;
-    QWidget *recomBox;
-    QHBoxLayout *navLayout;
+    QWidget *contentBox;
+    QWidget *bannerBox;
+    QWidget *wrapconBox;
+    QWidget *mvItem[66];
+    QWidget *maskBox;
+    QWidget *titleBox;
+    QWidget *areaBox;
+    QWidget *distBox;
     QVBoxLayout *layout;
     QVBoxLayout *containerLayout;
-    QScrollArea *scrollArea;
-    VideoRecom *videoRecom;
-    VideoRanking *videoRanking;
-    VideoLibrary *videoLibrary;
+    QVBoxLayout *itemLayout;
+    QHBoxLayout *contentLayout;
+    QHBoxLayout *areaLayout;
+    QHBoxLayout *distLayout;
+    QHBoxLayout *titleLayout;
+    QHBoxLayout *titLeftLayout;
+    QHBoxLayout *rightLayout;
+    QGridLayout *mvLayout;
+    QNetworkAccessManager *manager;
+    QNetworkReply *reply;
+    QEventLoop *loop;
+    QPixmap *coverImg;
+    Tools *tools;
 };
-
-
 
 
 #endif //QQMUSICCOPY_VIDEOLIBRARY_H

@@ -39,5 +39,6 @@
 		<file>resource/qss/videoContent.qss</file>
 		<file>resource/qss/videoRecom.qss</file>
 		<file>resource/qss/videoRanking.qss</file>
+		<file>resource/qss/videoLibrary.qss</file>
     </qresource>
 </RCC>

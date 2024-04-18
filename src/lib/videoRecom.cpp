@@ -682,7 +682,6 @@ void VideoRecom::indiv() {
     rightMoreBox->setObjectName("rightMoreBox");
     rightMoreBox->setCursor(Qt::PointingHandCursor);
     rightMoreBox->setLayout(moreRightLayout);
-//    rightMoreBox->setStyleSheet("background:#f0f");
 
     arrowTitle = new QLabel;
     arrowTitle->setObjectName("refresh");

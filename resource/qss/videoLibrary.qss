@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft YaHei', 'iconfont';
+}
+
+QWidget#conbox {
+    background-color: #fff;
+}
+
+QLabel#navItem {
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    color: #333;
+    padding-top: -2px;
+    margin: 0;
+}
+QLabel#navItem:hover{
+    color: #10da67;
+    background: rgba(0,0,0,.02);
+}
+QLabel#title {
+    font-size: 24px;
+    font-weight: 400;
+    color: #333;
+}
+
+QLabel#playBox {
+    font-size: 50px;
+    color: #fff;
+}
+
+QLabel#listenBookImg,
+QLabel#classPrefeImg {
+    background: #eee;
+    border-radius: 10px;
+}
+
+QWidget#mvImg {
+    border-radius: 10px;
+}
+
+QLabel#latestNavItem {
+    font-size: 12px;
+    color: #505050;
+}
+
+
+
+QWidget#maskBox {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.589);
+}
+
+QLabel#recomTit {
+    color: #4e4e4e;
+}
+
+QLabel#author {
+    color: #4e4e4e;
+    font-size: 13px;
+}
+
+QLabel#playCount {
+    color: #fff;
+    font-size: 13px;
+}
+
+
+QLabel#recomTit:hover,
+QLabel#playBox:hover,
+QLabel#rnav_tit:hover,
+QLabel#author:hover {
+    color: #10da67;
+}
