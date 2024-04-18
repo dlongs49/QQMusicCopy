@@ -36,7 +36,7 @@ void VideoLibrary::tagList(){
     areaLayout->setAlignment(Qt::AlignLeft);
     areaLayout->setSpacing(0);
     areaLayout->setMargin(0);
-    areaBox = new QWidget(containerBox);
+    areaBox = new QWidget;
     areaBox->setLayout(areaLayout);
 
     QStringList areaList = {"全部", "内地","港台","欧美","韩国","日本"};
@@ -49,14 +49,14 @@ void VideoLibrary::tagList(){
         areaLabel[i]->setText(areaList[i]);
         areaLabel[i]->setObjectName("navItem");
         areaLayout->addWidget(areaLabel[i]);
-        areaLayout->addSpacing(30);
+        areaLayout->addSpacing(15);
     }
 
     distLayout = new QHBoxLayout;
     distLayout->setSpacing(0);
     distLayout->setMargin(0);
     distLayout->setAlignment(Qt::AlignLeft);
-    distBox = new QWidget(containerBox);
+    distBox = new QWidget;
     distBox->setLayout(distLayout);
 
     QStringList distList = {"全部", "MV","现场","翻唱","舞蹈","影视","综艺","儿歌"};
@@ -69,7 +69,7 @@ void VideoLibrary::tagList(){
         distLabel[i]->setText(distList[i]);
         distLabel[i]->setObjectName("navItem");
         distLayout->addWidget(distLabel[i]);
-        distLayout->addSpacing(30);
+        distLayout->addSpacing(15);
     }
 
     containerLayout->addWidget(areaBox);
