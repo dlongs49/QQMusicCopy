@@ -5,6 +5,7 @@
 #ifndef QQMUSICCOPY_RADAR_H
 #define QQMUSICCOPY_RADAR_H
 
+#include <QScrollArea>
 #include <QWidget>
 #include <QList>
 #include <QLabel>
@@ -43,10 +44,12 @@ public slots:
 protected:
 
 private:
+    QScrollArea *scrollArea;
     QLabel *singerName;
     QLabel *itemImg;
     QLabel *typeTxt;
     QLabel *title;
+    QLabel *bot;
     QWidget *widget;
     QWidget *typeBox;
     QWidget *containerBox;

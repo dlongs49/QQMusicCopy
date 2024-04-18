@@ -9,7 +9,7 @@ Radar::Radar(QWidget *parent) : QWidget(parent) {
     loadQSS();
     tools = new Tools();
     //对应页面  https://y.qq.com/wk_v17/radio.html
-    this->setFixedSize(820, 1400);
+    this->setFixedSize(820, 500);
     widget = new QWidget(this);
     widget->setFixedSize(this->size());
     widget->setObjectName("conbox");
@@ -18,13 +18,21 @@ Radar::Radar(QWidget *parent) : QWidget(parent) {
     layout->setSpacing(0);
     layout->setMargin(0);
 
+    scrollArea = new QScrollArea(this);
+    scrollArea->setAlignment(Qt::AlignTop);
+    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    scrollArea->setGeometry(0, 0, this->width(), this->height());
+    scrollArea->setWidget(widget);
+    scrollArea->setWidgetResizable(true);
+
+
     radarTop();
     radarList();
     widget->setLayout(layout);
 }
 void Radar::radarTop() {
     containerBox = new QWidget(widget);
-    containerBox->setFixedWidth(widget->width() - 20);
+    containerBox->setFixedWidth(widget->width() - 80);
     contentLayout = new QVBoxLayout;
     contentLayout->setSpacing(0);
     contentLayout->setMargin(0);
@@ -45,29 +53,30 @@ void Radar::radarTop() {
     QList<QString> txtList;
     txtList << "热门" << "心情" << "主题" << "场景" << "曲风" << "语言" << "人群" << "乐器" << "陪你听" << "厂牌";
     for (int i = 0; i < txtList.size(); ++i) {
-        int size = (containerBox->width() / 4) - 20;
         typeItem[i] = new QWidget;
         typeItem[i]->installEventFilter(this);
-        typeItem[i]->setFixedWidth(size);
+        typeItem[i]->setFixedWidth(44);
         typeItem[i]->setCursor(Qt::PointingHandCursor);
+//        typeItem[i]->setStyleSheet("background:#f0f");
 
         typeLayout = new QVBoxLayout;
         typeLayout->setSpacing(0);
         typeLayout->setMargin(0);
-        typeLayout->setAlignment(Qt::AlignTop);
+        typeLayout->setAlignment(Qt::AlignCenter);
         typeItem[i]->setLayout(typeLayout);
 
         typeTxt = new QLabel;
         typeTxt->setObjectName("typeTit");
         typeTxt->setText(txtList[i]);
 
-        singerName = new QLabel;
-        singerName->setObjectName("bot");
+        bot = new QLabel;
+        bot->setFixedSize(8,8);
+        bot->setObjectName("bot");
 
 
         typeLayout->addWidget(typeTxt);
-        typeLayout->addSpacing(16);
-        typeLayout->addWidget(singerName);
+        typeLayout->addSpacing(10);
+        typeLayout->addWidget(bot,0,Qt::AlignHCenter);
 
         typeOutLayout->addWidget(typeItem[i]);
         typeOutLayout->setSpacing(20);

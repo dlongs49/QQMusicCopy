@@ -5,7 +5,11 @@
 }
 QLabel#blodTit{
     font-weight: bold;
-    font-size: 32px;
+    font-size: 26px;
+}
+QLabel#bot{
+    background: #ccc;
+    border-radius: 4px;
 }
 QLabel#singerName {
     font-size: 16px;
