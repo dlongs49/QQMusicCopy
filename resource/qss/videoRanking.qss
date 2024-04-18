@@ -41,7 +41,6 @@ QLabel#bg_title {
     font-size: 12px;
     color: #fff;
 }
-
 QWidget#maskBox {
     border-radius: 12px;
     background: rgba(0, 0, 0, 0.589);

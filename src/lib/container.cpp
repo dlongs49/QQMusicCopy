@@ -18,6 +18,7 @@ container::container(QWidget *parent) : QWidget(parent) {
 
 //    videoContent = new VideoContent(this);
 //    containerLayout->addWidget(videoContent);
+
     radar = new Radar(this);
     containerLayout->addWidget(radar);
 

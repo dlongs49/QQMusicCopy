@@ -5,14 +5,11 @@
 #ifndef QQMUSICCOPY_VIDEOLIBRARY_H
 #define QQMUSICCOPY_VIDEOLIBRARY_H
 
-
-#include <QWidget>
-#include <QList>
-#include <QLabel>
 #include <QDebug>
 #include <QHBoxLayout>
 #include <QMouseEvent>
-#include <cmath>
+//#include <cmath>
+#include <QtMath>
 #include "./videoRecom.h"
 #include "./videoRanking.h"
 #include "./videoLibrary.h"

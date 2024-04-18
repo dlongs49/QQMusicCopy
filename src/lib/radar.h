@@ -6,12 +6,6 @@
 #define QQMUSICCOPY_RADAR_H
 
 #include <QScrollArea>
-#include <QWidget>
-#include <QList>
-#include <QLabel>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QGridLayout>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
@@ -40,7 +34,6 @@ public slots:
     void radarList();
 
     QPixmap *getImage(QString url);
-    void toggleItem(QWidget *itemBox, QString objName, QEvent *e);
     bool eventFilter(QObject *watched, QEvent *event);
 
 protected:

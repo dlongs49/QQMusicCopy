@@ -11,7 +11,7 @@ Radar::Radar(QWidget *parent) : QWidget(parent) {
     //对应页面  https://y.qq.com/wk_v17/radio.html
     this->setFixedSize(820, 500);
     widget = new QWidget(this);
-    widget->setFixedSize(this->size().width(),1200);
+    widget->setFixedSize(this->size().width(), 1200);
     widget->setObjectName("conbox");
     layout = new QVBoxLayout;
     layout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
@@ -30,6 +30,7 @@ Radar::Radar(QWidget *parent) : QWidget(parent) {
     radarList();
     widget->setLayout(layout);
 }
+
 void Radar::radarTop() {
     containerBox = new QWidget(widget);
     containerBox->setFixedWidth(widget->width() - 80);
@@ -69,13 +70,13 @@ void Radar::radarTop() {
         typeTxt->setText(txtList[i]);
 
         bot = new QLabel;
-        bot->setFixedSize(8,8);
+        bot->setFixedSize(8, 8);
         bot->setObjectName("bot");
 
 
         typeLayout->addWidget(typeTxt);
         typeLayout->addSpacing(10);
-        typeLayout->addWidget(bot,0,Qt::AlignHCenter);
+        typeLayout->addWidget(bot, 0, Qt::AlignHCenter);
 
         typeOutLayout->addWidget(typeItem[i]);
         typeOutLayout->setSpacing(20);
@@ -109,13 +110,17 @@ void Radar::radarList() {
             << "https://y.qq.com/music/photo_new/T001R300x300M000001fNHEf1SFEFN.webp"
             << "https://y.qq.com/music/photo_new/T001R300x300M000002azErJ0UcDN6.webp"
             << "https://y.qq.com/music/photo_new/T001R300x300M000001z2JmX09LLgL.webp"
+            << "https://y.qq.com/music/photo_new/T001R300x300M000001z2JmX09LLgL.webp"
+            << "https://y.qq.com/music/photo_new/T001R300x300M000001BHDR33FZVZ0.webp"
+            << "https://y.qq.com/music/photo_new/T001R300x300M000001BHDR33FZVZ0.webp"
             << "https://y.qq.com/music/photo_new/T001R300x300M000001BHDR33FZVZ0.webp"
             << "https://y.qq.com/music/photo_new/T001R300x300M000000IBYF50SRnXP.webp";
+    int cl = ceil((double )imgList.size() / 6);
     for (int i = 0; i < imgList.size(); ++i) {
-        int size = (containerBox->width() / 6) - 20;
+        int size = (containerBox->width() / 6) - 12;
         item[i] = new QWidget;
         item[i]->installEventFilter(this);
-        item[i]->setFixedWidth(size);
+        item[i]->setFixedSize(size,140);
 
         contentLayout = new QVBoxLayout;
         contentLayout->setSpacing(0);
@@ -124,11 +129,15 @@ void Radar::radarList() {
         item[i]->setLayout(contentLayout);
 
         itemImg = new QLabel;
+        itemImg->setObjectName("itemImg");
+        itemImg->setProperty("index", i);
+        itemImg->installEventFilter(this);
         itemImg->setCursor(Qt::PointingHandCursor);
         itemImg->setScaledContents(true);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), size));
+        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), size*2));
         itemImg->setFixedSize(size, size);
+
         contentLayout->addWidget(itemImg);
         contentLayout->addSpacing(16);
 
@@ -147,14 +156,16 @@ void Radar::radarList() {
         singerName = new QLabel;
         singerName->setObjectName("singerName");
         singerName->setText("周杰伦");
-        contentLayout->addWidget(singerName,0,Qt::AlignHCenter);
+        contentLayout->addWidget(singerName, 0, Qt::AlignHCenter);
 
         int r = floor(i / 6) + 1;
         int c = (i % 6) + 1;
         containerLayout->addWidget(item[i], r, c);
         containerLayout->setSpacing(20);
-        containerLayout->setVerticalSpacing(30);
+        containerLayout->setVerticalSpacing(20);
     }
+    int hh = (item[0]->height() + 20)*cl;
+    containerBox->setFixedHeight(hh);
     layout->addSpacing(10);
     layout->addWidget(containerBox);
     layout->addSpacing(30);
@@ -172,28 +183,22 @@ QPixmap *Radar::getImage(QString url) {
     return coverImg;
 }
 
-void Radar::toggleItem(QWidget *itemBox, QString objName, QEvent *e) {
-    QLabel *play_box = itemBox->findChild<QLabel *>("playBox");
-    if (e->type() == QEvent::Enter) {
-        if (play_box) {
-            play_box->setVisible(true);
-        }
-    }
-    if (e->type() == QEvent::Leave) {
-        if (play_box) {
-            play_box->setVisible(false);
-        }
-    }
-}
 bool Radar::eventFilter(QObject *o, QEvent *e) {
     if (o->objectName() == "itemImg") {
         int i = o->property("index").toInt();
-        toggleItem(item[i], "itemImg", e);
+        QLabel *play_box = item[i]->findChild<QLabel *>("playBox");
+        if (e->type() == QEvent::Enter) {
+            play_box->setVisible(true);
+        }
+        if (e->type() == QEvent::Leave) {
+            play_box->setVisible(false);
+        }
     }
 
     return QWidget::eventFilter(o, e);
 
 }
+
 void Radar::loadQSS() {
     QFile qss(":/resource/qss/radar.qss");
     qss.open(QFile::ReadOnly);
