@@ -16,8 +16,11 @@ container::container(QWidget *parent) : QWidget(parent) {
 //    musicHouse = new MusicHouse(this);
 //    containerLayout->addWidget(musicHouse);
 
-    videoContent = new VideoContent(this);
-    containerLayout->addWidget(videoContent);
+//    videoContent = new VideoContent(this);
+//    containerLayout->addWidget(videoContent);
+    radar = new Radar(this);
+    containerLayout->addWidget(radar);
+
 
     connect(topMenu, SIGNAL(onFocus(bool)), this, SLOT(handleEmit(bool)));
     hotSearch = new HotSearch(this);

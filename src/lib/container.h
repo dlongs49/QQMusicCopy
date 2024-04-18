@@ -21,6 +21,7 @@
 #include "./recommend.h"
 #include "./musicHouse.h"
 #include "./videoContent.h"
+#include "./radar.h"
 class container : public QWidget {
 Q_OBJECT;
 public:
@@ -56,6 +57,7 @@ private:
     Recommend *recommend;
     MusicHouse *musicHouse;
     VideoContent *videoContent;
+    Radar *radar;
 };
 
 #endif //QTMUSIC_container_H
