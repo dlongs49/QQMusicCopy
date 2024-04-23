@@ -10,7 +10,7 @@ QLabel#blodTit{
     font-weight: bold;
     font-size: 20px;
 }
-QLabel#bot{
+.bot{
     background: #ccc;
     border-radius: 4px;
 }
@@ -22,4 +22,11 @@ QLabel#playBox{
 QLabel#singerName {
     font-size: 16px;
     color: #333;
+}
+.active{
+    color: #10da67;
+}
+.bot_active{
+    background: #10da67;
+    border-radius: 4px;
 }

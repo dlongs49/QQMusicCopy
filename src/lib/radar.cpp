@@ -2,6 +2,7 @@
 // Created by dinglong on 2024/4/18 18:58
 //
 
+#include <QCoreApplication>
 #include "radar.h"
 
 Radar::Radar(QWidget *parent) : QWidget(parent) {
@@ -11,7 +12,7 @@ Radar::Radar(QWidget *parent) : QWidget(parent) {
     //对应页面  https://y.qq.com/wk_v17/radio.html
     this->setFixedSize(820, 500);
     widget = new QWidget(this);
-    widget->setFixedSize(this->size().width(), 1200);
+    widget->setFixedWidth(this->size().width());
     widget->setObjectName("conbox");
     layout = new QVBoxLayout;
     layout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
@@ -25,9 +26,27 @@ Radar::Radar(QWidget *parent) : QWidget(parent) {
     scrollArea->setWidget(widget);
     scrollArea->setWidgetResizable(true);
 
+    QFile file(":/resource/json/radar.json");
+    if (!file.open(QIODevice::ReadOnly)) {
+        qDebug() << "读取json失败";
+        return;
+    }
+    QByteArray dataByte(file.readAll());
+    file.close();
+
+    QJsonParseError jError;
+    QJsonDocument json_doc = QJsonDocument::fromJson(dataByte, &jError);
+
+    QJsonObject obj = json_doc.object();
+    QJsonObject req_0 = obj["req_0"].toObject();
+    QJsonObject data = req_0["data"].toObject();
+    navList = data["radio_list"].toArray();
+    QJsonObject firstItem = navList.at(0).toObject();
+    radarList = firstItem["list"].toArray();
+
 
     radarTop();
-    radarList();
+    radarListCon();
     widget->setLayout(layout);
 }
 
@@ -51,13 +70,15 @@ void Radar::radarTop() {
     typeOutLayout->setAlignment(Qt::AlignTop);
     typeBox->setLayout(typeOutLayout);
 
-    QList<QString> txtList;
-    txtList << "热门" << "心情" << "主题" << "场景" << "曲风" << "语言" << "人群" << "乐器" << "陪你听" << "厂牌";
-    for (int i = 0; i < txtList.size(); ++i) {
+    for (int i = 0; i < navList.size(); ++i) {
+        QJsonObject nav_item = navList.at(i).toObject();
+        QString title_txt = nav_item["title"].toString();
         typeItem[i] = new QWidget;
         typeItem[i]->installEventFilter(this);
         typeItem[i]->setFixedWidth(44);
         typeItem[i]->setCursor(Qt::PointingHandCursor);
+        typeItem[i]->setObjectName("nav_item");
+        typeItem[i]->setProperty("n_idx", i);
 
         typeLayout = new QVBoxLayout;
         typeLayout->setSpacing(0);
@@ -67,10 +88,11 @@ void Radar::radarTop() {
 
         typeTxt = new QLabel;
         typeTxt->setObjectName("typeTit");
-        typeTxt->setText(txtList[i]);
+        typeTxt->setText(title_txt);
 
         bot = new QLabel;
         bot->setFixedSize(8, 8);
+        bot->setProperty("class", "bot");
         bot->setObjectName("bot");
 
 
@@ -91,7 +113,7 @@ void Radar::radarTop() {
     layout->addSpacing(20);
 };
 
-void Radar::radarList() {
+void Radar::radarListCon() {
     containerBox = new QWidget(widget);
     containerBox->setFixedWidth(widget->width() - 80);
     containerLayout = new QGridLayout;
@@ -100,27 +122,16 @@ void Radar::radarList() {
     containerLayout->setAlignment(Qt::AlignTop);
     containerBox->setLayout(containerLayout);
 
-    QList<QString> imgList;
-    QList<QString> txtList;
-    imgList << "https://y.qq.com/music/photo_new/T001R300x300M0000025NhlN2yWrP4.webp"
-            << "https://y.qq.com/music/photo_new/T001R300x300M000003fA5G40k6hKc.webp"
-            << "https://y.qq.com/music/photo_new/T001R300x300M000001BLpXF2DyJe2.webp"
-            << "https://y.qq.com/music/photo_new/T001R300x300M000002J4UUk29y8BY.webp"
-            << "https://y.qq.com/music/photo_new/T001R300x300M000003Nz2So3XXYek.webp"
-            << "https://y.qq.com/music/photo_new/T001R300x300M000001fNHEf1SFEFN.webp"
-            << "https://y.qq.com/music/photo_new/T001R300x300M000002azErJ0UcDN6.webp"
-            << "https://y.qq.com/music/photo_new/T001R300x300M000001z2JmX09LLgL.webp"
-            << "https://y.qq.com/music/photo_new/T001R300x300M000001z2JmX09LLgL.webp"
-            << "https://y.qq.com/music/photo_new/T001R300x300M000001BHDR33FZVZ0.webp"
-            << "https://y.qq.com/music/photo_new/T001R300x300M000001BHDR33FZVZ0.webp"
-            << "https://y.qq.com/music/photo_new/T001R300x300M000001BHDR33FZVZ0.webp"
-            << "https://y.qq.com/music/photo_new/T001R300x300M000000IBYF50SRnXP.webp";
-    int cl = ceil((double )imgList.size() / 6);
-    for (int i = 0; i < imgList.size(); ++i) {
+    forList();
+};
+
+void Radar::forList() {
+    int cl = ceil((double) radarList.size() / 6);
+    for (int i = 0; i < radarList.size(); ++i) {
         int size = (containerBox->width() / 6) - 12;
         item[i] = new QWidget;
         item[i]->installEventFilter(this);
-        item[i]->setFixedSize(size,140);
+        item[i]->setFixedSize(size, 140);
 
         contentLayout = new QVBoxLayout;
         contentLayout->setSpacing(0);
@@ -134,8 +145,10 @@ void Radar::radarList() {
         itemImg->installEventFilter(this);
         itemImg->setCursor(Qt::PointingHandCursor);
         itemImg->setScaledContents(true);
-        // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), size*2));
+        //获取数组索引的图片 先提取网络图片 再处理圆角 Tools
+        QJsonObject radar_item = radarList.at(i).toObject();
+        QString img_url = radar_item["pic_url"].toString();
+        itemImg->setPixmap(tools->imgPixRadius(getImage(img_url), getImage(img_url)->size(), size * 2));
         itemImg->setFixedSize(size, size);
 
         contentLayout->addWidget(itemImg);
@@ -155,7 +168,8 @@ void Radar::radarList() {
 
         singerName = new QLabel;
         singerName->setObjectName("singerName");
-        singerName->setText("周杰伦");
+        QString bom_tit = radar_item["title"].toString();
+        singerName->setText(bom_tit);
         contentLayout->addWidget(singerName, 0, Qt::AlignHCenter);
 
         int r = floor(i / 6) + 1;
@@ -164,12 +178,13 @@ void Radar::radarList() {
         containerLayout->setSpacing(20);
         containerLayout->setVerticalSpacing(20);
     }
-    int hh = (item[0]->height() + 20)*cl;
+    int hh = (item[0]->height() + 20) * cl;
     containerBox->setFixedHeight(hh);
     layout->addSpacing(10);
     layout->addWidget(containerBox);
     layout->addSpacing(30);
-};
+    widget->setFixedHeight(hh + 120);
+}
 
 QPixmap *Radar::getImage(QString url) {
     manager = new QNetworkAccessManager;
@@ -184,6 +199,44 @@ QPixmap *Radar::getImage(QString url) {
 }
 
 bool Radar::eventFilter(QObject *o, QEvent *e) {
+    if (e->type() == QEvent::MouseButtonPress) {
+        QMouseEvent *mouseEvent = (QMouseEvent *) e;
+        if (mouseEvent->button() == Qt::LeftButton) {
+            if (o->objectName() == "nav_item") {
+                int i = o->property("n_idx").toInt();
+                QLabel *t_tit = o->findChild<QLabel *>("typeTit");
+                QLabel *t_bot = o->findChild<QLabel *>("bot");
+                for (int y = 0; y < navList.size(); ++y) {
+                    QLabel *t_tits = typeItem[y]->findChild<QLabel *>("typeTit");
+                    QLabel *t_bots = typeItem[y]->findChild<QLabel *>("bot");
+                    if (t_tits) {
+                        t_tits->setProperty("class", "");
+                        t_tits->style()->polish(t_tits);
+                    }
+                    if (t_bots) {
+                        t_bots->setProperty("class", "bot");
+                        t_bots->style()->polish(t_bots);
+                    }
+
+                }
+                t_tit->setProperty("class", "active");
+                t_bot->setProperty("class", "bot_active");
+                t_tit->style()->polish(t_tit);
+                t_bot->style()->polish(t_bot);
+//                for (int j = 0; j < radarList.size(); ++j) {
+//                    containerLayout->removeWidget(item[j]);
+//                    contentLayout->removeWidget(itemImg);
+//                    contentLayout->removeWidget(singerName);
+//                }
+//                QJsonObject objList = navList.at(i).toObject();
+//                radarList = objList["list"].toArray();
+//
+//                forList();
+            }
+        }
+    }
+
+
     if (o->objectName() == "itemImg") {
         int i = o->property("index").toInt();
         QLabel *play_box = item[i]->findChild<QLabel *>("playBox");

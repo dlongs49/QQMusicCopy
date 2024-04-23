@@ -13,6 +13,11 @@
 #include <QByteArray>
 #include <QMouseEvent>
 #include <cmath>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QProxyStyle >
 #include "../utils/tools.h"
 
 class Radar : public QWidget {
@@ -31,14 +36,16 @@ public slots:
 
     void radarTop();
 
-    void radarList();
-
+    void radarListCon();
+    void forList();
     QPixmap *getImage(QString url);
     bool eventFilter(QObject *watched, QEvent *event);
 
 protected:
 
 private:
+    QJsonArray navList;
+    QJsonArray radarList;
     QScrollArea *scrollArea;
     QLabel *singerName;
     QLabel *itemImg;
@@ -62,6 +69,7 @@ private:
     QEventLoop *loop;
     QPixmap *coverImg;
     Tools *tools;
+
 };
 
 #endif //QQMUSICCOPY_RADAR_H

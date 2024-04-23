@@ -41,5 +41,12 @@
 		<file>resource/qss/videoRanking.qss</file>
 		<file>resource/qss/videoLibrary.qss</file>
 		<file>resource/qss/radar.qss</file>
+
+
+
+
+
+
+		<file>resource/json/radar.json</file>
     </qresource>
 </RCC>
