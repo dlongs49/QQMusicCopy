@@ -26,18 +26,7 @@ Radar::Radar(QWidget *parent) : QWidget(parent) {
     scrollArea->setWidget(widget);
     scrollArea->setWidgetResizable(true);
 
-    QFile file(":/resource/json/radar.json");
-    if (!file.open(QIODevice::ReadOnly)) {
-        qDebug() << "读取json失败";
-        return;
-    }
-    QByteArray dataByte(file.readAll());
-    file.close();
-
-    QJsonParseError jError;
-    QJsonDocument json_doc = QJsonDocument::fromJson(dataByte, &jError);
-
-    QJsonObject obj = json_doc.object();
+    QJsonObject obj = tools->toJson(":/resource/json/radar.json");
     QJsonObject req_0 = obj["req_0"].toObject();
     QJsonObject data = req_0["data"].toObject();
     navList = data["radio_list"].toArray();

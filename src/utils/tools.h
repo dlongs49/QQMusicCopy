@@ -12,7 +12,11 @@
 #include <QFontMetrics>
 #include <QFontDatabase>
 #include <cmath>
-
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QDebug>
 class Tools : public QWidget {
 Q_OBJECT
 public:
@@ -21,7 +25,7 @@ public:
 public slots:
 
     QPixmap hoverPixColor(QPixmap *pix, QString color);
-
+    QJsonObject toJson(QString json_path);
     QPixmap imgPixRadius(QPixmap *pix, QSize size,int radius);
     QString textElps(QString text,int width,QFont font);
     QFont aliIcon();
