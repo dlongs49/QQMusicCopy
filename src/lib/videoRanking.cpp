@@ -9,7 +9,7 @@ VideoRanking::VideoRanking(QWidget *parent) : QWidget(parent) {
     loadQSS();
     tools = new Tools();
     //对应页面  https://y.qq.com/wk_v17/#/mv/toplist
-    this->setFixedSize(820, 1690);
+    this->setFixedSize(820, 0);
     widget = new QWidget(this);
     widget->setFixedSize(this->size());
     widget->setObjectName("conbox");
@@ -18,6 +18,8 @@ VideoRanking::VideoRanking(QWidget *parent) : QWidget(parent) {
     layout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
     layout->setSpacing(0);
     layout->setMargin(0);
+
+    json_data = tools->toJson(":/resource/json/video_ranking.json");
 
     rankingTop();
     rankList();
@@ -77,25 +79,32 @@ void VideoRanking::rankingTop() {
 // 排行榜列表
 void VideoRanking::rankList() {
     containerBox = new QWidget(widget);
-    containerBox->setFixedSize(widget->width() - 80, 1000);
+    containerBox->setFixedWidth(widget->width() - 80);
     containerVLayout = new QVBoxLayout;
     containerVLayout->setSpacing(0);
     containerVLayout->setMargin(0);
     containerVLayout->setAlignment(Qt::AlignTop);
     containerBox->setLayout(containerVLayout);
 
-    QList<QString> imgList;
-    QList<QString> txtList;
-    imgList << "https://y.qq.com/music/photo_new/T003R300x300M000000kyP0Y41mVgr.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000003CPSUH29Htzl.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000004IjbuM0yx0i2.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M0000041fyIo1W7VzR.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M00000084GsF3zkK62.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000001e2aJF1DYb74.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000003RpQin0xR8Sb.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000001SRF6I0z2v3I.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M0000013o4V60ch0es.jpg";
-    for (int i = 0; i < imgList.size(); ++i) {
+    QJsonObject req_0 = json_data["req_0"].toObject();
+    QJsonObject data = req_0["data"].toObject();
+    QJsonArray rank_list = data["rank_list"].toArray();
+    for (int i = 0; i < rank_list.size(); ++i) {
+        QJsonObject rank_item = rank_list.at(i).toObject();
+        QJsonObject video_info = rank_item["video_info"].toObject();
+        QString video_title = video_info["name"].toString();
+        QString cover_pic = video_info["cover_pic"].toString();
+        QJsonArray singers = video_info["singers"].toArray();
+        int64_t ms = video_info["pubdate"].toInt();
+        QString date_str  = QDateTime::fromTime_t(ms).toString("yyyy-MM-dd");
+        // 处理 文字拼接
+        QString name_str = "";
+        for (int y = 0; y < singers.size(); ++y) {
+            QJsonObject singers_obj = singers.at(y).toObject();
+            QString name = singers_obj["name"].toString();
+            name_str = name_str == "" ? name : name_str + "/" + name;
+        }
+
         contentLayout = new QHBoxLayout;
         contentLayout->setAlignment(Qt::AlignLeft);
         contentLayout->setSpacing(0);
@@ -131,7 +140,7 @@ void VideoRanking::rankList() {
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 20));
+        itemImg->setPixmap(tools->imgPixRadius(getImage(cover_pic), getImage(cover_pic)->size(), 20));
         itemImg->setFixedSize(142, item[i]->height());
 
         maskBox = new QWidget(itemImg);
@@ -157,11 +166,13 @@ void VideoRanking::rankList() {
         rightLayout->setAlignment(Qt::AlignVCenter);
         rightBox = new QWidget;
         rightBox->setLayout(rightLayout);
-
-        QStringList slist = {"缘故-贺均分", "蜃楼-周深", "发布时间：2024-05-16"};
-        for (int j = 0; j < slist.size(); ++j) {
+        QStringList songItemList;
+        songItemList.append(video_title);
+        songItemList.append(name_str);
+        songItemList.append(date_str);
+        for (int j = 0; j < songItemList.size(); ++j) {
             songItem[j] = new QLabel;
-            songItem[j]->setText(slist[j]);
+            songItem[j]->setText(songItemList[j]);
             if(j > 1){
                 songItem[j]->setObjectName("dateItem");
             }else{
@@ -183,6 +194,10 @@ void VideoRanking::rankList() {
         containerVLayout->addWidget(item[i]);
         containerVLayout->setSpacing(30);
     }
+    int h = 110 * rank_list.size();
+    containerBox->setFixedHeight(h);
+    this->setFixedHeight(h+ 220);
+    widget->setFixedSize(this->size());
     layout->addWidget(containerBox);
 }
 

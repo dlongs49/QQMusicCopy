@@ -1,0 +1,960 @@
+{
+    "code": 0,
+    "ts": 1713964217935,
+    "start_ts": 1713964217915,
+    "traceid": "34b188a6e2e510bc",
+    "req_0": {
+        "code": 0,
+        "data": {
+            "rank_list": [
+                {
+                    "rank_data": {
+                        "rank": 1,
+                        "week_play": 26709252,
+                        "total_play": 0,
+                        "trend": 0,
+                        "new_flag": 0
+                    },
+                    "video_info": {
+                        "singers": [
+                            {
+                                "id": 199509,
+                                "mid": "003fA5G40k6hKc",
+                                "name": "周深",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000003fA5G40k6hKc_6.jpg",
+                                "pic_mid": "003fA5G40k6hKc_6",
+                                "grade": 1
+                            }
+                        ],
+                        "vid": "0019ICFi2zJuhT",
+                        "name": "蜃楼",
+                        "pubdate": 1713196800,
+                        "cover_pic": "http://y.gtimg.cn/music/photo_new/T015R640x360M1010019ICFi2zJuhT.jpg"
+                    },
+                    "medal": {
+                        "medal_id": 0,
+                        "basic": {
+                            "pic_url": "",
+                            "threshold": 0,
+                            "name": ""
+                        },
+                        "record": {
+                            "medal_id": 0,
+                            "gid": 0,
+                            "cost_time_s": 0,
+                            "singers": null,
+                            "name": "",
+                            "gmid": ""
+                        },
+                        "is_top": 0
+                    }
+                },
+                {
+                    "rank_data": {
+                        "rank": 2,
+                        "week_play": 20217293,
+                        "total_play": 0,
+                        "trend": 0,
+                        "new_flag": 0
+                    },
+                    "video_info": {
+                        "singers": [
+                            {
+                                "id": 2749932,
+                                "mid": "00255EBh1FcAEk",
+                                "name": "刘宇",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M00000255EBh1FcAEk_15.jpg",
+                                "pic_mid": "00255EBh1FcAEk_15",
+                                "grade": 3
+                            }
+                        ],
+                        "vid": "002NYARR2Fr95z",
+                        "name": "Captain",
+                        "pubdate": 1710259200,
+                        "cover_pic": "http://y.gtimg.cn/music/photo_new/T015R640x360M101002NYARR2Fr95z.jpg"
+                    },
+                    "medal": {
+                        "medal_id": 0,
+                        "basic": {
+                            "pic_url": "",
+                            "threshold": 0,
+                            "name": ""
+                        },
+                        "record": {
+                            "medal_id": 0,
+                            "gid": 0,
+                            "cost_time_s": 0,
+                            "singers": null,
+                            "name": "",
+                            "gmid": ""
+                        },
+                        "is_top": 0
+                    }
+                },
+                {
+                    "rank_data": {
+                        "rank": 3,
+                        "week_play": 16731634,
+                        "total_play": 0,
+                        "trend": 0,
+                        "new_flag": 0
+                    },
+                    "video_info": {
+                        "pubdate": 1713456000,
+                        "cover_pic": "http://y.gtimg.cn/music/photo_new/T015R640x360M101002n7tgJ2X8yHH.jpg",
+                        "singers": [
+                            {
+                                "id": 60894,
+                                "mid": "002MfEld3FWp0R",
+                                "name": "张艺兴",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000002MfEld3FWp0R_6.jpg",
+                                "pic_mid": "002MfEld3FWp0R_6",
+                                "grade": 2
+                            }
+                        ],
+                        "vid": "002n7tgJ2X8yHH",
+                        "name": "Psychic"
+                    },
+                    "medal": {
+                        "medal_id": 0,
+                        "basic": {
+                            "pic_url": "",
+                            "threshold": 0,
+                            "name": ""
+                        },
+                        "record": {
+                            "medal_id": 0,
+                            "gid": 0,
+                            "cost_time_s": 0,
+                            "singers": null,
+                            "name": "",
+                            "gmid": ""
+                        },
+                        "is_top": 0
+                    }
+                },
+                {
+                    "rank_data": {
+                        "rank": 4,
+                        "week_play": 12075465,
+                        "total_play": 0,
+                        "trend": 0,
+                        "new_flag": 0
+                    },
+                    "video_info": {
+                        "vid": "001lAkyA3emIb7",
+                        "name": "BABYMONSTER - ‘SHEESH’ MV",
+                        "pubdate": 1711814400,
+                        "cover_pic": "http://y.gtimg.cn/music/photo_new/T015R640x360M101001lAkyA3emIb7.jpg",
+                        "singers": [
+                            {
+                                "id": 13852340,
+                                "mid": "001VSp0U3VbdxM",
+                                "name": "BABYMONSTER",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000001VSp0U3VbdxM_6.jpg",
+                                "pic_mid": "001VSp0U3VbdxM_6",
+                                "grade": 2
+                            }
+                        ]
+                    },
+                    "medal": {
+                        "medal_id": 0,
+                        "basic": {
+                            "pic_url": "",
+                            "threshold": 0,
+                            "name": ""
+                        },
+                        "record": {
+                            "medal_id": 0,
+                            "gid": 0,
+                            "cost_time_s": 0,
+                            "singers": null,
+                            "name": "",
+                            "gmid": ""
+                        },
+                        "is_top": 0
+                    }
+                },
+                {
+                    "rank_data": {
+                        "rank": 5,
+                        "week_play": 9556921,
+                        "total_play": 0,
+                        "trend": 0,
+                        "new_flag": 0
+                    },
+                    "video_info": {
+                        "vid": "002fBbJo0tWqLM",
+                        "name": "'FREAK' Official Music Video",
+                        "pubdate": 1713801600,
+                        "cover_pic": "http://y.gtimg.cn/music/photo_new/T015R640x360M101002fBbJo0tWqLM.jpg",
+                        "singers": [
+                            {
+                                "id": 2146802,
+                                "mid": "003GgG3V1fkAFf",
+                                "name": "宋雨琦",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000003GgG3V1fkAFf_7.jpg",
+                                "pic_mid": "003GgG3V1fkAFf_7",
+                                "grade": 2
+                            }
+                        ]
+                    },
+                    "medal": {
+                        "medal_id": 0,
+                        "basic": {
+                            "pic_url": "",
+                            "threshold": 0,
+                            "name": ""
+                        },
+                        "record": {
+                            "medal_id": 0,
+                            "gid": 0,
+                            "cost_time_s": 0,
+                            "singers": null,
+                            "name": "",
+                            "gmid": ""
+                        },
+                        "is_top": 0
+                    }
+                },
+                {
+                    "rank_data": {
+                        "rank": 6,
+                        "week_play": 8183882,
+                        "total_play": 0,
+                        "trend": 0,
+                        "new_flag": 0
+                    },
+                    "video_info": {
+                        "vid": "002YXsZC0nE1qq",
+                        "name": "俯冲的灵魂",
+                        "pubdate": 1713715200,
+                        "cover_pic": "http://y.gtimg.cn/music/photo_new/T015R640x360M101002YXsZC0nE1qq.jpg",
+                        "singers": [
+                            {
+                                "id": 231,
+                                "mid": "000dIIFL1yv5e4",
+                                "name": "动力火车",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000000dIIFL1yv5e4_5.jpg",
+                                "pic_mid": "000dIIFL1yv5e4_5",
+                                "grade": 3
+                            },
+                            {
+                                "id": 4286,
+                                "mid": "001BLpXF2DyJe2",
+                                "name": "林俊杰",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000001BLpXF2DyJe2_13.jpg",
+                                "pic_mid": "001BLpXF2DyJe2_13",
+                                "grade": 1
+                            }
+                        ]
+                    },
+                    "medal": {
+                        "medal_id": 0,
+                        "basic": {
+                            "pic_url": "",
+                            "threshold": 0,
+                            "name": ""
+                        },
+                        "record": {
+                            "medal_id": 0,
+                            "gid": 0,
+                            "cost_time_s": 0,
+                            "singers": null,
+                            "name": "",
+                            "gmid": ""
+                        },
+                        "is_top": 0
+                    }
+                },
+                {
+                    "rank_data": {
+                        "rank": 7,
+                        "week_play": 7619612,
+                        "total_play": 0,
+                        "trend": 0,
+                        "new_flag": 0
+                    },
+                    "video_info": {
+                        "pubdate": 1711555200,
+                        "cover_pic": "http://y.gtimg.cn/music/photo_new/T015R640x360M000002rsxQE3y1eqJ.jpg",
+                        "singers": [
+                            {
+                                "id": 1173868,
+                                "mid": "004WYT5j1s7R6Y",
+                                "name": "海来阿木",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000004WYT5j1s7R6Y_4.jpg",
+                                "pic_mid": "004WYT5j1s7R6Y_4",
+                                "grade": 5
+                            }
+                        ],
+                        "vid": "003Ckp7j2N3clY",
+                        "name": "不如见一面"
+                    },
+                    "medal": {
+                        "medal_id": 0,
+                        "basic": {
+                            "pic_url": "",
+                            "threshold": 0,
+                            "name": ""
+                        },
+                        "record": {
+                            "medal_id": 0,
+                            "gid": 0,
+                            "cost_time_s": 0,
+                            "singers": null,
+                            "name": "",
+                            "gmid": ""
+                        },
+                        "is_top": 0
+                    }
+                },
+                {
+                    "rank_data": {
+                        "rank": 8,
+                        "week_play": 7208462,
+                        "total_play": 0,
+                        "trend": 0,
+                        "new_flag": 0
+                    },
+                    "video_info": {
+                        "cover_pic": "http://y.gtimg.cn/music/photo_new/T015R640x360M1010006NG0Q1Zw90I.jpg",
+                        "singers": [
+                            {
+                                "id": 199509,
+                                "mid": "003fA5G40k6hKc",
+                                "name": "周深",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000003fA5G40k6hKc_6.jpg",
+                                "pic_mid": "003fA5G40k6hKc_6",
+                                "grade": 1
+                            },
+                            {
+                                "id": 1339126,
+                                "mid": "002KASw53FQbTK",
+                                "name": "王者荣耀",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000002KASw53FQbTK_4.jpg",
+                                "pic_mid": "002KASw53FQbTK_4",
+                                "grade": 3
+                            }
+                        ],
+                        "vid": "0006NG0Q1Zw90I",
+                        "name": "奇迹时刻 (王者荣耀2024五五朋友节主题曲)",
+                        "pubdate": 1713801600
+                    },
+                    "medal": {
+                        "medal_id": 0,
+                        "basic": {
+                            "pic_url": "",
+                            "threshold": 0,
+                            "name": ""
+                        },
+                        "record": {
+                            "medal_id": 0,
+                            "gid": 0,
+                            "cost_time_s": 0,
+                            "singers": null,
+                            "name": "",
+                            "gmid": ""
+                        },
+                        "is_top": 0
+                    }
+                },
+                {
+                    "rank_data": {
+                        "rank": 9,
+                        "week_play": 5821938,
+                        "total_play": 0,
+                        "trend": 0,
+                        "new_flag": 0
+                    },
+                    "video_info": {
+                        "vid": "004RCEZJ0DmWEO",
+                        "name": "Magnetic",
+                        "pubdate": 1711296000,
+                        "cover_pic": "http://y.gtimg.cn/music/photo_new/T015R640x360M101004RCEZJ0DmWEO.jpg",
+                        "singers": [
+                            {
+                                "id": 15685435,
+                                "mid": "001lOGcd3wfgOi",
+                                "name": "ILLIT",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000001lOGcd3wfgOi_1.jpg",
+                                "pic_mid": "001lOGcd3wfgOi_1",
+                                "grade": 1
+                            }
+                        ]
+                    },
+                    "medal": {
+                        "medal_id": 0,
+                        "basic": {
+                            "pic_url": "",
+                            "threshold": 0,
+                            "name": ""
+                        },
+                        "record": {
+                            "medal_id": 0,
+                            "gid": 0,
+                            "cost_time_s": 0,
+                            "singers": null,
+                            "name": "",
+                            "gmid": ""
+                        },
+                        "is_top": 0
+                    }
+                },
+                {
+                    "rank_data": {
+                        "rank": 10,
+                        "week_play": 5769435,
+                        "total_play": 0,
+                        "trend": 0,
+                        "new_flag": 0
+                    },
+                    "video_info": {
+                        "cover_pic": "http://y.gtimg.cn/music/photo_new/T015R640x360M10100174UwF0kXEzC.jpg",
+                        "singers": [
+                            {
+                                "id": 11921,
+                                "mid": "000qrPik2w6lDr",
+                                "name": "Taylor Swift",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000000qrPik2w6lDr_24.jpg",
+                                "pic_mid": "000qrPik2w6lDr_24",
+                                "grade": 1
+                            },
+                            {
+                                "id": 968065,
+                                "mid": "000IDHDK3CxrAZ",
+                                "name": "Post Malone",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000000IDHDK3CxrAZ_4.jpg",
+                                "pic_mid": "000IDHDK3CxrAZ_4",
+                                "grade": 2
+                            }
+                        ],
+                        "vid": "00174UwF0kXEzC",
+                        "name": "Fortnight",
+                        "pubdate": 1713456000
+                    },
+                    "medal": {
+                        "medal_id": 0,
+                        "basic": {
+                            "pic_url": "",
+                            "threshold": 0,
+                            "name": ""
+                        },
+                        "record": {
+                            "medal_id": 0,
+                            "gid": 0,
+                            "cost_time_s": 0,
+                            "singers": null,
+                            "name": "",
+                            "gmid": ""
+                        },
+                        "is_top": 0
+                    }
+                },
+                {
+                    "rank_data": {
+                        "rank": 11,
+                        "week_play": 5554999,
+                        "total_play": 0,
+                        "trend": 0,
+                        "new_flag": 0
+                    },
+                    "video_info": {
+                        "vid": "000vPwjC0zbJnu",
+                        "name": "小美满 (《热辣滚烫》电影热辣陪伴曲)",
+                        "pubdate": 1707148800,
+                        "cover_pic": "http://y.gtimg.cn/music/photo_new/T015R640x360M101000vPwjC0zbJnu.jpg",
+                        "singers": [
+                            {
+                                "id": 199509,
+                                "mid": "003fA5G40k6hKc",
+                                "name": "周深",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000003fA5G40k6hKc_6.jpg",
+                                "pic_mid": "003fA5G40k6hKc_6",
+                                "grade": 1
+                            }
+                        ]
+                    },
+                    "medal": {
+                        "medal_id": 0,
+                        "basic": {
+                            "pic_url": "",
+                            "threshold": 0,
+                            "name": ""
+                        },
+                        "record": {
+                            "medal_id": 0,
+                            "gid": 0,
+                            "cost_time_s": 0,
+                            "singers": null,
+                            "name": "",
+                            "gmid": ""
+                        },
+                        "is_top": 0
+                    }
+                },
+                {
+                    "rank_data": {
+                        "rank": 12,
+                        "week_play": 5287464,
+                        "total_play": 0,
+                        "trend": 0,
+                        "new_flag": 0
+                    },
+                    "video_info": {
+                        "name": "'Deja Vu' Official MV",
+                        "pubdate": 1711900800,
+                        "cover_pic": "http://y.gtimg.cn/music/photo_new/T015R640x360M101003vWI9z2fn2vh.jpg",
+                        "singers": [
+                            {
+                                "id": 3260986,
+                                "mid": "001LMcnR3bA7m5",
+                                "name": "TOMORROW X TOGETHER",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000001LMcnR3bA7m5_8.jpg",
+                                "pic_mid": "001LMcnR3bA7m5_8",
+                                "grade": 2
+                            }
+                        ],
+                        "vid": "003vWI9z2fn2vh"
+                    },
+                    "medal": {
+                        "medal_id": 0,
+                        "basic": {
+                            "pic_url": "",
+                            "threshold": 0,
+                            "name": ""
+                        },
+                        "record": {
+                            "medal_id": 0,
+                            "gid": 0,
+                            "cost_time_s": 0,
+                            "singers": null,
+                            "name": "",
+                            "gmid": ""
+                        },
+                        "is_top": 0
+                    }
+                },
+                {
+                    "rank_data": {
+                        "rank": 13,
+                        "week_play": 4934359,
+                        "total_play": 0,
+                        "trend": 0,
+                        "new_flag": 0
+                    },
+                    "video_info": {
+                        "vid": "001isno81yOJPd",
+                        "name": "若月亮没来 (若是月亮还没来)",
+                        "pubdate": 1710345600,
+                        "cover_pic": "http://y.gtimg.cn/music/photo_new/T015R640x360M101001isno81yOJPd.jpg",
+                        "singers": [
+                            {
+                                "id": 9124542,
+                                "mid": "004FS0y64crRym",
+                                "name": "王宇宙Leto",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000004FS0y64crRym_4.jpg",
+                                "pic_mid": "004FS0y64crRym_4",
+                                "grade": 5
+                            },
+                            {
+                                "id": 2150920,
+                                "mid": "000mE6r40MbjyA",
+                                "name": "乔浚丞",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000000mE6r40MbjyA_4.jpg",
+                                "pic_mid": "000mE6r40MbjyA_4",
+                                "grade": 5
+                            }
+                        ]
+                    },
+                    "medal": {
+                        "medal_id": 0,
+                        "basic": {
+                            "pic_url": "",
+                            "threshold": 0,
+                            "name": ""
+                        },
+                        "record": {
+                            "medal_id": 0,
+                            "gid": 0,
+                            "cost_time_s": 0,
+                            "singers": null,
+                            "name": "",
+                            "gmid": ""
+                        },
+                        "is_top": 0
+                    }
+                },
+                {
+                    "rank_data": {
+                        "rank": 14,
+                        "week_play": 4594234,
+                        "total_play": 0,
+                        "trend": 0,
+                        "new_flag": 0
+                    },
+                    "video_info": {
+                        "singers": [
+                            {
+                                "id": 1144366,
+                                "mid": "004YC1V92PeEK6",
+                                "name": "道英",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000004YC1V92PeEK6_17.jpg",
+                                "pic_mid": "004YC1V92PeEK6_17",
+                                "grade": 3
+                            }
+                        ],
+                        "vid": "002XWThC4JjHL8",
+                        "name": "道英《萤火虫 (Little Light)》MV",
+                        "pubdate": 1713715200,
+                        "cover_pic": "http://y.gtimg.cn/music/photo_new/T015R640x360M101002XWThC4JjHL8.jpg"
+                    },
+                    "medal": {
+                        "medal_id": 0,
+                        "basic": {
+                            "pic_url": "",
+                            "threshold": 0,
+                            "name": ""
+                        },
+                        "record": {
+                            "medal_id": 0,
+                            "gid": 0,
+                            "cost_time_s": 0,
+                            "singers": null,
+                            "name": "",
+                            "gmid": ""
+                        },
+                        "is_top": 0
+                    }
+                },
+                {
+                    "rank_data": {
+                        "rank": 15,
+                        "week_play": 4039483,
+                        "total_play": 0,
+                        "trend": 0,
+                        "new_flag": 0
+                    },
+                    "video_info": {
+                        "vid": "000aJRHh0laQaG",
+                        "name": "'Smart' MV",
+                        "pubdate": 1709654400,
+                        "cover_pic": "http://y.gtimg.cn/music/photo_new/T015R640x360M101000aJRHh0laQaG.jpg",
+                        "singers": [
+                            {
+                                "id": 11098887,
+                                "mid": "0002zhWU2vHLSU",
+                                "name": "LE SSERAFIM",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M0000002zhWU2vHLSU_11.jpg",
+                                "pic_mid": "0002zhWU2vHLSU_11",
+                                "grade": 2
+                            }
+                        ]
+                    },
+                    "medal": {
+                        "medal_id": 0,
+                        "basic": {
+                            "pic_url": "",
+                            "threshold": 0,
+                            "name": ""
+                        },
+                        "record": {
+                            "medal_id": 0,
+                            "gid": 0,
+                            "cost_time_s": 0,
+                            "singers": null,
+                            "name": "",
+                            "gmid": ""
+                        },
+                        "is_top": 0
+                    }
+                },
+                {
+                    "rank_data": {
+                        "rank": 16,
+                        "week_play": 3491669,
+                        "total_play": 0,
+                        "trend": 0,
+                        "new_flag": 0
+                    },
+                    "video_info": {
+                        "vid": "000JwEvI27H7jT",
+                        "name": "落 (花开花落日升日没)",
+                        "pubdate": 1711296000,
+                        "cover_pic": "http://y.gtimg.cn/music/photo_new/T015R640x360M101000JwEvI27H7jT.jpg",
+                        "singers": [
+                            {
+                                "id": 949186,
+                                "mid": "000RWUUF4WYQDe",
+                                "name": "唐伯虎Annie",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000000RWUUF4WYQDe_5.jpg",
+                                "pic_mid": "000RWUUF4WYQDe_5",
+                                "grade": 5
+                            }
+                        ]
+                    },
+                    "medal": {
+                        "medal_id": 0,
+                        "basic": {
+                            "pic_url": "",
+                            "threshold": 0,
+                            "name": ""
+                        },
+                        "record": {
+                            "medal_id": 0,
+                            "gid": 0,
+                            "cost_time_s": 0,
+                            "singers": null,
+                            "name": "",
+                            "gmid": ""
+                        },
+                        "is_top": 0
+                    }
+                },
+                {
+                    "rank_data": {
+                        "rank": 17,
+                        "week_play": 2892902,
+                        "total_play": 0,
+                        "trend": 0,
+                        "new_flag": 0
+                    },
+                    "video_info": {
+                        "vid": "002PsqfB0xHeX9",
+                        "name": "'EASY' OFFICIAL MV",
+                        "pubdate": 1708272000,
+                        "cover_pic": "http://y.gtimg.cn/music/photo_new/T015R640x360M101002PsqfB0xHeX9.jpg",
+                        "singers": [
+                            {
+                                "id": 11098887,
+                                "mid": "0002zhWU2vHLSU",
+                                "name": "LE SSERAFIM",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M0000002zhWU2vHLSU_11.jpg",
+                                "pic_mid": "0002zhWU2vHLSU_11",
+                                "grade": 2
+                            }
+                        ]
+                    },
+                    "medal": {
+                        "medal_id": 0,
+                        "basic": {
+                            "pic_url": "",
+                            "threshold": 0,
+                            "name": ""
+                        },
+                        "record": {
+                            "medal_id": 0,
+                            "gid": 0,
+                            "cost_time_s": 0,
+                            "singers": null,
+                            "name": "",
+                            "gmid": ""
+                        },
+                        "is_top": 0
+                    }
+                },
+                {
+                    "rank_data": {
+                        "rank": 18,
+                        "week_play": 2807089,
+                        "total_play": 0,
+                        "trend": 0,
+                        "new_flag": 0
+                    },
+                    "video_info": {
+                        "vid": "001Gju511upAbF",
+                        "name": "'Could It Be' Official Music Video",
+                        "pubdate": 1712246400,
+                        "cover_pic": "http://y.gtimg.cn/music/photo_new/T015R640x360M101001Gju511upAbF.jpg",
+                        "singers": [
+                            {
+                                "id": 2146802,
+                                "mid": "003GgG3V1fkAFf",
+                                "name": "宋雨琦",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000003GgG3V1fkAFf_7.jpg",
+                                "pic_mid": "003GgG3V1fkAFf_7",
+                                "grade": 2
+                            }
+                        ]
+                    },
+                    "medal": {
+                        "medal_id": 0,
+                        "basic": {
+                            "pic_url": "",
+                            "threshold": 0,
+                            "name": ""
+                        },
+                        "record": {
+                            "medal_id": 0,
+                            "gid": 0,
+                            "cost_time_s": 0,
+                            "singers": null,
+                            "name": "",
+                            "gmid": ""
+                        },
+                        "is_top": 0
+                    }
+                },
+                {
+                    "rank_data": {
+                        "rank": 19,
+                        "week_play": 2617625,
+                        "total_play": 0,
+                        "trend": 1,
+                        "new_flag": 0
+                    },
+                    "video_info": {
+                        "vid": "004QQHXy1l4dH9",
+                        "name": "'Super Lady' MV",
+                        "pubdate": 1706457600,
+                        "cover_pic": "http://y.gtimg.cn/music/photo_new/T015R640x360M101004QQHXy1l4dH9.jpg",
+                        "singers": [
+                            {
+                                "id": 2141732,
+                                "mid": "003hcAVs1IB7c8",
+                                "name": "(G)I-DLE",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000003hcAVs1IB7c8_5.jpg",
+                                "pic_mid": "003hcAVs1IB7c8_5",
+                                "grade": 1
+                            }
+                        ]
+                    },
+                    "medal": {
+                        "medal_id": 0,
+                        "basic": {
+                            "pic_url": "",
+                            "threshold": 0,
+                            "name": ""
+                        },
+                        "record": {
+                            "medal_id": 0,
+                            "gid": 0,
+                            "cost_time_s": 0,
+                            "singers": null,
+                            "name": "",
+                            "gmid": ""
+                        },
+                        "is_top": 0
+                    }
+                },
+                {
+                    "rank_data": {
+                        "rank": 20,
+                        "week_play": 2612315,
+                        "total_play": 0,
+                        "trend": -1,
+                        "new_flag": 0
+                    },
+                    "video_info": {
+                        "vid": "0024BKd12JTwnp",
+                        "name": "Reality",
+                        "pubdate": 1713456000,
+                        "cover_pic": "http://y.gtimg.cn/music/photo_new/T015R640x360M1010024BKd12JTwnp.jpg",
+                        "singers": [
+                            {
+                                "id": 1456756,
+                                "mid": "001uGW6E0C9wva",
+                                "name": "刘雨昕",
+                                "picurl": "http://y.gtimg.cn/music/photo_new/T001R150x150M000001uGW6E0C9wva_22.jpg",
+                                "pic_mid": "001uGW6E0C9wva_22",
+                                "grade": 3
+                            }
+                        ]
+                    },
+                    "medal": {
+                        "medal_id": 0,
+                        "basic": {
+                            "pic_url": "",
+                            "threshold": 0,
+                            "name": ""
+                        },
+                        "record": {
+                            "medal_id": 0,
+                            "gid": 0,
+                            "cost_time_s": 0,
+                            "singers": null,
+                            "name": "",
+                            "gmid": ""
+                        },
+                        "is_top": 0
+                    }
+                }
+            ],
+            "last_update": "2024-04-24 21:10:00"
+        }
+    },
+    "req_1": {
+        "code": 0,
+        "data": {
+            "week_list": [
+                {
+                    "period": "202416",
+                    "year": 2024,
+                    "week": 16,
+                    "strPeriod": "第257期 2024/04/15-2024/04/21"
+                },
+                {
+                    "period": "202415",
+                    "year": 2024,
+                    "week": 15,
+                    "strPeriod": "第256期 2024/04/08-2024/04/14"
+                },
+                {
+                    "period": "202414",
+                    "year": 2024,
+                    "week": 14,
+                    "strPeriod": "第255期 2024/04/01-2024/04/07"
+                },
+                {
+                    "period": "202413",
+                    "year": 2024,
+                    "week": 13,
+                    "strPeriod": "第254期 2024/03/25-2024/03/31"
+                },
+                {
+                    "period": "202412",
+                    "year": 2024,
+                    "week": 12,
+                    "strPeriod": "第253期 2024/03/18-2024/03/24"
+                },
+                {
+                    "period": "202411",
+                    "year": 2024,
+                    "week": 11,
+                    "strPeriod": "第252期 2024/03/11-2024/03/17"
+                }
+            ]
+        }
+    },
+    "req_2": {
+        "code": 0,
+        "data": {
+            "list": [
+                {
+                    "id": 0,
+                    "name": "总榜"
+                },
+                {
+                    "id": 1,
+                    "name": "内地"
+                },
+                {
+                    "id": 2,
+                    "name": "港台"
+                },
+                {
+                    "id": 3,
+                    "name": "欧美"
+                },
+                {
+                    "id": 4,
+                    "name": "韩国"
+                },
+                {
+                    "id": 5,
+                    "name": "日本"
+                }
+            ]
+        }
+    }
+}

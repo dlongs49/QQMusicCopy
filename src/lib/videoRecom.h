@@ -53,16 +53,11 @@ public slots:
 protected:
 
 private:
-    int move_x = 0;
     QJsonObject json_data;
     QList<QString> recomAttrList;
     QPropertyAnimation *animation[6];
-    QScrollArea *scrollArea;
     QLabel *playSicon;
-    QLabel *titleLabel;
     QLabel *title;
-    QLabel *subTitle;
-    QLabel *exTitle;
     QLabel *author;
     QLabel *playBox;
     QLabel *bannerImg;
@@ -75,21 +70,16 @@ private:
     QLabel *rightMoreBox;
     QWidget *widget;
     QWidget *containerBox;
-    QWidget *leftTitBox;
     QWidget *scrollBox;
     QWidget *contentBox;
     QWidget *bannerBox;
     QWidget *wrapconBox[6];
-    QLabel *latestNavItem[6];
     QWidget *playCountBox;
     QWidget *maskBox;
-    QWidget *latestNavBox;
     QWidget *titleBox;
-    QWidget *bomBox;
     QWidget *bannerItem[10];
     QWidget *newestItem[6];
     QWidget *hotItem[6];
-    QWidget *listenBookItem[6];
     QWidget *assemItem[6];
     QWidget *indivItem[66];
     QVBoxLayout *layout;

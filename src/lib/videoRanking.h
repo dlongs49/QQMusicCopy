@@ -13,6 +13,7 @@
 #include <QEventLoop>
 #include <QByteArray>
 #include <QMouseEvent>
+#include <QDateTime>
 #include "../utils/tools.h"
 
 class VideoRanking : public QWidget {
@@ -39,6 +40,7 @@ public slots:
 protected:
 
 private:
+    QJsonObject json_data;
     QLabel *title;
     QLabel *playBox;
     QLabel *itemImg;
@@ -50,7 +52,7 @@ private:
     QWidget *containerBox;
     QWidget *rightBox;
     QWidget *maskBox;
-    QWidget *item[10];
+    QWidget *item[20];
     QVBoxLayout *layout;
     QVBoxLayout *rightLayout;
     QVBoxLayout *containerVLayout;
