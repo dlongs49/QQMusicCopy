@@ -19,6 +19,8 @@ VideoRecom::VideoRecom(QWidget *parent) : QWidget(parent) {
     layout->setSpacing(0);
     layout->setMargin(0);
 
+    json_data = tools->toJson(":/resource/json/video.json");
+
     bannerTop();
     newest();
     hotList();
@@ -182,17 +184,17 @@ void VideoRecom::newest() {
     animation[1] = new QPropertyAnimation(wrapconBox[1], "geometry");
     animation[1]->setDuration(300);
 
-    QJsonObject obj = tools->toJson(":/resource/json/video.json");
-    QJsonObject req_1 = obj["req_1"].toObject();
-    QJsonObject data = req_1["data"].toObject();
-    QJsonArray new_ist = data["list"].toArray();
-    for (int i = 0; i < new_ist.size(); ++i) {
-        QJsonObject new_item = new_ist.at(i).toObject();
-        QString picurl = new_item["picurl"].toString();
-        QString new_title = new_item["title"].toString();
-        int play_count = new_item["playcnt"].toInt();
+    QJsonObject req = json_data["req_1"].toObject();
+    QJsonObject data = req["data"].toObject();
+    QJsonArray list = data["list"].toArray();
+    for (int i = 0; i < list.size(); ++i) {
+        QJsonObject item_obj = list.at(i).toObject();
+        QString picurl = item_obj["picurl"].toString();
+        QString item_title = item_obj["title"].toString();
+        int play_count = item_obj["playcnt"].toInt();
         QString playcnt = tools->toStrWan(play_count);
-        QJsonArray singers = new_item["singers"].toArray();
+        QJsonArray singers = item_obj["singers"].toArray();
+        // 处理 文字拼接
         QString name_str = "";
         for (int j = 0; j < singers.size(); ++j) {
             QJsonObject singers_obj = singers.at(j).toObject();
@@ -267,7 +269,7 @@ void VideoRecom::newest() {
         title = new QLabel;
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
-        QString txt = tools->textElps(new_title, itemImg->width() - 6, title->font());
+        QString txt = tools->textElps(item_title, itemImg->width() - 6, title->font());
         title->setText(txt);
         title->setAlignment(Qt::AlignTop);
 
@@ -385,16 +387,23 @@ void VideoRecom::hotList() {
     animation[2] = new QPropertyAnimation(wrapconBox[2], "geometry");
     animation[2]->setDuration(300);
 
-
-    QList<QString> imgList;
-    QList<QString> txtList;
-    imgList << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QfX3MU2dzluKMUOBEjz0h6g/300"
-            << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QY8gA4UrJxhxQ9BBHZHDyFQ/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqojSibubibse2uIWSaZhZ39n1F1CQCXVuMGdw/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqoglWn5x5ITgE8KljTdMrDCyBpia0Jkn6BDg/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/4pmnRu5sL5QbtO8OS8NKJTN5qBpjx5XMS8vhm4hcZSN7PEHPQ68C0Q/300?n=1";
-    for (int i = 0; i < imgList.size(); ++i) {
+    QJsonObject req = json_data["req_2"].toObject();
+    QJsonObject data = req["data"].toObject();
+    QJsonArray list = data["list"].toArray();
+    for (int i = 0; i < list.size(); ++i) {
+        QJsonObject item_obj = list.at(i).toObject();
+        QString picurl = item_obj["picurl"].toString();
+        QString item_title = item_obj["title"].toString();
+        int play_count = item_obj["playcnt"].toInt();
+        QString playcnt = tools->toStrWan(play_count);
+        QJsonArray singers = item_obj["singers"].toArray();
+        // 处理 文字拼接
+        QString name_str = "";
+        for (int j = 0; j < singers.size(); ++j) {
+            QJsonObject singers_obj = singers.at(j).toObject();
+            QString name = singers_obj["name"].toString();
+            name_str = name_str == "" ? name : name_str + "/" + name;
+        }
         int item_w = (bannerBox->width() / 3) - 12;
         hotItem[i] = new QWidget(contentBox);
         hotItem[i]->setFixedWidth(item_w);
@@ -412,7 +421,7 @@ void VideoRecom::hotList() {
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 12));
+        itemImg->setPixmap(tools->imgPixRadius(getImage(picurl), getImage(picurl)->size(), 12));
 
         maskBox = new QWidget(itemImg);
         maskBox->setFixedSize(itemImg->width(), itemImg->height());
@@ -448,7 +457,7 @@ void VideoRecom::hotList() {
 
         playCount = new QLabel;
         playCount->setObjectName("playCount");
-        playCount->setText("203.6万");
+        playCount->setText(playcnt);
         playCount->setFixedSize(playCount->sizeHint());
         playCount->setAlignment(Qt::AlignCenter);
 
@@ -462,7 +471,7 @@ void VideoRecom::hotList() {
         title = new QLabel;
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
-        QString txt = tools->textElps("贺峻霖全新单曲《缘故》正式上线正式上线正式上线 ", itemImg->width() - 6,
+        QString txt = tools->textElps(item_title, itemImg->width() - 6,
                                       title->font());
         title->setText(txt);
         title->setAlignment(Qt::AlignTop);
@@ -470,7 +479,7 @@ void VideoRecom::hotList() {
         author = new QLabel;
         author->setCursor(Qt::PointingHandCursor);
         author->setObjectName("author");
-        author->setText("弦子");
+        author->setText(name_str);
         author->setFixedSize(author->sizeHint());
         author->setAlignment(Qt::AlignTop);
 
@@ -576,16 +585,14 @@ void VideoRecom::assemble() {
     animation[3]->setDuration(300);
 
 
-    QList<QString> imgList;
-    QList<QString> txtList;
-    imgList << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QfX3MU2dzluKMUOBEjz0h6g/300"
-            << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QY8gA4UrJxhxQ9BBHZHDyFQ/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqojSibubibse2uIWSaZhZ39n1F1CQCXVuMGdw/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqoglWn5x5ITgE8KljTdMrDCyBpia0Jkn6BDg/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqoglWn5x5ITgE8KljTdMrDCyBpia0Jkn6BDg/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/4pmnRu5sL5QbtO8OS8NKJTN5qBpjx5XMS8vhm4hcZSN7PEHPQ68C0Q/300?n=1";
-    for (int i = 0; i < imgList.size(); ++i) {
+    QJsonObject req = json_data["req_3"].toObject();
+    QJsonObject data = req["data"].toObject();
+    QJsonArray list = data["list"].toArray();
+    for (int i = 0; i < list.size(); ++i) {
+        QJsonObject item_obj = list.at(i).toObject();
+        QString picurl = item_obj["picurl"].toString();
+        QString item_title = item_obj["title"].toString();
+        QString subtitle = item_obj["subtitle"].toString();
         int item_w = (bannerBox->width() / 3) - 12;
         assemItem[i] = new QWidget(contentBox);
         assemItem[i]->setFixedWidth(item_w);
@@ -612,7 +619,7 @@ void VideoRecom::assemble() {
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 12));
+        itemImg->setPixmap(tools->imgPixRadius(getImage(picurl), getImage(picurl)->size(), 12));
 
         maskBox = new QWidget(itemImg);
         maskBox->setFixedSize(itemImg->width(), itemImg->height());
@@ -633,7 +640,7 @@ void VideoRecom::assemble() {
         title = new QLabel;
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
-        QString txt = tools->textElps("贺峻霖全新单曲《缘故》正式上线正式上线正式上线 ", itemImg->width() - 6,
+        QString txt = tools->textElps(item_title, itemImg->width() - 6,
                                       title->font());
         title->setText(txt);
         title->setAlignment(Qt::AlignTop);
@@ -641,7 +648,7 @@ void VideoRecom::assemble() {
         author = new QLabel;
         author->setCursor(Qt::PointingHandCursor);
         author->setObjectName("author");
-        author->setText("弦子");
+        author->setText(subtitle);
         author->setFixedSize(author->sizeHint());
         author->setAlignment(Qt::AlignTop);
 
@@ -746,20 +753,18 @@ void VideoRecom::indiv() {
     animation[4] = new QPropertyAnimation(wrapconBox[4], "geometry");
     animation[4]->setDuration(300);
 
-    QList<QString> imgList;
-    QList<QString> txtList;
-    imgList << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QfX3MU2dzluKMUOBEjz0h6g/300"
-            << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QY8gA4UrJxhxQ9BBHZHDyFQ/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqojSibubibse2uIWSaZhZ39n1F1CQCXVuMGdw/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqoglWn5x5ITgE8KljTdMrDCyBpia0Jkn6BDg/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqoglWn5x5ITgE8KljTdMrDCyBpia0Jkn6BDg/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqoglWn5x5ITgE8KljTdMrDCyBpia0Jkn6BDg/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqoglWn5x5ITgE8KljTdMrDCyBpia0Jkn6BDg/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/4pmnRu5sL5QbtO8OS8NKJTN5qBpjx5XMS8vhm4hcZSN7PEHPQ68C0Q/300?n=1";
-    int cl = ceil(imgList.size() / 3);
-    for (int i = 0; i < imgList.size(); ++i) {
+    QJsonObject req = json_data["req_0"].toObject();
+    QJsonObject data = req["data"].toObject();
+    QJsonArray feedsList = data["vecFeeds"].toArray();
+    int cl = ceil(feedsList.size() / 3);
+    for (int i = 0; i < feedsList.size(); ++i) {
+        QJsonObject item_obj = feedsList.at(i).toObject();
+        QJsonObject videoObj = item_obj["video"].toObject();
+        QString picurl = videoObj["cover_pic"].toString();
+        QString name = videoObj["name"].toString();
+        QString uploader_nick = videoObj["uploader_nick"].toString();
+        int play_count = videoObj["playcnt"].toInt();
+        QString playcnt = tools->toStrWan(play_count);
         int item_w = (bannerBox->width() / 3) - 12;
         indivItem[i] = new QWidget(contentBox);
         indivItem[i]->setFixedWidth(item_w);
@@ -772,12 +777,14 @@ void VideoRecom::indiv() {
         itemImg = new QLabel(indivItem[i]);
         itemImg->setFixedSize(item_w, 142);
         itemImg->setCursor(Qt::PointingHandCursor);
-        itemImg->setScaledContents(true);
         itemImg->setObjectName("indivImg");
+        itemImg->setScaledContents(true);
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 12));
+        QPixmap pixmap = tools->imgPixRadius(getImage(picurl), getImage(picurl)->size(), 12);
+        pixmap.scaled(itemImg->size(),Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+        itemImg->setPixmap(pixmap);
 
         maskBox = new QWidget(itemImg);
         maskBox->setFixedSize(itemImg->width(), itemImg->height());
@@ -813,7 +820,7 @@ void VideoRecom::indiv() {
 
         playCount = new QLabel;
         playCount->setObjectName("playCount");
-        playCount->setText("203.6万");
+        playCount->setText(playcnt);
         playCount->setFixedSize(playCount->sizeHint());
         playCount->setAlignment(Qt::AlignCenter);
 
@@ -827,7 +834,7 @@ void VideoRecom::indiv() {
         title = new QLabel;
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
-        QString txt = tools->textElps("贺峻霖全新单曲《缘故》正式上线正式上线正式上线 ", itemImg->width() - 6,
+        QString txt = tools->textElps(name, itemImg->width() - 6,
                                       title->font());
         title->setText(txt);
         title->setAlignment(Qt::AlignTop);
@@ -835,7 +842,7 @@ void VideoRecom::indiv() {
         author = new QLabel;
         author->setCursor(Qt::PointingHandCursor);
         author->setObjectName("author");
-        author->setText("弦子");
+        author->setText(uploader_nick);
         author->setFixedSize(author->sizeHint());
         author->setAlignment(Qt::AlignTop);
 

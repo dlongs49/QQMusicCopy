@@ -54,6 +54,7 @@ protected:
 
 private:
     int move_x = 0;
+    QJsonObject json_data;
     QList<QString> recomAttrList;
     QPropertyAnimation *animation[6];
     QScrollArea *scrollArea;
