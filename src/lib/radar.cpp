@@ -188,7 +188,6 @@ void Radar::forList() {
         containerLayout->setVerticalSpacing(20);
     }
     int hh = (item[0]->height() + 20) * cl;
-    qDebug() << hh;
     containerBox->setFixedHeight(hh);
     layout->addSpacing(10);
     layout->addWidget(containerBox);

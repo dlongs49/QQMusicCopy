@@ -56,7 +56,7 @@ private:
     QWidget *widget;
     QWidget *typeBox;
     QWidget *containerBox;
-    QWidget *typeItem[10];
+    QWidget *typeItem[11];
     QWidget *item[55];
     QVBoxLayout *layout;
     QVBoxLayout *contentLayout;
