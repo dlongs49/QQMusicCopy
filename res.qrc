@@ -48,5 +48,7 @@
 
 
 		<file>resource/json/radar.json</file>
+		<file>resource/json/getmv_by_tag.json</file>
+		<file>resource/json/video.json</file>
     </qresource>
 </RCC>

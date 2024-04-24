@@ -49,7 +49,7 @@ QFont Tools::aliIcon() {
     iconFont.setHintingPreference(QFont::PreferNoHinting);
     return iconFont;
 }
-
+// 读取 json
 QJsonObject Tools::toJson(QString json_path) {
     QFile file(json_path);
     if (!file.open(QIODevice::ReadOnly)) {
@@ -64,4 +64,13 @@ QJsonObject Tools::toJson(QString json_path) {
 
     QJsonObject obj = json_doc.object();
     return obj;
+}
+//数字转换 字符串 万
+QString Tools::toStrWan(int playCount){
+    if(playCount < 10000){
+        return QString::number(playCount);
+    }
+    float sumCount = playCount / 10000;
+    QString countStr = QString::number(sumCount, 'f', 1);
+    return countStr+"万";
 }

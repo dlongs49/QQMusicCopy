@@ -26,6 +26,7 @@ public slots:
 
     QPixmap hoverPixColor(QPixmap *pix, QString color);
     QJsonObject toJson(QString json_path);
+    QString toStrWan(int playCount);
     QPixmap imgPixRadius(QPixmap *pix, QSize size,int radius);
     QString textElps(QString text,int width,QFont font);
     QFont aliIcon();

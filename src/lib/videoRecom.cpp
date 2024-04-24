@@ -56,14 +56,15 @@ void VideoRecom::bannerTop() {
     animation[0] = new QPropertyAnimation(bannerBox, "geometry");
     animation[0]->setDuration(300);
 
-    QList<QString> imgList;
-    QList<QString> txtList;
-    imgList << "https://y.qq.com/music/common/upload/MUSIC_FOCUS/6483999.jpg"
-            << "https://y.qq.com/music/common/upload/MUSIC_FOCUS/6484203.jpg"
-            << "https://y.qq.com/music/common/upload/ocs/2681676c054da54091a9f000208e81bf.png"
-            << "https://y.qq.com/music/common/upload/MUSIC_FOCUS/6482174.jpg";
-    for (int i = 0; i < imgList.size(); ++i) {
-        int item_w = (scrollBox->width()/2)-10;
+    QJsonObject obj = tools->toJson(":/resource/json/getmv_by_tag.json");
+    QJsonObject data = obj["data"].toObject();
+    QJsonObject focus = data["focus"].toObject();
+    QJsonArray bannerList = focus["list"].toArray();
+
+    for (int i = 0; i < bannerList.size(); ++i) {
+        QJsonObject banner_item = bannerList.at(i).toObject();
+        QString picurl = banner_item["picurl"].toString();
+        int item_w = (scrollBox->width() / 2) - 10;
         bannerItem[i] = new QWidget;
         bannerItem[i]->installEventFilter(this);
         bannerItem[i]->setObjectName("bannerItem");
@@ -80,13 +81,13 @@ void VideoRecom::bannerTop() {
         bannerImg->setProperty("index", i);
         bannerImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        bannerImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 16));
+        bannerImg->setPixmap(tools->imgPixRadius(getImage(picurl), getImage(picurl)->size(), 16));
         bannerImg->setFixedSize(item_w, containerBox->height());
 
         bannerImgLayout->addWidget(bannerImg);
         bannerItem[i]->setLayout(bannerImgLayout);
         bannerLayout->addWidget(bannerItem[i]);
-        if (i != imgList.size() - 1) {
+        if (i != bannerList.size() - 1) {
             bannerLayout->addSpacing(20);
         }
     }
@@ -181,17 +182,25 @@ void VideoRecom::newest() {
     animation[1] = new QPropertyAnimation(wrapconBox[1], "geometry");
     animation[1]->setDuration(300);
 
+    QJsonObject obj = tools->toJson(":/resource/json/video.json");
+    QJsonObject req_1 = obj["req_1"].toObject();
+    QJsonObject data = req_1["data"].toObject();
+    QJsonArray new_ist = data["list"].toArray();
+    for (int i = 0; i < new_ist.size(); ++i) {
+        QJsonObject new_item = new_ist.at(i).toObject();
+        QString picurl = new_item["picurl"].toString();
+        QString new_title = new_item["title"].toString();
+        int play_count = new_item["playcnt"].toInt();
+        QString playcnt = tools->toStrWan(play_count);
+        QJsonArray singers = new_item["singers"].toArray();
+        QString name_str = "";
+        for (int j = 0; j < singers.size(); ++j) {
+            QJsonObject singers_obj = singers.at(j).toObject();
+            QString name = singers_obj["name"].toString();
+            name_str = name_str == "" ? name : name_str + "/" + name;
+        }
 
-    QList<QString> imgList;
-    QList<QString> txtList;
-    imgList << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QfX3MU2dzluKMUOBEjz0h6g/300"
-            << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QY8gA4UrJxhxQ9BBHZHDyFQ/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqojSibubibse2uIWSaZhZ39n1F1CQCXVuMGdw/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqoglWn5x5ITgE8KljTdMrDCyBpia0Jkn6BDg/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/4pmnRu5sL5QbtO8OS8NKJTN5qBpjx5XMS8vhm4hcZSN7PEHPQ68C0Q/300?n=1";
-    for (int i = 0; i < imgList.size(); ++i) {
-        int item_w = (bannerBox->width()/3) - 12;
+        int item_w = (bannerBox->width() / 3) - 12;
         newestItem[i] = new QWidget(contentBox);
         newestItem[i]->setFixedWidth(item_w);
         newestItem[i]->setObjectName("bannerItem");
@@ -208,7 +217,7 @@ void VideoRecom::newest() {
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 12));
+        itemImg->setPixmap(tools->imgPixRadius(getImage(picurl), getImage(picurl)->size(), 12));
 
         maskBox = new QWidget(itemImg);
         maskBox->setFixedSize(itemImg->width(), itemImg->height());
@@ -244,7 +253,7 @@ void VideoRecom::newest() {
 
         playCount = new QLabel;
         playCount->setObjectName("playCount");
-        playCount->setText("203.6万");
+        playCount->setText(playcnt);
         playCount->setFixedSize(playCount->sizeHint());
         playCount->setAlignment(Qt::AlignCenter);
 
@@ -258,14 +267,14 @@ void VideoRecom::newest() {
         title = new QLabel;
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
-        QString txt = tools->textElps("贺峻霖全新单曲《缘故》正式上线正式上线正式上线 ", itemImg->width()-6, title->font());
+        QString txt = tools->textElps(new_title, itemImg->width() - 6, title->font());
         title->setText(txt);
         title->setAlignment(Qt::AlignTop);
 
         author = new QLabel;
         author->setCursor(Qt::PointingHandCursor);
         author->setObjectName("author");
-        author->setText("弦子");
+        author->setText(name_str);
         author->setFixedSize(author->sizeHint());
         author->setAlignment(Qt::AlignTop);
 
@@ -280,11 +289,17 @@ void VideoRecom::newest() {
         bannerLayout->setSpacing(20);
     }
 
-    contentLayout->addWidget(arrowBox(1, "left"));
-    contentLayout->addWidget(bannerBox);
-    contentLayout->addWidget(arrowBox(1, "right"));
+    contentLayout->
+            addWidget(arrowBox(1, "left")
+    );
+    contentLayout->
+            addWidget(bannerBox);
+    contentLayout->
+            addWidget(arrowBox(1, "right")
+    );
 
-    layout->addWidget(containerBox);
+    layout->
+            addWidget(containerBox);
     layout->addSpacing(20);
 }
 
@@ -380,7 +395,7 @@ void VideoRecom::hotList() {
             << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
             << "https://qpic.y.qq.com/music_cover/4pmnRu5sL5QbtO8OS8NKJTN5qBpjx5XMS8vhm4hcZSN7PEHPQ68C0Q/300?n=1";
     for (int i = 0; i < imgList.size(); ++i) {
-        int item_w = (bannerBox->width()/3) - 12;
+        int item_w = (bannerBox->width() / 3) - 12;
         hotItem[i] = new QWidget(contentBox);
         hotItem[i]->setFixedWidth(item_w);
         hotItem[i]->setObjectName("bannerItem");
@@ -447,7 +462,8 @@ void VideoRecom::hotList() {
         title = new QLabel;
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
-        QString txt = tools->textElps("贺峻霖全新单曲《缘故》正式上线正式上线正式上线 ", itemImg->width()-6, title->font());
+        QString txt = tools->textElps("贺峻霖全新单曲《缘故》正式上线正式上线正式上线 ", itemImg->width() - 6,
+                                      title->font());
         title->setText(txt);
         title->setAlignment(Qt::AlignTop);
 
@@ -570,7 +586,7 @@ void VideoRecom::assemble() {
             << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
             << "https://qpic.y.qq.com/music_cover/4pmnRu5sL5QbtO8OS8NKJTN5qBpjx5XMS8vhm4hcZSN7PEHPQ68C0Q/300?n=1";
     for (int i = 0; i < imgList.size(); ++i) {
-        int item_w = (bannerBox->width()/3) - 12;
+        int item_w = (bannerBox->width() / 3) - 12;
         assemItem[i] = new QWidget(contentBox);
         assemItem[i]->setFixedWidth(item_w);
         assemItem[i]->setObjectName("bannerItem");
@@ -580,12 +596,12 @@ void VideoRecom::assemble() {
         itemLayout->setAlignment(Qt::AlignTop);
 
         l = new QLabel(assemItem[i]);
-        l->setFixedSize(item_w-20,4);
-        l->move(((item_w - l->width())/2),5);
+        l->setFixedSize(item_w - 20, 4);
+        l->move(((item_w - l->width()) / 2), 5);
         l->setObjectName("bg_l");
         ll = new QLabel(assemItem[i]);
-        ll->setFixedSize(item_w-36,4);
-        ll->move(((item_w - ll->width())/2),1);
+        ll->setFixedSize(item_w - 36, 4);
+        ll->move(((item_w - ll->width()) / 2), 1);
         ll->setObjectName("bg_ll");
 
         itemImg = new QLabel(assemItem[i]);
@@ -617,7 +633,8 @@ void VideoRecom::assemble() {
         title = new QLabel;
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
-        QString txt = tools->textElps("贺峻霖全新单曲《缘故》正式上线正式上线正式上线 ", itemImg->width()-6, title->font());
+        QString txt = tools->textElps("贺峻霖全新单曲《缘故》正式上线正式上线正式上线 ", itemImg->width() - 6,
+                                      title->font());
         title->setText(txt);
         title->setAlignment(Qt::AlignTop);
 
@@ -741,9 +758,9 @@ void VideoRecom::indiv() {
             << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
             << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
             << "https://qpic.y.qq.com/music_cover/4pmnRu5sL5QbtO8OS8NKJTN5qBpjx5XMS8vhm4hcZSN7PEHPQ68C0Q/300?n=1";
-    int cl = ceil(imgList.size()/3);
+    int cl = ceil(imgList.size() / 3);
     for (int i = 0; i < imgList.size(); ++i) {
-        int item_w = (bannerBox->width()/3) - 12;
+        int item_w = (bannerBox->width() / 3) - 12;
         indivItem[i] = new QWidget(contentBox);
         indivItem[i]->setFixedWidth(item_w);
         indivItem[i]->setObjectName("bannerItem");
@@ -810,7 +827,8 @@ void VideoRecom::indiv() {
         title = new QLabel;
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
-        QString txt = tools->textElps("贺峻霖全新单曲《缘故》正式上线正式上线正式上线 ", itemImg->width()-6, title->font());
+        QString txt = tools->textElps("贺峻霖全新单曲《缘故》正式上线正式上线正式上线 ", itemImg->width() - 6,
+                                      title->font());
         title->setText(txt);
         title->setAlignment(Qt::AlignTop);
 
@@ -831,7 +849,7 @@ void VideoRecom::indiv() {
 
         int r = floor(i / 3) + 1;
         int c = (i % cl) + 1;
-        indivLayout->addWidget(indivItem[i],r,c);
+        indivLayout->addWidget(indivItem[i], r, c);
         indivLayout->setSpacing(20);
     }
     contentBox->setFixedHeight(cl * 220);
