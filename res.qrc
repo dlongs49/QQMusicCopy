@@ -51,5 +51,6 @@
 		<file>resource/json/getmv_by_tag.json</file>
 		<file>resource/json/video.json</file>
 		<file>resource/json/video_ranking.json</file>
+		<file>resource/json/video_library.json</file>
     </qresource>
 </RCC>

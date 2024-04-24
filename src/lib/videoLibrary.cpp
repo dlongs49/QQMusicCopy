@@ -9,10 +9,13 @@ VideoLibrary::VideoLibrary(QWidget *parent) : QWidget(parent) {
     tools = new Tools();
     // 页面  https://y.qq.com/wk_v17/#/mv/list
 
-    this->setFixedSize(820, 2000);
+    this->setFixedSize(820, 0);
     widget = new QWidget(this);
     widget->setFixedSize(this->size());
     widget->setObjectName("conbox");
+
+    json_data = tools->toJson(":/resource/json/video_library.json");
+
     layout = new QVBoxLayout;
     layout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
     layout->setSpacing(0);
@@ -154,24 +157,24 @@ void VideoLibrary::allMV() {
     animation = new QPropertyAnimation(wrapconBox, "geometry");
     animation->setDuration(300);
 
-    QList<QString> imgList;
-    QList<QString> txtList;
-    imgList << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QfX3MU2dzluKMUOBEjz0h6g/300"
-            << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QY8gA4UrJxhxQ9BBHZHDyFQ/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqojSibubibse2uIWSaZhZ39n1F1CQCXVuMGdw/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqoglWn5x5ITgE8KljTdMrDCyBpia0Jkn6BDg/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqoglWn5x5ITgE8KljTdMrDCyBpia0Jkn6BDg/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/4pmnRu5sL5QbtO8OS8NKJTN5qBpjx5XMS8vhm4hcZSN7PEHPQ68C0Q/300?n=1";
-    int cl = ceil((double)imgList.size()/3);
-    for (int i = 0; i < imgList.size(); ++i) {
+    QJsonObject req_0 = json_data["req_0"].toObject();
+    QJsonObject data = req_0["data"].toObject();
+    QJsonArray list = data["list"].toArray();
+    int cl = ceil((double)list.size()/3);
+    for (int i = 0; i < list.size(); ++i) {
+        QJsonObject mv_item = list.at(i).toObject();
+        QString picurl = mv_item["picurl"].toString();
+        QString title_str = mv_item["title"].toString();
+        QJsonArray singers = mv_item["singers"].toArray();
+        // 处理 文字拼接
+        QString name_str = "";
+        for (int y = 0; y < singers.size(); ++y) {
+            QJsonObject singers_obj = singers.at(y).toObject();
+            QString name = singers_obj["name"].toString();
+            name_str = name_str == "" ? name : name_str + "/" + name;
+        }
+
+
         int item_w = (bannerBox->width()/3) - 12;
         mvItem[i] = new QWidget;
         mvItem[i]->setFixedWidth(item_w);
@@ -189,7 +192,7 @@ void VideoLibrary::allMV() {
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 12));
+        itemImg->setPixmap(tools->imgPixRadius(getImage(picurl), getImage(picurl)->size(), 12));
 
         maskBox = new QWidget(itemImg);
         maskBox->setFixedSize(itemImg->width(), itemImg->height());
@@ -210,14 +213,14 @@ void VideoLibrary::allMV() {
         title = new QLabel;
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
-        QString txt = tools->textElps("贺峻霖全新单曲《缘故》正式上线正式上线正式上线 ", itemImg->width()-6, title->font());
+        QString txt = tools->textElps(title_str, itemImg->width()-6, title->font());
         title->setText(txt);
         title->setAlignment(Qt::AlignTop);
 
         author = new QLabel;
         author->setCursor(Qt::PointingHandCursor);
         author->setObjectName("author");
-        author->setText("弦子");
+        author->setText(name_str);
         author->setFixedSize(author->sizeHint());
         author->setAlignment(Qt::AlignTop);
 
@@ -234,11 +237,13 @@ void VideoLibrary::allMV() {
         mvLayout->addWidget(mvItem[i],r,c);
         mvLayout->setSpacing(20);
     }
-    contentBox->setFixedHeight(cl * 220);
-    bannerBox->setFixedHeight(cl * 220);
-
+    int hh = cl * 224;
+    contentBox->setFixedHeight(hh);
+    bannerBox->setFixedHeight(hh);
     contentLayout->addWidget(bannerBox);
     layout->addWidget(containerBox);
+    this->setFixedHeight(hh + 120);
+    widget->setFixedSize(this->size());
 }
 
 

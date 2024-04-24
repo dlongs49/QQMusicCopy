@@ -1,0 +1,691 @@
+{
+    "code": 0,
+    "ts": 1713967963148,
+    "start_ts": 1713967962999,
+    "traceid": "7c197081d297f787",
+    "req_0": {
+        "code": 0,
+        "data": {
+            "list": [
+                {
+                    "comment_cnt": 4,
+                    "diff": 0,
+                    "duration": 255,
+                    "has_fav": 0,
+                    "has_star": 0,
+                    "mv_switch": 2047,
+                    "mvid": 1470065,
+                    "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T015R640x360M000000SMh1H4NBVm1.jpg",
+                    "playcnt": 22185,
+                    "pubdate": 1766592000,
+                    "score": 0,
+                    "singers": [
+                        {
+                            "id": 21101,
+                            "mid": "00479sNU2AjIyv",
+                            "name": "Paper Route",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M00000479sNU2AjIyv_2.jpg"
+                        }
+                    ],
+                    "star_cnt": 1,
+                    "subtitle": "",
+                    "title": "Balconies",
+                    "uploader": {
+                        "enc_uin": "",
+                        "headurl": "",
+                        "nick": ""
+                    },
+                    "vid": "v0026tgtaxn"
+                },
+                {
+                    "comment_cnt": 0,
+                    "diff": 0,
+                    "duration": 152,
+                    "has_fav": 0,
+                    "has_star": 0,
+                    "mv_switch": 2047,
+                    "mvid": 2146919,
+                    "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T015R640x360M101002qQAmz03xXtI.jpg",
+                    "playcnt": 12,
+                    "pubdate": 1714060800,
+                    "score": 0,
+                    "singers": [
+                        {
+                            "id": 3939431,
+                            "mid": "003FI6dx4GeiK8",
+                            "name": "PARIS.",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M000003kfNgb0XXvgV_0.jpg"
+                        }
+                    ],
+                    "star_cnt": 0,
+                    "subtitle": "",
+                    "title": "4th Quarter (Lyric Video)",
+                    "uploader": {
+                        "enc_uin": "",
+                        "headurl": "",
+                        "nick": ""
+                    },
+                    "vid": "002qQAmz03xXtI"
+                },
+                {
+                    "comment_cnt": 0,
+                    "diff": 0,
+                    "duration": 149,
+                    "has_fav": 0,
+                    "has_star": 0,
+                    "mv_switch": 2047,
+                    "mvid": 2143554,
+                    "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T015R640x360M1010035gVN12K3ZVr.jpg",
+                    "playcnt": 126,
+                    "pubdate": 1713888000,
+                    "score": 0,
+                    "singers": [
+                        {
+                            "id": 344,
+                            "mid": "000SR2vn4LJ8KI",
+                            "name": "Jennifer Rush",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M000000SR2vn4LJ8KI_2.jpg"
+                        }
+                    ],
+                    "star_cnt": 0,
+                    "subtitle": "",
+                    "title": "Madonna's Eyes (Haste Töne? 05.03.1985)",
+                    "uploader": {
+                        "enc_uin": "",
+                        "headurl": "",
+                        "nick": ""
+                    },
+                    "vid": "0035gVN12K3ZVr"
+                },
+                {
+                    "comment_cnt": 0,
+                    "diff": 0,
+                    "duration": 226,
+                    "has_fav": 0,
+                    "has_star": 0,
+                    "mv_switch": 2047,
+                    "mvid": 2143555,
+                    "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T015R640x360M101003yOfcC1Y8Wr4.jpg",
+                    "playcnt": 56,
+                    "pubdate": 1713888000,
+                    "score": 0,
+                    "singers": [
+                        {
+                            "id": 33175,
+                            "mid": "001Avjfp1GdWLT",
+                            "name": "Dschinghis Khan",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M000001Avjfp1GdWLT_2.jpg"
+                        }
+                    ],
+                    "star_cnt": 0,
+                    "subtitle": "",
+                    "title": "Hadschi Halef Omar (Starparade 07.02.1980)",
+                    "uploader": {
+                        "enc_uin": "",
+                        "headurl": "",
+                        "nick": ""
+                    },
+                    "vid": "003yOfcC1Y8Wr4"
+                },
+                {
+                    "comment_cnt": 0,
+                    "diff": 0,
+                    "duration": 149,
+                    "has_fav": 0,
+                    "has_star": 0,
+                    "mv_switch": 2047,
+                    "mvid": 2143557,
+                    "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T015R640x360M000001mwnkx3zkG5d.jpg",
+                    "playcnt": 18,
+                    "pubdate": 1713888000,
+                    "score": 0,
+                    "singers": [
+                        {
+                            "id": 4926,
+                            "mid": "000HIKKx4VVcgo",
+                            "name": "Elvis Presley",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M000000HIKKx4VVcgo_2.jpg"
+                        }
+                    ],
+                    "star_cnt": 0,
+                    "subtitle": "",
+                    "title": "I Don't Care If the Sun Don't Shine (Official Audio)",
+                    "uploader": {
+                        "enc_uin": "",
+                        "headurl": "",
+                        "nick": ""
+                    },
+                    "vid": "002eMxY20O8oVL"
+                },
+                {
+                    "comment_cnt": 0,
+                    "diff": 0,
+                    "duration": 187,
+                    "has_fav": 0,
+                    "has_star": 0,
+                    "mv_switch": 2047,
+                    "mvid": 2143559,
+                    "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T015R640x360M101002z4tNP289piL.jpg",
+                    "playcnt": 1,
+                    "pubdate": 1713888000,
+                    "score": 0,
+                    "singers": [
+                        {
+                            "id": 1774380,
+                            "mid": "002i207B10Xwns",
+                            "name": "Jess Day",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M000002i207B10Xwns_1.jpg"
+                        }
+                    ],
+                    "star_cnt": 0,
+                    "subtitle": "",
+                    "title": "Lilith (Visualiser)",
+                    "uploader": {
+                        "enc_uin": "",
+                        "headurl": "",
+                        "nick": ""
+                    },
+                    "vid": "002z4tNP289piL"
+                },
+                {
+                    "comment_cnt": 0,
+                    "diff": 0,
+                    "duration": 201,
+                    "has_fav": 0,
+                    "has_star": 0,
+                    "mv_switch": 2047,
+                    "mvid": 2143560,
+                    "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T015R640x360M0000040ucfp1UkiwY.jpg",
+                    "playcnt": 11,
+                    "pubdate": 1713888000,
+                    "score": 0,
+                    "singers": [
+                        {
+                            "id": 13902,
+                            "mid": "001o1oOS4AL0ej",
+                            "name": "Dan Fogelberg",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M000001o1oOS4AL0ej_2.jpg"
+                        }
+                    ],
+                    "star_cnt": 0,
+                    "subtitle": "",
+                    "title": "Part of the Plan (Official Audio)",
+                    "uploader": {
+                        "enc_uin": "",
+                        "headurl": "",
+                        "nick": ""
+                    },
+                    "vid": "000waq0l2G9gTK"
+                },
+                {
+                    "comment_cnt": 0,
+                    "diff": 0,
+                    "duration": 182,
+                    "has_fav": 0,
+                    "has_star": 0,
+                    "mv_switch": 2047,
+                    "mvid": 2143660,
+                    "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T015R640x360M101003RsbRZ3jKyjk.jpg",
+                    "playcnt": 52,
+                    "pubdate": 1713888000,
+                    "score": 0,
+                    "singers": [
+                        {
+                            "id": 2672,
+                            "mid": "001qKY010aarC9",
+                            "name": "Mary Roos",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M000001qKY010aarC9_2.jpg"
+                        },
+                        {
+                            "id": 188815,
+                            "mid": "0002XIgE3UQC9S",
+                            "name": "David Hanselmann",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M0000002XIgE3UQC9S_2.jpg"
+                        }
+                    ],
+                    "star_cnt": 0,
+                    "subtitle": "",
+                    "title": "Lady (Café in Takt 03.06.1982)",
+                    "uploader": {
+                        "enc_uin": "",
+                        "headurl": "",
+                        "nick": ""
+                    },
+                    "vid": "003RsbRZ3jKyjk"
+                },
+                {
+                    "comment_cnt": 0,
+                    "diff": 0,
+                    "duration": 195,
+                    "has_fav": 0,
+                    "has_star": 0,
+                    "mv_switch": 2047,
+                    "mvid": 2143662,
+                    "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T015R640x360M101001cKRxu1w0sSD.jpg",
+                    "playcnt": 11,
+                    "pubdate": 1713888000,
+                    "score": 0,
+                    "singers": [
+                        {
+                            "id": 3011,
+                            "mid": "0035bKLe1Fuq35",
+                            "name": "Nino De Angelo",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M0000035bKLe1Fuq35_2.jpg"
+                        }
+                    ],
+                    "star_cnt": 0,
+                    "subtitle": "",
+                    "title": "Schwindelfrei (Show-Palast 28.05.2000)",
+                    "uploader": {
+                        "enc_uin": "",
+                        "headurl": "",
+                        "nick": ""
+                    },
+                    "vid": "001cKRxu1w0sSD"
+                },
+                {
+                    "comment_cnt": 0,
+                    "diff": 0,
+                    "duration": 214,
+                    "has_fav": 0,
+                    "has_star": 0,
+                    "mv_switch": 2047,
+                    "mvid": 2143786,
+                    "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T015R640x360M101000XAe931ZA3dC.jpg",
+                    "playcnt": 12,
+                    "pubdate": 1713888000,
+                    "score": 0,
+                    "singers": [
+                        {
+                            "id": 69282,
+                            "mid": "0028onD90f1xQ3",
+                            "name": "Den Harrow",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M0000028onD90f1xQ3_2.jpg"
+                        }
+                    ],
+                    "star_cnt": 0,
+                    "subtitle": "",
+                    "title": "Day By Day (Peters Pop-Show 05.12.1987)",
+                    "uploader": {
+                        "enc_uin": "",
+                        "headurl": "",
+                        "nick": ""
+                    },
+                    "vid": "000XAe931ZA3dC"
+                },
+                {
+                    "comment_cnt": 0,
+                    "diff": 0,
+                    "duration": 271,
+                    "has_fav": 0,
+                    "has_star": 0,
+                    "mv_switch": 2047,
+                    "mvid": 2145060,
+                    "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T015R640x360M000001AXwgP3tiY2o.jpg",
+                    "playcnt": 35,
+                    "pubdate": 1713888000,
+                    "score": 0,
+                    "singers": [
+                        {
+                            "id": 2306047,
+                            "mid": "004alcjB3aiMmS",
+                            "name": "陈凡骐",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M000004alcjB3aiMmS_4.jpg"
+                        }
+                    ],
+                    "star_cnt": 0,
+                    "subtitle": "",
+                    "title": "赤裸",
+                    "uploader": {
+                        "enc_uin": "",
+                        "headurl": "",
+                        "nick": ""
+                    },
+                    "vid": "004cQqp02qNg3f"
+                },
+                {
+                    "comment_cnt": 1,
+                    "diff": 0,
+                    "duration": 325,
+                    "has_fav": 0,
+                    "has_star": 0,
+                    "mv_switch": 2047,
+                    "mvid": 2145736,
+                    "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T015R640x360M101002mJVbM0uOqPk.jpg",
+                    "playcnt": 24,
+                    "pubdate": 1713888000,
+                    "score": 0,
+                    "singers": [
+                        {
+                            "id": 9081246,
+                            "mid": "001qhl6W4UIlAJ",
+                            "name": "BE:FIRST",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M000001qhl6W4UIlAJ_8.jpg"
+                        }
+                    ],
+                    "star_cnt": 1,
+                    "subtitle": "",
+                    "title": "Glorious",
+                    "uploader": {
+                        "enc_uin": "",
+                        "headurl": "",
+                        "nick": ""
+                    },
+                    "vid": "002mJVbM0uOqPk"
+                },
+                {
+                    "comment_cnt": 1,
+                    "diff": 0,
+                    "duration": 281,
+                    "has_fav": 0,
+                    "has_star": 0,
+                    "mv_switch": 2047,
+                    "mvid": 2145739,
+                    "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T015R640x360M101000p4KEU0xb2pr.jpg",
+                    "playcnt": 18,
+                    "pubdate": 1713888000,
+                    "score": 0,
+                    "singers": [
+                        {
+                            "id": 9081246,
+                            "mid": "001qhl6W4UIlAJ",
+                            "name": "BE:FIRST",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M000001qhl6W4UIlAJ_8.jpg"
+                        }
+                    ],
+                    "star_cnt": 2,
+                    "subtitle": "",
+                    "title": "Masterplan",
+                    "uploader": {
+                        "enc_uin": "",
+                        "headurl": "",
+                        "nick": ""
+                    },
+                    "vid": "000p4KEU0xb2pr"
+                },
+                {
+                    "comment_cnt": 0,
+                    "diff": 0,
+                    "duration": 14,
+                    "has_fav": 0,
+                    "has_star": 0,
+                    "mv_switch": 2047,
+                    "mvid": 2146450,
+                    "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T015R640x360M000004fAum81H8bRA.jpg",
+                    "playcnt": 36,
+                    "pubdate": 1713888000,
+                    "score": 0,
+                    "singers": [
+                        {
+                            "id": 3153092,
+                            "mid": "002awfdA4d9Kxy",
+                            "name": "赵让",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M000002awfdA4d9Kxy_9.jpg"
+                        }
+                    ],
+                    "star_cnt": 2,
+                    "subtitle": "",
+                    "title": "赵让《十点十分很想你》空降ID",
+                    "uploader": {
+                        "enc_uin": "",
+                        "headurl": "",
+                        "nick": ""
+                    },
+                    "vid": "003G8E0u06wC84"
+                },
+                {
+                    "comment_cnt": 0,
+                    "diff": 0,
+                    "duration": 9,
+                    "has_fav": 0,
+                    "has_star": 0,
+                    "mv_switch": 2047,
+                    "mvid": 2146451,
+                    "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T015R640x360M000003xRxc93IJg3B.jpg",
+                    "playcnt": 29,
+                    "pubdate": 1713888000,
+                    "score": 0,
+                    "singers": [
+                        {
+                            "id": 3153092,
+                            "mid": "002awfdA4d9Kxy",
+                            "name": "赵让",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M000002awfdA4d9Kxy_9.jpg"
+                        }
+                    ],
+                    "star_cnt": 2,
+                    "subtitle": "",
+                    "title": "赵让《十点十分很想你》首发ID",
+                    "uploader": {
+                        "enc_uin": "",
+                        "headurl": "",
+                        "nick": ""
+                    },
+                    "vid": "000huo4f1PAoj9"
+                },
+                {
+                    "comment_cnt": 51,
+                    "diff": 0,
+                    "duration": 40,
+                    "has_fav": 0,
+                    "has_star": 0,
+                    "mv_switch": 2047,
+                    "mvid": 2146493,
+                    "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T015R640x360M101000Ue9Jb17OG8S.jpg",
+                    "playcnt": 891,
+                    "pubdate": 1713888000,
+                    "score": 0,
+                    "singers": [
+                        {
+                            "id": 14042945,
+                            "mid": "000IzKde3XHX1G",
+                            "name": "ZEROBASEONE",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M000000IzKde3XHX1G_6.jpg"
+                        }
+                    ],
+                    "star_cnt": 169,
+                    "subtitle": "",
+                    "title": "ZEROBASEONE携先行曲问候QQ音乐粉丝",
+                    "uploader": {
+                        "enc_uin": "",
+                        "headurl": "",
+                        "nick": ""
+                    },
+                    "vid": "000Ue9Jb17OG8S"
+                },
+                {
+                    "comment_cnt": 0,
+                    "diff": 0,
+                    "duration": 83,
+                    "has_fav": 0,
+                    "has_star": 0,
+                    "mv_switch": 2047,
+                    "mvid": 2146497,
+                    "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T015R640x360M101001HUSnf1eWS9u.jpg",
+                    "playcnt": 9,
+                    "pubdate": 1713888000,
+                    "score": 0,
+                    "singers": [
+                        {
+                            "id": 12561143,
+                            "mid": "000F84To0MgKrs",
+                            "name": "Mcharlisto",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M000003kfNgb0XXvgV_0.jpg"
+                        },
+                        {
+                            "id": 14884470,
+                            "mid": "0035qH7g0GKXOx",
+                            "name": "Mantsakosi he Nwana Mhani Mani",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M000003GPzZz2b7OZj_0.jpg"
+                        }
+                    ],
+                    "star_cnt": 0,
+                    "subtitle": "",
+                    "title": "Masenge_Xisuti",
+                    "uploader": {
+                        "enc_uin": "",
+                        "headurl": "",
+                        "nick": ""
+                    },
+                    "vid": "001HUSnf1eWS9u"
+                },
+                {
+                    "comment_cnt": 0,
+                    "diff": 0,
+                    "duration": 168,
+                    "has_fav": 0,
+                    "has_star": 0,
+                    "mv_switch": 2047,
+                    "mvid": 2146590,
+                    "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T015R640x360M0000001Rn4N0ESUDq.jpg",
+                    "playcnt": 15,
+                    "pubdate": 1713888000,
+                    "score": 0,
+                    "singers": [
+                        {
+                            "id": 15029006,
+                            "mid": "000JY3mx0TC07P",
+                            "name": "Les Okoo koo",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M000003GPzZz2b7OZj_0.jpg"
+                        }
+                    ],
+                    "star_cnt": 0,
+                    "subtitle": "",
+                    "title": "Va y avoir du sport (Clip officiel)",
+                    "uploader": {
+                        "enc_uin": "",
+                        "headurl": "",
+                        "nick": ""
+                    },
+                    "vid": "002EU1eO1g2swf"
+                },
+                {
+                    "comment_cnt": 0,
+                    "diff": 0,
+                    "duration": 267,
+                    "has_fav": 0,
+                    "has_star": 0,
+                    "mv_switch": 2047,
+                    "mvid": 2146638,
+                    "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T015R640x360M000002Nt4RC4ccNpU.jpg",
+                    "playcnt": 10,
+                    "pubdate": 1713888000,
+                    "score": 0,
+                    "singers": [
+                        {
+                            "id": 10457101,
+                            "mid": "001Ijo3V4dzeJQ",
+                            "name": "Kind mod Kind",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M000003gzb0d1mpJki_0.jpg"
+                        }
+                    ],
+                    "star_cnt": 0,
+                    "subtitle": "",
+                    "title": "En Sidste Dans",
+                    "uploader": {
+                        "enc_uin": "",
+                        "headurl": "",
+                        "nick": ""
+                    },
+                    "vid": "003tnIah4dvxOA"
+                },
+                {
+                    "comment_cnt": 0,
+                    "diff": 0,
+                    "duration": 186,
+                    "has_fav": 0,
+                    "has_star": 0,
+                    "mv_switch": 2047,
+                    "mvid": 2146676,
+                    "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T015R640x360M000000B9E7I0NhGFR.jpg",
+                    "playcnt": 12,
+                    "pubdate": 1713888000,
+                    "score": 0,
+                    "singers": [
+                        {
+                            "id": 1060200,
+                            "mid": "000Zf6Et41EOk5",
+                            "name": "Dasha",
+                            "picurl": "http:\/\/y.gtimg.cn\/music\/photo_new\/T001R150x150M000000Zf6Et41EOk5_1.jpg"
+                        }
+                    ],
+                    "star_cnt": 0,
+                    "subtitle": "",
+                    "title": "Austin",
+                    "uploader": {
+                        "enc_uin": "",
+                        "headurl": "",
+                        "nick": ""
+                    },
+                    "vid": "003a8A954AIlGq"
+                }
+            ],
+            "total": 1000
+        }
+    },
+    "req_1": {
+        "code": 0,
+        "data": {
+            "area": [
+                {
+                    "id": 15,
+                    "name": "全部"
+                },
+                {
+                    "id": 16,
+                    "name": "内地"
+                },
+                {
+                    "id": 17,
+                    "name": "港台"
+                },
+                {
+                    "id": 18,
+                    "name": "欧美"
+                },
+                {
+                    "id": 19,
+                    "name": "韩国"
+                },
+                {
+                    "id": 20,
+                    "name": "日本"
+                }
+            ],
+            "version": [
+                {
+                    "id": 7,
+                    "name": "全部"
+                },
+                {
+                    "id": 8,
+                    "name": "MV"
+                },
+                {
+                    "id": 9,
+                    "name": "现场"
+                },
+                {
+                    "id": 10,
+                    "name": "翻唱"
+                },
+                {
+                    "id": 11,
+                    "name": "舞蹈"
+                },
+                {
+                    "id": 12,
+                    "name": "影视"
+                },
+                {
+                    "id": 13,
+                    "name": "综艺"
+                },
+                {
+                    "id": 14,
+                    "name": "儿歌"
+                }
+            ]
+        }
+    }
+}

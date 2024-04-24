@@ -40,6 +40,7 @@ public slots:
 protected:
 
 private:
+    QJsonObject json_data;
     QPropertyAnimation *animation;
     QLabel *author;
     QLabel *playBox;
