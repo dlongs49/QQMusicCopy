@@ -87,12 +87,21 @@ void Radar::radarTop() {
         typeItem[i]->setLayout(typeLayout);
 
         typeTxt = new QLabel;
+        if(i == 0){
+            typeTxt->setProperty("class", "active");
+        }else{
+            typeTxt->setProperty("class", "");
+        }
         typeTxt->setObjectName("typeTit");
         typeTxt->setText(title_txt);
 
         bot = new QLabel;
         bot->setFixedSize(8, 8);
-        bot->setProperty("class", "bot");
+        if(i == 0){
+            bot->setProperty("class", "bot_active");
+        }else{
+            bot->setProperty("class", "bot");
+        }
         bot->setObjectName("bot");
 
 
@@ -179,6 +188,7 @@ void Radar::forList() {
         containerLayout->setVerticalSpacing(20);
     }
     int hh = (item[0]->height() + 20) * cl;
+    qDebug() << hh;
     containerBox->setFixedHeight(hh);
     layout->addSpacing(10);
     layout->addWidget(containerBox);
@@ -224,9 +234,7 @@ bool Radar::eventFilter(QObject *o, QEvent *e) {
                 t_tit->style()->polish(t_tit);
                 t_bot->style()->polish(t_bot);
 //                for (int j = 0; j < radarList.size(); ++j) {
-//                    containerLayout->removeWidget(item[j]);
-//                    contentLayout->removeWidget(itemImg);
-//                    contentLayout->removeWidget(singerName);
+//                    delete item[j];
 //                }
 //                QJsonObject objList = navList.at(i).toObject();
 //                radarList = objList["list"].toArray();
