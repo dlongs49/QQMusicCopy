@@ -5,14 +5,6 @@
 #ifndef QQMUSICCOPY_VIDEOCONTENT_H
 #define QQMUSICCOPY_VIDEOCONTENT_H
 
-#include <QWidget>
-#include <QScrollArea>
-#include <QList>
-#include <QLabel>
-#include <QDebug>
-#include <QHBoxLayout>
-#include <QMouseEvent>
-#include <cmath>
 #include "./videoRecom.h"
 #include "./videoRanking.h"
 #include "./videoLibrary.h"
@@ -41,7 +33,6 @@ private:
     QWidget *widget;
     QWidget *containerBox;
     QWidget *navBox;
-    QWidget *recomBox;
     QHBoxLayout *navLayout;
     QVBoxLayout *layout;
     QVBoxLayout *containerLayout;

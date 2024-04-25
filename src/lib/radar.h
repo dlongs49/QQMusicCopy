@@ -5,18 +5,6 @@
 #ifndef QQMUSICCOPY_RADAR_H
 #define QQMUSICCOPY_RADAR_H
 
-#include <QScrollArea>
-#include <QNetworkAccessManager>
-#include <QNetworkRequest>
-#include <QNetworkReply>
-#include <QEventLoop>
-#include <QByteArray>
-#include <QMouseEvent>
-#include <cmath>
-#include <QFile>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QJsonArray>
 #include "../utils/tools.h"
 
 class Radar : public QWidget {

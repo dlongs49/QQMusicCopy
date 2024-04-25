@@ -5,14 +5,6 @@
 #ifndef QQMUSICCOPY_VIDEORANKING_H
 #define QQMUSICCOPY_VIDEORANKING_H
 
-
-#include <QPropertyAnimation>
-#include <QNetworkAccessManager>
-#include <QNetworkRequest>
-#include <QNetworkReply>
-#include <QEventLoop>
-#include <QByteArray>
-#include <QMouseEvent>
 #include <QDateTime>
 #include "../utils/tools.h"
 

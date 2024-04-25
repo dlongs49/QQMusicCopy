@@ -2,6 +2,7 @@
 #define TOOLS_H
 
 #include <QWidget>
+#include <QScrollArea>
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QPainter>
@@ -11,12 +12,19 @@
 #include <QFont>
 #include <QFontMetrics>
 #include <QFontDatabase>
+#include <QPropertyAnimation>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QEventLoop>
+#include <QByteArray>
 #include <cmath>
 #include <QFile>
+#include <QMouseEvent>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
-#include <QProxyStyle >
+#include <QProxyStyle>
 #include <QDebug>
 class Tools : public QWidget {
 Q_OBJECT

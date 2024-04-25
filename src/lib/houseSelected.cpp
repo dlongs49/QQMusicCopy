@@ -19,6 +19,8 @@ HouseSelected::HouseSelected(QWidget *parent) : QWidget(parent) {
     layout->setSpacing(0);
     layout->setMargin(0);
 
+    json_data = tools->toJson(":/resource/json/music_selected.json");
+
     bannerTop();
     officialPlayList();
     listenBook();

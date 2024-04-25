@@ -6,20 +6,6 @@
 #define QQMUSICCOPY_HOUSESELECTED_H
 
 
-#include <QWidget>
-#include <QScrollArea>
-#include <QList>
-#include <QLabel>
-#include <QHBoxLayout>
-#include <QSizePolicy>
-#include <QPropertyAnimation>
-#include <QNetworkAccessManager>
-#include <QNetworkRequest>
-#include <QNetworkReply>
-#include <QEventLoop>
-#include <QByteArray>
-#include <QMouseEvent>
-#include <cmath>
 #include "../utils/tools.h"
 
 class HouseSelected : public QWidget {
@@ -53,7 +39,7 @@ public slots:
 protected:
 
 private:
-    int move_x = 0;
+    QJsonObject json_data;
     QList<QString> recomAttrList;
     QPropertyAnimation *animation[6];
     QScrollArea *scrollArea;

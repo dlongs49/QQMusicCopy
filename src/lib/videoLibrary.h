@@ -5,15 +5,8 @@
 #ifndef QQMUSICCOPY_VIDEOLIBRARY_H
 #define QQMUSICCOPY_VIDEOLIBRARY_H
 
-#include <QDebug>
-#include <QHBoxLayout>
-#include <QMouseEvent>
-#include <QtMath>
 #include <QPushButton>
-#include "./videoRecom.h"
-#include "./videoRanking.h"
-#include "./videoLibrary.h"
-
+#include "../utils/tools.h"
 class VideoLibrary : public QWidget {
 Q_OBJECT;
 public:

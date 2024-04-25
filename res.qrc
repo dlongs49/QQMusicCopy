@@ -52,5 +52,6 @@
 		<file>resource/json/video.json</file>
 		<file>resource/json/video_ranking.json</file>
 		<file>resource/json/video_library.json</file>
+		<file>resource/json/music_selected.json</file>
     </qresource>
 </RCC>
