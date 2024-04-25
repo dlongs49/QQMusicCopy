@@ -42,12 +42,12 @@ private:
     QJsonObject json_data;
     QList<QString> recomAttrList;
     QPropertyAnimation *animation[6];
-    QScrollArea *scrollArea;
     QLabel *tagLabel;
     QLabel *titleLabel;
     QLabel *title;
     QLabel *subTitle;
     QLabel *exTitle;
+    QLabel *dateLabel;
     QLabel *playBox;
     QLabel *bannerImg;
     QLabel *playCount;
@@ -67,11 +67,11 @@ private:
     QWidget *titleBox;
     QWidget *leftTitBox;
     QWidget *bomBox;
-    QWidget *bannerItem[10];
+    QWidget *bannerItem[12];
     QWidget *officialItem[6];
     QWidget *listenBookItem[6];
-    QWidget *classItem[6];
-    QWidget *latestItem[6];
+    QWidget *classItem[12];
+    QWidget *latestItem[75];
     QVBoxLayout *layout;
     QVBoxLayout *containerLayout;
     QVBoxLayout *bannerImgLayout;

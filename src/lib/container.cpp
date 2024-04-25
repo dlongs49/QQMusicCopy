@@ -13,11 +13,11 @@ container::container(QWidget *parent) : QWidget(parent) {
 //    recommend = new Recommend(this);
 //    containerLayout->addWidget(recommend);
 
-//    musicHouse = new MusicHouse(this);
-//    containerLayout->addWidget(musicHouse);
+    musicHouse = new MusicHouse(this);
+    containerLayout->addWidget(musicHouse);
 
-    videoContent = new VideoContent(this);
-    containerLayout->addWidget(videoContent);
+//    videoContent = new VideoContent(this);
+//    containerLayout->addWidget(videoContent);
 
 //    radar = new Radar(this);
 //    containerLayout->addWidget(radar);

@@ -58,13 +58,18 @@ void HouseSelected::bannerTop() {
     animation[0] = new QPropertyAnimation(bannerBox, "geometry");
     animation[0]->setDuration(300);
 
-    QList<QString> imgList;
-    QList<QString> txtList;
-    imgList << "https://y.qq.com/music/common/upload/MUSIC_FOCUS/6483999.jpg"
-            << "https://y.qq.com/music/common/upload/MUSIC_FOCUS/6484203.jpg"
-            << "https://y.qq.com/music/common/upload/ocs/2681676c054da54091a9f000208e81bf.png"
-            << "https://y.qq.com/music/common/upload/MUSIC_FOCUS/6482174.jpg";
-    for (int i = 0; i < imgList.size(); ++i) {
+    QJsonObject req_1 = json_data["req_1"].toObject();
+    QJsonObject data = req_1["data"].toObject();
+    QJsonObject shelf = data["shelf"].toObject();
+    QJsonArray v_niche = shelf["v_niche"].toArray();
+    QJsonObject v_niche_obj = v_niche.at(0).toObject();
+    QJsonArray list = v_niche_obj["v_card"].toArray();
+    for (int i = 0; i < list.size(); ++i) {
+        QJsonObject item_obj = list.at(i).toObject();
+        QString cover = item_obj["cover"].toString();
+        QJsonObject miscellany = item_obj["miscellany"].toObject();
+        QString item_title = item_obj["title"].toString();
+        QString item_tag = miscellany["tag"].toString();
         bannerItem[i] = new QWidget;
         bannerItem[i]->installEventFilter(this);
         bannerItem[i]->setObjectName("bannerItem");
@@ -81,7 +86,7 @@ void HouseSelected::bannerTop() {
         bannerImg->setProperty("index", i);
         bannerImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        bannerImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 16));
+        bannerImg->setPixmap(tools->imgPixRadius(getImage(cover), getImage(cover)->size(), 16));
         bannerImg->setFixedSize(240, containerBox->height());
 
         bomBox = new QWidget(bannerImg);
@@ -92,11 +97,11 @@ void HouseSelected::bannerTop() {
 
         tagLabel = new QLabel;
         tagLabel->setObjectName("tagLabel");
-        tagLabel->setText("音乐人");
+        tagLabel->setText(item_tag);
         tagLabel->setFixedSize(tagLabel->sizeHint().width() + 5, tagLabel->sizeHint().height());
 
         titleLabel = new QLabel;
-        QString txt = tools->textElps("贺峻霖全新单曲《缘故》正式上线 ", 150, titleLabel->font());
+        QString txt = tools->textElps(item_title, 150, titleLabel->font());
         titleLabel->setText(txt);
         titleLabel->setObjectName("titleLabel");
 
@@ -106,7 +111,7 @@ void HouseSelected::bannerTop() {
         bannerImgLayout->addWidget(bannerImg);
         bannerItem[i]->setLayout(bannerImgLayout);
         bannerLayout->addWidget(bannerItem[i]);
-        if (i != imgList.size() - 1) {
+        if (i != list.size() - 1) {
             bannerLayout->addSpacing(20);
         }
     }
@@ -213,16 +218,18 @@ void HouseSelected::officialPlayList() {
     animation[1] = new QPropertyAnimation(wrapconBox[1], "geometry");
     animation[1]->setDuration(300);
 
+    QJsonObject req_2 = json_data["req_2"].toObject();
+    QJsonObject data = req_2["data"].toObject();
+    QJsonArray modules = data["modules"].toArray();
+    QJsonObject modules_obj = modules.at(0).toObject();
+    QJsonArray list = modules_obj["grids"].toArray();
+    for (int i = 0; i < list.size(); ++i) {
+        QJsonObject item_obj = list.at(i).toObject();
+        QString picurl = item_obj["picurl"].toString();
+        QString item_title = item_obj["title"].toString();
+        int listen_count = item_obj["listeners"].toInt();
+        QString listenCount = tools->toStrWan(listen_count);
 
-    QList<QString> imgList;
-    QList<QString> txtList;
-    imgList << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QfX3MU2dzluKMUOBEjz0h6g/300"
-            << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QY8gA4UrJxhxQ9BBHZHDyFQ/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqojSibubibse2uIWSaZhZ39n1F1CQCXVuMGdw/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqoglWn5x5ITgE8KljTdMrDCyBpia0Jkn6BDg/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/4pmnRu5sL5QbtO8OS8NKJTN5qBpjx5XMS8vhm4hcZSN7PEHPQ68C0Q/300?n=1";
-    for (int i = 0; i < imgList.size(); ++i) {
         officialItem[i] = new QWidget(contentBox);
         officialItem[i]->setFixedWidth(170);
         officialItem[i]->setObjectName("bannerItem");
@@ -239,7 +246,7 @@ void HouseSelected::officialPlayList() {
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 12));
+        itemImg->setPixmap(tools->imgPixRadius(getImage(picurl), getImage(picurl)->size(), 12));
 
         maskBox = new QWidget(itemImg);
         maskBox->setFixedSize(itemImg->width(), itemImg->height());
@@ -257,7 +264,7 @@ void HouseSelected::officialPlayList() {
 
         playCount = new QLabel(itemImg);
         playCount->setFixedWidth(itemImg->width() - 10);
-        playCount->setText("5580亿");
+        playCount->setText(listenCount);
         playCount->setAlignment(Qt::AlignRight);
         playCount->setObjectName("playCount");
         playCount->move(0, itemImg->height() - 25);
@@ -266,7 +273,7 @@ void HouseSelected::officialPlayList() {
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
         title->setObjectName("recomTit");
-        title->setText("华语摇滚|川流不息");
+        title->setText(item_title);
         title->setWordWrap(true);
         title->setAlignment(Qt::AlignTop);
         title->setFixedHeight(38);
@@ -286,7 +293,7 @@ void HouseSelected::officialPlayList() {
     contentLayout->addWidget(arrowBox(1, "right"));
 
     layout->addWidget(containerBox);
-    layout->addSpacing(30);
+    layout->addSpacing(20);
 }
 
 // 推荐听书
@@ -340,19 +347,16 @@ void HouseSelected::listenBook() {
     animation[2] = new QPropertyAnimation(wrapconBox[2], "geometry");
     animation[2]->setDuration(300);
 
+    QJsonObject req_4 = json_data["req_4"].toObject();
+    QJsonObject data = req_4["data"].toObject();
+    QJsonArray list = data["radioList"].toArray();
+    for (int i = 0; i < list.size(); ++i) {
+        QJsonObject item_obj = list.at(i).toObject();
+        QString cover = item_obj["cover"].toString();
+        QString item_title = item_obj["title"].toString();
+        int cnt = item_obj["cnt"].toInt();
+        QString play_count = tools->toStrWan(cnt);
 
-    QList<QString> imgList;
-    QList<QString> txtList;
-    imgList << "https://y.gtimg.cn/music/photo_new/T002R500x500M000002ecDYa4W8Etq.jpg"
-            << "https://y.gtimg.cn/music/photo_new/T002R500x500M000001Yh5Lq2ttNjH.jpg"
-            << "https://y.gtimg.cn/music/photo_new/T002R500x500M000004O1yg94X8WZT.jpg"
-            << "https://y.gtimg.cn/music/photo_new/T002R500x500M000002C8imL3ZjTKl.jpg"
-            << "https://y.gtimg.cn/music/photo_new/T002R500x500M000003Lp9xx4bZJFm.jpg"
-            //<< "https://y.gtimg.cn/music/photo_new/T002R500x500M000002hyVDd2SGIit.jpg"
-            //<< "https://y.gtimg.cn/music/photo_new/T002R500x500M000002FPE0c0NPEx9.jpg"
-            //<< "https://y.gtimg.cn/music/photo_new/T002R500x500M000002FHfQJ3ULEdE.jpg"
-            << "https://y.gtimg.cn/music/photo_new/T002R500x500M0000048ss5v1COV8J.jpg";
-    for (int i = 0; i < imgList.size(); ++i) {
         listenBookItem[i] = new QWidget(contentBox);
         listenBookItem[i]->setFixedWidth(170);
         listenBookItem[i]->setObjectName("listenBookItem");
@@ -369,7 +373,7 @@ void HouseSelected::listenBook() {
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 12));
+        itemImg->setPixmap(tools->imgPixRadius(getImage(cover), getImage(cover)->size(), 12));
 
         maskBox = new QWidget(itemImg);
         maskBox->setFixedSize(itemImg->width(), itemImg->height());
@@ -387,7 +391,7 @@ void HouseSelected::listenBook() {
 
         playCount = new QLabel(itemImg);
         playCount->setFixedWidth(itemImg->width() - 10);
-        playCount->setText("5580亿");
+        playCount->setText(play_count);
         playCount->setAlignment(Qt::AlignRight);
         playCount->setObjectName("playCount");
         playCount->move(0, itemImg->height() - 25);
@@ -395,7 +399,7 @@ void HouseSelected::listenBook() {
         title = new QLabel;
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
-        title->setText("孤独患者 | 人生而孤独");
+        title->setText(item_title);
         title->setWordWrap(true);
         title->setAlignment(Qt::AlignTop);
         title->setFixedHeight(38);
@@ -455,12 +459,18 @@ void HouseSelected::latestIssue() {
 
     latestNavBox = new QWidget;
     titLeftLayout->addWidget(latestNavBox);
-    QStringList nav = {"最新", "内地", "港台", "欧美", "韩国", "日本"};
+
+    QJsonObject req_3 = json_data["req_3"].toObject();
+    QJsonObject data = req_3["data"].toObject();
+    QJsonArray nav = data["lanlist"].toArray();
     for (int i = 0; i < nav.size(); ++i) {
+        QJsonObject nav_item = nav.at(i).toObject();
+        QString lan = nav_item["lan"].toString();
+
         latestNavItem[i] = new QLabel;
         latestNavItem[i]->setCursor(Qt::PointingHandCursor);
         latestNavItem[i]->setObjectName("latestNavItem");
-        latestNavItem[i]->setText(nav[i]);
+        latestNavItem[i]->setText(lan);
         latestNavLayout->addWidget(latestNavItem[i]);
         latestNavLayout->addSpacing(30);
         latestNavBox->setLayout(latestNavLayout);
@@ -498,7 +508,7 @@ void HouseSelected::latestIssue() {
     containerLayout->addWidget(titleBox);
 
     contentBox = new QWidget(containerBox);
-    contentBox->setFixedSize(containerBox->width(), 230);
+    contentBox->setFixedSize(containerBox->width(), 250);
     contentBox->installEventFilter(this);
     contentBox->setObjectName("latestBox");
 
@@ -526,15 +536,24 @@ void HouseSelected::latestIssue() {
     animation[3]->setDuration(300);
 
 
-    QList<QString> imgList;
-    QList<QString> txtList;
-    imgList << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QfX3MU2dzluKMUOBEjz0h6g/300"
-            << "https://qpic.y.qq.com/music_cover/MKjEtF7diatibd6B0iaeF5Kgn7iblB0nh85QY8gA4UrJxhxQ9BBHZHDyFQ/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqojSibubibse2uIWSaZhZ39n1F1CQCXVuMGdw/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/ib2uYYJVhia5TeO7z67ehqoglWn5x5ITgE8KljTdMrDCyBpia0Jkn6BDg/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/I2ZdwiaF8XY3CVB1y18cmH6dVjiaC6hprhowF1emvMrTFIxCibB04GH5A/300?n=1"
-            << "https://qpic.y.qq.com/music_cover/4pmnRu5sL5QbtO8OS8NKJTN5qBpjx5XMS8vhm4hcZSN7PEHPQ68C0Q/300?n=1";
-    for (int i = 0; i < imgList.size(); ++i) {
+    QJsonArray list = data["songlist"].toArray();
+
+    for (int i = 0; i < list.size(); ++i) {
+        QJsonObject item_obj = list.at(i).toObject();
+        QJsonObject album = item_obj["album"].toObject();
+        QString pmid = album["pmid"].toString();
+        QString cover = "https://y.qq.com/music/photo_new/T002R300x300M000" + pmid + ".jpg";
+        QString item_title = item_obj["name"].toString();
+        QString time_public = album["time_public"].toString();
+        QJsonArray singer = item_obj["singer"].toArray();
+        // 处理 文字拼接
+        QString name_str = "";
+        for (int y = 0; y < singer.size(); ++y) {
+            QJsonObject singers_obj = singer.at(y).toObject();
+            QString name = singers_obj["name"].toString();
+            name_str = name_str == "" ? name : name_str + "/" + name;
+        }
+
         latestItem[i] = new QWidget(contentBox);
         latestItem[i]->setFixedWidth(170);
         latestItem[i]->setObjectName("latestItem");
@@ -551,7 +570,7 @@ void HouseSelected::latestIssue() {
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 12));
+        itemImg->setPixmap(tools->imgPixRadius(getImage(cover), getImage(cover)->size(), 12));
 
         maskBox = new QWidget(itemImg);
         maskBox->setFixedSize(itemImg->width(), itemImg->height());
@@ -570,13 +589,17 @@ void HouseSelected::latestIssue() {
         title = new QLabel;
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
-        QString titleTxt = tools->textElps("华语摇滚|川流不息", itemImg->width()-20, title->font());
+        QString titleTxt = tools->textElps(item_title, itemImg->width() - 20, title->font());
         title->setText(titleTxt);
 
         exTitle = new QLabel;
         exTitle->setObjectName("exTitle");
-        QString txt = tools->textElps("GAT周延/威尔Will.T", itemImg->width()-20, exTitle->font());
+        QString txt = tools->textElps(name_str, itemImg->width() - 20, exTitle->font());
         exTitle->setText(txt);
+
+        dateLabel = new QLabel;
+        dateLabel->setObjectName("dateLabel");
+        dateLabel->setText(time_public);
 
         itemLayout->addSpacing(10);
         itemLayout->addWidget(itemImg);
@@ -584,6 +607,8 @@ void HouseSelected::latestIssue() {
         itemLayout->addWidget(title);
         itemLayout->addSpacing(3);
         itemLayout->addWidget(exTitle);
+        itemLayout->addSpacing(3);
+        itemLayout->addWidget(dateLabel);
         latestItem[i]->setLayout(itemLayout);
         bannerLayout->addWidget(latestItem[i]);
         bannerLayout->setSpacing(20);
@@ -646,18 +671,18 @@ void HouseSelected::classPrefe() {
     animation[4] = new QPropertyAnimation(wrapconBox[4], "geometry");
     animation[4]->setDuration(300);
 
-
-    QList<QString> imgList;
-    QList<QString> txtList;
-    imgList << "https://y.gtimg.cn/music/common/upload/category_area/4522613.jpg"
-            << "https://y.gtimg.cn/music/common/upload/category_area/4370381.png"
-            << "https://y.gtimg.cn/music/common/upload/category_area/4522642.jpg"
-            << "https://y.gtimg.cn/music/common/upload/category_area/4104860.jpg"
-            << "https://y.gtimg.cn/music/common/upload/category_area/4427772.jpg"
-            // << "https://y.gtimg.cn/music/common/upload/category_area/2447186.jpg"
-            // << "https://y.gtimg.cn/music/common/upload/category_area/1348191.jpg"
-            << "https://y.gtimg.cn/music/common/upload/category_area/4461729.png";
-    for (int i = 0; i < imgList.size(); ++i) {
+    QJsonObject req_5 = json_data["req_5"].toObject();
+    QJsonObject data = req_5["data"].toObject();
+    QJsonObject shelf = data["shelf"].toObject();
+    QJsonArray v_niche = shelf["v_niche"].toArray();
+    QJsonObject v_niche_obj = v_niche.at(0).toObject();
+    QJsonArray list = v_niche_obj["v_card"].toArray();
+    for (int i = 0; i < list.size(); ++i) {
+        QJsonObject item_obj = list.at(i).toObject();
+        QJsonObject miscellany = item_obj["miscellany"].toObject();
+        QString cover = miscellany["icon"].toString();
+        QString item_title = item_obj["title"].toString();
+        QString subtitle = item_obj["subtitle"].toString();
         classItem[i] = new QWidget(contentBox);
         classItem[i]->setFixedWidth(170);
         classItem[i]->setObjectName("classPrefeItem");
@@ -674,7 +699,7 @@ void HouseSelected::classPrefe() {
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 12));
+        itemImg->setPixmap(tools->imgPixRadius(getImage(cover), getImage(cover)->size(), 12));
 
         maskBox = new QWidget(itemImg);
         maskBox->setFixedSize(itemImg->width(), itemImg->height());
@@ -685,11 +710,11 @@ void HouseSelected::classPrefe() {
         title = new QLabel;
         title->setCursor(Qt::PointingHandCursor);
         title->setObjectName("recomTit");
-        title->setText("杜比全景声");
+        title->setText(item_title);
 
         exTitle = new QLabel;
         exTitle->setObjectName("exTitle");
-        QString txt = tools->textElps("高解析度音乐，如临现场，栩栩如生", itemImg->width()-20, exTitle->font());
+        QString txt = tools->textElps(subtitle, itemImg->width() - 20, exTitle->font());
         exTitle->setText(txt);
 
         itemLayout->addSpacing(10);
@@ -785,7 +810,6 @@ void HouseSelected::toggleItem(QWidget *itemBox, QString objName, QEvent *e) {
 
     QPropertyAnimation *animation = new QPropertyAnimation(box, "geometry");
     animation->setDuration(150);
-
     if (e->type() == QEvent::Enter) {
         animation->setStartValue(QRect(0, 10, box->width(), box->height()));
         animation->setEndValue(QRect(0, 0, box->width(), box->height()));
