@@ -13,25 +13,17 @@ HouseSinger::HouseSinger(QWidget *parent) : QWidget(parent) {
     widget = new QWidget(this);
     widget->setFixedSize(this->size());
     widget->setObjectName("conbox");
-    layout = new QVBoxLayout;
-    layout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
-    layout->setSpacing(0);
-    layout->setMargin(0);
 
     json_data = tools->toJson(":/resource/json/music_singer.json");
 
     singerList();
-    widget->setLayout(layout);
 }
 
 void HouseSinger::singerList() {
-    containerBox = new QWidget(widget);
-    containerBox->setFixedWidth(widget->width() - 20);
     containerLayout = new QGridLayout;
     containerLayout->setSpacing(0);
     containerLayout->setMargin(0);
     containerLayout->setAlignment(Qt::AlignTop);
-    containerBox->setLayout(containerLayout);
 
     QJsonObject req_0 = json_data["req_0"].toObject();
     QJsonObject data = req_0["data"].toObject();
@@ -41,7 +33,7 @@ void HouseSinger::singerList() {
        QJsonObject item_obj = list.at(i).toObject();
        QString singer_pic = item_obj["singer_pic"].toString();
        QString singer_name = item_obj["singer_name"].toString();
-        int size = (containerBox->width() / 4) - 20;
+        int size = (widget->width() / 4) - 20;
         singerItem[i] = new QWidget;
         singerItem[i]->installEventFilter(this);
         singerItem[i]->setFixedWidth(size);
@@ -72,11 +64,11 @@ void HouseSinger::singerList() {
         containerLayout->setSpacing(20);
         containerLayout->setVerticalSpacing(30);
     }
-    layout->addSpacing(10);
-    layout->addWidget(containerBox);
     int hh = 245*cl;
     this->setFixedHeight(hh);
     widget->setFixedHeight(hh);
+    widget->setLayout(containerLayout);
+
 };
 QPixmap *HouseSinger::getImage(QString url) {
     manager = new QNetworkAccessManager;
