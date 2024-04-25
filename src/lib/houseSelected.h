@@ -40,7 +40,6 @@ protected:
 
 private:
     QJsonObject json_data;
-    QList<QString> recomAttrList;
     QPropertyAnimation *animation[6];
     QLabel *tagLabel;
     QLabel *titleLabel;

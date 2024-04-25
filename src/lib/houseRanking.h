@@ -5,17 +5,6 @@
 #ifndef QQMUSICCOPY_HOUSERANKING_H
 #define QQMUSICCOPY_HOUSERANKING_H
 
-#include <QWidget>
-#include <QLabel>
-#include <QHBoxLayout>
-#include <QPropertyAnimation>
-#include <QNetworkAccessManager>
-#include <QNetworkRequest>
-#include <QNetworkReply>
-#include <QEventLoop>
-#include <QByteArray>
-#include <QMouseEvent>
-#include <cmath>
 #include "../utils/tools.h"
 
 class HouseRanking : public QWidget {
@@ -45,6 +34,7 @@ public slots:
 protected:
 
 private:
+    QJsonArray group;
     QLabel *title;
     QLabel *playBox;
     QLabel *itemImg;

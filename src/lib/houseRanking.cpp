@@ -20,6 +20,11 @@ HouseRanking::HouseRanking(QWidget *parent) : QWidget(parent) {
     layout->setMargin(0);
     layout->setAlignment(Qt::AlignRight);
 
+    QJsonObject json_data = tools->toJson(":/resource/json/music_ranking.json");
+    QJsonObject req_0 = json_data["req_0"].toObject();
+    QJsonObject data = req_0["data"].toObject();
+    group = data["group"].toArray();
+
     rankingTop();
     regional();
     feature();
@@ -39,16 +44,17 @@ void HouseRanking::rankingTop() {
     containerLayout->setAlignment(Qt::AlignTop);
     containerBox->setLayout(containerLayout);
 
-    QList<QString> imgList;
-    QList<QString> txtList;
-    imgList << "https://y.qq.com/music/photo_new/T003R300x300M000003jPzHn4JkfK1.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000002MMbGH3LbfTS.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000001heSXA0sxaTY.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M0000011BU8d2iufia.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000002eYcg0312V98.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000004H76012Gkas2.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000003SSGWk0N4fI0.jpg";
-    for (int i = 0; i < imgList.size(); ++i) {
+
+    QJsonObject group_obj = group.at(0).toObject();
+    QJsonArray list = group_obj["toplist"].toArray();
+
+    for (int i = 0; i < list.size(); ++i) {
+        QJsonObject item_obj = list.at(i).toObject();
+        QString frontPicUrl = item_obj["frontPicUrl"].toString();
+        QString musichallTitle = item_obj["musichallTitle"].toString();
+        int listenNum = item_obj["listenNum"].toInt();
+        QString listen_num = tools->toStrWan(listenNum);
+
         int box_w = containerBox->width() / 2;
         int item_h = 150;
         item[i] = new QWidget;
@@ -70,7 +76,7 @@ void HouseRanking::rankingTop() {
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 20));
+        itemImg->setPixmap(tools->imgPixRadius(getImage(frontPicUrl), getImage(frontPicUrl)->size(), 20));
         itemImg->setFixedSize(150, 150);
 
         maskBox = new QWidget(itemImg);
@@ -106,7 +112,7 @@ void HouseRanking::rankingTop() {
 
         playCount = new QLabel;
         playCount->setObjectName("playCount");
-        playCount->setText("203.6万");
+        playCount->setText(listen_num);
         playCount->setFixedSize(playCount->sizeHint());
         playCount->setAlignment(Qt::AlignCenter);
 
@@ -127,16 +133,20 @@ void HouseRanking::rankingTop() {
         rightListBox->setLayout(rightListLayout);
 
         title = new QLabel;
-        title->setText("腾讯音乐人原创榜");
+        title->setText(musichallTitle);
         title->setObjectName("blodTit");
         title->setFixedSize(rw, 30);
         rightListLayout->addWidget(title);
         rightListLayout->addSpacing(20);
 
-        QStringList slist = {"缘故-贺均分", "蜃楼-周深", "总有人留在过去-黑雾乐队"};
-        for (int j = 0; j < slist.size(); ++j) {
+        QJsonArray song_list = item_obj["song"].toArray();
+        for (int j = 0; j < song_list.size(); ++j) {
+            QJsonObject song_item = song_list.at(j).toObject();
+            QString song_title = song_item["title"].toString();
+            QString song_name = song_item["singerName"].toString();
+
             songItem[j] = new QLabel;
-            QString txt = tools->textElps(slist[j], rightListBox->width(), songItem[j]->font());
+            QString txt = tools->textElps(song_title + "-" + song_name, rightListBox->width(), songItem[j]->font());
             songItem[j]->setText(txt);
             songItem[j]->setObjectName("songItem");
             rightListLayout->addWidget(songItem[j]);
@@ -168,8 +178,12 @@ void HouseRanking::regional() {
     containerVLayout->setAlignment(Qt::AlignTop);
     containerVBox->setLayout(containerVLayout);
 
+    QJsonObject group_obj = group.at(1).toObject();
+    QString group_name = group_obj["groupName"].toString();
+    QJsonArray list = group_obj["toplist"].toArray();
+
     title = new QLabel;
-    title->setText("地区榜");
+    title->setText(group_name);
     title->setObjectName("title");
     containerVLayout->addWidget(title);
     containerVLayout->addSpacing(20);
@@ -184,18 +198,11 @@ void HouseRanking::regional() {
     containerLayout->setAlignment(Qt::AlignTop);
     containerBox->setLayout(containerLayout);
 
-    QList<QString> imgList;
-    QList<QString> txtList;
-    imgList << "https://y.qq.com/music/photo_new/T003R300x300M000000kyP0Y41mVgr.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000003CPSUH29Htzl.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000004IjbuM0yx0i2.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M0000041fyIo1W7VzR.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M00000084GsF3zkK62.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000001e2aJF1DYb74.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000003RpQin0xR8Sb.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000001SRF6I0z2v3I.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M0000013o4V60ch0es.jpg";
-    for (int i = 0; i < imgList.size(); ++i) {
+    for (int i = 0; i < list.size(); ++i) {
+        QJsonObject item_obj = list.at(i).toObject();
+        QString frontPicUrl = item_obj["frontPicUrl"].toString();
+        int listenNum = item_obj["listenNum"].toInt();
+        QString listen_num = tools->toStrWan(listenNum);
         int regSize = (containerBox->width() / 5) - 20;
         regItem[i] = new QWidget;
         regItem[i]->installEventFilter(this);
@@ -214,7 +221,7 @@ void HouseRanking::regional() {
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 20));
+        itemImg->setPixmap(tools->imgPixRadius(getImage(frontPicUrl), getImage(frontPicUrl)->size(), 20));
         itemImg->setFixedSize(regSize, regSize);
 
         maskBox = new QWidget(itemImg);
@@ -250,7 +257,7 @@ void HouseRanking::regional() {
 
         playCount = new QLabel;
         playCount->setObjectName("playCount");
-        playCount->setText("203.6万");
+        playCount->setText(listen_num);
         playCount->setFixedSize(playCount->sizeHint());
         playCount->setAlignment(Qt::AlignCenter);
 
@@ -283,8 +290,12 @@ void HouseRanking::feature() {
     containerVLayout->setAlignment(Qt::AlignTop);
     containerVBox->setLayout(containerVLayout);
 
+    QJsonObject group_obj = group.at(2).toObject();
+    QString group_name = group_obj["groupName"].toString();
+    QJsonArray list = group_obj["toplist"].toArray();
+
     title = new QLabel;
-    title->setText("特色榜");
+    title->setText(group_name);
     title->setObjectName("title");
     containerVLayout->addWidget(title);
     containerVLayout->addSpacing(20);
@@ -299,19 +310,11 @@ void HouseRanking::feature() {
     containerLayout->setAlignment(Qt::AlignTop);
     containerBox->setLayout(containerLayout);
 
-    QList<QString> imgList;
-    QList<QString> txtList;
-    imgList << "https://y.qq.com/music/photo_new/T003R300x300M000003qFNIE3MPKOs.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000001Yxdd20ntNLW.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000004PV7jr3OXFGi.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000001yUEKS3ItDko.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M0000017YIfo13thKr.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M0000035FMRt48FVyK.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000004Zor9K2A1WmR.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000001BjYYI2vAwdm.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000003DSItK3HANZI.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000002PPTDG3iuzRn.jpg";
-    for (int i = 0; i < imgList.size(); ++i) {
+    for (int i = 0; i < list.size(); ++i) {
+        QJsonObject item_obj = list.at(i).toObject();
+        QString frontPicUrl = item_obj["frontPicUrl"].toString();
+        int listenNum = item_obj["listenNum"].toInt();
+        QString listen_num = tools->toStrWan(listenNum);
         int regSize = (containerBox->width() / 5) - 20;
         feaItem[i] = new QWidget;
         feaItem[i]->installEventFilter(this);
@@ -330,7 +333,7 @@ void HouseRanking::feature() {
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 20));
+        itemImg->setPixmap(tools->imgPixRadius(getImage(frontPicUrl), getImage(frontPicUrl)->size(), 20));
         itemImg->setFixedSize(regSize, regSize);
 
         maskBox = new QWidget(itemImg);
@@ -366,7 +369,7 @@ void HouseRanking::feature() {
 
         playCount = new QLabel;
         playCount->setObjectName("playCount");
-        playCount->setText("203.6万");
+        playCount->setText(listen_num);
         playCount->setFixedSize(playCount->sizeHint());
         playCount->setAlignment(Qt::AlignCenter);
 
@@ -399,8 +402,12 @@ void HouseRanking::globa() {
     containerVLayout->setAlignment(Qt::AlignTop);
     containerVBox->setLayout(containerVLayout);
 
+    QJsonObject group_obj = group.at(3).toObject();
+    QString group_name = group_obj["groupName"].toString();
+    QJsonArray list = group_obj["toplist"].toArray();
+
     title = new QLabel;
-    title->setText("全球榜");
+    title->setText(group_name);
     title->setObjectName("title");
     containerVLayout->addWidget(title);
     containerVLayout->addSpacing(20);
@@ -415,14 +422,11 @@ void HouseRanking::globa() {
     containerHLayout->setAlignment(Qt::AlignTop);
     containerBox->setLayout(containerHLayout);
 
-    QList<QString> imgList;
-    QList<QString> txtList;
-    imgList << "https://y.qq.com/music/photo_new/T003R300x300M000002qaHul00ul8z.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000002nUO0t0FOEY4.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M0000004mNEi425jDC.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000001fYnUb24Md4Q.jpg"
-            << "https://y.qq.com/music/photo_new/T003R300x300M000001puADo1qv4LW.jpg";
-    for (int i = 0; i < imgList.size(); ++i) {
+    for (int i = 0; i < list.size(); ++i) {
+        QJsonObject item_obj = list.at(i).toObject();
+        QString frontPicUrl = item_obj["frontPicUrl"].toString();
+        int listenNum = item_obj["listenNum"].toInt();
+        QString listen_num = tools->toStrWan(listenNum);
         int regSize = (containerBox->width() / 5) - 20;
         globItem[i] = new QWidget;
         globItem[i]->installEventFilter(this);
@@ -441,7 +445,7 @@ void HouseRanking::globa() {
         itemImg->setProperty("index", i);
         itemImg->installEventFilter(this);
         // 先提取网络图片 再处理圆角 Tools
-        itemImg->setPixmap(tools->imgPixRadius(getImage(imgList[i]), getImage(imgList[i])->size(), 20));
+        itemImg->setPixmap(tools->imgPixRadius(getImage(frontPicUrl), getImage(frontPicUrl)->size(), 20));
         itemImg->setFixedSize(regSize, regSize);
 
         maskBox = new QWidget(itemImg);
@@ -477,7 +481,7 @@ void HouseRanking::globa() {
 
         playCount = new QLabel;
         playCount->setObjectName("playCount");
-        playCount->setText("203.6万");
+        playCount->setText(listen_num);
         playCount->setFixedSize(playCount->sizeHint());
         playCount->setAlignment(Qt::AlignCenter);
 
