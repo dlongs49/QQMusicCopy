@@ -5,19 +5,6 @@
 #ifndef QQMUSICCOPY_HOUSESINGER_H
 #define QQMUSICCOPY_HOUSESINGER_H
 
-#include <QWidget>
-#include <QList>
-#include <QLabel>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QGridLayout>
-#include <QNetworkAccessManager>
-#include <QNetworkRequest>
-#include <QNetworkReply>
-#include <QEventLoop>
-#include <QByteArray>
-#include <QMouseEvent>
-#include <cmath>
 #include "../utils/tools.h"
 
 class HouseSinger : public QWidget {
@@ -34,7 +21,6 @@ public slots:
 
     void loadQSS();
 
-    void singerTop();
     void singerList();
 
     QPixmap *getImage(QString url);
@@ -42,12 +28,13 @@ public slots:
 protected:
 
 private:
+    QJsonObject json_data;
     QLabel *singerName;
     QLabel *itemImg;
     QWidget *widget;
     QWidget *containerBox;
     QWidget *singerItem[10];
-    QWidget *item[55];
+    QWidget *item[100];
     QVBoxLayout *layout;
     QVBoxLayout *contentLayout;
     QHBoxLayout *itemLayout;
