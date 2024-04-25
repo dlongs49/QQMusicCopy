@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     const int w = 1036;
     const int h = 660;
     this->resize(w, h); // 窗口大小
-
+    this->setWindowIcon(QIcon(":/resource/favicon.ico"));
     //阴影的宽度
 //    this->setContentsMargins(35, 35, 35, 35);
 //    //无边框

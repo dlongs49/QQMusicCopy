@@ -16,6 +16,7 @@ find_package(Qt5 COMPONENTS Widgets Network REQUIRED)
 add_executable(QQMusicCopy
         main.cpp
         res.qrc
+		_.rc
         src/mainwindow.h
         src/mainwindow.cpp
 		src/utils/tools.h
