@@ -42,17 +42,21 @@ void VideoLibrary::tagList(){
     areaBox = new QWidget;
     areaBox->setLayout(areaLayout);
 
-    QStringList areaList = {"全部", "内地","港台","欧美","韩国","日本"};
     for (int i = 0; i < areaList.size(); ++i) {
-        areaLabel[i] = new QLabel;
-        areaLabel[i]->installEventFilter(this);
-        areaLabel[i]->setAlignment(Qt::AlignCenter);
-        areaLabel[i]->setFixedSize(nav_w,nav_h);
-        areaLabel[i]->setCursor(Qt::PointingHandCursor);
-        areaLabel[i]->setText(areaList[i]);
-        areaLabel[i]->setObjectName("navItem");
-        areaLayout->addWidget(areaLabel[i]);
+        areaBtn[i] = new QPushButton;
+        areaBtn[i]->installEventFilter(this);
+        areaBtn[i]->setFixedSize(nav_w,nav_h);
+        areaBtn[i]->setCursor(Qt::PointingHandCursor);
+        areaBtn[i]->setText(areaList[i]);
+        areaBtn[i]->setObjectName("navItem");
+        if(i == 0){
+            areaBtn[i]->setProperty("class", "active");
+        }else{
+            areaBtn[i]->setProperty("class", "nav_item");
+        }
+        areaLayout->addWidget(areaBtn[i]);
         areaLayout->addSpacing(15);
+        connect(areaBtn[i], &QPushButton::clicked, this, [=](){clickNation(i);});
     }
 
     distLayout = new QHBoxLayout;
@@ -62,17 +66,21 @@ void VideoLibrary::tagList(){
     distBox = new QWidget;
     distBox->setLayout(distLayout);
 
-    QStringList distList = {"全部", "MV","现场","翻唱","舞蹈","影视","综艺","儿歌"};
     for (int i = 0; i < distList.size(); ++i) {
-        distLabel[i] = new QLabel;
-        distLabel[i]->installEventFilter(this);
-        distLabel[i]->setAlignment(Qt::AlignCenter);
-        distLabel[i]->setFixedSize(nav_w,nav_h);
-        distLabel[i]->setCursor(Qt::PointingHandCursor);
-        distLabel[i]->setText(distList[i]);
-        distLabel[i]->setObjectName("navItem");
-        distLayout->addWidget(distLabel[i]);
+        distBtn[i] = new QPushButton;
+        distBtn[i]->installEventFilter(this);
+        distBtn[i]->setFixedSize(nav_w,nav_h);
+        distBtn[i]->setCursor(Qt::PointingHandCursor);
+        distBtn[i]->setText(distList[i]);
+        distBtn[i]->setObjectName("navItem");
+        if(i == 0){
+            distBtn[i]->setProperty("class", "active");
+        }else{
+            distBtn[i]->setProperty("class", "nav_item");
+        }
+        distLayout->addWidget(distBtn[i]);
         distLayout->addSpacing(15);
+        connect(distBtn[i], &QPushButton::clicked, this, [=](){clickCategory(i);});
     }
 
     containerLayout->addWidget(areaBox);
@@ -258,7 +266,22 @@ QPixmap *VideoLibrary::getImage(QString url) {
     coverImg->loadFromData(imgData);
     return coverImg;
 }
-
+void VideoLibrary::clickNation(int i){
+    for (int j = 0; j < areaList.size(); ++j) {
+        areaBtn[j]->setProperty("class", "nav_item");
+        areaBtn[j]->style()->polish(areaBtn[j]);
+    }
+    areaBtn[i]->setProperty("class", "active");
+    areaBtn[i]->style()->polish(areaBtn[i]);
+}
+void VideoLibrary::clickCategory(int i){
+    for (int j = 0; j < distList.size(); ++j) {
+        distBtn[j]->setProperty("class", "nav_item");
+        distBtn[j]->style()->polish(distBtn[j]);
+    }
+    distBtn[i]->setProperty("class", "active");
+    distBtn[i]->style()->polish(distBtn[i]);
+}
 // 轮播图切换
 void VideoLibrary::toggleItem(QWidget *itemBox, QString objName, QEvent *e) {
     QLabel *box = itemBox->findChild<QLabel *>(objName);

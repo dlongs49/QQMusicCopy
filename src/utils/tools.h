@@ -16,6 +16,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QProxyStyle >
 #include <QDebug>
 class Tools : public QWidget {
 Q_OBJECT

@@ -8,8 +8,8 @@
 #include <QDebug>
 #include <QHBoxLayout>
 #include <QMouseEvent>
-//#include <cmath>
 #include <QtMath>
+#include <QPushButton>
 #include "./videoRecom.h"
 #include "./videoRanking.h"
 #include "./videoLibrary.h"
@@ -32,7 +32,8 @@ public slots:
     bool eventFilter(QObject *watched, QEvent *event);
 
     void loadQSS();
-
+    void clickNation(int i);
+    void clickCategory(int i);
     QPixmap *getImage(QString url);
 
     void toggleItem(QWidget *itemBox, QString objName, QEvent *e);
@@ -40,13 +41,15 @@ public slots:
 protected:
 
 private:
+    QStringList areaList = {"全部", "内地","港台","欧美","韩国","日本"};
+    QStringList distList = {"全部", "MV","现场","翻唱","舞蹈","影视","综艺","儿歌"};
     QJsonObject json_data;
     QPropertyAnimation *animation;
     QLabel *author;
     QLabel *playBox;
     QLabel *rNavTit[2];
-    QLabel *areaLabel[6];
-    QLabel *distLabel[8];
+    QPushButton *areaBtn[6];
+    QPushButton *distBtn[8];
     QLabel *itemImg;
     QLabel *rightBox;
     QLabel *title;

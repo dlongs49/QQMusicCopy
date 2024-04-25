@@ -17,7 +17,6 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
-#include <QProxyStyle >
 #include "../utils/tools.h"
 
 class Radar : public QWidget {
