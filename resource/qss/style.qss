@@ -3,10 +3,56 @@
     padding: 0;
     font-family: 'Microsoft YaHei', 'iconfont';
 }
-QLabel {
-    font-family: 'Microsoft YaHei';
-    font-size: 13px;
+
+
+QWidget#item {
+    border-radius: 6px;
 }
+
+QWidget#item:hover {
+    background: #d8d8d8;
+}
+QLabel#title{
+    color: #666;
+    font-size: 12px;
+}
+QLabel#iconLabel{
+    font-size: 18px;
+    color: #666;
+}
+QLabel#menuTitle{
+    color: #666;
+    font-size: 14px;
+}
+
+.menuItem::Item {
+    margin-bottom: 10px;
+    border-radius: 4px;
+    padding: 4px 0;
+    padding-left: 7px;
+}
+
+.menuItem::Item:selected:active {
+    background: #1ECF9E;
+}
+
+
+/* LOGO */
+.logo {
+    margin-left: 35px;
+    margin-top: 20px;
+    margin-bottom: 36px;
+}
+
+
+
+
+
+
+
+
+
+
 
 QScrollArea {
     border: 0px solid;
@@ -61,43 +107,4 @@ QScrollBar::sub-page:vertical {
 QScrollBar::handle:vertical:hover,
 QScrollBar::handle:vertical:pressed {
     background: #c5c5c5;
-}
-
-
-/* 在线音乐 我的音乐.. QListWidget Item */
-.menuTitle {
-    color: #666;
-    font-size: 12px;
-    margin-left: 34px;
-    margin-bottom: 6px;
-}
-
-.menuItem {
-    margin-left: 24px;
-    background: transparent;
-    border: none;
-    outline: none;
-    /*margin-right: 20px;*/
-}
-
-.menuItem::Item {
-    margin-bottom: 10px;
-    border-radius: 4px;
-    padding: 4px 0;
-    padding-left: 7px;
-}
-
-.menuItem::Item:selected:active {
-    background: #1ECF9E;
-}
-
-.menuItem::Item:hover {
-    background: #d8d8d8;
-}
-
-/* LOGO */
-.logo {
-    margin-left: 35px;
-    margin-top: 20px;
-    margin-bottom: 36px;
 }

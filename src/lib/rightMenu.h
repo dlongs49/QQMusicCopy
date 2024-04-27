@@ -5,19 +5,7 @@
 #ifndef QTMUSIC_rightMenu_H
 #define QTMUSIC_rightMenu_H
 
-#include <QWidget>
-#include <QPushButton>
-#include <QMovie>
-#include <QLabel>
-#include <QPixmap>
-#include <QHBoxLayout> // 水平布局组件
-#include <QVBoxLayout> // 垂直布局组件
-#include <QListWidget> // 列表
-#include <QScrollArea> // 滚动容器
-#include <QSpacerItem>
-#include <QListWidgetItem>
-#include <QCursor>
-#include <QFile>
+#include "../utils/tools.h"
 
 class rightMenu : public QWidget {
 Q_OBJECT;
@@ -28,33 +16,28 @@ public:
 
 signals:
 
-    //点击信号
-    void clicked();
-
 public slots:
+    void loadQSS();
+    void onlineMusic();
+    void myMusic();
+    void myPlaySongs();
 
-    void customClick();
 
 protected:
-    void mousePressEvent(QMouseEvent *);
 
 private:
-    QListWidget *list[4];
-    QLabel *tlabel[4];
-    QVBoxLayout *vlayout;
-    QScrollArea *sarea;
     QWidget *widget;
-    QListWidgetItem *recommend;
-
-    QPushButton b1;
-
-    void onlineMusic();
-
-    void myMusic();
-
-    void createSongList();
-
-    void facoriteSonglist();
+    QWidget *containerBox;
+    QWidget *onlineItem[4];
+    QWidget *myMusicItem[5];
+    QScrollArea *scrollArea;
+    QHBoxLayout *itemLayout;
+    QVBoxLayout *layout;
+    QVBoxLayout *containerLayout;
+    QLabel *title;
+    QLabel *menuTitle;
+    QLabel *iconLabel;
+    Tools *tools;
 };
 
 #endif //QTMUSIC_rightMenu_H
