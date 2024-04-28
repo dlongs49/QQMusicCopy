@@ -28,12 +28,14 @@ protected:
 private:
     QWidget *widget;
     QWidget *containerBox;
+    QWidget *contentBox;
     QWidget *onlineItem[4];
     QWidget *myMusicItem[5];
     QScrollArea *scrollArea;
     QHBoxLayout *itemLayout;
     QVBoxLayout *layout;
     QVBoxLayout *containerLayout;
+    QLabel *logoLabel;
     QLabel *title;
     QLabel *menuTitle;
     QLabel *iconLabel;

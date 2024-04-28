@@ -13,39 +13,54 @@ rightMenu::rightMenu(QWidget *parent) : QWidget(parent) {
 
     widget = new QWidget(this);
     widget->setFixedSize(this->size());
-    widget->setFixedWidth(210);
     widget->setObjectName("conbox");
     layout = new QVBoxLayout;
     layout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
     layout->setSpacing(0);
     layout->setMargin(0);
+    widget->setLayout(layout);
 
-    scrollArea = new QScrollArea(this);
-    scrollArea->setAlignment(Qt::AlignTop);
+
+    logoLabel = new QLabel;
+    logoLabel->setFixedSize(90,25);
+    logoLabel->setScaledContents(true);
+    QPixmap logoImg(":/resource/images/logo.png");
+    logoLabel->setPixmap(logoImg);
+    layout->addSpacing(20);
+    layout->addWidget(logoLabel,0,Qt::AlignHCenter);
+    layout->addSpacing(20);
+
+    containerBox = new QWidget;
+    containerBox->setFixedSize(190,800);
+    containerLayout = new QVBoxLayout;
+    containerLayout->setAlignment(Qt::AlignTop|Qt::AlignHCenter);
+    containerBox->setLayout(containerLayout);
+
+    scrollArea = new QScrollArea();
+    scrollArea->setAlignment(Qt::AlignTop|Qt::AlignHCenter);
     scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    scrollArea->setGeometry(0, 0, 210, 500);
-    scrollArea->setWidget(widget);
+    scrollArea->setGeometry(0, 0, this->width(), 300);
+    scrollArea->setWidget(containerBox);
     scrollArea->setWidgetResizable(true);
+    layout->addWidget(scrollArea);
 
     onlineMusic();
     myMusic();
-    widget->setLayout(layout);
 }
 
 // 在线音乐
 void rightMenu::onlineMusic() {
 
     title = new QLabel;
-    title->setFixedWidth(this->width() - 20);
     title->setObjectName("title");
     title->setText("在线音乐");
-    layout->addWidget(title);
-    layout->addSpacing(8);
+    containerLayout->addWidget(title);
+    containerLayout->addSpacing(6);
 
     QStringList list = {"推荐", "乐馆", "视频", "雷达"};
     for (int i = 0; i < list.size(); ++i) {
         onlineItem[i] = new QWidget;
-        onlineItem[i]->setFixedSize(this->width() - 20, 38);
+        onlineItem[i]->setFixedSize(containerBox->width()-10, 38);
         onlineItem[i]->setObjectName("item");
         onlineItem[i]->setCursor(Qt::PointingHandCursor);
 
@@ -66,29 +81,25 @@ void rightMenu::onlineMusic() {
         itemLayout->setSpacing(4);
         itemLayout->addWidget(menuTitle);
         itemLayout->setSpacing(6);
-        layout->addWidget(onlineItem[i]);
-        layout->addSpacing(3);
+        containerLayout->addWidget(onlineItem[i]);
+        containerLayout->addSpacing(2);
     }
-    layout->addSpacing(10);
+    containerLayout->addSpacing(10);
 }
 
 // 我的音乐
 void rightMenu::myMusic() {
-    containerBox = new QWidget(widget);
-    containerLayout = new QVBoxLayout;
-    containerBox->setLayout(containerLayout);
 
     title = new QLabel;
-    title->setFixedWidth(this->width() - 20);
     title->setObjectName("title");
     title->setText("我的音乐");
-    layout->addWidget(title);
-    layout->addSpacing(8);
+    containerLayout->addWidget(title);
+    containerLayout->addSpacing(6);
 
     QStringList list = {"喜欢", "最近播放", "本地和下载", "已购音乐", "试听列表"};
     for (int i = 0; i < list.size(); ++i) {
         myMusicItem[i] = new QWidget;
-        myMusicItem[i]->setFixedSize(this->width() - 20, 38);
+        myMusicItem[i]->setFixedSize(containerBox->width() - 10, 38);
         myMusicItem[i]->setObjectName("item");
         myMusicItem[i]->setCursor(Qt::PointingHandCursor);
 
@@ -109,8 +120,8 @@ void rightMenu::myMusic() {
         itemLayout->setSpacing(4);
         itemLayout->addWidget(menuTitle);
         itemLayout->setSpacing(6);
-        layout->addWidget(myMusicItem[i]);
-        layout->addSpacing(3);
+        containerLayout->addWidget(myMusicItem[i]);
+        containerLayout->addSpacing(2);
     }
 }
 
